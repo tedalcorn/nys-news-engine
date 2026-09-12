@@ -1,19 +1,19 @@
 {
- "last_run": "2026-09-12 21:50 UTC",
- "total": 445,
+ "last_run": "2026-09-12 23:35 UTC",
+ "total": 448,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 25",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 15",
-  "NY State of Politics": "ok 64",
+  "NY State of Politics": "ok 29",
   "Newsday": "ok 45",
   "Daily News": "ok 10",
   "Gotham Gazette": "ok 0",
-  "Gothamist": "ok 0",
+  "Gothamist": "ok 3",
   "NYT New York": "ok 0",
   "NY Post Politics": "ok 1",
-  "NY Post Metro": "ok 0",
+  "NY Post Metro": "ok 1",
   "The City": "ok 2",
   "Reinvent Albany": "ERROR HTTPError: 403 Client Error: Forbidden for url: https://reinventalbany.org/feed",
   "Fiscal Policy Institute": "ok 10",
@@ -23,7 +23,7 @@
   "NY Senate": "ok 2",
   "NY Assembly": "ok 0",
   "Google News: Hochul": "ok 84",
-  "Google News: Legislature": "ok 77"
+  "Google News: Legislature": "ok 78"
  },
  "outlets": [
   "ABC7 New York",
@@ -68,6 +68,7 @@
   "NBC New York",
   "NEWS10 ABC",
   "NY Carib News",
+  "NY Post Metro",
   "NY Post Politics",
   "NY Senate",
   "NY State of Politics",
@@ -127,7 +128,8 @@
   "prismreports.org",
   "reuters.com",
   "rpa.org",
-  "silive.com"
+  "silive.com",
+  "wivb.com"
  ],
  "tags": [
   "Budget",
