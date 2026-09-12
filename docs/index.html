@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>NYS News Engine</title>
+<style>
+:root{color-scheme:light dark;--bg:#fbfbf9;--fg:#1a1a1a;--muted:#6b6b6b;--line:#e3e3df;--card:#fff;--accent:#1c4587;--chip:#eef1f6;--chipfg:#2b3a55;--pick:#fff8e6}
+@media (prefers-color-scheme:dark){:root{--bg:#131416;--fg:#e8e8e6;--muted:#9a9a97;--line:#2a2b2e;--card:#1b1c1f;--accent:#8ab4f8;--chip:#26282d;--chipfg:#c9d3e6;--pick:#221f14}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{padding:18px 20px 10px;border-bottom:1px solid var(--line)}
+h1{margin:0;font-size:22px;letter-spacing:-.01em}h1 small{font-weight:400;color:var(--muted);font-size:13px;margin-left:10px}
+.meta{color:var(--muted);font-size:12.5px;margin-top:4px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;padding:12px 20px;border-bottom:1px solid var(--line);align-items:center}
+.controls input[type=search]{flex:1 1 240px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);font-size:14px}
+.controls select,.controls button{padding:6px 9px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);font-size:13px}
+.controls button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+main{max-width:1100px;margin:0 auto;padding:10px 20px 60px}
+h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:22px 0 8px}
+.item{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:12px 10px;border-bottom:1px solid var(--line);border-radius:6px}
+.item.pick{background:var(--pick)}
+.sc{font-size:12px;color:var(--muted);text-align:right;padding-top:3px}
+.sc b{display:block;font-size:15px;color:var(--fg)}
+.t a{color:var(--fg);text-decoration:none;font-weight:600;font-size:16px}.t a:hover{text-decoration:underline}
+.line{font-size:12.5px;color:var(--muted);margin-top:3px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.outlet{font-weight:600;color:var(--accent)}
+.chip{background:var(--chip);color:var(--chipfg);border-radius:999px;padding:1px 8px;font-size:11.5px}
+.flag{border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:11px}
+.sum{color:var(--muted);font-size:13.5px;margin-top:5px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.empty{color:var(--muted);padding:30px 0}
+footer{color:var(--muted);font-size:12px;text-align:center;padding:30px 20px}
+@media (max-width:600px){.item{grid-template-columns:1fr}.sc{text-align:left}.sc b{display:inline;margin-right:6px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>NYS News Engine <small>Albany policy coverage, ranked for reporting depth</small></h1>
+  <div class="meta" id="meta">loading…</div>
+</header>
+<div class="controls">
+  <input type="search" id="q" placeholder="Search titles and summaries…">
+  <select id="outlet"><option value="">All outlets</option></select>
+  <select id="tag"><option value="">All topics</option></select>
+  <select id="range"><option value="2">Last 48h</option><option value="7" selected>Last 7 days</option><option value="30">Last 30 days</option><option value="9999">All (180d)</option></select>
+  <select id="sort"><option value="score">By score</option><option value="date">By date</option></select>
+  <button id="f-inv" title="Only stories with investigative signals">Investigative</button>
+  <button id="f-gl" title="Only stories mentioning both the Governor and the Legislature">Gov + Leg</button>
+  <button id="f-op" class="on" title="Hide opinion pieces">Hide opinion</button>
+</div>
+<main>
+  <h2>Today's picks</h2><div id="picks"></div>
+  <h2 id="latest-h">Latest</h2><div id="list"></div>
+</main>
+<footer>Personal reading tool. Sources: native RSS where available, Google News RSS where not. Refreshes every 30 minutes via GitHub Actions. Scores are heuristic.</footer>
+<script>
+const S={q:"",outlet:"",tag:"",range:7,sort:"score",inv:false,gl:false,op:true};
+let ITEMS=[],META={};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function card(i,pick){return `<div class="item${pick?" pick":""}"><div class="sc"><b>${i.score.toFixed(0)}</b>${i.published.slice(0,10)}</div><div class="t"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a><div class="line"><span class="outlet">${esc(i.outlet)}</span>${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.map(f=>`<span class="flag">${esc(f)}</span>`).join("")}</div>${i.summary?`<div class="sum">${esc(i.summary)}</div>`:""}</div></div>`}
+function filt(){const now=Date.now()/1000,cut=now-S.range*86400,q=S.q.toLowerCase();
+ return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.inv||i.flags.includes("investigative"))&&(!S.gl||i.flags.includes("gov+leg"))&&(!S.op||!i.flags.includes("opinion"))&&(!q||(i.title+" "+i.summary).toLowerCase().includes(q)))}
+function render(){const f=filt();const sorted=[...f].sort((a,b)=>S.sort==="date"?b.published_ts-a.published_ts:b.score-a.score||b.published_ts-a.published_ts);
+ const now=Date.now()/1000;const picks=ITEMS.filter(i=>i.published_ts>=now-2*86400&&!i.flags.includes("opinion")).sort((a,b)=>b.score-a.score).slice(0,8);
+ $("#picks").innerHTML=picks.length?picks.map(i=>card(i,true)).join(""):'<div class="empty">Nothing in the last 48 hours yet.</div>';
+ $("#latest-h").textContent=`Latest (${sorted.length})`;$("#list").innerHTML=sorted.length?sorted.slice(0,400).map(i=>card(i,false)).join(""):'<div class="empty">No matches.</div>'}
+async function load(){try{const [a,b]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json())]);ITEMS=a;META=b;}catch(e){$("#meta").textContent="Could not load data.";return}
+ $("#meta").textContent=`${META.total} stories from ${META.outlets.length} outlets · last refresh ${META.last_run}`;
+ for(const o of META.outlets){const el=document.createElement("option");el.value=o;el.textContent=o;$("#outlet").appendChild(el)}
+ for(const t of META.tags){const el=document.createElement("option");el.value=t;el.textContent=t;$("#tag").appendChild(el)}
+ render()}
+$("#q").addEventListener("input",e=>{S.q=e.target.value;render()});
+$("#outlet").addEventListener("change",e=>{S.outlet=e.target.value;render()});
+$("#tag").addEventListener("change",e=>{S.tag=e.target.value;render()});
+$("#range").addEventListener("change",e=>{S.range=+e.target.value;render()});
+$("#sort").addEventListener("change",e=>{S.sort=e.target.value;render()});
+for(const [id,k] of [["#f-inv","inv"],["#f-gl","gl"],["#f-op","op"]]){$(id).addEventListener("click",e=>{S[k]=!S[k];e.target.classList.toggle("on",S[k]);render()})}
+load();
+</script>
+</body>
+</html>
