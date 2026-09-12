@@ -6,76 +6,140 @@
 <meta name="robots" content="noindex">
 <title>NYS News Engine</title>
 <style>
-:root{color-scheme:light dark;--bg:#fbfbf9;--fg:#1a1a1a;--muted:#6b6b6b;--line:#e3e3df;--card:#fff;--accent:#1c4587;--chip:#eef1f6;--chipfg:#2b3a55;--pick:#fff8e6}
-@media (prefers-color-scheme:dark){:root{--bg:#131416;--fg:#e8e8e6;--muted:#9a9a97;--line:#2a2b2e;--card:#1b1c1f;--accent:#8ab4f8;--chip:#26282d;--chipfg:#c9d3e6;--pick:#221f14}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-header{padding:18px 20px 10px;border-bottom:1px solid var(--line)}
-h1{margin:0;font-size:22px;letter-spacing:-.01em}h1 small{font-weight:400;color:var(--muted);font-size:13px;margin-left:10px}
-.meta{color:var(--muted);font-size:12.5px;margin-top:4px}
-.controls{display:flex;flex-wrap:wrap;gap:8px;padding:12px 20px;border-bottom:1px solid var(--line);align-items:center}
-.controls input[type=search]{flex:1 1 240px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);font-size:14px}
-.controls select,.controls button{padding:6px 9px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);font-size:13px}
-.controls button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-main{max-width:1100px;margin:0 auto;padding:10px 20px 60px}
-h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:22px 0 8px}
-.item{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:12px 10px;border-bottom:1px solid var(--line);border-radius:6px}
-.item.pick{background:var(--pick)}
-.sc{font-size:12px;color:var(--muted);text-align:right;padding-top:3px}
-.sc b{display:block;font-size:15px;color:var(--fg)}
-.t a{color:var(--fg);text-decoration:none;font-weight:600;font-size:16px}.t a:hover{text-decoration:underline}
-.line{font-size:12.5px;color:var(--muted);margin-top:3px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.outlet{font-weight:600;color:var(--accent)}
-.chip{background:var(--chip);color:var(--chipfg);border-radius:999px;padding:1px 8px;font-size:11.5px}
-.flag{border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:11px}
-.sum{color:var(--muted);font-size:13.5px;margin-top:5px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+:root{color-scheme:light dark;
+ --bg:#f6f4ee;--paper:#fffdf8;--fg:#17171c;--muted:#6d6d78;--line:#e4e1d8;--accent:#b3411f;--accent2:#1c4587;
+ --chip:#ecebe4;--chipfg:#3a3a44;--pick:#fff6e8;--new:#b3411f;--serif:Georgia,"Times New Roman",serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#131318;--paper:#1b1b21;--fg:#ececf0;--muted:#9a9aa8;--line:#2b2b34;--accent:#ff8a5c;--accent2:#8ab4f8;--chip:#26262e;--chipfg:#cfd0da;--pick:#221c16;--new:#ff8a5c}}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;color:var(--fg);font:15px/1.45 var(--sans);background:var(--bg)}
+a{color:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding:0 22px}
+/* masthead */
+.mast{border-bottom:3px double var(--fg);padding:22px 0 12px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font:700 34px/1 var(--serif);letter-spacing:-.01em}.brand em{font-style:normal;color:var(--accent)}
+.tag{font-size:12.5px;color:var(--muted);margin-top:6px;letter-spacing:.02em;text-transform:uppercase}
+.mast .right{text-align:right;font-size:12.5px;color:var(--muted);line-height:1.5}
+.mast .right b{display:block;color:var(--fg);font:600 15px var(--serif)}
+/* nav */
+.nav{display:flex;gap:4px;align-items:center;border-bottom:1px solid var(--line);padding:8px 0;flex-wrap:wrap}
+.nav button{background:none;border:0;padding:7px 12px;border-radius:6px;font:600 13px var(--sans);color:var(--muted);cursor:pointer;text-transform:uppercase;letter-spacing:.06em}
+.nav button.active{color:var(--fg);background:var(--chip)}
+.nav .sp{flex:1}
+.nav input[type=search]{padding:7px 11px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--fg);font-size:13.5px;min-width:240px}
+.nav select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--fg);font-size:13px}
+/* grid */
+.grid{display:grid;grid-template-columns:1fr 360px;gap:36px;padding:22px 0 60px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}.mast .right{text-align:left}}
+h2.sec{font:700 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
+h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:none}
+/* picks: lead cards */
+.picks{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:28px}
+@media (max-width:700px){.picks{grid-template-columns:1fr}}
+.lead{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.lead:first-child{grid-column:1/-1}
+.lead .ttl{font:700 20px/1.25 var(--serif)}.lead:first-child .ttl{font-size:26px}
+.lead .ttl a{text-decoration:none}.lead .ttl a:hover{text-decoration:underline}
+.lead .snip{color:var(--muted);font-size:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+/* story rows */
+.row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:11px 2px;border-bottom:1px solid var(--line)}
+.row .ttl{font:600 16.5px/1.3 var(--serif)}.row .ttl a{text-decoration:none}.row .ttl a:hover{text-decoration:underline}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;color:var(--muted);margin-bottom:3px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:1px}
+.outlet{font-weight:700;color:var(--fg);letter-spacing:.02em}
+.new{font:700 10px var(--sans);color:var(--new);border:1px solid var(--new);border-radius:3px;padding:0 4px;letter-spacing:.06em}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.chip{background:var(--chip);color:var(--chipfg);border-radius:999px;padding:1px 8px;font-size:11px}
+.chip.flag{background:transparent;border:1px solid var(--line)}
+.rcol{text-align:right;font-size:12px;color:var(--muted);white-space:nowrap;padding-top:2px}
+.rcol b{display:block;font:700 15px var(--serif);color:var(--fg)}
+.snip{color:var(--muted);font-size:13.5px;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.day{font:700 13px var(--serif);margin:22px 0 4px;color:var(--fg)}
+/* sidebar */
+.side .box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:18px}
+.side h3{font:700 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.side ul{list-style:none;margin:0;padding:0}
+.side li{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px dotted var(--line);font-size:13.5px;cursor:pointer}
+.side li:last-child{border-bottom:0}.side li:hover{color:var(--accent)}.side li.on{color:var(--accent);font-weight:700}
+.side li .n{color:var(--muted);font-size:12px}
+.side .bar{height:5px;background:var(--chip);border-radius:3px;overflow:hidden;margin-top:3px}.side .bar i{display:block;height:100%;background:var(--accent2)}
+.side .buzz li{display:block}
+.side .buzz .lbl{display:flex;justify-content:space-between}
+.side .mini{font-size:13px;line-height:1.35;padding:6px 0;border-bottom:1px dotted var(--line)}
+.side .mini:last-child{border-bottom:0}.side .mini a{text-decoration:none}.side .mini a:hover{text-decoration:underline}
+.side .mini small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
 .empty{color:var(--muted);padding:30px 0}
-footer{color:var(--muted);font-size:12px;text-align:center;padding:30px 20px}
-@media (max-width:600px){.item{grid-template-columns:1fr}.sc{text-align:left}.sc b{display:inline;margin-right:6px}}
+.foot{color:var(--muted);font-size:12px;padding:18px 0 40px;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
-<header>
-  <h1>NYS News Engine <small>Albany policy coverage, ranked for reporting depth</small></h1>
-  <div class="meta" id="meta">loading…</div>
-</header>
-<div class="controls">
-  <input type="search" id="q" placeholder="Search titles and summaries…">
-  <select id="outlet"><option value="">All outlets</option></select>
-  <select id="tag"><option value="">All topics</option></select>
-  <select id="range"><option value="2">Last 48h</option><option value="7" selected>Last 7 days</option><option value="30">Last 30 days</option><option value="9999">All (180d)</option></select>
-  <select id="sort"><option value="score">By score</option><option value="date">By date</option></select>
-  <button id="f-inv" title="Only stories with investigative signals">Investigative</button>
-  <button id="f-gl" title="Only stories mentioning both the Governor and the Legislature">Gov + Leg</button>
-  <button id="f-op" class="on" title="Hide opinion pieces">Hide opinion</button>
+<div class="wrap">
+  <header class="mast">
+    <div><div class="brand">NYS <em>News</em> Engine</div><div class="tag">Albany · the Governor · the Legislature · ranked for reporting depth</div></div>
+    <div class="right"><b id="today"></b><span id="meta">loading…</span></div>
+  </header>
+  <nav class="nav">
+    <button data-view="picks" class="active">Picks</button>
+    <button data-view="latest">Latest</button>
+    <button data-view="byday">By day</button>
+    <button data-view="official">Official</button>
+    <span class="sp"></span>
+    <input type="search" id="q" placeholder="Search…">
+    <select id="range"><option value="2">48h</option><option value="7" selected>7 days</option><option value="30">30 days</option><option value="9999">180 days</option></select>
+  </nav>
+  <div class="grid">
+    <main id="main"></main>
+    <aside class="side">
+      <div class="box"><h3>Filters</h3><ul id="flags">
+        <li data-k="inv">Investigative signals <span class="n" id="n-inv"></span></li>
+        <li data-k="gl">Governor + Legislature <span class="n" id="n-gl"></span></li>
+        <li data-k="op" class="on">Hide opinion</li>
+      </ul></div>
+      <div class="box"><h3>Buzzing this week</h3><ul id="buzz" class="buzz"></ul></div>
+      <div class="box"><h3>Outlets</h3><ul id="outlets"></ul></div>
+      <div class="box"><h3>Investigative, this week</h3><div id="invlist"></div></div>
+    </aside>
+  </div>
+  <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not. Refreshes every 30 minutes. Scores are heuristic.</div>
 </div>
-<main>
-  <h2>Today's picks</h2><div id="picks"></div>
-  <h2 id="latest-h">Latest</h2><div id="list"></div>
-</main>
-<footer>Personal reading tool. Sources: native RSS where available, Google News RSS where not. Refreshes every 30 minutes via GitHub Actions. Scores are heuristic.</footer>
 <script>
-const S={q:"",outlet:"",tag:"",range:7,sort:"score",inv:false,gl:false,op:true};
+const S={view:"picks",q:"",range:7,outlet:"",tag:"",inv:false,gl:false,op:true};
 let ITEMS=[],META={};
-const $=s=>document.querySelector(s);
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function card(i,pick){return `<div class="item${pick?" pick":""}"><div class="sc"><b>${i.score.toFixed(0)}</b>${i.published.slice(0,10)}</div><div class="t"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a><div class="line"><span class="outlet">${esc(i.outlet)}</span>${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.map(f=>`<span class="flag">${esc(f)}</span>`).join("")}</div>${i.summary?`<div class="sum">${esc(i.summary)}</div>`:""}</div></div>`}
-function filt(){const now=Date.now()/1000,cut=now-S.range*86400,q=S.q.toLowerCase();
+const PAL=["#b3411f","#1c4587","#2d6a4f","#6a4c93","#a15c00","#0e7490","#8c2f39","#3d5a80","#5b7f3a","#7a4706","#4a3f8f","#a0522d"];
+const col=o=>PAL[[...o].reduce((a,c)=>a+c.charCodeAt(0),0)%PAL.length];
+const ago=ts=>{const m=Math.max(1,Math.round((Date.now()/1000-ts)/60));if(m<60)return m+"m";const h=Math.round(m/60);if(h<24)return h+"h";const d=Math.round(h/24);return d<14?d+"d":new Date(ts*1000).toLocaleDateString(undefined,{month:"short",day:"numeric"})};
+const isNew=i=>(Date.now()/1000-i.fetched_ts)<6*3600;
+const official=new Set(["Governor's Office","NY Senate","NY Assembly"]);
+function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${col(i.outlet)}"></i><span class="outlet">${esc(i.outlet)}</span></span><span>${ago(i.published_ts)} ago</span>${isNew(i)?'<span class="new">NEW</span>':""}</div>`}
+function chips(i){return `<div class="chips">${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}</div>`}
+function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}</div><div class="rcol"><b>${i.score.toFixed(0)}</b>score</div></div>`}
+function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}</div>`}
+function base(){const cut=Date.now()/1000-S.range*86400,q=S.q.toLowerCase();
  return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.inv||i.flags.includes("investigative"))&&(!S.gl||i.flags.includes("gov+leg"))&&(!S.op||!i.flags.includes("opinion"))&&(!q||(i.title+" "+i.summary).toLowerCase().includes(q)))}
-function render(){const f=filt();const sorted=[...f].sort((a,b)=>S.sort==="date"?b.published_ts-a.published_ts:b.score-a.score||b.published_ts-a.published_ts);
- const now=Date.now()/1000;const picks=ITEMS.filter(i=>i.published_ts>=now-2*86400&&!i.flags.includes("opinion")).sort((a,b)=>b.score-a.score).slice(0,8);
- $("#picks").innerHTML=picks.length?picks.map(i=>card(i,true)).join(""):'<div class="empty">Nothing in the last 48 hours yet.</div>';
- $("#latest-h").textContent=`Latest (${sorted.length})`;$("#list").innerHTML=sorted.length?sorted.slice(0,400).map(i=>card(i,false)).join(""):'<div class="empty">No matches.</div>'}
-async function load(){try{const [a,b]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json())]);ITEMS=a;META=b;}catch(e){$("#meta").textContent="Could not load data.";return}
- $("#meta").textContent=`${META.total} stories from ${META.outlets.length} outlets · last refresh ${META.last_run}`;
- for(const o of META.outlets){const el=document.createElement("option");el.value=o;el.textContent=o;$("#outlet").appendChild(el)}
- for(const t of META.tags){const el=document.createElement("option");el.value=t;el.textContent=t;$("#tag").appendChild(el)}
- render()}
-$("#q").addEventListener("input",e=>{S.q=e.target.value;render()});
-$("#outlet").addEventListener("change",e=>{S.outlet=e.target.value;render()});
-$("#tag").addEventListener("change",e=>{S.tag=e.target.value;render()});
-$("#range").addEventListener("change",e=>{S.range=+e.target.value;render()});
-$("#sort").addEventListener("change",e=>{S.sort=e.target.value;render()});
-for(const [id,k] of [["#f-inv","inv"],["#f-gl","gl"],["#f-op","op"]]){$(id).addEventListener("click",e=>{S[k]=!S[k];e.target.classList.toggle("on",S[k]);render()})}
+function render(){const f=base();let html="";
+ if(S.view==="picks"){const now=Date.now()/1000;const p=f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet)).sort((a,b)=>b.score-a.score);
+  html+=`<h2 class="sec">Today's picks <span>last 72h, by score</span></h2>`;html+=p.length?`<div class="picks">${p.slice(0,5).map(lead).join("")}</div>`:'<div class="empty">Nothing yet.</div>';
+  html+=`<h2 class="sec">More <span>${Math.max(0,p.length-5)}</span></h2>`+p.slice(5,60).map(row).join("")}
+ else if(S.view==="latest"){const l=[...f].sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Latest <span>${l.length}</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
+ else if(S.view==="byday"){const l=[...f].sort((a,b)=>b.published_ts-a.published_ts);let d="";html+=`<h2 class="sec">By day <span>${l.length}</span></h2>`;for(const i of l.slice(0,600)){const k=i.published.slice(0,10);if(k!==d){d=k;html+=`<div class="day">${new Date(k+"T12:00:00").toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"})}</div>`}html+=row(i)}}
+ else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Official <span>Governor, Senate, Assembly · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
+ $("#main").innerHTML=html;sidebar()}
+function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.published_ts>=cut&&!i.flags.includes("opinion"));
+ const tc={};for(const i of wk)for(const t of i.tags)tc[t]=(tc[t]||0)+1;const tt=Object.entries(tc).sort((a,b)=>b[1]-a[1]).slice(0,9);const mx=tt[0]?tt[0][1]:1;
+ $("#buzz").innerHTML=tt.map(([t,n])=>`<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}"><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div><div class="bar"><i style="width:${Math.round(100*n/mx)}%"></i></div></li>`).join("");
+ const oc={};for(const i of wk)oc[i.outlet]=(oc[i.outlet]||0)+1;const oo=Object.entries(oc).sort((a,b)=>b[1]-a[1]).slice(0,16);
+ $("#outlets").innerHTML=oo.map(([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}"><span><i class="dot" style="background:${col(o)}"></i>${esc(o)}</span><span class="n">${n}</span></li>`).join("");
+ const inv=wk.filter(i=>i.flags.includes("investigative")).sort((a,b)=>b.score-a.score).slice(0,6);
+ $("#invlist").innerHTML=inv.map(i=>`<div class="mini"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a><small>${esc(i.outlet)} · ${ago(i.published_ts)} ago</small></div>`).join("")||'<div class="empty">None flagged.</div>';
+ $("#n-inv").textContent=wk.filter(i=>i.flags.includes("investigative")).length;$("#n-gl").textContent=wk.filter(i=>i.flags.includes("gov+leg")).length;
+ $$("#buzz li").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
+ $$("#outlets li").forEach(el=>el.onclick=()=>{S.outlet=S.outlet===el.dataset.outlet?"":el.dataset.outlet;render()})}
+async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json())])}catch(e){$("#meta").textContent="Could not load data.";return}
+ $("#today").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric",year:"numeric"});
+ $("#meta").textContent=`${META.total} stories · ${META.outlets.length} outlets · refreshed ${META.last_run}`;render()}
+$$(".nav button").forEach(b=>b.onclick=()=>{S.view=b.dataset.view;$$(".nav button").forEach(x=>x.classList.toggle("active",x===b));render()});
+$("#q").oninput=e=>{S.q=e.target.value;render()};$("#range").onchange=e=>{S.range=+e.target.value;render()};
+$$("#flags li").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});
 load();
 </script>
 </body>
