@@ -1,12 +1,12 @@
 {
- "last_run": "2026-09-12 17:32 UTC",
- "total": 438,
+ "last_run": "2026-09-12 19:54 UTC",
+ "total": 440,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 25",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 15",
-  "NY State of Politics": "ok 61",
+  "NY State of Politics": "ok 49",
   "Newsday": "ok 44",
   "Daily News": "ok 10",
   "Gotham Gazette": "ok 0",
@@ -19,11 +19,11 @@
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 9",
-  "Governor's Office": "ok 32",
+  "Governor's Office": "ok 29",
   "NY Senate": "ok 2",
   "NY Assembly": "ok 0",
-  "Google News: Hochul": "ok 83",
-  "Google News: Legislature": "ok 78"
+  "Google News: Hochul": "ok 84",
+  "Google News: Legislature": "ok 77"
  },
  "outlets": [
   "ABC7 New York",
@@ -32,6 +32,7 @@
   "BKReader",
   "Bloomberg Government News",
   "Brooklyn Eagle",
+  "Buffalo News",
   "CBS News",
   "CNN",
   "COLlive",
