@@ -1,12 +1,12 @@
 {
- "last_run": "2026-09-13 19:07 UTC",
- "total": 480,
+ "last_run": "2026-09-13 21:31 UTC",
+ "total": 491,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 25",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 15",
-  "NY State of Politics": "ok 64",
+  "NY State of Politics": "ok 58",
   "Newsday": "ok 43",
   "Daily News": "ok 9",
   "Gotham Gazette": "ok 0",
@@ -15,15 +15,15 @@
   "NY Post Politics": "ok 2",
   "NY Post Metro": "ok 0",
   "The City": "ok 2",
-  "Reinvent Albany": "ok 10",
+  "Reinvent Albany": "ERROR HTTPError: 403 Client Error: Forbidden for url: https://reinventalbany.org/feed/",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 8",
-  "Governor's Office": "ok 31",
+  "Governor's Office": "ok 33",
   "NY Senate": "ok 2",
   "NY Assembly": "ok 0",
-  "Google News: Hochul": "ok 86",
-  "Google News: Legislature": "ok 77"
+  "Google News: Hochul": "ok 87",
+  "Google News: Legislature": "ok 76"
  },
  "outlets": [
   "ABC7 New York",
