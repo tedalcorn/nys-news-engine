@@ -86,7 +86,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <button data-view="latest">Latest</button>
     <button data-view="byday">By day</button>
     <button data-view="official">Official</button>
-    <button data-view="missing">Missing</button>
+    <button data-view="missing">Paywalled</button>
     <span class="sp"></span>
     <input type="search" id="q" placeholder="Search…">
     <select id="range"><option value="2">48h</option><option value="7" selected>7 days</option><option value="30">30 days</option><option value="9999">180 days</option></select>
@@ -115,7 +115,7 @@ const PAL=["#b3411f","#1c4587","#2d6a4f","#6a4c93","#a15c00","#0e7490","#8c2f39"
 const col=o=>PAL[[...o].reduce((a,c)=>a+c.charCodeAt(0),0)%PAL.length];
 const ago=ts=>{const m=Math.max(1,Math.round((Date.now()/1000-ts)/60));if(m<60)return m+"m";const h=Math.round(m/60);if(h<24)return h+"h";const d=Math.round(h/24);return d<14?d+"d":new Date(ts*1000).toLocaleDateString(undefined,{month:"short",day:"numeric"})};
 const dstamp=ts=>{const d=new Date(ts*1000);return `${d.getMonth()+1}/${d.getDate()}/${String(d.getFullYear()).slice(2)}`};
-const pwBadge=i=>(i.paywall==="hard"||i.paywall==="metered")?`<span class="pw ${i.paywall}">${i.paywall==="hard"?"paywall":"metered"}</span>`:"";
+const pwBadge=i=>(i.paywall==="hard"||i.paywall==="metered")?`<span class="pw ${i.paywall}">${i.paywall==="hard"?"paywall":"limited"}</span>`:"";
 const isNew=i=>(Date.now()/1000-i.fetched_ts)<6*3600;
 const official=new Set(["Governor's Office","NY Senate","NY Assembly"]);
 function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${col(i.outlet)}"></i><span class="outlet">${esc(i.outlet)}</span></span><span>${dstamp(i.published_ts)}, ${ago(i.published_ts)} ago</span>${isNew(i)?'<span class="new">NEW</span>':""}${pwBadge(i)}</div>`}
@@ -136,11 +136,11 @@ function render(){const f=base();let html="";
   const worth=locked.filter(i=>i.score>=med);
   const by={};for(const i of worth){(by[i.outlet]=by[i.outlet]||[]).push(i)}
   const rows=Object.entries(by).sort((a,b)=>b[1].length-a[1].length);
-  html+=`<h2 class="sec">What I'm missing <span>paywalled, last 30 days, scoring above the median (${med.toFixed(0)})</span></h2>`;
+  html+=`<h2 class="sec">Behind a paywall <span>last 30 days, ranked above the median story (${med.toFixed(0)}) — what a subscription would buy you</span></h2>`;
   if(!rows.length){html+='<div class="empty">Nothing paywalled above the median yet — the extractor only classifies stories it has fetched.</div>'}
   for(const [outlet,list] of rows){const inv=list.filter(i=>i.flags.includes("investigative")).length;
     html+=`<div class="miss"><b>${esc(outlet)}</b><span>${list.length} stor${list.length===1?"y":"ies"}${inv?` · ${inv} investigative`:""}</span></div>`}
-  if(rows.length){html+=`<h2 class="sec">The stories themselves <span>${worth.length}</span></h2>`+worth.sort((a,b)=>b.score-a.score).slice(0,60).map(row).join("")}}
+  if(rows.length){html+=`<h2 class="sec">The stories <span>${worth.length}</span></h2>`+worth.sort((a,b)=>b.score-a.score).slice(0,60).map(row).join("")}}
  else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Official <span>Governor, Senate, Assembly · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
  $("#main").innerHTML=html;sidebar()}
 function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.published_ts>=cut&&!i.flags.includes("opinion"));

@@ -5,7 +5,7 @@ import json, re, time, html, hashlib, os, sys, datetime as dt
 from urllib.parse import urlparse, parse_qs, unquote
 import feedparser, requests
 sys.path.insert(0, os.path.dirname(__file__))
-from sources import SOURCES, ALBANY_TERMS, SWEEP_EXCLUDE_DOMAINS
+from sources import SOURCES, ALBANY_TERMS, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY
 from score import score
 import extract
 
@@ -95,7 +95,11 @@ def fetch_source(src):
         if is_site_name_only(title, outlet, src["name"], src.get("domain")): continue
         summary = dedupe_summary(title, clean_summary(e.get("summary", "") or e.get("description", "")), outlet)
         text = (title + " " + summary).lower()
-        if src.get("albany_filter") and not any(t in text for t in ALBANY_TERMS): continue
+        if src.get("albany_filter"):
+            if not any(t in text for t in ALBANY_TERMS): continue
+            specific = any(t in text for t in ALBANY_TERMS if t not in GENERIC_ALBANY)
+            if (not specific and any(t in text for t in OUT_OF_STATE)
+                    and not any(t in text for t in NY_ANCHORS)): continue
         ts = parse_ts(e)
         if NOW - ts > RETENTION_DAYS * 86400: continue
         out.append(dict(

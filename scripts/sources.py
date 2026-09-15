@@ -47,3 +47,13 @@ ALBANY_TERMS = [
 
 # Outlets whose own domains we already cover natively; keyword sweeps drop these to avoid dupes
 SWEEP_EXCLUDE_DOMAINS = {"nysfocus.com","cityandstateny.com","politico.com","gothamist.com","nytimes.com","nypost.com","thecity.nyc","reinventalbany.org","fiscalpolicy.org","empirecenter.org"}
+
+# A headline mentioning only a generic "governor" is not necessarily ours: "Gov. Gavin Newsom"
+# was clearing the Albany filter. Drop items that carry an out-of-state marker and no NY anchor.
+GENERIC_ALBANY = ["governor","gov."]   # match any state's governor; not proof of NY
+NY_ANCHORS = ["new york","n.y.","nys","hochul","albany","empire state","brooklyn","queens","bronx",
+ "staten island","manhattan","long island","buffalo","rochester","syracuse","yonkers","mta","nypd",
+ "cuny","suny","hudson valley","westchester","nassau","suffolk"]
+OUT_OF_STATE = ["newsom","california","texas","florida","desantis","abbott","illinois","chicago",
+ "new jersey","pennsylvania","shapiro","connecticut","massachusetts","boston","ohio","georgia",
+ "michigan","virginia","arizona","colorado","washington state","oregon","nevada","wisconsin"]
