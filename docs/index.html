@@ -74,7 +74,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 <div class="wrap">
   <header class="mast">
     <div><div class="brand">NYS <em>News</em> Engine</div><div class="tag">Albany · the Governor · the Legislature · ranked for reporting depth</div></div>
-    <div class="right"><b id="today"></b><span id="meta">loading…</span></div>
+    <div class="right"><span id="meta">loading…</span></div>
   </header>
   <nav class="nav">
     <button data-view="picks" class="active">Picks</button>
@@ -135,8 +135,10 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.
  $$("#buzz li").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
  $$("#outlets li").forEach(el=>el.onclick=()=>{S.outlet=S.outlet===el.dataset.outlet?"":el.dataset.outlet;render()})}
 async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json())])}catch(e){$("#meta").textContent="Could not load data.";return}
- $("#today").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric",year:"numeric"});
- $("#meta").textContent=`${META.total} stories · ${META.outlets.length} outlets · refreshed ${META.last_run}`;render()}
+ const iso=META.last_run_iso||(META.last_run||"").replace(" UTC","Z").replace(" ","T");
+ let when=META.last_run;
+ try{const d=new Date(iso);if(!isNaN(d))when=d.toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET"}catch(e){}
+ $("#meta").textContent=`${META.total} stories · ${META.outlets.length} outlets · refreshed ${when}`;render()}
 $$(".nav button").forEach(b=>b.onclick=()=>{S.view=b.dataset.view;$$(".nav button").forEach(x=>x.classList.toggle("active",x===b));render()});
 $("#q").oninput=e=>{S.q=e.target.value;render()};$("#range").onchange=e=>{S.range=+e.target.value;render()};
 $$("#flags li").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});

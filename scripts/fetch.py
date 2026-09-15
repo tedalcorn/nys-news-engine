@@ -26,6 +26,29 @@ def norm_title(t):
     t = re.sub(r"[^a-z0-9 ]+", " ", t)
     return re.sub(r"\s+", " ", t).strip()
 
+
+def dedupe_summary(title, summary, outlet=""):
+    """Google News and .gov feeds set the dek to the headline (often + outlet). Drop those."""
+    if not summary: return ""
+    nt, ns = norm_title(title), norm_title(summary)
+    no = norm_title(outlet or "")
+    if no and ns.endswith(no): ns = ns[:-len(no)].strip()
+    if not ns or ns == nt: return ""
+    if nt and ns.startswith(nt) and len(ns[len(nt):].split()) <= 6: return ""
+    if ns and nt.startswith(ns) and len(ns.split()) >= 4: return ""
+    return summary
+
+def is_site_name_only(title, *names):
+    """True when the headline is really just the outlet/section name."""
+    nt = norm_title(title)
+    if not nt: return True
+    for nm in names:
+        nn = norm_title(nm or "")
+        if not nn: continue
+        if nt == nn: return True
+        if nn in nt and len(nt.replace(nn, " ").split()) < 3: return True
+    return False
+
 def clean_summary(s):
     s = re.sub(r"<[^>]+>", " ", html.unescape(s or ""))
     return re.sub(r"\s+", " ", s).strip()[:400]
@@ -68,7 +91,8 @@ def fetch_source(src):
                 if d in SWEEP_EXCLUDE_DOMAINS: continue
                 domain = d
         if len(title.split()) < 4: continue   # section pages, not articles
-        summary = clean_summary(e.get("summary", "") or e.get("description", ""))
+        if is_site_name_only(title, outlet, src["name"], src.get("domain")): continue
+        summary = dedupe_summary(title, clean_summary(e.get("summary", "") or e.get("description", "")), outlet)
         text = (title + " " + summary).lower()
         if src.get("albany_filter") and not any(t in text for t in ALBANY_TERMS): continue
         ts = parse_ts(e)
@@ -115,12 +139,16 @@ def main():
         cur = by_title.get(key)
         if cur is None or (it["tier"], it["published_ts"]) < (cur["tier"], cur["published_ts"]):
             by_title[key] = it
-    items = list(by_title.values())
+    items = [it for it in by_title.values()
+             if not is_site_name_only(it["title"], it.get("outlet"), it.get("source"), it.get("domain"))]
+    for it in items:
+        it["summary"] = dedupe_summary(it["title"], it.get("summary", ""), it.get("outlet", ""))
     for it in items:
         it["score"], it["tags"], it["flags"] = score(it, NOW)
     items.sort(key=lambda x: (-x["score"], -x["published_ts"]))
     json.dump(items, open(ITEMS, "w"), ensure_ascii=False, separators=(",", ":"))
-    meta = dict(last_run=dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"), total=len(items),
+    meta = dict(last_run=dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
+                last_run_iso=dt.datetime.utcfromtimestamp(NOW).strftime("%Y-%m-%dT%H:%M:%SZ"), total=len(items),
                 sources=log, outlets=sorted({i["outlet"] for i in items}),
                 tags=sorted({t for i in items for t in i["tags"]}))
     json.dump(meta, open(META, "w"), indent=1)
