@@ -1,14 +1,14 @@
 {
- "last_run": "2026-09-15 01:04 UTC",
- "total": 578,
+ "last_run": "2026-09-15 06:19 UTC",
+ "total": 585,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 29",
   "Politico NY Playbook": "ok 24",
-  "Times Union": "ok 15",
-  "NY State of Politics": "ok 47",
-  "Newsday": "ok 40",
-  "Daily News": "ok 9",
+  "Times Union": "ok 13",
+  "NY State of Politics": "ok 45",
+  "Newsday": "ok 39",
+  "Daily News": "ok 8",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 1",
   "NYT New York": "ok 0",
@@ -19,11 +19,11 @@
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 10",
-  "Governor's Office": "ok 37",
+  "Governor's Office": "ok 36",
   "NY Senate": "ok 5",
   "NY Assembly": "ok 1",
   "Google News: Hochul": "ok 85",
-  "Google News: Legislature": "ok 78"
+  "Google News: Legislature": "ok 75"
  },
  "outlets": [
   "13wham.com",
@@ -154,7 +154,8 @@
   "rpa.org",
   "silive.com",
   "thecentersquare.com",
-  "wivb.com"
+  "wivb.com",
+  "yahoo.com"
  ],
  "tags": [
   "Budget",
