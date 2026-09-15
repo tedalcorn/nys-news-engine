@@ -108,9 +108,10 @@ const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const PAL=["#b3411f","#1c4587","#2d6a4f","#6a4c93","#a15c00","#0e7490","#8c2f39","#3d5a80","#5b7f3a","#7a4706","#4a3f8f","#a0522d"];
 const col=o=>PAL[[...o].reduce((a,c)=>a+c.charCodeAt(0),0)%PAL.length];
 const ago=ts=>{const m=Math.max(1,Math.round((Date.now()/1000-ts)/60));if(m<60)return m+"m";const h=Math.round(m/60);if(h<24)return h+"h";const d=Math.round(h/24);return d<14?d+"d":new Date(ts*1000).toLocaleDateString(undefined,{month:"short",day:"numeric"})};
+const dstamp=ts=>{const d=new Date(ts*1000);return `${d.getMonth()+1}/${d.getDate()}/${String(d.getFullYear()).slice(2)}`};
 const isNew=i=>(Date.now()/1000-i.fetched_ts)<6*3600;
 const official=new Set(["Governor's Office","NY Senate","NY Assembly"]);
-function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${col(i.outlet)}"></i><span class="outlet">${esc(i.outlet)}</span></span><span>${ago(i.published_ts)} ago</span>${isNew(i)?'<span class="new">NEW</span>':""}</div>`}
+function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${col(i.outlet)}"></i><span class="outlet">${esc(i.outlet)}</span></span><span>${dstamp(i.published_ts)}, ${ago(i.published_ts)} ago</span>${isNew(i)?'<span class="new">NEW</span>':""}</div>`}
 function chips(i){return `<div class="chips">${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}</div>`}
 function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}</div><div class="rcol"><b>${i.score.toFixed(0)}</b>score</div></div>`}
 function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}</div>`}
