@@ -49,6 +49,11 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
 .chip{background:var(--chip);color:var(--chipfg);border-radius:999px;padding:1px 8px;font-size:11px}
 .chip.flag{background:transparent;border:1px solid var(--line)}
+.pw{font:700 10px var(--sans);border-radius:3px;padding:0 4px;letter-spacing:.04em;text-transform:uppercase}
+.pw.hard{color:#8c2f39;border:1px solid #8c2f39}
+.pw.metered{color:#a15c00;border:1px solid #a15c00}
+.miss{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line)}
+.miss b{font:600 15px var(--sans)}.miss span{color:var(--muted);font-size:12.5px}
 .rcol{text-align:right;font-size:12px;color:var(--muted);white-space:nowrap;padding-top:2px}
 .rcol b{display:block;font:700 15px var(--serif);color:var(--fg)}
 .snip{color:var(--muted);font-size:13.5px;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -81,6 +86,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <button data-view="latest">Latest</button>
     <button data-view="byday">By day</button>
     <button data-view="official">Official</button>
+    <button data-view="missing">Missing</button>
     <span class="sp"></span>
     <input type="search" id="q" placeholder="Search…">
     <select id="range"><option value="2">48h</option><option value="7" selected>7 days</option><option value="30">30 days</option><option value="9999">180 days</option></select>
@@ -109,9 +115,10 @@ const PAL=["#b3411f","#1c4587","#2d6a4f","#6a4c93","#a15c00","#0e7490","#8c2f39"
 const col=o=>PAL[[...o].reduce((a,c)=>a+c.charCodeAt(0),0)%PAL.length];
 const ago=ts=>{const m=Math.max(1,Math.round((Date.now()/1000-ts)/60));if(m<60)return m+"m";const h=Math.round(m/60);if(h<24)return h+"h";const d=Math.round(h/24);return d<14?d+"d":new Date(ts*1000).toLocaleDateString(undefined,{month:"short",day:"numeric"})};
 const dstamp=ts=>{const d=new Date(ts*1000);return `${d.getMonth()+1}/${d.getDate()}/${String(d.getFullYear()).slice(2)}`};
+const pwBadge=i=>(i.paywall==="hard"||i.paywall==="metered")?`<span class="pw ${i.paywall}">${i.paywall==="hard"?"paywall":"metered"}</span>`:"";
 const isNew=i=>(Date.now()/1000-i.fetched_ts)<6*3600;
 const official=new Set(["Governor's Office","NY Senate","NY Assembly"]);
-function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${col(i.outlet)}"></i><span class="outlet">${esc(i.outlet)}</span></span><span>${dstamp(i.published_ts)}, ${ago(i.published_ts)} ago</span>${isNew(i)?'<span class="new">NEW</span>':""}</div>`}
+function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${col(i.outlet)}"></i><span class="outlet">${esc(i.outlet)}</span></span><span>${dstamp(i.published_ts)}, ${ago(i.published_ts)} ago</span>${isNew(i)?'<span class="new">NEW</span>':""}${pwBadge(i)}</div>`}
 function chips(i){return `<div class="chips">${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}</div>`}
 function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}</div><div class="rcol"><b>${i.score.toFixed(0)}</b>score</div></div>`}
 function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}</div>`}
@@ -123,6 +130,17 @@ function render(){const f=base();let html="";
   html+=`<h2 class="sec">More <span>${Math.max(0,p.length-5)}</span></h2>`+p.slice(5,60).map(row).join("")}
  else if(S.view==="latest"){const l=[...f].sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Latest <span>${l.length}</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="byday"){const l=[...f].sort((a,b)=>b.published_ts-a.published_ts);let d="";html+=`<h2 class="sec">By day <span>${l.length}</span></h2>`;for(const i of l.slice(0,600)){const k=i.published.slice(0,10);if(k!==d){d=k;html+=`<div class="day">${new Date(k+"T12:00:00").toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"})}</div>`}html+=row(i)}}
+ else if(S.view==="missing"){const cut=Date.now()/1000-30*86400;
+  const locked=ITEMS.filter(i=>i.published_ts>=cut&&(i.paywall==="hard"||i.paywall==="metered")&&!i.flags.includes("opinion"));
+  const med=(()=>{const a=ITEMS.filter(i=>i.published_ts>=cut).map(i=>i.score).sort((x,y)=>x-y);return a.length?a[Math.floor(a.length/2)]:0})();
+  const worth=locked.filter(i=>i.score>=med);
+  const by={};for(const i of worth){(by[i.outlet]=by[i.outlet]||[]).push(i)}
+  const rows=Object.entries(by).sort((a,b)=>b[1].length-a[1].length);
+  html+=`<h2 class="sec">What I'm missing <span>paywalled, last 30 days, scoring above the median (${med.toFixed(0)})</span></h2>`;
+  if(!rows.length){html+='<div class="empty">Nothing paywalled above the median yet — the extractor only classifies stories it has fetched.</div>'}
+  for(const [outlet,list] of rows){const inv=list.filter(i=>i.flags.includes("investigative")).length;
+    html+=`<div class="miss"><b>${esc(outlet)}</b><span>${list.length} stor${list.length===1?"y":"ies"}${inv?` · ${inv} investigative`:""}</span></div>`}
+  if(rows.length){html+=`<h2 class="sec">The stories themselves <span>${worth.length}</span></h2>`+worth.sort((a,b)=>b.score-a.score).slice(0,60).map(row).join("")}}
  else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Official <span>Governor, Senate, Assembly · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
  $("#main").innerHTML=html;sidebar()}
 function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.published_ts>=cut&&!i.flags.includes("opinion"));

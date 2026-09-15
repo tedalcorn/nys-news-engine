@@ -39,7 +39,8 @@ def score(item, now_ts):
     text = (item.get("title","") + " " + item.get("summary","")).lower()
     tier = item.get("tier", 2)
     s = {1:30, 2:20, 3:12}.get(tier, 15)
-    inv = min(_hits(text, INVESTIGATIVE), 3); s += inv*8
+    inv_head = _hits(text, INVESTIGATIVE)
+    inv = min(inv_head + item.get("inv_body", 0), 4); s += inv*8
     pol = min(_hits(text, POLICY), 6);        s += pol*3
     gov = _hits(text, GOV_TERMS) > 0; leg = _hits(text, LEG_TERMS) > 0
     if gov and leg: s += 12
@@ -49,6 +50,9 @@ def score(item, now_ts):
     age_h = max(0.0, (now_ts - item.get("published_ts", now_ts)) / 3600.0)
     s += 20 * math.exp(-age_h / 72.0)
     if item.get("kind") == "gnews" and item.get("sweep"): s -= 4   # sweeps are noisier
+    w = item.get("words", 0)
+    if w >= 1200: s += 6            # long-form
+    elif w >= 700: s += 3
     tags = [k for k, terms in TAGS.items() if _hits(text, terms)]
     flags = []
     if inv: flags.append("investigative")

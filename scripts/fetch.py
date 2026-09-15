@@ -7,6 +7,7 @@ import feedparser, requests
 sys.path.insert(0, os.path.dirname(__file__))
 from sources import SOURCES, ALBANY_TERMS, SWEEP_EXCLUDE_DOMAINS
 from score import score
+import extract
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "docs", "data")
@@ -143,14 +144,24 @@ def main():
              if not is_site_name_only(it["title"], it.get("outlet"), it.get("source"), it.get("domain"))]
     for it in items:
         it["summary"] = dedupe_summary(it["title"], it.get("summary", ""), it.get("outlet", ""))
+    # first pass so candidate selection has headline-only scores to sort on
+    for it in items:
+        it["score"], it["tags"], it["flags"] = score(it, NOW)
+    try:
+        extract.run(items, NOW)
+    except Exception as e:
+        print(f"extract step skipped: {type(e).__name__}: {e}")
     for it in items:
         it["score"], it["tags"], it["flags"] = score(it, NOW)
     items.sort(key=lambda x: (-x["score"], -x["published_ts"]))
     json.dump(items, open(ITEMS, "w"), ensure_ascii=False, separators=(",", ":"))
+    pw = {}
+    for it in items: pw[it.get("paywall","unknown")] = pw.get(it.get("paywall","unknown"),0)+1
     meta = dict(last_run=dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
                 last_run_iso=dt.datetime.utcfromtimestamp(NOW).strftime("%Y-%m-%dT%H:%M:%SZ"), total=len(items),
                 sources=log, outlets=sorted({i["outlet"] for i in items}),
-                tags=sorted({t for i in items for t in i["tags"]}))
+                tags=sorted({t for i in items for t in i["tags"]}),
+                paywall=pw, extracted=sum(1 for i in items if "extracted_ts" in i))
     json.dump(meta, open(META, "w"), indent=1)
     print(f"\n{len(items)} items after dedupe; {len(fresh)} fetched this run.")
 
