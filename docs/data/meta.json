@@ -1,14 +1,14 @@
 {
- "last_run": "2026-09-16 05:30 UTC",
- "last_run_iso": "2026-09-16T05:30:26Z",
- "total": 661,
+ "last_run": "2026-09-16 10:31 UTC",
+ "last_run_iso": "2026-09-16T10:31:30Z",
+ "total": 671,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 26",
-  "Politico NY Playbook": "ok 24",
+  "City & State": "ok 27",
+  "Politico NY Playbook": "ok 25",
   "Times Union": "ok 12",
   "NY State of Politics": "ok 24",
-  "Newsday": "ok 34",
+  "Newsday": "ok 32",
   "Daily News": "ok 9",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 1",
@@ -19,11 +19,11 @@
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
-  "Citizens Budget Commission": "ok 11",
+  "Citizens Budget Commission": "ok 10",
   "Governor's Office": "ok 40",
   "NY Senate": "ok 4",
   "NY Assembly": "ok 3",
-  "Google News: Hochul": "ok 85",
+  "Google News: Hochul": "ok 86",
   "Google News: Legislature": "ok 78"
  },
  "outlets": [
@@ -64,6 +64,7 @@
   "Fox News",
   "Gothamist",
   "Governor's Office",
+  "Harlem World Magazine",
   "Hudson Valley Post",
   "Hudson Valley Press",
   "Insurance Journal",
@@ -120,6 +121,7 @@
   "The Lufkin Daily News",
   "The Nature Conservancy",
   "The New York Sun",
+  "The Post Star",
   "The Real Deal",
   "The River Reporter",
   "The Verge",
@@ -188,8 +190,8 @@
  ],
  "paywall": {
   "free": 12,
-  "unknown": 647,
-  "metered": 2
+  "unknown": 656,
+  "metered": 3
  },
- "extracted": 14
+ "extracted": 16
 }
