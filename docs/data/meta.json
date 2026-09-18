@@ -1,29 +1,29 @@
 {
- "last_run": "2026-09-18 20:11 UTC",
- "last_run_iso": "2026-09-18T20:10:53Z",
- "total": 785,
+ "last_run": "2026-09-18 22:42 UTC",
+ "last_run_iso": "2026-09-18T22:41:57Z",
+ "total": 795,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 20",
+  "City & State": "ok 22",
   "Politico NY Playbook": "ok 25",
-  "Times Union": "ok 12",
-  "NY State of Politics": "ok 28",
-  "Newsday": "ok 35",
-  "Daily News": "ok 12",
+  "Times Union": "ok 13",
+  "NY State of Politics": "ok 27",
+  "Newsday": "ok 41",
+  "Daily News": "ok 11",
   "Gotham Gazette": "ok 0",
-  "Gothamist": "ok 4",
+  "Gothamist": "ok 5",
   "NYT New York": "ok 1",
   "NY Post Politics": "ok 0",
-  "NY Post Metro": "ok 0",
+  "NY Post Metro": "ok 1",
   "The City": "ok 0",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 11",
-  "Governor's Office": "ok 38",
+  "Governor's Office": "ok 39",
   "NY Senate": "ok 3",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 88",
+  "Google News: Hochul": "ok 87",
   "Google News: Legislature": "ok 80"
  },
  "outlets": [
@@ -107,6 +107,7 @@
   "Orleans Hub",
   "PIX11",
   "POLITICO Pro",
+  "Paulick Report",
   "People.com",
   "Politico NY Playbook",
   "PressReader",
@@ -203,6 +204,7 @@
   "sportsbusinessjournal.com",
   "the free lance news",
   "thecentersquare.com",
+  "wgrz.com",
   "wivb.com",
   "wxxinews.org",
   "yahoo.com"
@@ -221,10 +223,10 @@
   "Transit"
  ],
  "paywall": {
-  "free": 16,
-  "unknown": 758,
-  "metered": 10,
+  "free": 17,
+  "unknown": 766,
+  "metered": 11,
   "hard": 1
  },
- "extracted": 31
+ "extracted": 34
 }
