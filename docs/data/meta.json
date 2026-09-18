@@ -1,20 +1,20 @@
 {
- "last_run": "2026-09-18 09:56 UTC",
- "last_run_iso": "2026-09-18T09:56:23Z",
- "total": 768,
+ "last_run": "2026-09-18 14:02 UTC",
+ "last_run_iso": "2026-09-18T14:02:09Z",
+ "total": 773,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 20",
   "Politico NY Playbook": "ok 25",
-  "Times Union": "ok 14",
-  "NY State of Politics": "ok 28",
-  "Newsday": "ok 36",
-  "Daily News": "ok 11",
+  "Times Union": "ok 13",
+  "NY State of Politics": "ok 26",
+  "Newsday": "ok 35",
+  "Daily News": "ok 9",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 5",
   "NYT New York": "ok 1",
   "NY Post Politics": "ok 1",
-  "NY Post Metro": "ok 1",
+  "NY Post Metro": "ok 0",
   "The City": "ok 0",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
@@ -22,9 +22,9 @@
   "Citizens Budget Commission": "ok 11",
   "Governor's Office": "ok 40",
   "NY Senate": "ok 2",
-  "NY Assembly": "ok 0",
+  "NY Assembly": "ok 1",
   "Google News: Hochul": "ok 86",
-  "Google News: Legislature": "ok 78"
+  "Google News: Legislature": "ok 79"
  },
  "outlets": [
   "13wham.com",
@@ -108,6 +108,7 @@
   "POLITICO Pro",
   "People.com",
   "Politico NY Playbook",
+  "PressReader",
   "Reinvent Albany",
   "Reuters",
   "River Journal Online",
@@ -196,6 +197,8 @@
   "rpa.org",
   "silive.com",
   "sites.newpaltz.edu",
+  "sportsbusinessjournal.com",
+  "the free lance news",
   "thecentersquare.com",
   "wivb.com",
   "yahoo.com"
@@ -215,9 +218,9 @@
  ],
  "paywall": {
   "free": 16,
-  "unknown": 742,
-  "metered": 9,
+  "metered": 10,
+  "unknown": 746,
   "hard": 1
  },
- "extracted": 29
+ "extracted": 30
 }
