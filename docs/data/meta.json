@@ -1,14 +1,14 @@
 {
- "last_run": "2026-09-19 16:55 UTC",
- "last_run_iso": "2026-09-19T16:55:28Z",
- "total": 819,
+ "last_run": "2026-09-19 19:06 UTC",
+ "last_run_iso": "2026-09-19T19:06:11Z",
+ "total": 823,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 22",
   "Politico NY Playbook": "ok 25",
-  "Times Union": "ok 15",
-  "NY State of Politics": "ok 32",
-  "Newsday": "ok 34",
+  "Times Union": "ok 14",
+  "NY State of Politics": "ok 34",
+  "Newsday": "ok 41",
   "Daily News": "ok 12",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 5",
@@ -16,15 +16,15 @@
   "NY Post Politics": "ok 2",
   "NY Post Metro": "ok 0",
   "The City": "ok 0",
-  "Reinvent Albany": "ok 10",
+  "Reinvent Albany": "ERROR HTTPError: 403 Client Error: Forbidden for url: https://reinventalbany.org/feed/",
   "Fiscal Policy Institute": "ok 10",
-  "Empire Center": "ok 8",
+  "Empire Center": "ok 7",
   "Citizens Budget Commission": "ok 9",
   "Governor's Office": "ok 41",
   "NY Senate": "ok 4",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 85",
-  "Google News: Legislature": "ok 76"
+  "Google News: Hochul": "ok 88",
+  "Google News: Legislature": "ok 77"
  },
  "outlets": [
   "13wham.com",
@@ -132,6 +132,7 @@
   "The City",
   "The City Reporter",
   "The City University of New York",
+  "The Daily Gazette",
   "The Daily News | Texas' Oldest Newspaper",
   "The Daily Signal",
   "The Hill",
@@ -226,7 +227,7 @@
  ],
  "paywall": {
   "free": 17,
-  "unknown": 788,
+  "unknown": 792,
   "metered": 13,
   "hard": 1
  },
