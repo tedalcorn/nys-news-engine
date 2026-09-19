@@ -1,14 +1,14 @@
 {
- "last_run": "2026-09-19 13:35 UTC",
- "last_run_iso": "2026-09-19T13:35:34Z",
- "total": 817,
+ "last_run": "2026-09-19 16:55 UTC",
+ "last_run_iso": "2026-09-19T16:55:28Z",
+ "total": 819,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 21",
+  "City & State": "ok 22",
   "Politico NY Playbook": "ok 25",
-  "Times Union": "ok 16",
+  "Times Union": "ok 15",
   "NY State of Politics": "ok 32",
-  "Newsday": "ok 40",
+  "Newsday": "ok 34",
   "Daily News": "ok 12",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 5",
@@ -20,11 +20,11 @@
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 9",
-  "Governor's Office": "ok 42",
+  "Governor's Office": "ok 41",
   "NY Senate": "ok 4",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 86",
-  "Google News: Legislature": "ok 77"
+  "Google News: Hochul": "ok 85",
+  "Google News: Legislature": "ok 76"
  },
  "outlets": [
   "13wham.com",
@@ -117,6 +117,7 @@
   "River Journal Online",
   "Rochester Beacon",
   "RochesterFirst",
+  "Rockland News",
   "Rome Sentinel",
   "SILive.com",
   "Siena Poll",
@@ -225,7 +226,7 @@
  ],
  "paywall": {
   "free": 17,
-  "unknown": 786,
+  "unknown": 788,
   "metered": 13,
   "hard": 1
  },
