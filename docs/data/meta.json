@@ -1,29 +1,29 @@
 {
- "last_run": "2026-09-22 23:05 UTC",
- "last_run_iso": "2026-09-22T23:05:14Z",
- "total": 970,
+ "last_run": "2026-09-23 01:36 UTC",
+ "last_run_iso": "2026-09-23T01:35:51Z",
+ "total": 978,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 24",
+  "City & State": "ok 25",
   "Politico NY Playbook": "ok 25",
-  "Times Union": "ok 18",
+  "Times Union": "ok 17",
   "NY State of Politics": "ok 23",
   "Newsday": "ok 39",
-  "Daily News": "ok 14",
+  "Daily News": "ok 15",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 5",
   "NYT New York": "ok 2",
   "NY Post Politics": "ok 2",
-  "NY Post Metro": "ok 3",
+  "NY Post Metro": "ok 2",
   "The City": "ok 1",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 7",
   "Citizens Budget Commission": "ok 10",
-  "Governor's Office": "ok 42",
+  "Governor's Office": "ok 41",
   "NY Senate": "ok 5",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 86",
+  "Google News: Hochul": "ok 87",
   "Google News: Legislature": "ok 75"
  },
  "outlets": [
@@ -93,6 +93,7 @@
   "Mid Hudson News",
   "Monsey Scoop",
   "NBC New York",
+  "NBC News",
   "NCPR: North Country Public Radio",
   "NEWS10 ABC",
   "NY Assembly",
@@ -168,6 +169,8 @@
   "WBFF",
   "WBNG",
   "WCAX",
+  "WENY News",
+  "WETM",
   "WGRZ",
   "WHEC.com",
   "WIVB News 4",
@@ -253,9 +256,9 @@
  ],
  "paywall": {
   "free": 21,
-  "unknown": 909,
-  "metered": 35,
+  "unknown": 916,
+  "metered": 36,
   "hard": 5
  },
- "extracted": 70
+ "extracted": 71
 }
