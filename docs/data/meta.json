@@ -1,14 +1,14 @@
 {
- "last_run": "2026-09-24 06:58 UTC",
- "last_run_iso": "2026-09-24T06:57:54Z",
- "total": 1097,
+ "last_run": "2026-09-24 12:33 UTC",
+ "last_run_iso": "2026-09-24T12:33:02Z",
+ "total": 1108,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 29",
+  "City & State": "ok 31",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 17",
-  "NY State of Politics": "ok 17",
-  "Newsday": "ok 34",
+  "NY State of Politics": "ok 18",
+  "Newsday": "ok 37",
   "Daily News": "ok 15",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 6",
@@ -20,16 +20,17 @@
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 7",
   "Citizens Budget Commission": "ok 12",
-  "Governor's Office": "ok 42",
-  "NY Senate": "ok 2",
+  "Governor's Office": "ok 43",
+  "NY Senate": "ok 1",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 88",
+  "Google News: Hochul": "ok 87",
   "Google News: Legislature": "ok 76"
  },
  "outlets": [
   "13wham.com",
   "77 WABC",
   "ABC7 New York",
+  "AOL.com",
   "Adirondack Explorer",
   "Americans for Tax Reform",
   "Audacy",
@@ -56,6 +57,7 @@
   "Coinbase",
   "Commercial Observer",
   "Congressman Mike Lawler (.gov)",
+  "Corning Leader",
   "Crain's New York",
   "Crain's New York Business",
   "Daily News",
@@ -109,6 +111,7 @@
   "NYC.gov",
   "NYSUT.org",
   "NYT New York",
+  "New York Amsterdam News",
   "New York City News Service",
   "New York Farm Bureau",
   "New York Focus",
@@ -266,10 +269,10 @@
   "Transit"
  ],
  "paywall": {
-  "free": 23,
-  "unknown": 1026,
-  "metered": 42,
+  "free": 24,
+  "unknown": 1035,
+  "metered": 43,
   "hard": 6
  },
- "extracted": 88
+ "extracted": 90
 }
