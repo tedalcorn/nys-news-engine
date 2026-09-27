@@ -1,14 +1,14 @@
 {
- "last_run": "2026-09-27 02:39 UTC",
- "last_run_iso": "2026-09-27T02:39:41Z",
- "total": 1228,
+ "last_run": "2026-09-27 08:44 UTC",
+ "last_run_iso": "2026-09-27T08:44:18Z",
+ "total": 1226,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 27",
+  "City & State": "ok 26",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 15",
   "NY State of Politics": "ok 21",
-  "Newsday": "ok 40",
+  "Newsday": "ok 35",
   "Daily News": "ok 16",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 3",
@@ -20,8 +20,8 @@
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 7",
   "Citizens Budget Commission": "ok 13",
-  "Governor's Office": "ok 40",
-  "NY Senate": "ok 4",
+  "Governor's Office": "ok 42",
+  "NY Senate": "ok 3",
   "NY Assembly": "ok 2",
   "Google News: Hochul": "ok 89",
   "Google News: Legislature": "ok 76"
@@ -124,6 +124,7 @@
   "New York State Nurses Association",
   "News 12 - Hudson Valley",
   "News12 | Bronx",
+  "News12 | Brooklyn",
   "News12 | Connecticut",
   "News12 | Long Island",
   "NewsCord",
@@ -292,8 +293,8 @@
   "Transit"
  ],
  "paywall": {
-  "unknown": 1143,
   "free": 25,
+  "unknown": 1141,
   "metered": 52,
   "hard": 8
  },
