@@ -1,10 +1,10 @@
 {
- "last_run": "2026-10-01 01:23 UTC",
- "last_run_iso": "2026-10-01T01:23:43Z",
- "total": 1434,
+ "last_run": "2026-10-01 07:23 UTC",
+ "last_run_iso": "2026-10-01T07:23:08Z",
+ "total": 1443,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 30",
+  "City & State": "ok 31",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 17",
   "NY State of Politics": "ok 17",
@@ -14,17 +14,17 @@
   "Gothamist": "ok 4",
   "NYT New York": "ok 2",
   "NY Post Politics": "ok 1",
-  "NY Post Metro": "ok 1",
+  "NY Post Metro": "ok 0",
   "The City": "ok 1",
   "Reinvent Albany": "ERROR HTTPError: 403 Client Error: Forbidden for url: https://reinventalbany.org/feed",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 7",
   "Citizens Budget Commission": "ok 13",
   "Governor's Office": "ok 42",
-  "NY Senate": "ok 11",
+  "NY Senate": "ok 9",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 91",
-  "Google News: Legislature": "ok 75"
+  "Google News: Hochul": "ok 90",
+  "Google News: Legislature": "ok 72"
  },
  "outlets": [
   "13wham.com",
@@ -46,6 +46,7 @@
   "Bloomberg Government News",
   "Bloomberg Law News",
   "Bloomberg.com",
+  "Briefs Finance",
   "Brooklyn Eagle",
   "Brooklyn Paper",
   "Buffalo News",
@@ -106,6 +107,7 @@
   "JNS.org",
   "Jewish Insider",
   "KING5.com",
+  "Kingsport Times News",
   "LI Press",
   "La Voce di New York",
   "Law.com",
@@ -122,6 +124,7 @@
   "NBC News",
   "NCPR: North Country Public Radio",
   "NEWS10 ABC",
+  "NPR",
   "NY Assembly",
   "NY Carib News",
   "NY Post Metro",
@@ -216,6 +219,7 @@
   "TheDailyNewsOnline.com",
   "Times Union",
   "Toowoomba Chronicle",
+  "USA Today",
   "University at Albany",
   "Utica Observer Dispatch",
   "WAMC",
@@ -334,8 +338,8 @@
   "Transit"
  ],
  "paywall": {
+  "unknown": 1333,
   "free": 29,
-  "unknown": 1324,
   "metered": 70,
   "hard": 11
  },
