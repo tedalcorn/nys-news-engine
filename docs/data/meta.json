@@ -1,15 +1,15 @@
 {
- "last_run": "2026-10-04 06:06 UTC",
- "last_run_iso": "2026-10-04T06:06:34Z",
+ "last_run": "2026-10-04 12:38 UTC",
+ "last_run_iso": "2026-10-04T12:38:04Z",
  "total": 1675,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 31",
+  "City & State": "ok 30",
   "Politico NY Playbook": "ok 25",
-  "Times Union": "ok 24",
-  "NY State of Politics": "ok 21",
-  "Newsday": "ok 46",
-  "Daily News": "ok 14",
+  "Times Union": "ok 22",
+  "NY State of Politics": "ok 19",
+  "Newsday": "ok 44",
+  "Daily News": "ok 13",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 8",
   "NYT New York": "ok 4",
@@ -19,12 +19,12 @@
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 7",
-  "Citizens Budget Commission": "ok 11",
+  "Citizens Budget Commission": "ok 10",
   "Governor's Office": "ok 42",
-  "NY Senate": "ok 1",
+  "NY Senate": "ok 2",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 87",
-  "Google News: Legislature": "ok 73"
+  "Google News: Hochul": "ok 85",
+  "Google News: Legislature": "ok 74"
  },
  "outlets": [
   "13wham.com",
@@ -386,10 +386,10 @@
   "Transit"
  ],
  "paywall": {
-  "unknown": 1539,
+  "unknown": 1538,
   "free": 37,
   "metered": 82,
-  "hard": 17
+  "hard": 18
  },
- "extracted": 170
+ "extracted": 171
 }
