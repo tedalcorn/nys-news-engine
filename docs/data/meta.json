@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-04 12:38 UTC",
- "last_run_iso": "2026-10-04T12:38:04Z",
- "total": 1675,
+ "last_run": "2026-10-04 17:12 UTC",
+ "last_run_iso": "2026-10-04T17:12:11Z",
+ "total": 1677,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 30",
@@ -19,12 +19,12 @@
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 7",
-  "Citizens Budget Commission": "ok 10",
+  "Citizens Budget Commission": "ok 9",
   "Governor's Office": "ok 42",
   "NY Senate": "ok 2",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 85",
-  "Google News: Legislature": "ok 74"
+  "Google News: Hochul": "ok 86",
+  "Google News: Legislature": "ok 73"
  },
  "outlets": [
   "13wham.com",
@@ -386,7 +386,7 @@
   "Transit"
  ],
  "paywall": {
-  "unknown": 1538,
+  "unknown": 1540,
   "free": 37,
   "metered": 82,
   "hard": 18
