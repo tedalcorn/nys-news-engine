@@ -1,29 +1,29 @@
 {
- "last_run": "2026-10-07 02:33 UTC",
- "last_run_iso": "2026-10-07T02:33:03Z",
- "total": 1879,
+ "last_run": "2026-10-07 09:33 UTC",
+ "last_run_iso": "2026-10-07T09:33:38Z",
+ "total": 1885,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 29",
+  "City & State": "ok 28",
   "Politico NY Playbook": "ok 26",
-  "Times Union": "ok 21",
+  "Times Union": "ok 20",
   "NY State of Politics": "ok 24",
-  "Newsday": "ok 45",
+  "Newsday": "ok 46",
   "Daily News": "ok 15",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 3",
   "NYT New York": "ok 1",
-  "NY Post Politics": "ok 1",
-  "NY Post Metro": "ok 2",
+  "NY Post Politics": "ok 2",
+  "NY Post Metro": "ok 1",
   "The City": "ok 2",
   "Reinvent Albany": "ERROR HTTPError: 403 Client Error: Forbidden for url: https://reinventalbany.org/feed/",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 10",
-  "Governor's Office": "ok 46",
-  "NY Senate": "ok 9",
+  "Governor's Office": "ok 45",
+  "NY Senate": "ok 10",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 90",
+  "Google News: Hochul": "ok 89",
   "Google News: Legislature": "ok 75"
  },
  "outlets": [
@@ -141,6 +141,7 @@
   "Long Island Business News",
   "Long Island Life & Politics",
   "MS NOW",
+  "Marist Poll",
   "Mid Hudson News",
   "Modern Ghana",
   "Monsey Scoop",
@@ -413,10 +414,10 @@
   "Transit"
  ],
  "paywall": {
-  "unknown": 1726,
+  "unknown": 1731,
   "free": 39,
-  "metered": 95,
+  "metered": 96,
   "hard": 19
  },
- "extracted": 193
+ "extracted": 194
 }
