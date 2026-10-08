@@ -1,29 +1,29 @@
 {
- "last_run": "2026-10-07 22:08 UTC",
- "last_run_iso": "2026-10-07T22:07:52Z",
- "total": 1936,
+ "last_run": "2026-10-08 02:07 UTC",
+ "last_run_iso": "2026-10-08T02:07:40Z",
+ "total": 1944,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 25",
   "Politico NY Playbook": "ok 25",
-  "Times Union": "ok 21",
-  "NY State of Politics": "ok 29",
+  "Times Union": "ok 22",
+  "NY State of Politics": "ok 33",
   "Newsday": "ok 46",
   "Daily News": "ok 16",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 4",
   "NYT New York": "ok 1",
   "NY Post Politics": "ok 1",
-  "NY Post Metro": "ok 3",
+  "NY Post Metro": "ok 2",
   "The City": "ok 2",
   "Reinvent Albany": "ERROR HTTPError: 403 Client Error: Forbidden for url: https://reinventalbany.org/feed",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 12",
-  "Governor's Office": "ok 46",
+  "Governor's Office": "ok 45",
   "NY Senate": "ok 12",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 89",
+  "Google News: Hochul": "ok 91",
   "Google News: Legislature": "ok 74"
  },
  "outlets": [
@@ -231,6 +231,7 @@
   "Syracuse.com",
   "THEJ.CA",
   "TMZ",
+  "The Boston Globe",
   "The Business Standard",
   "The Capitol Pressroom",
   "The Center Square",
@@ -420,9 +421,9 @@
  ],
  "paywall": {
   "free": 41,
-  "unknown": 1777,
-  "metered": 99,
+  "unknown": 1784,
+  "metered": 100,
   "hard": 19
  },
- "extracted": 198
+ "extracted": 199
 }
