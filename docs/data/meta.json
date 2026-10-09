@@ -1,29 +1,29 @@
 {
- "last_run": "2026-10-09 08:12 UTC",
- "last_run_iso": "2026-10-09T08:12:07Z",
- "total": 2008,
+ "last_run": "2026-10-09 15:24 UTC",
+ "last_run_iso": "2026-10-09T15:24:33Z",
+ "total": 2028,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 25",
+  "City & State": "ok 23",
   "Politico NY Playbook": "ok 25",
-  "Times Union": "ok 19",
-  "NY State of Politics": "ok 34",
+  "Times Union": "ok 20",
+  "NY State of Politics": "ok 35",
   "Newsday": "ok 45",
   "Daily News": "ok 17",
   "Gotham Gazette": "ok 0",
-  "Gothamist": "ok 6",
+  "Gothamist": "ok 5",
   "NYT New York": "ok 1",
-  "NY Post Politics": "ok 1",
+  "NY Post Politics": "ok 2",
   "NY Post Metro": "ok 0",
-  "The City": "ok 0",
-  "Reinvent Albany": "ERROR HTTPError: 403 Client Error: Forbidden for url: https://reinventalbany.org/feed/",
+  "The City": "ok 1",
+  "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 12",
-  "Governor's Office": "ok 41",
-  "NY Senate": "ok 3",
+  "Governor's Office": "ok 40",
+  "NY Senate": "ok 4",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 89",
+  "Google News: Hochul": "ok 85",
   "Google News: Legislature": "ok 74"
  },
  "outlets": [
@@ -52,6 +52,7 @@
   "Baltimore Sun",
   "Beinsure",
   "Benzinga",
+  "Binghamton University Pipe Dream",
   "Bitcoin Magazine",
   "Black Westchester",
   "Bloomberg Government News",
@@ -426,9 +427,9 @@
  ],
  "paywall": {
   "free": 44,
-  "unknown": 1838,
-  "metered": 106,
+  "unknown": 1856,
+  "metered": 108,
   "hard": 20
  },
- "extracted": 210
+ "extracted": 215
 }
