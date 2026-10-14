@@ -1,30 +1,30 @@
 {
- "last_run": "2026-10-14 06:22 UTC",
- "last_run_iso": "2026-10-14T06:22:07Z",
- "total": 2242,
+ "last_run": "2026-10-14 12:12 UTC",
+ "last_run_iso": "2026-10-14T12:11:40Z",
+ "total": 2264,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 20",
+  "City & State": "ok 21",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 18",
-  "NY State of Politics": "ok 34",
-  "Newsday": "ok 47",
-  "Daily News": "ok 19",
+  "NY State of Politics": "ok 31",
+  "Newsday": "ok 50",
+  "Daily News": "ok 18",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 5",
-  "NYT New York": "ok 3",
-  "NY Post Politics": "ok 0",
-  "NY Post Metro": "ok 3",
+  "NYT New York": "ok 2",
+  "NY Post Politics": "ok 2",
+  "NY Post Metro": "ok 6",
   "The City": "ok 1",
-  "Reinvent Albany": "ERROR HTTPError: 403 Client Error: Forbidden for url: https://reinventalbany.org/feed/",
+  "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 12",
-  "Governor's Office": "ok 42",
-  "NY Senate": "ok 3",
+  "Governor's Office": "ok 39",
+  "NY Senate": "ok 2",
   "NY Assembly": "ok 1",
-  "Google News: Hochul": "ok 85",
-  "Google News: Legislature": "ok 73"
+  "Google News: Hochul": "ok 86",
+  "Google News: Legislature": "ok 74"
  },
  "outlets": [
   "- Emerson Polling",
@@ -125,6 +125,7 @@
   "Hell Gate",
   "Herald Community Newspapers",
   "Hindustan Times",
+  "Homeland Security (.gov)",
   "Homes and Community Renewal (.gov)",
   "HoopsHype",
   "Hudson Reporter",
@@ -461,10 +462,10 @@
   "Transit"
  ],
  "paywall": {
-  "unknown": 2043,
+  "unknown": 2061,
   "free": 49,
-  "hard": 24,
-  "metered": 126
+  "metered": 130,
+  "hard": 24
  },
- "extracted": 245
+ "extracted": 249
 }
