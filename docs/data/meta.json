@@ -1,19 +1,19 @@
 {
- "last_run": "2026-10-15 12:58 UTC",
- "last_run_iso": "2026-10-15T12:58:01Z",
- "total": 2349,
+ "last_run": "2026-10-15 17:37 UTC",
+ "last_run_iso": "2026-10-15T17:37:02Z",
+ "total": 2366,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 19",
+  "City & State": "ok 18",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 17",
-  "NY State of Politics": "ok 33",
-  "Newsday": "ok 51",
-  "Daily News": "ok 16",
+  "NY State of Politics": "ok 36",
+  "Newsday": "ok 53",
+  "Daily News": "ok 15",
   "Gotham Gazette": "ok 0",
-  "Gothamist": "ok 7",
-  "NYT New York": "ok 2",
-  "NY Post Politics": "ok 2",
+  "Gothamist": "ok 8",
+  "NYT New York": "ok 3",
+  "NY Post Politics": "ok 1",
   "NY Post Metro": "ok 1",
   "The City": "ok 1",
   "Reinvent Albany": "ok 10",
@@ -28,6 +28,7 @@
  },
  "outlets": [
   "- Emerson Polling",
+  "13WHAM-TV",
   "13wham.com",
   "14850.com",
   "24-7 Press Release",
@@ -281,6 +282,7 @@
   "The Daily News | Texas' Oldest Newspaper",
   "The Daily Orange",
   "The Daily Signal",
+  "The East Hampton Star",
   "The Economic Times",
   "The Evening Sun | Chenango County, NY's Hometown Newspaper",
   "The Good Newsroom",
@@ -473,10 +475,10 @@
   "Transit"
  ],
  "paywall": {
-  "unknown": 2138,
-  "free": 52,
-  "metered": 134,
-  "hard": 25
+  "unknown": 2152,
+  "free": 53,
+  "metered": 135,
+  "hard": 26
  },
- "extracted": 261
+ "extracted": 264
 }
