@@ -1,29 +1,29 @@
 {
- "last_run": "2026-10-15 17:37 UTC",
- "last_run_iso": "2026-10-15T17:37:02Z",
- "total": 2366,
+ "last_run": "2026-10-15 20:45 UTC",
+ "last_run_iso": "2026-10-15T20:44:46Z",
+ "total": 2382,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 18",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 17",
   "NY State of Politics": "ok 36",
-  "Newsday": "ok 53",
-  "Daily News": "ok 15",
+  "Newsday": "ok 50",
+  "Daily News": "ok 16",
   "Gotham Gazette": "ok 0",
-  "Gothamist": "ok 8",
+  "Gothamist": "ok 7",
   "NYT New York": "ok 3",
   "NY Post Politics": "ok 1",
-  "NY Post Metro": "ok 1",
-  "The City": "ok 1",
-  "Reinvent Albany": "ok 10",
+  "NY Post Metro": "ok 3",
+  "The City": "ok 2",
+  "Reinvent Albany": "ERROR HTTPError: 403 Client Error: Forbidden for url: https://reinventalbany.org/feed/",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 10",
   "Governor's Office": "ok 41",
   "NY Senate": "ok 3",
   "NY Assembly": "ok 1",
-  "Google News: Hochul": "ok 81",
+  "Google News: Hochul": "ok 79",
   "Google News: Legislature": "ok 73"
  },
  "outlets": [
@@ -171,6 +171,7 @@
   "MS NOW",
   "Marist Poll",
   "Mid Hudson News",
+  "Mirage News",
   "Modern Ghana",
   "Monsey Scoop",
   "MultiState",
@@ -475,10 +476,10 @@
   "Transit"
  ],
  "paywall": {
-  "unknown": 2152,
-  "free": 53,
-  "metered": 135,
-  "hard": 26
+  "unknown": 2164,
+  "metered": 137,
+  "free": 54,
+  "hard": 27
  },
- "extracted": 264
+ "extracted": 269
 }
