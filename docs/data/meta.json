@@ -1,18 +1,18 @@
 {
- "last_run": "2026-10-21 20:47 UTC",
- "last_run_iso": "2026-10-21T20:47:25Z",
- "total": 2690,
+ "last_run": "2026-10-21 23:49 UTC",
+ "last_run_iso": "2026-10-21T23:49:22Z",
+ "total": 2715,
  "sources": {
   "New York Focus": "ok 49",
-  "City & State": "ok 29",
+  "City & State": "ok 30",
   "Politico NY Playbook": "ok 24",
-  "Times Union": "ok 24",
-  "NY State of Politics": "ok 32",
-  "Newsday": "ok 65",
+  "Times Union": "ok 23",
+  "NY State of Politics": "ok 31",
+  "Newsday": "ok 45",
   "Daily News": "ok 20",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 3",
-  "NYT New York": "ok 0",
+  "NYT New York": "ok 1",
   "NY Post Politics": "ok 2",
   "NY Post Metro": "ok 2",
   "The City": "ok 1",
@@ -20,10 +20,10 @@
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 18",
-  "Governor's Office": "ok 37",
-  "NY Senate": "ok 5",
+  "Governor's Office": "ok 32",
+  "NY Senate": "ok 4",
   "NY Assembly": "ok 2",
-  "Google News: Hochul": "ok 85",
+  "Google News: Hochul": "ok 84",
   "Google News: Legislature": "ok 72"
  },
  "outlets": [
@@ -47,6 +47,7 @@
   "Agriculture and Markets (.gov)",
   "Al Jazeera",
   "Algemeiner.com",
+  "American Enterprise Institute - AEI",
   "American Legislative Exchange Council",
   "Americans for Tax Reform",
   "Anash.org",
@@ -98,6 +99,7 @@
   "Consumers Union",
   "Corning Leader",
   "Cortland Voice",
+  "Courthouse News",
   "Crain's New York",
   "Crain's New York Business",
   "Daily Freeman",
@@ -494,10 +496,10 @@
   "Transit"
  ],
  "paywall": {
-  "unknown": 2435,
+  "unknown": 2459,
   "metered": 170,
   "free": 58,
-  "hard": 27
+  "hard": 28
  },
- "extracted": 313
+ "extracted": 314
 }
