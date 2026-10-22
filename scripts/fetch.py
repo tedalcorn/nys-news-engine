@@ -22,7 +22,8 @@ UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
 RETENTION_DAYS = 180
 NOW = time.time()
 RUNNER = os.environ.get("ENGINE_RUNNER", "local")      # "pi" | "actions" | "local" - recorded in meta.json
-NYT_KEY = os.environ.get("NYT_API_KEY", "").strip()
+NYT_KEY = os.environ.get("NYT_API_KEY", "").strip()                       # Article Search app
+NYT_TOP_KEY = os.environ.get("NYT_TOPSTORIES_KEY", "").strip() or NYT_KEY  # Top Stories app (NYT issues one key per app)
 ET = ZoneInfo("America/New_York")
 # Outlet labels that were renamed; applied to the archive on load so old and new items share a label.
 OUTLET_RENAMES = {"NYT New York": "New York Times"}
@@ -173,7 +174,7 @@ def fetch_nyt(src):
     try:
         # Top Stories: what is on the NY Region section front right now (Times Newswire is no longer offered)
         r = requests.get("https://api.nytimes.com/svc/topstories/v2/nyregion.json",
-                         params={"api-key": NYT_KEY}, timeout=25); r.raise_for_status()
+                         params={"api-key": NYT_TOP_KEY}, timeout=25); r.raise_for_status()
         for a in (r.json().get("results") or []):
             title, abstract, link = (a.get("title") or "").strip(), (a.get("abstract") or "").strip(), a.get("url") or ""
             if not title or not link: continue

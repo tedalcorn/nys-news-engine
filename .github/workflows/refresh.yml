@@ -21,6 +21,7 @@ jobs:
     env:
       ENGINE_RUNNER: actions
       NYT_API_KEY: ${{ secrets.NYT_API_KEY }}
+      NYT_TOPSTORIES_KEY: ${{ secrets.NYT_TOPSTORIES_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

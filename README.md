@@ -70,7 +70,7 @@ python -m http.server 8742 --directory docs   # then open http://localhost:8742/
   secrets in `~/nys-news-engine/env`. Deploy key `~/.ssh/nys_news_engine_deploy` (repo setting "pi-weather refresh").
 - **NYT key:** one key, per-product. Enable "Article Search API" and "Top Stories API" on the app at
   developer.nytimes.com/my-apps; a key without them returns 401 and the source logs `ERROR`, nothing else breaks.
-  The key is a repo secret (`NYT_API_KEY`) and in the Pi's env file.
+  Two keys, because the NYT issues one key per app: `NYT_API_KEY` (Article Search) and `NYT_TOPSTORIES_KEY` (Top Stories), both repo secrets and both in the Pi's env file.
 - **Google News variance:** the same query returns different counts from different IPs; a source showing `ok 0`
   on one runner and `ok 10` on the other is normal.
 
