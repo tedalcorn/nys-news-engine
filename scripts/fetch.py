@@ -169,7 +169,7 @@ def fetch_nyt(src):
     try:
         r = requests.get("https://api.nytimes.com/svc/news/v3/content/nyt/nyregion.json",
                          params={"limit": 100, "api-key": NYT_KEY}, timeout=25); r.raise_for_status()
-        for a in r.json().get("results", []):
+        for a in (r.json().get("results") or []):
             title, abstract, link = (a.get("title") or "").strip(), (a.get("abstract") or "").strip(), a.get("url") or ""
             if not title or not link: continue
             facets = (a.get("per_facet") or []) + (a.get("org_facet") or []) + (a.get("geo_facet") or []) + (a.get("des_facet") or [])
@@ -181,28 +181,32 @@ def fetch_nyt(src):
                                  paywall="hard", opinion=("op-ed" in mt or "editorial" in mt)))
     except Exception as e:
         errs.append(f"newswire {type(e).__name__}: {e}")
-    time.sleep(6)   # NYT keys are limited to a handful of calls per minute
-    try:
-        begin = (dt.datetime.utcnow() - dt.timedelta(days=3)).strftime("%Y%m%d")
-        r = requests.get("https://api.nytimes.com/svc/search/v2/articlesearch.json",
-                         params={"q": 'Hochul OR Albany OR "state Legislature" OR "New York State"', "sort": "newest",
-                                 "begin_date": begin, "api-key": NYT_KEY}, timeout=25); r.raise_for_status()
-        for d in r.json().get("response", {}).get("docs", []):
-            title = ((d.get("headline") or {}).get("main") or "").strip(); link = d.get("web_url") or ""
-            abstract = (d.get("abstract") or d.get("snippet") or "").strip()
-            if not title or not link: continue
-            facets = [f"{k.get('name','')}:{k.get('value','')}" for k in d.get("keywords") or []]
-            if not _nyt_keep(title, abstract, facets): continue
-            try: ts = dt.datetime.fromisoformat(d["pub_date"].replace("+0000", "+00:00")).timestamp()
-            except Exception: ts = NOW
-            tom = (d.get("type_of_material") or "").lower()
-            out.append(make_item(title, link, src["name"], src["domain"], abstract[:400], ts, src,
-                                 paywall="hard", opinion=("op-ed" in tom or "editorial" in tom),
-                                 words=int(d.get("word_count") or 0)))
-    except Exception as e:
-        errs.append(f"search {type(e).__name__}: {e}")
-    if any("401" in e or "403" in e for e in errs):
-        errs = ["key not enabled for Times Newswire / Article Search: toggle both on at developer.nytimes.com/my-apps"]
+    # Article Search: one simple term per call. Boolean/phrase queries ("A OR \"B C\"") and fq filters
+    # return hits:0 from the current gateway, so we run a few plain terms and let the facet filter decide.
+    begin = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=3)).strftime("%Y%m%d")
+    seen = set()
+    for term in ("Hochul", "Albany", "Legislature"):
+        time.sleep(13)   # keys are limited to a handful of calls per minute
+        try:
+            r = requests.get("https://api.nytimes.com/svc/search/v2/articlesearch.json",
+                             params={"q": term, "sort": "newest", "begin_date": begin, "api-key": NYT_KEY}, timeout=25); r.raise_for_status()
+            for d in ((r.json().get("response") or {}).get("docs") or []):   # docs is null, not [], on zero hits
+                title = ((d.get("headline") or {}).get("main") or "").strip(); link = d.get("web_url") or ""
+                abstract = (d.get("abstract") or d.get("snippet") or "").strip()
+                if not title or not link or link in seen: continue
+                seen.add(link)
+                facets = [f"{k.get('name','')}:{k.get('value','')}" for k in d.get("keywords") or []]
+                if not _nyt_keep(title, abstract, facets): continue
+                try: ts = dt.datetime.fromisoformat(d["pub_date"].replace("+0000", "+00:00")).timestamp()
+                except Exception: ts = NOW
+                tom = (d.get("type_of_material") or "").lower()
+                out.append(make_item(title, link, src["name"], src["domain"], abstract[:400], ts, src,
+                                     paywall="hard", opinion=("op-ed" in tom or "editorial" in tom),
+                                     words=int(d.get("word_count") or 0)))
+        except Exception as e:
+            errs.append(f"search {type(e).__name__}: {e}")
+    errs = ["Times Newswire not enabled on this key (developer.nytimes.com/my-apps)" if e.startswith("newswire") and ("401" in e or "403" in e)
+            else "Article Search not enabled on this key" if e.startswith("search") and ("401" in e or "403" in e) else _redact(e) for e in errs]
     status = f"ok {len(out)}" + (f" ({'; '.join(errs)})" if errs else "")
     if errs and not out: status = "ERROR " + "; ".join(errs)
     return out, status
