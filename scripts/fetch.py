@@ -201,6 +201,8 @@ def fetch_nyt(src):
                                  words=int(d.get("word_count") or 0)))
     except Exception as e:
         errs.append(f"search {type(e).__name__}: {e}")
+    if any("401" in e or "403" in e for e in errs):
+        errs = ["key not enabled for Times Newswire / Article Search: toggle both on at developer.nytimes.com/my-apps"]
     status = f"ok {len(out)}" + (f" ({'; '.join(errs)})" if errs else "")
     if errs and not out: status = "ERROR " + "; ".join(errs)
     return out, status
@@ -273,7 +275,8 @@ def main():
     fresh = []
     for src in SOURCES:
         items, status = fetch_source(src)
-        log[src["name"]] = status
+        key = src["name"] if src["name"] not in log else f'{src["name"]} ({src["kind"]})'
+        log[key] = status
         fresh.extend(items)
         print(f"{status:>10}  {src['name']}")
     # merge: new ids in; existing keep first-seen fetched_ts
