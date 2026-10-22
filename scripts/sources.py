@@ -62,7 +62,9 @@ NY_ANCHORS = ["new york","n.y.","nys","hochul","albany","empire state","brooklyn
  "cuny","suny","hudson valley","westchester","nassau","suffolk"]
 OUT_OF_STATE = ["newsom","california","texas","florida","desantis","abbott","illinois","chicago",
  "new jersey","pennsylvania","shapiro","connecticut","massachusetts","boston","ohio","georgia",
- "michigan","virginia","arizona","colorado","washington state","oregon","nevada","wisconsin"]
+ "michigan","virginia","arizona","colorado","washington state","oregon","nevada","wisconsin",
+ "new mexico","haaland","maryland","minnesota","sherrill","ciattarelli","spanberger","vermont","maine","kentucky",
+ "louisiana","tennessee","carolina","iowa","kansas","oklahoma","utah","idaho","montana","alaska","hawaii"]
 
 # NYT API items are kept when any of the Times' own tags (per_facet / org_facet / geo_facet / keywords)
 # matches one of these, or when title+abstract clears ALBANY_TERMS. Case-insensitive substring match.
