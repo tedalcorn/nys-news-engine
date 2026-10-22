@@ -1,7 +1,7 @@
 """Source list for the NYS News Engine.
 kind: 'rss' = native feed; 'gnews' = Google News RSS (site: or keyword query) for sites that block scrapers;
       'gov' = governor.ny.gov/news scraped directly (Cloudflare needs a browser TLS fingerprint: curl_cffi);
-      'nyt' = NYT developer API (Times Newswire + Article Search); silently skipped unless NYT_API_KEY is set.
+      'nyt' = NYT developer API (Top Stories for the NY Region front + Article Search); silently skipped unless NYT_API_KEY is set.
 Google News queries carry a `when:Nd` operator: without it Google returns its 100 most *relevant* hits,
 many of them months old, and recent releases never surface (that is why Official went stale).
 tier: 1 = Albany-specialist / accountability; 2 = strong general outlet; 3 = official / advocacy / watchdog release.

@@ -155,7 +155,7 @@ def fetch_gov(src):
             out.append(make_item(title, link, src["name"], src["domain"], dedupe_summary(title, desc, src["name"]), ts, src))
     return out, (f"ok {len(out)}" if out else "ERROR parsed 0 rows (markup changed?)")
 
-# ---------- NYT developer API: Times Newswire (real time) + Article Search (keyword) ----------
+# ---------- NYT developer API: Top Stories (NY Region front) + Article Search (keyword) ----------
 def _nyt_keep(title, abstract, facets):
     """Article Search matches the query anywhere in the body, so a Texas or Australian story that mentions
     Hochul once comes back. Require a New York anchor in the Times' facets or the text itself."""
@@ -171,8 +171,9 @@ def fetch_nyt(src):
         return [], "skipped (no NYT_API_KEY)"
     out, errs = [], []
     try:
-        r = requests.get("https://api.nytimes.com/svc/news/v3/content/nyt/nyregion.json",
-                         params={"limit": 100, "api-key": NYT_KEY}, timeout=25); r.raise_for_status()
+        # Top Stories: what is on the NY Region section front right now (Times Newswire is no longer offered)
+        r = requests.get("https://api.nytimes.com/svc/topstories/v2/nyregion.json",
+                         params={"api-key": NYT_KEY}, timeout=25); r.raise_for_status()
         for a in (r.json().get("results") or []):
             title, abstract, link = (a.get("title") or "").strip(), (a.get("abstract") or "").strip(), a.get("url") or ""
             if not title or not link: continue
@@ -184,7 +185,7 @@ def fetch_nyt(src):
             out.append(make_item(title, link, src["name"], src["domain"], abstract[:400], ts, src,
                                  paywall="hard", opinion=("op-ed" in mt or "editorial" in mt)))
     except Exception as e:
-        errs.append(f"newswire {type(e).__name__}: {e}")
+        errs.append(f"topstories {type(e).__name__}: {e}")
     # Article Search: one simple term per call. Boolean/phrase queries ("A OR \"B C\"") and fq filters
     # return hits:0 from the current gateway, so we run a few plain terms and let the facet filter decide.
     begin = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=3)).strftime("%Y%m%d")
@@ -209,7 +210,7 @@ def fetch_nyt(src):
                                      words=int(d.get("word_count") or 0)))
         except Exception as e:
             errs.append(f"search {type(e).__name__}: {e}")
-    errs = ["Times Newswire not enabled on this key (developer.nytimes.com/my-apps)" if e.startswith("newswire") and ("401" in e or "403" in e)
+    errs = ["Top Stories API not enabled on this key (developer.nytimes.com/my-apps)" if e.startswith("topstories") and ("401" in e or "403" in e)
             else "Article Search not enabled on this key" if e.startswith("search") and ("401" in e or "403" in e) else _redact(e) for e in errs]
     status = f"ok {len(out)}" + (f" ({'; '.join(errs)})" if errs else "")
     if errs and not out: status = "ERROR " + "; ".join(errs)

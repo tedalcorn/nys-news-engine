@@ -35,7 +35,7 @@ GitHub Pages serves `docs/`. Retention is 180 days. The repo is the off-device b
 | New York Focus, City & State, Politico NY Playbook | native RSS | 1 |
 | Times Union, NY State of Politics (Spectrum) | Google News RSS `site:` query | 1 |
 | Gothamist, NY Post (politics, metro), The City | native RSS, Albany-filtered | 2 |
-| New York Times | NY Region RSS, Albany-filtered, plus the NYT developer API (Times Newswire + Article Search) filtered on the Times' own person/place/subject tags when `NYT_API_KEY` is set | 2 |
+| New York Times | NY Region RSS, Albany-filtered, plus the NYT developer API (Top Stories for the NY Region front + Article Search) filtered on the Times' own person/place/subject tags when `NYT_API_KEY` is set | 2 |
 | Newsday, Daily News, Gotham Gazette | Google News RSS, Albany-filtered | 2 |
 | Reinvent Albany, Fiscal Policy Institute, Empire Center | native RSS | 3 |
 | Citizens Budget Commission, NY Senate, NY Assembly | Google News RSS | 3 |
@@ -68,7 +68,7 @@ python -m http.server 8742 --directory docs   # then open http://localhost:8742/
 - **Pi:** `ssh weather-ts` → `systemctl status nys-news-refresh.timer`, `journalctl -u nys-news-refresh -n 50`.
   Code lives in `~/nys-news-engine/repo` (a normal clone; `git pull` to update), venv in `~/nys-news-engine/.venv`,
   secrets in `~/nys-news-engine/env`. Deploy key `~/.ssh/nys_news_engine_deploy` (repo setting "pi-weather refresh").
-- **NYT key:** one key, per-product. Enable "Article Search API" and "Times Newswire API" on the app at
+- **NYT key:** one key, per-product. Enable "Article Search API" and "Top Stories API" on the app at
   developer.nytimes.com/my-apps; a key without them returns 401 and the source logs `ERROR`, nothing else breaks.
   The key is a repo secret (`NYT_API_KEY`) and in the Pi's env file.
 - **Google News variance:** the same query returns different counts from different IPs; a source showing `ok 0`
