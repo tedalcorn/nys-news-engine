@@ -1,11 +1,11 @@
 {
- "last_run": "2026-10-22 14:53 UTC",
- "last_run_iso": "2026-10-22T14:52:32Z",
+ "last_run": "2026-10-22 15:00 UTC",
+ "last_run_iso": "2026-10-22T15:00:03Z",
  "total": 2868,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
-  "City & State (gnews)": "ok 16",
+  "City & State (gnews)": "ok 15",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 10",
   "NY State of Politics": "ok 10",
