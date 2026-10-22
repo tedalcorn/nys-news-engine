@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-22 15:00 UTC",
- "last_run_iso": "2026-10-22T15:00:03Z",
- "total": 2868,
+ "last_run": "2026-10-22 15:15 UTC",
+ "last_run_iso": "2026-10-22T15:14:19Z",
+ "total": 2869,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
@@ -14,7 +14,7 @@
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 3",
   "New York Times": "ok 1",
-  "New York Times (nyt)": "ok 6 (Times Newswire not enabled on this key (developer.nytimes.com/my-apps))",
+  "New York Times (nyt)": "ok 11",
   "NY Post Politics": "ok 3",
   "NY Post Metro": "ok 0",
   "The City": "ok 1",
@@ -510,7 +510,7 @@
  ],
  "paywall": {
   "free": 61,
-  "unknown": 2603,
+  "unknown": 2604,
   "metered": 171,
   "hard": 33
  },
@@ -570,7 +570,7 @@
    "official": 13
   },
   "2026-10-22": {
-   "stories": 30,
+   "stories": 31,
    "official": 4
   }
  }
