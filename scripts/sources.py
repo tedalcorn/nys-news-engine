@@ -1,5 +1,9 @@
 """Source list for the NYS News Engine.
-kind: 'rss' = native feed; 'gnews' = Google News RSS (site: or keyword query) for sites that block scrapers.
+kind: 'rss' = native feed; 'gnews' = Google News RSS (site: or keyword query) for sites that block scrapers;
+      'gov' = governor.ny.gov/news scraped directly (Cloudflare needs a browser TLS fingerprint: curl_cffi);
+      'nyt' = NYT developer API (Times Newswire + Article Search); silently skipped unless NYT_API_KEY is set.
+Google News queries carry a `when:Nd` operator: without it Google returns its 100 most *relevant* hits,
+many of them months old, and recent releases never surface (that is why Official went stale).
 tier: 1 = Albany-specialist / accountability; 2 = strong general outlet; 3 = official / advocacy / watchdog release.
 albany_filter: True = general feed, keep only items that match Albany keywords (see fetch.py).
 """
@@ -9,17 +13,18 @@ SOURCES = [
  # --- Albany specialists (native) ---
  dict(name="New York Focus",      domain="nysfocus.com",        kind="rss",   url="https://nysfocus.com/feed",                       tier=1, albany_filter=False),
  dict(name="City & State",        domain="cityandstateny.com",  kind="rss",   url="https://www.cityandstateny.com/rss/all/",         tier=1, albany_filter=True),
- dict(name="City & State",        domain="cityandstateny.com",  kind="gnews", url=GN.format(q="site:cityandstateny.com+(Hochul+OR+Albany+OR+legislature+OR+Assembly+OR+%22state+Senate%22+OR+%22state+budget%22)"), tier=1, albany_filter=False),
+ dict(name="City & State",        domain="cityandstateny.com",  kind="gnews", url=GN.format(q="site:cityandstateny.com+(Hochul+OR+Albany+OR+legislature+OR+Assembly+OR+%22state+Senate%22+OR+%22state+budget%22)+when:3d"), tier=1, albany_filter=False),
  dict(name="Politico NY Playbook",domain="politico.com",        kind="rss",   url="https://rss.politico.com/new-york-playbook.xml",  tier=1, albany_filter=False),
  # --- Albany specialists (blocked; via Google News) ---
- dict(name="Times Union",         domain="timesunion.com",      kind="gnews", url=GN.format(q="site:timesunion.com+(Hochul+OR+legislature+OR+Assembly+OR+%22state+Senate%22+OR+%22state+budget%22+OR+Heastie+OR+%22Stewart-Cousins%22)"), tier=1, albany_filter=True),
- dict(name="NY State of Politics",domain="nystateofpolitics.com",kind="gnews",url=GN.format(q="site:nystateofpolitics.com"),        tier=1, albany_filter=False),
- dict(name="Newsday",             domain="newsday.com",         kind="gnews", url=GN.format(q="site:newsday.com+(Hochul+OR+Albany+OR+legislature+OR+Blakeman)"), tier=2, albany_filter=True),
- dict(name="Daily News",          domain="nydailynews.com",     kind="gnews", url=GN.format(q="site:nydailynews.com+(Hochul+OR+Albany+OR+legislature)"), tier=2, albany_filter=True),
- dict(name="Gotham Gazette",      domain="gothamgazette.com",   kind="gnews", url=GN.format(q="site:gothamgazette.com"),            tier=2, albany_filter=True),
+ dict(name="Times Union",         domain="timesunion.com",      kind="gnews", url=GN.format(q="site:timesunion.com+(Hochul+OR+legislature+OR+Assembly+OR+%22state+Senate%22+OR+%22state+budget%22+OR+Heastie+OR+%22Stewart-Cousins%22)+when:3d"), tier=1, albany_filter=True),
+ dict(name="NY State of Politics",domain="nystateofpolitics.com",kind="gnews",url=GN.format(q="site:nystateofpolitics.com+when:3d"),        tier=1, albany_filter=False),
+ dict(name="Newsday",             domain="newsday.com",         kind="gnews", url=GN.format(q="site:newsday.com+(Hochul+OR+Albany+OR+legislature+OR+Blakeman)+when:3d"), tier=2, albany_filter=True),
+ dict(name="Daily News",          domain="nydailynews.com",     kind="gnews", url=GN.format(q="site:nydailynews.com+(Hochul+OR+Albany+OR+legislature)+when:3d"), tier=2, albany_filter=True),
+ dict(name="Gotham Gazette",      domain="gothamgazette.com",   kind="gnews", url=GN.format(q="site:gothamgazette.com+when:7d"),            tier=2, albany_filter=True),
  # --- General outlets (native, filtered) ---
  dict(name="Gothamist",           domain="gothamist.com",       kind="rss",   url="https://gothamist.com/feed",                      tier=2, albany_filter=True),
- dict(name="NYT New York",        domain="nytimes.com",         kind="rss",   url="https://rss.nytimes.com/services/xml/rss/nyt/NYRegion.xml", tier=2, albany_filter=True),
+ dict(name="New York Times",      domain="nytimes.com",         kind="rss",   url="https://rss.nytimes.com/services/xml/rss/nyt/NYRegion.xml", tier=2, albany_filter=True),
+ dict(name="New York Times",      domain="nytimes.com",         kind="nyt",   url="",                                                tier=2, albany_filter=True),
  dict(name="NY Post Politics",    domain="nypost.com",          kind="rss",   url="https://nypost.com/politics/feed/",               tier=2, albany_filter=True),
  dict(name="NY Post Metro",       domain="nypost.com",          kind="rss",   url="https://nypost.com/metro/feed/",                  tier=2, albany_filter=True),
  dict(name="The City",            domain="thecity.nyc",         kind="rss",   url="https://www.thecity.nyc/feed/",                   tier=2, albany_filter=True),
@@ -27,14 +32,15 @@ SOURCES = [
  dict(name="Reinvent Albany",     domain="reinventalbany.org",  kind="rss",   url="https://reinventalbany.org/feed",                 tier=3, albany_filter=False),
  dict(name="Fiscal Policy Institute", domain="fiscalpolicy.org",kind="rss",   url="https://fiscalpolicy.org/feed",                   tier=3, albany_filter=False),
  dict(name="Empire Center",       domain="empirecenter.org",    kind="rss",   url="https://www.empirecenter.org/feed/",              tier=3, albany_filter=False),
- dict(name="Citizens Budget Commission", domain="cbcny.org",    kind="gnews", url=GN.format(q="site:cbcny.org"),                     tier=3, albany_filter=False),
+ dict(name="Citizens Budget Commission", domain="cbcny.org",    kind="gnews", url=GN.format(q="site:cbcny.org+when:7d"),                     tier=3, albany_filter=False),
  # --- Official ---
- dict(name="Governor's Office",   domain="governor.ny.gov",     kind="gnews", url=GN.format(q="site:governor.ny.gov"),               tier=3, albany_filter=False),
- dict(name="NY Senate",           domain="nysenate.gov",        kind="gnews", url=GN.format(q="site:nysenate.gov"),                  tier=3, albany_filter=False),
- dict(name="NY Assembly",         domain="nyassembly.gov",      kind="gnews", url=GN.format(q="site:nyassembly.gov"),                tier=3, albany_filter=False),
+ dict(name="Governor's Office",   domain="governor.ny.gov",     kind="gov",   url="https://www.governor.ny.gov/news",                tier=3, albany_filter=False),
+ dict(name="Governor's Office",   domain="governor.ny.gov",     kind="gnews", url=GN.format(q="site:governor.ny.gov+when:3d"),               tier=3, albany_filter=False),
+ dict(name="NY Senate",           domain="nysenate.gov",        kind="gnews", url=GN.format(q="site:nysenate.gov+when:7d"),                  tier=3, albany_filter=False),
+ dict(name="NY Assembly",         domain="nyassembly.gov",      kind="gnews", url=GN.format(q="site:nyassembly.gov+when:7d"),                tier=3, albany_filter=False),
  # --- Cross-outlet keyword sweeps (catch what the feeds miss) ---
- dict(name="Google News: Hochul", domain="",                    kind="gnews", url=GN.format(q="%22Hochul%22"),                       tier=3, albany_filter=False, sweep=True),
- dict(name="Google News: Legislature", domain="",               kind="gnews", url=GN.format(q="%22New+York%22+(Heastie+OR+%22Stewart-Cousins%22+OR+%22state+budget%22+OR+%22Executive+Chamber%22)"), tier=3, albany_filter=False, sweep=True),
+ dict(name="Google News: Hochul", domain="",                    kind="gnews", url=GN.format(q="%22Hochul%22+when:2d"),                       tier=3, albany_filter=False, sweep=True),
+ dict(name="Google News: Legislature", domain="",               kind="gnews", url=GN.format(q="%22New+York%22+(Heastie+OR+%22Stewart-Cousins%22+OR+%22state+budget%22+OR+%22Executive+Chamber%22)+when:2d"), tier=3, albany_filter=False, sweep=True),
 ]
 
 # Keep general-feed items only if they hit one of these (case-insensitive, title+summary)
@@ -57,3 +63,9 @@ NY_ANCHORS = ["new york","n.y.","nys","hochul","albany","empire state","brooklyn
 OUT_OF_STATE = ["newsom","california","texas","florida","desantis","abbott","illinois","chicago",
  "new jersey","pennsylvania","shapiro","connecticut","massachusetts","boston","ohio","georgia",
  "michigan","virginia","arizona","colorado","washington state","oregon","nevada","wisconsin"]
+
+# NYT API items are kept when any of the Times' own tags (per_facet / org_facet / geo_facet / keywords)
+# matches one of these, or when title+abstract clears ALBANY_TERMS. Case-insensitive substring match.
+NYT_FACETS = ["hochul","heastie","stewart-cousins","blakeman","dinapoli","new york state","albany (ny)",
+ "state legislature","legislatures","governors (us)","executive chamber","metropolitan transportation authority",
+ "state budget","budgets and budgeting","medicaid","division of the budget"]

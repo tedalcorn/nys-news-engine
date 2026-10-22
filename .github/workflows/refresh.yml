@@ -1,8 +1,11 @@
 name: Refresh Albany news
 
+# Primary trigger is a systemd timer on Ted's Raspberry Pi (:00 and :30), which runs the same
+# scripts and pushes directly. This schedule is the backstop: GitHub throttles cron workflows
+# (observed ~6 runs/day for a */30 schedule), so it is offset to :15/:45 and not relied on.
 on:
   schedule:
-    - cron: "*/30 * * * *"   # every 30 minutes
+    - cron: "15,45 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -15,17 +18,26 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    env:
+      ENGINE_RUNNER: actions
+      NYT_API_KEY: ${{ secrets.NYT_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install feedparser requests
-      - run: python scripts/fetch.py
-      - name: Commit if changed
+      - run: pip install feedparser requests curl_cffi trafilatura
+      - name: Fetch, commit, push (retry if the Pi pushed meanwhile)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data
-          git diff --cached --quiet && echo "No changes" || git commit -m "Refresh $(date -u +'%Y-%m-%d %H:%M')"
-          git push
+          for i in 1 2 3; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            python scripts/fetch.py
+            git add docs/data
+            if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+            git commit -q -m "Refresh $(date -u +'%Y-%m-%d %H:%M') (actions)"
+            git push && exit 0
+            echo "push rejected, retrying ($i)"; sleep 20
+          done
+          exit 1

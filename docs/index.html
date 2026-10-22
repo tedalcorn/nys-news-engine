@@ -71,6 +71,8 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .side .mini{font-size:13px;line-height:1.35;padding:6px 0;border-bottom:1px dotted var(--line)}
 .side .mini:last-child{border-bottom:0}.side .mini a{text-decoration:none}.side .mini a:hover{text-decoration:underline}
 .side .mini small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:var(--muted);margin:-4px 0 8px}
+.stale{color:#fff;background:#b3411f;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
 .empty{color:var(--muted);padding:30px 0}
 .foot{color:var(--muted);font-size:12px;padding:18px 0 40px;border-top:1px solid var(--line)}
 </style>
@@ -84,7 +86,6 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
   <nav class="nav">
     <button data-view="picks" class="active">Picks</button>
     <button data-view="latest">Latest</button>
-    <button data-view="byday">By day</button>
     <button data-view="official">Official</button>
     <button data-view="missing">Paywalled</button>
     <span class="sp"></span>
@@ -100,25 +101,29 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
         <li data-k="op" class="on">Hide opinion</li>
       </ul></div>
       <div class="box"><h3>Buzzing this week</h3><ul id="buzz" class="buzz"></ul></div>
-      <div class="box"><h3>Outlets</h3><ul id="outlets"></ul></div>
+      <div class="box"><h3>Outlets</h3>
+        <div class="legend"><span><i class="dot" style="background:#b3411f"></i>Albany specialist</span><span><i class="dot" style="background:#1c4587"></i>General outlet</span><span><i class="dot" style="background:#5b7f3a"></i>Official / advocacy</span></div>
+        <ul id="outlets"></ul></div>
       <div class="box"><h3>Investigative, this week</h3><div id="invlist"></div></div>
     </aside>
   </div>
-  <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not. Refreshes every 30 minutes. Scores are heuristic.</div>
+  <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; the Governor's releases come straight from governor.ny.gov. Refreshes every 30 minutes. Dot color is the source tier; scores are heuristic.</div>
 </div>
 <script>
 const S={view:"picks",q:"",range:7,outlet:"",tag:"",inv:false,gl:false,op:true};
 let ITEMS=[],META={};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const PAL=["#b3411f","#1c4587","#2d6a4f","#6a4c93","#a15c00","#0e7490","#8c2f39","#3d5a80","#5b7f3a","#7a4706","#4a3f8f","#a0522d"];
-const col=o=>PAL[[...o].reduce((a,c)=>a+c.charCodeAt(0),0)%PAL.length];
+// Dot color = source tier (what the ranking leans on): 1 Albany specialist, 2 general outlet, 3 official / advocacy
+const TIERCOL={1:"#b3411f",2:"#1c4587",3:"#5b7f3a"};
+let OT={};   // outlet -> best tier seen, for the sidebar
+const col=o=>TIERCOL[OT[o]||2];
 const ago=ts=>{const m=Math.max(1,Math.round((Date.now()/1000-ts)/60));if(m<60)return m+"m";const h=Math.round(m/60);if(h<24)return h+"h";const d=Math.round(h/24);return d<14?d+"d":new Date(ts*1000).toLocaleDateString(undefined,{month:"short",day:"numeric"})};
 const dstamp=ts=>{const d=new Date(ts*1000);return `${d.getMonth()+1}/${d.getDate()}/${String(d.getFullYear()).slice(2)}`};
 const pwBadge=i=>(i.paywall==="hard"||i.paywall==="metered")?`<span class="pw ${i.paywall}">${i.paywall==="hard"?"paywall":"limited"}</span>`:"";
 const isNew=i=>(Date.now()/1000-i.fetched_ts)<6*3600;
 const official=new Set(["Governor's Office","NY Senate","NY Assembly"]);
-function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${col(i.outlet)}"></i><span class="outlet">${esc(i.outlet)}</span></span><span>${dstamp(i.published_ts)}, ${ago(i.published_ts)} ago</span>${isNew(i)?'<span class="new">NEW</span>':""}${pwBadge(i)}</div>`}
+function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${TIERCOL[i.tier]||TIERCOL[2]}" title="${i.tier===1?"Albany specialist":i.tier===3?"Official / advocacy":"General outlet"}"></i><span class="outlet">${esc(i.outlet)}</span></span><span>${dstamp(i.published_ts)}, ${ago(i.published_ts)} ago</span>${isNew(i)?'<span class="new">NEW</span>':""}${pwBadge(i)}</div>`}
 function chips(i){return `<div class="chips">${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}</div>`}
 function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}</div><div class="rcol"><b>${i.score.toFixed(0)}</b>score</div></div>`}
 function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}</div>`}
@@ -129,7 +134,6 @@ function render(){const f=base();let html="";
   html+=`<h2 class="sec">Today's picks <span>last 72h, by score</span></h2>`;html+=p.length?`<div class="picks">${p.slice(0,5).map(lead).join("")}</div>`:'<div class="empty">Nothing yet.</div>';
   html+=`<h2 class="sec">More <span>${Math.max(0,p.length-5)}</span></h2>`+p.slice(5,60).map(row).join("")}
  else if(S.view==="latest"){const l=[...f].sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Latest <span>${l.length}</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
- else if(S.view==="byday"){const l=[...f].sort((a,b)=>b.published_ts-a.published_ts);let d="";html+=`<h2 class="sec">By day <span>${l.length}</span></h2>`;for(const i of l.slice(0,600)){const k=i.published.slice(0,10);if(k!==d){d=k;html+=`<div class="day">${new Date(k+"T12:00:00").toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"})}</div>`}html+=row(i)}}
  else if(S.view==="missing"){const cut=Date.now()/1000-30*86400;
   const locked=ITEMS.filter(i=>i.published_ts>=cut&&(i.paywall==="hard"||i.paywall==="metered")&&!i.flags.includes("opinion"));
   const med=(()=>{const a=ITEMS.filter(i=>i.published_ts>=cut).map(i=>i.score).sort((x,y)=>x-y);return a.length?a[Math.floor(a.length/2)]:0})();
@@ -157,7 +161,10 @@ async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json
  const iso=META.last_run_iso||(META.last_run||"").replace(" UTC","Z").replace(" ","T");
  let when=META.last_run;
  try{const d=new Date(iso);if(!isNaN(d))when=d.toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET"}catch(e){}
- $("#meta").textContent=`${META.total} stories · ${META.outlets.length} outlets · refreshed ${when}`;render()}
+ OT={};for(const i of ITEMS){if(!(i.outlet in OT)||i.tier<OT[i.outlet])OT[i.outlet]=i.tier}
+ const ageMin=(Date.now()-new Date(iso).getTime())/60000;
+ const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"});const pd=(META.per_day||{})[today];
+ $("#meta").innerHTML=`${pd?`${pd.stories} stories today · `:""}${META.total} in archive · ${META.outlets.length} outlets<br>refreshed ${esc(when)}${ageMin>120?` <span class="stale" title="Normally every 30 minutes">refresh overdue</span>`:""}`;render()}
 $$(".nav button").forEach(b=>b.onclick=()=>{S.view=b.dataset.view;$$(".nav button").forEach(x=>x.classList.toggle("active",x===b));render()});
 $("#q").oninput=e=>{S.q=e.target.value;render()};$("#range").onchange=e=>{S.range=+e.target.value;render()};
 $$("#flags li").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});

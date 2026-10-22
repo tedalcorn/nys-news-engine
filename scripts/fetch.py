@@ -4,8 +4,13 @@ Retention: 180 days. Safe to run repeatedly (idempotent by URL / normalized titl
 import json, re, time, html, hashlib, os, sys, datetime as dt
 from urllib.parse import urlparse, parse_qs, unquote
 import feedparser, requests
+try:
+    from curl_cffi import requests as crequests   # browser TLS fingerprint; gets past Cloudflare on .gov sites
+except ImportError:
+    crequests = None
+from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
-from sources import SOURCES, ALBANY_TERMS, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY
+from sources import SOURCES, ALBANY_TERMS, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS
 from score import score
 import extract
 
@@ -16,6 +21,11 @@ META  = os.path.join(DATA, "meta.json")
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 nys-news-engine/1.0"
 RETENTION_DAYS = 180
 NOW = time.time()
+RUNNER = os.environ.get("ENGINE_RUNNER", "local")      # "pi" | "actions" | "local" - recorded in meta.json
+NYT_KEY = os.environ.get("NYT_API_KEY", "").strip()
+ET = ZoneInfo("America/New_York")
+# Outlet labels that were renamed; applied to the archive on load so old and new items share a label.
+OUTLET_RENAMES = {"NYT New York": "New York Times"}
 OUTLET_MAP = {"newsday.com":"Newsday","spectrumlocalnews.com":"Spectrum News","nystateofpolitics.com":"NY State of Politics",
  "spectrum news ny1":"Spectrum News","governor kathy hochul (.gov)":"Governor's Office","the new york state senate (.gov)":"NY Senate",
  "new york state assembly (.gov)":"NY Assembly","cbcny":"Citizens Budget Commission","timesunion.com":"Times Union",
@@ -66,10 +76,146 @@ def parse_ts(entry):
             except Exception: pass
     return NOW
 
-def fetch_source(src):
+def passes_albany_filter(text):
+    """General-outlet filter: must hit an Albany term; a bare 'governor' with an out-of-state marker fails."""
+    if not any(t in text for t in ALBANY_TERMS): return False
+    specific = any(t in text for t in ALBANY_TERMS if t not in GENERIC_ALBANY)
+    if (not specific and any(t in text for t in OUT_OF_STATE)
+            and not any(t in text for t in NY_ANCHORS)): return False
+    return True
+
+def http_get(url, accept="*/*", timeout=25):
+    """requests first; on 403/5xx retry with a Chrome TLS fingerprint if curl_cffi is installed."""
+    r = requests.get(url, headers={"User-Agent": UA, "Accept": accept}, timeout=timeout)
+    if r.status_code in (403, 429, 503) and crequests is not None:
+        r = crequests.get(url, impersonate="chrome", headers={"Accept": accept}, timeout=timeout)
+    r.raise_for_status()
+    return r
+
+def make_item(title, link, outlet, domain, summary, ts, src, **extra):
+    d = dict(
+        id=hashlib.sha1(link.encode()).hexdigest()[:12],
+        title=title, link=link, outlet=outlet, domain=domain,
+        summary=summary, published_ts=int(ts),
+        published=dt.datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d %H:%M"),
+        tier=src["tier"], kind=src["kind"], sweep=bool(src.get("sweep")),
+        source=src["name"], fetched_ts=int(NOW),
+    )
+    d.update(extra)
+    return d
+
+# ---------- governor.ny.gov/news, scraped directly ----------
+GOV_ROW = re.compile(
+    r'<div class="content-category">(.*?)</div>.*?<h3 class="content-title">\s*<a href="(/news/[^"]+)"[^>]*>(.*?)</a>'
+    r'.*?<div class="content-dates">(.*?)</div>(?:.*?<div class="content-description[^"]*">(.*?)</div>\s*</div>)?', re.S)
+
+def _strip(h):
+    return html.unescape(" ".join(re.sub(r"<[^>]+>", " ", h or "").split()))
+
+def gov_rows(page_html):
+    out = []
+    for cat, href, title, dates, desc in GOV_ROW.findall(page_html):
+        cat = _strip(cat)
+        if "espa" in cat.lower(): continue                      # Spanish duplicate of an English release
+        d = _strip(dates).replace("|", " ")
+        ts = None
+        for fmt in ("%b %d, %Y %I:%M %p %Z", "%b %d, %Y %I:%M %p", "%B %d, %Y %I:%M %p %Z", "%b %d, %Y"):
+            try:
+                naive = dt.datetime.strptime(re.sub(r"\s+(EDT|EST)$", "", d).strip(), fmt.replace(" %Z", ""))
+                ts = naive.replace(tzinfo=ET).timestamp(); break
+            except ValueError: continue
+        if ts is None: ts = NOW
+        out.append((_strip(title), "https://www.governor.ny.gov" + href, _strip(desc)[:400], ts, cat))
+    return out
+
+def fetch_gov(src):
+    if crequests is None:
+        return [], "skipped (curl_cffi not installed)"
+    pages = []
     try:
-        r = requests.get(src["url"], headers={"User-Agent": UA, "Accept": "application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8"}, timeout=25)
-        r.raise_for_status()
+        r = crequests.get(src["url"], impersonate="chrome", timeout=30); r.raise_for_status()
+        pages.append(r.text)
+        # page 2 arrives as a Drupal AJAX payload wrapped in <textarea>
+        r = crequests.get(src["url"] + "?page=1&_wrapper_format=drupal_ajax", impersonate="chrome", timeout=30)
+        if r.ok:
+            body = re.sub(r"^\s*<textarea>|</textarea>\s*$", "", r.text.strip())
+            try:
+                cmds = json.loads(html.unescape(body)) if body.lstrip().startswith("[") else json.loads(body)
+                pages.append("".join(c.get("data", "") for c in cmds if c.get("command") == "insert"))
+            except Exception:
+                pass
+    except Exception as e:
+        return [], f"ERROR {type(e).__name__}: {e}"
+    out, seen = [], set()
+    for ph in pages:
+        for title, link, desc, ts, cat in gov_rows(ph):
+            if link in seen or not title: continue
+            seen.add(link)
+            if NOW - ts > RETENTION_DAYS * 86400: continue
+            out.append(make_item(title, link, src["name"], src["domain"], dedupe_summary(title, desc, src["name"]), ts, src))
+    return out, (f"ok {len(out)}" if out else "ERROR parsed 0 rows (markup changed?)")
+
+# ---------- NYT developer API: Times Newswire (real time) + Article Search (keyword) ----------
+def _nyt_keep(title, abstract, facets):
+    text = (title + " " + abstract).lower()
+    f = " | ".join(facets).lower()
+    if any(k in f for k in NYT_FACETS): return True
+    return passes_albany_filter(text)
+
+def fetch_nyt(src):
+    if not NYT_KEY:
+        return [], "skipped (no NYT_API_KEY)"
+    out, errs = [], []
+    try:
+        r = requests.get("https://api.nytimes.com/svc/news/v3/content/nyt/nyregion.json",
+                         params={"limit": 100, "api-key": NYT_KEY}, timeout=25); r.raise_for_status()
+        for a in r.json().get("results", []):
+            title, abstract, link = (a.get("title") or "").strip(), (a.get("abstract") or "").strip(), a.get("url") or ""
+            if not title or not link: continue
+            facets = (a.get("per_facet") or []) + (a.get("org_facet") or []) + (a.get("geo_facet") or []) + (a.get("des_facet") or [])
+            if not _nyt_keep(title, abstract, facets): continue
+            try: ts = dt.datetime.fromisoformat(a["published_date"]).timestamp()
+            except Exception: ts = NOW
+            mt = (a.get("material_type_facet") or a.get("item_type") or "").lower()
+            out.append(make_item(title, link, src["name"], src["domain"], abstract[:400], ts, src,
+                                 paywall="hard", opinion=("op-ed" in mt or "editorial" in mt)))
+    except Exception as e:
+        errs.append(f"newswire {type(e).__name__}: {e}")
+    time.sleep(6)   # NYT keys are limited to a handful of calls per minute
+    try:
+        begin = (dt.datetime.utcnow() - dt.timedelta(days=3)).strftime("%Y%m%d")
+        r = requests.get("https://api.nytimes.com/svc/search/v2/articlesearch.json",
+                         params={"q": 'Hochul OR Albany OR "state Legislature" OR "New York State"', "sort": "newest",
+                                 "begin_date": begin, "api-key": NYT_KEY}, timeout=25); r.raise_for_status()
+        for d in r.json().get("response", {}).get("docs", []):
+            title = ((d.get("headline") or {}).get("main") or "").strip(); link = d.get("web_url") or ""
+            abstract = (d.get("abstract") or d.get("snippet") or "").strip()
+            if not title or not link: continue
+            facets = [f"{k.get('name','')}:{k.get('value','')}" for k in d.get("keywords") or []]
+            if not _nyt_keep(title, abstract, facets): continue
+            try: ts = dt.datetime.fromisoformat(d["pub_date"].replace("+0000", "+00:00")).timestamp()
+            except Exception: ts = NOW
+            tom = (d.get("type_of_material") or "").lower()
+            out.append(make_item(title, link, src["name"], src["domain"], abstract[:400], ts, src,
+                                 paywall="hard", opinion=("op-ed" in tom or "editorial" in tom),
+                                 words=int(d.get("word_count") or 0)))
+    except Exception as e:
+        errs.append(f"search {type(e).__name__}: {e}")
+    status = f"ok {len(out)}" + (f" ({'; '.join(errs)})" if errs else "")
+    if errs and not out: status = "ERROR " + "; ".join(errs)
+    return out, status
+
+def _redact(msg):
+    """meta.json is public: strip any api-key query parameter from error text."""
+    return re.sub(r"api-key=[^&\s]+", "api-key=***", str(msg))
+
+def fetch_source(src):
+    if src["kind"] == "gov": return fetch_gov(src)
+    if src["kind"] == "nyt":
+        items, status = fetch_nyt(src)
+        return items, _redact(status)
+    try:
+        r = http_get(src["url"], accept="application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8")
         fp = feedparser.parse(r.content)
     except Exception as e:
         return [], f"ERROR {type(e).__name__}: {e}"
@@ -82,8 +228,10 @@ def fetch_source(src):
         domain = src.get("domain", "")
         if src["kind"] == "gnews":
             glabel = gnews_outlet(e, src["name"])
-            title  = re.sub(r"\s+-\s+" + re.escape(glabel) + r"\s*$", "", title).strip()
-            title  = re.sub(r"\s+-\s+[^-]{2,40}$", "", title).strip() if title.count(" - ") else title
+            t2 = re.sub(r"\s+-\s+" + re.escape(glabel) + r"\s*$", "", title).strip()
+            if t2 == title and title.count(" - "):            # label suffix not found verbatim: strip a generic one
+                t2 = re.sub(r"\s+-\s+[^-]{2,40}$", "", title).strip()
+            title = t2.lstrip("-– ").strip()
             outlet = OUTLET_MAP.get(glabel.lower(), glabel) if src.get("sweep") else src["name"]
             if src.get("sweep"):
                 # drop sweep hits from outlets we already ingest natively
@@ -95,29 +243,31 @@ def fetch_source(src):
         if is_site_name_only(title, outlet, src["name"], src.get("domain")): continue
         summary = dedupe_summary(title, clean_summary(e.get("summary", "") or e.get("description", "")), outlet)
         text = (title + " " + summary).lower()
-        if src.get("albany_filter"):
-            if not any(t in text for t in ALBANY_TERMS): continue
-            specific = any(t in text for t in ALBANY_TERMS if t not in GENERIC_ALBANY)
-            if (not specific and any(t in text for t in OUT_OF_STATE)
-                    and not any(t in text for t in NY_ANCHORS)): continue
+        if src.get("albany_filter") and not passes_albany_filter(text): continue
         ts = parse_ts(e)
         if NOW - ts > RETENTION_DAYS * 86400: continue
-        out.append(dict(
-            id=hashlib.sha1(link.encode()).hexdigest()[:12],
-            title=title, link=link, outlet=outlet, domain=domain,
-            summary=summary, published_ts=int(ts),
-            published=dt.datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d %H:%M"),
-            tier=src["tier"], kind=src["kind"], sweep=bool(src.get("sweep")),
-            source=src["name"], fetched_ts=int(NOW),
-        ))
+        out.append(make_item(title, link, outlet, domain, summary, ts, src))
     return out, f"ok {len(out)}"
+
+def _per_day(items, days=14):
+    """Unique stories per publication day (ET), last N days, official releases counted separately."""
+    out = {}
+    off = {"Governor's Office", "NY Senate", "NY Assembly"}
+    for it in items:
+        d = dt.datetime.fromtimestamp(it["published_ts"], ET).strftime("%Y-%m-%d")
+        o = out.setdefault(d, {"stories": 0, "official": 0})
+        o["official" if it["outlet"] in off else "stories"] += 1
+    keys = sorted(out)[-days:]
+    return {k: out[k] for k in keys}
 
 def main():
     os.makedirs(DATA, exist_ok=True)
     archive = {}
     if os.path.exists(ITEMS):
         try:
-            for it in json.load(open(ITEMS)): archive[it["id"]] = it
+            for it in json.load(open(ITEMS)):
+                it["outlet"] = OUTLET_RENAMES.get(it["outlet"], it["outlet"])
+                archive[it["id"]] = it
         except Exception: archive = {}
     log = {}
     fresh = []
@@ -142,7 +292,8 @@ def main():
         key = norm_title(it["title"])
         if len(key) < 12: key = it["id"]
         cur = by_title.get(key)
-        if cur is None or (it["tier"], it["published_ts"]) < (cur["tier"], cur["published_ts"]):
+        rank = (it["tier"], it.get("kind") == "gnews", it["published_ts"])
+        if cur is None or rank < (cur["tier"], cur.get("kind") == "gnews", cur["published_ts"]):
             by_title[key] = it
     items = [it for it in by_title.values()
              if not is_site_name_only(it["title"], it.get("outlet"), it.get("source"), it.get("domain"))]
@@ -165,7 +316,8 @@ def main():
                 last_run_iso=dt.datetime.utcfromtimestamp(NOW).strftime("%Y-%m-%dT%H:%M:%SZ"), total=len(items),
                 sources=log, outlets=sorted({i["outlet"] for i in items}),
                 tags=sorted({t for i in items for t in i["tags"]}),
-                paywall=pw, extracted=sum(1 for i in items if "extracted_ts" in i))
+                paywall=pw, extracted=sum(1 for i in items if "extracted_ts" in i), runner=RUNNER,
+                per_day=_per_day(items))
     json.dump(meta, open(META, "w"), indent=1)
     print(f"\n{len(items)} items after dedupe; {len(fresh)} fetched this run.")
 

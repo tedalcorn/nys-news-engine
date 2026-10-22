@@ -1,0 +1,37 @@
+name: Watchdog
+
+# Opens an issue (which emails @tedalcorn) when the live site has not refreshed in 2.5 hours,
+# and closes it again once refreshes resume. Covers the Pi being down AND the backstop failing.
+on:
+  schedule:
+    - cron: "7 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Check staleness of the live site
+        run: |
+          set -e
+          iso=$(curl -fsSL "https://tedalcorn.org/nys-news-engine/data/meta.json?nocache=$(date +%s)" | python3 -c 'import json,sys;print(json.load(sys.stdin)["last_run_iso"])')
+          age=$(( ( $(date -u +%s) - $(date -u -d "$iso" +%s) ) / 60 ))
+          echo "last refresh: $iso ($age min ago)"
+          gh label create stale --color B60205 --description "Engine has stopped refreshing" --force >/dev/null 2>&1 || true
+          open=$(gh issue list --label stale --state open --json number --jq '.[0].number // empty')
+          if [ "$age" -gt 150 ]; then
+            if [ -z "$open" ]; then
+              gh issue create --label stale --title "NYS News Engine has not refreshed since $iso" \
+                --body "@tedalcorn the live site last refreshed **$age minutes ago** ($iso UTC). Both the Pi timer (\`systemctl status nys-news-refresh.timer\` on \`weather\`) and the GitHub backstop have failed to produce a commit. Check https://github.com/$GH_REPO/actions and \`journalctl -u nys-news-refresh\` on the Pi. This issue closes itself when refreshes resume."
+            else
+              echo "stale issue #$open already open"
+            fi
+          elif [ -n "$open" ]; then
+            gh issue close "$open" --comment "Refreshes resumed ($iso UTC, $age min ago). Closing."
+          fi

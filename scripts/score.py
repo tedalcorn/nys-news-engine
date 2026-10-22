@@ -44,7 +44,8 @@ def score(item, now_ts):
     pol = min(_hits(text, POLICY), 6);        s += pol*3
     gov = _hits(text, GOV_TERMS) > 0; leg = _hits(text, LEG_TERMS) > 0
     if gov and leg: s += 12
-    if _hits(text, OPINION):  s -= 15
+    is_op = bool(_hits(text, OPINION)) or bool(item.get("opinion"))
+    if is_op:  s -= 15
     if _hits(text, BREAKING): s -= 8
     if _hits(text, NOISE):    s -= 30
     age_h = max(0.0, (now_ts - item.get("published_ts", now_ts)) / 3600.0)
@@ -57,5 +58,5 @@ def score(item, now_ts):
     flags = []
     if inv: flags.append("investigative")
     if gov and leg: flags.append("gov+leg")
-    if _hits(text, OPINION): flags.append("opinion")
+    if is_op: flags.append("opinion")
     return round(s, 1), tags, flags
