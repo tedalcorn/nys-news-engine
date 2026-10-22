@@ -10,7 +10,7 @@ except ImportError:
     crequests = None
 from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
-from sources import SOURCES, ALBANY_TERMS, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS
+from sources import SOURCES, ALBANY_TERMS, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS, NYT_GENERIC
 from score import score
 import extract
 
@@ -160,6 +160,7 @@ def _nyt_keep(title, abstract, facets):
     text = (title + " " + abstract).lower()
     f = " | ".join(facets).lower()
     if any(k in f for k in NYT_FACETS): return True
+    if "new york" in f and any(k in f for k in NYT_GENERIC): return True
     return passes_albany_filter(text)
 
 def fetch_nyt(src):
@@ -185,7 +186,7 @@ def fetch_nyt(src):
     # return hits:0 from the current gateway, so we run a few plain terms and let the facet filter decide.
     begin = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=3)).strftime("%Y%m%d")
     seen = set()
-    for term in ("Hochul", "Albany", "Legislature"):
+    for term in ("Hochul", "Albany"):   # "Legislature" alone returns the world's legislatures
         time.sleep(13)   # keys are limited to a handful of calls per minute
         try:
             r = requests.get("https://api.nytimes.com/svc/search/v2/articlesearch.json",

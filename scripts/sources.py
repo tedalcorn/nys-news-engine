@@ -66,8 +66,9 @@ OUT_OF_STATE = ["newsom","california","texas","florida","desantis","abbott","ill
  "new mexico","haaland","maryland","minnesota","sherrill","ciattarelli","spanberger","vermont","maine","kentucky",
  "louisiana","tennessee","carolina","iowa","kansas","oklahoma","utah","idaho","montana","alaska","hawaii"]
 
-# NYT API items are kept when any of the Times' own tags (per_facet / org_facet / geo_facet / keywords)
-# matches one of these, or when title+abstract clears ALBANY_TERMS. Case-insensitive substring match.
+# NYT API items (facet names: Person:/Location:/Subject:/Organization:) are kept when a NY-specific facet
+# matches, or a generic state-government facet appears alongside a New York location, or title+abstract
+# clears ALBANY_TERMS. Generic facets alone ("Subject:Legislatures") pull in Texas and Australia.
 NYT_FACETS = ["hochul","heastie","stewart-cousins","blakeman","dinapoli","new york state","albany (ny)",
- "state legislature","legislatures","governors (us)","executive chamber","metropolitan transportation authority",
- "state budget","budgets and budgeting","medicaid","division of the budget"]
+ "executive chamber","metropolitan transportation authority","new york state legislature"]
+NYT_GENERIC = ["legislature","governors (us)","state budget","budgets and budgeting","medicaid","elections, governors"]
