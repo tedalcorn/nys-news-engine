@@ -157,11 +157,14 @@ def fetch_gov(src):
 
 # ---------- NYT developer API: Times Newswire (real time) + Article Search (keyword) ----------
 def _nyt_keep(title, abstract, facets):
+    """Article Search matches the query anywhere in the body, so a Texas or Australian story that mentions
+    Hochul once comes back. Require a New York anchor in the Times' facets or the text itself."""
     text = (title + " " + abstract).lower()
     f = " | ".join(facets).lower()
     if any(k in f for k in NYT_FACETS): return True
-    if "new york" in f and any(k in f for k in NYT_GENERIC): return True
-    return passes_albany_filter(text)
+    ny = "new york" in f or any(a in text for a in NY_ANCHORS)
+    if ny and any(k in f for k in NYT_GENERIC): return True
+    return ny and passes_albany_filter(text)
 
 def fetch_nyt(src):
     if not NYT_KEY:
