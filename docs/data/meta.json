@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-22 16:01 UTC",
- "last_run_iso": "2026-10-22T16:00:03Z",
- "total": 2874,
+ "last_run": "2026-10-22 16:31 UTC",
+ "last_run_iso": "2026-10-22T16:30:03Z",
+ "total": 2880,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
@@ -15,7 +15,7 @@
   "Gothamist": "ok 3",
   "New York Times": "ok 1",
   "New York Times (nyt)": "ok 11",
-  "NY Post Politics": "ok 2",
+  "NY Post Politics": "ok 1",
   "NY Post Metro": "ok 0",
   "The City": "ok 1",
   "Reinvent Albany": "ok 10",
@@ -23,7 +23,7 @@
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 3",
   "Governor's Office": "ok 17",
-  "Governor's Office (gnews)": "ok 28",
+  "Governor's Office (gnews)": "ok 29",
   "NY Senate": "ok 51",
   "NY Assembly": "ok 15",
   "Google News: Hochul": "ok 86",
@@ -116,6 +116,7 @@
   "Democrat and Chronicle",
   "E&E News by POLITICO",
   "EIN News",
+  "EPIC \u2013 Electronic Privacy Information Center",
   "Eagle News Online",
   "El Cronista",
   "Empire Center",
@@ -332,6 +333,7 @@
   "The Nature Conservancy",
   "The New Paltz Oracle",
   "The New York Sun",
+  "The News International",
   "The North State Journal",
   "The Post Star",
   "The Poughkeepsie Journal",
@@ -511,7 +513,7 @@
  ],
  "paywall": {
   "free": 61,
-  "unknown": 2609,
+  "unknown": 2615,
   "metered": 171,
   "hard": 33
  },
@@ -571,8 +573,8 @@
    "official": 13
   },
   "2026-10-22": {
-   "stories": 36,
-   "official": 4
+   "stories": 39,
+   "official": 7
   }
  }
 }
