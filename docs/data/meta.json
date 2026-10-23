@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-23 14:01 UTC",
- "last_run_iso": "2026-10-23T14:00:03Z",
- "total": 3037,
+ "last_run": "2026-10-23 14:31 UTC",
+ "last_run_iso": "2026-10-23T14:30:04Z",
+ "total": 3039,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
   "City & State (gnews)": "ok 13",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 9",
-  "NY State of Politics": "ok 10",
+  "NY State of Politics": "ok 2",
   "Newsday": "ok 16",
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 6",
@@ -23,9 +23,9 @@
   "NY Post Metro": "ok 1",
   "The City": "ok 3",
   "Wall Street Journal": "ok 1",
-  "Buffalo News": "ok 2",
-  "Buffalo News (gnews)": "ok 1",
-  "Syracuse.com": "ok 9",
+  "Buffalo News": "ok 3",
+  "Buffalo News (gnews)": "ok 2",
+  "Syracuse.com": "ok 8",
   "FingerLakes1": "ok 6",
   "Adirondack Explorer": "ok 1",
   "Reinvent Albany": "ok 10",
@@ -35,11 +35,11 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 37",
-  "NY Senate": "ok 56",
+  "NY Senate": "ok 45",
   "NY Assembly": "ok 11",
-  "Google News: Hochul": "ok 88",
-  "Google News: Legislature": "ok 13",
-  "Google News: Courts & statewide officials": "ok 14",
+  "Google News: Hochul": "ok 89",
+  "Google News: Legislature": "ok 14",
+  "Google News: Courts & statewide officials": "ok 13",
   "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 21"
  },
@@ -549,7 +549,7 @@
  ],
  "paywall": {
   "free": 77,
-  "unknown": 2750,
+  "unknown": 2752,
   "metered": 174,
   "hard": 36
  },
@@ -597,11 +597,11 @@
    "official": 14
   },
   "2026-10-20": {
-   "stories": 62,
+   "stories": 63,
    "official": 19
   },
   "2026-10-21": {
-   "stories": 78,
+   "stories": 77,
    "official": 14
   },
   "2026-10-22": {
@@ -609,8 +609,8 @@
    "official": 16
   },
   "2026-10-23": {
-   "stories": 30,
-   "official": 2
+   "stories": 31,
+   "official": 3
   }
  },
  "grouped_stories": 262,
