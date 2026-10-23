@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-23 12:30 UTC",
- "last_run_iso": "2026-10-23T12:30:03Z",
- "total": 2965,
+ "last_run": "2026-10-23 13:01 UTC",
+ "last_run_iso": "2026-10-23T13:00:04Z",
+ "total": 2966,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 3",
@@ -521,7 +521,7 @@
  ],
  "paywall": {
   "free": 69,
-  "unknown": 2688,
+  "unknown": 2689,
   "metered": 172,
   "hard": 36
  },
@@ -581,7 +581,7 @@
    "official": 16
   },
   "2026-10-23": {
-   "stories": 18,
+   "stories": 19,
    "official": 1
   }
  }
