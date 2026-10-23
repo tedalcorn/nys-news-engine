@@ -1,6 +1,6 @@
 {
- "last_run": "2026-10-23 07:01 UTC",
- "last_run_iso": "2026-10-23T07:00:04Z",
+ "last_run": "2026-10-23 07:30 UTC",
+ "last_run_iso": "2026-10-23T07:30:04Z",
  "total": 2950,
  "sources": {
   "New York Focus": "ok 49",
@@ -13,8 +13,8 @@
   "Daily News": "ok 0",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 4",
-  "New York Times": "ok 2",
-  "New York Times (nyt)": "ok 10",
+  "New York Times": "ok 3",
+  "New York Times (nyt)": "ok 11",
   "NY Post Politics": "ok 1",
   "NY Post Metro": "ok 1",
   "The City": "ok 1",
@@ -23,11 +23,11 @@
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 3",
   "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 35",
+  "Governor's Office (gnews)": "ok 36",
   "NY Senate": "ok 56",
   "NY Assembly": "ok 11",
-  "Google News: Hochul": "ok 90",
-  "Google News: Legislature": "ok 13"
+  "Google News: Hochul": "ok 89",
+  "Google News: Legislature": "ok 12"
  },
  "outlets": [
   "- Emerson Polling",
