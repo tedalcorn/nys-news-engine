@@ -74,6 +74,11 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:var(--muted);margin:-4px 0 8px}
 .stale{color:#fff;background:#b3411f;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
 .empty{color:var(--muted);padding:30px 0}
+.more{margin-top:6px;font-size:12.5px;color:var(--muted)}.more summary{cursor:pointer}
+.more div{padding:3px 0 3px 10px;border-left:2px solid var(--line);margin-top:4px;line-height:1.35}
+.more a{color:var(--fg);text-decoration:none}.more a:hover{text-decoration:underline}.more .outlet{font-size:12px}
+.gates{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}.gates .chip{cursor:pointer}.gates .chip.on{background:var(--accent);color:#fff}
+.note{color:var(--muted);font-size:13.5px;margin:0 0 12px}
 .foot{color:var(--muted);font-size:12px;padding:18px 0 40px;border-top:1px solid var(--line)}
 </style>
 </head>
@@ -107,10 +112,10 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
       <div class="box"><h3>Investigative, this week</h3><div id="invlist"></div></div>
     </aside>
   </div>
-  <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; the Governor's releases come straight from governor.ny.gov. Refreshes every 30 minutes. Dot color is the source tier; scores are heuristic.</div>
+  <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; the Governor's releases come straight from governor.ny.gov. Refreshes every 30 minutes. Coverage of the same story from several outlets is folded under one headline. Dot color is the source tier; scores are heuristic.</div>
 </div>
 <script>
-const S={view:"picks",q:"",range:7,outlet:"",tag:"",inv:false,gl:false,op:true};
+const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",inv:false,gl:false,op:true,gate:""};
 let ITEMS=[],META={};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -124,16 +129,22 @@ const pwBadge=i=>(i.paywall==="hard"||i.paywall==="metered")?`<span class="pw ${
 const isNew=i=>(Date.now()/1000-i.fetched_ts)<6*3600;
 const official=new Set(["Governor's Office","NY Senate","NY Assembly"]);
 function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${TIERCOL[i.tier]||TIERCOL[2]}" title="${i.tier===1?"Albany specialist":i.tier===3?"Official / advocacy":"General outlet"}"></i><span class="outlet">${esc(i.outlet)}</span></span><span>${dstamp(i.published_ts)}, ${ago(i.published_ts)} ago</span>${isNew(i)?'<span class="new">NEW</span>':""}${pwBadge(i)}</div>`}
-function chips(i){return `<div class="chips">${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}</div>`}
-function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}</div><div class="rcol"><b>${i.score.toFixed(0)}</b>score</div></div>`}
-function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}</div>`}
+function chips(i){return `<div class="chips">${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}${S.view==="review"&&i.gate?`<span class="chip flag">gate: ${esc(i.gate)}</span>`:""}</div>`}
+// The same story from other outlets, folded under the lead (grouping is done in scripts/cluster.py)
+function more(i){if(!i.more||!i.more.length)return "";const outs=[...new Set(i.more.map(x=>x.outlet))];
+ return `<details class="more"><summary>+${i.more.length} more · ${esc(outs.slice(0,4).join(", "))}${outs.length>4?` and ${outs.length-4} others`:""}</summary>${[...i.more].sort((a,b)=>a.published_ts-b.published_ts).map(x=>`<div><span class="outlet">${esc(x.outlet)}</span> · <a href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.title)}</a> · ${ago(x.published_ts)} ago</div>`).join("")}</details>`}
+function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div><div class="rcol"><b>${i.score.toFixed(0)}</b>score</div></div>`}
+function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div>`}
+// One entry per story: items sharing a cid fold under the best-scoring one that survives the current filters
+function stories(list){const m=new Map();for(const i of list){const k=i.cid||i.id;if(!m.has(k))m.set(k,[]);m.get(k).push(i)}
+ return [...m.values()].map(g=>{g.sort((a,b)=>b.score-a.score);return {...g[0],more:g.slice(1)}})}
 function base(){const cut=Date.now()/1000-S.range*86400,q=S.q.toLowerCase();
  return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.inv||i.flags.includes("investigative"))&&(!S.gl||i.flags.includes("gov+leg"))&&(!S.op||!i.flags.includes("opinion"))&&(!q||(i.title+" "+i.summary).toLowerCase().includes(q)))}
 function render(){const f=base();let html="";
- if(S.view==="picks"){const now=Date.now()/1000;const p=f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet)).sort((a,b)=>b.score-a.score);
+ if(S.view==="picks"){const now=Date.now()/1000;const p=stories(f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet))).sort((a,b)=>b.score-a.score);
   html+=`<h2 class="sec">Today's picks <span>last 72h, by score</span></h2>`;html+=p.length?`<div class="picks">${p.slice(0,5).map(lead).join("")}</div>`:'<div class="empty">Nothing yet.</div>';
   html+=`<h2 class="sec">More <span>${Math.max(0,p.length-5)}</span></h2>`+p.slice(5,60).map(row).join("")}
- else if(S.view==="latest"){const l=[...f].sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Latest <span>${l.length}</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
+ else if(S.view==="latest"){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Latest <span>${l.length} stories</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="missing"){const cut=Date.now()/1000-30*86400;
   const locked=ITEMS.filter(i=>i.published_ts>=cut&&(i.paywall==="hard"||i.paywall==="metered")&&!i.flags.includes("opinion"));
   const med=(()=>{const a=ITEMS.filter(i=>i.published_ts>=cut).map(i=>i.score).sort((x,y)=>x-y);return a.length?a[Math.floor(a.length/2)]:0})();
@@ -145,10 +156,16 @@ function render(){const f=base();let html="";
   for(const [outlet,list] of rows){const inv=list.filter(i=>i.flags.includes("investigative")).length;
     html+=`<div class="miss"><b>${esc(outlet)}</b><span>${list.length} stor${list.length===1?"y":"ies"}${inv?` · ${inv} investigative`:""}</span></div>`}
   if(rows.length){html+=`<h2 class="sec">The stories <span>${worth.length}</span></h2>`+worth.sort((a,b)=>b.score-a.score).slice(0,60).map(row).join("")}}
+ else if(S.view==="review"){const cut=Date.now()/1000-7*86400;
+  const g=ITEMS.filter(i=>i.gate&&i.published_ts>=cut&&(!S.gate||i.gate===S.gate)).sort((a,b)=>b.published_ts-a.published_ts);
+  const tally=Object.entries(META.gates||{});
+  html+=`<h2 class="sec">Gate review <span>last 7 days · ${g.length} items</span></h2><p class="note">Stories let in only by the wider state-government gate: courts, the AG and Comptroller, agencies, individual lawmakers. Each shows the term that admitted it. A term that mostly admits noise should be cut from STATE_TERMS or the sweeps in scripts/sources.py.</p>`;
+  html+=`<div class="gates">${tally.map(([t,n])=>`<span class="chip ${S.gate===t?"on":""}" data-gate="${esc(t)}">${esc(t)} ${n}</span>`).join("")}</div>`;
+  html+=g.length?g.map(row).join(""):'<div class="empty">Nothing admitted by the wider gate yet.</div>'}
  else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Official <span>Governor, Senate, Assembly · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
- $("#main").innerHTML=html;sidebar()}
+ $("#main").innerHTML=html;$$(".gates .chip").forEach(el=>el.onclick=()=>{S.gate=S.gate===el.dataset.gate?"":el.dataset.gate;render()});sidebar()}
 function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.published_ts>=cut&&!i.flags.includes("opinion"));
- const tc={};for(const i of wk)for(const t of i.tags)tc[t]=(tc[t]||0)+1;const tt=Object.entries(tc).sort((a,b)=>b[1]-a[1]).slice(0,9);const mx=tt[0]?tt[0][1]:1;
+ const tc={};for(const i of stories(wk))for(const t of i.tags)tc[t]=(tc[t]||0)+1;const tt=Object.entries(tc).sort((a,b)=>b[1]-a[1]).slice(0,9);const mx=tt[0]?tt[0][1]:1;
  $("#buzz").innerHTML=tt.map(([t,n])=>`<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}"><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div><div class="bar"><i style="width:${Math.round(100*n/mx)}%"></i></div></li>`).join("");
  const oc={};for(const i of wk)oc[i.outlet]=(oc[i.outlet]||0)+1;const oo=Object.entries(oc).sort((a,b)=>b[1]-a[1]).slice(0,16);
  $("#outlets").innerHTML=oo.map(([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}"><span><i class="dot" style="background:${col(o)}"></i>${esc(o)}</span><span class="n">${n}</span></li>`).join("");
@@ -165,7 +182,10 @@ async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json
  const ageMin=(Date.now()-new Date(iso).getTime())/60000;
  const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"});const pd=(META.per_day||{})[today];
  $("#meta").innerHTML=`${pd?`${pd.stories} stories today · `:""}${META.total} in archive · ${META.outlets.length} outlets<br>refreshed ${esc(when)}${ageMin>120?` <span class="stale" title="Normally every 30 minutes">refresh overdue</span>`:""}`;render()}
-$$(".nav button").forEach(b=>b.onclick=()=>{S.view=b.dataset.view;$$(".nav button").forEach(x=>x.classList.toggle("active",x===b));render()});
+$$(".nav button").forEach(b=>b.onclick=()=>{S.view=b.dataset.view;if(location.hash)history.replaceState(null,"",location.pathname);$$(".nav button").forEach(x=>x.classList.toggle("active",x===b));render()});
+// #review (not in the nav): what the wider keyword gate let in
+window.addEventListener("hashchange",()=>{if(location.hash==="#review"){S.view="review";$$(".nav button").forEach(x=>x.classList.remove("active"));render()}});
+if(S.view==="review")$$(".nav button").forEach(x=>x.classList.remove("active"));
 $("#q").oninput=e=>{S.q=e.target.value;render()};$("#range").onchange=e=>{S.range=+e.target.value;render()};
 $$("#flags li").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});
 load();

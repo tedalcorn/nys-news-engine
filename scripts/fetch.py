@@ -10,9 +10,9 @@ except ImportError:
     crequests = None
 from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
-from sources import SOURCES, ALBANY_TERMS, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS, NYT_GENERIC
+from sources import SOURCES, ALBANY_TERMS, STATE_TERMS, BLOTTER, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS, NYT_GENERIC
 from score import score
-import extract
+import extract, cluster
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "docs", "data")
@@ -20,6 +20,7 @@ ITEMS = os.path.join(DATA, "items.json")
 META  = os.path.join(DATA, "meta.json")
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 nys-news-engine/1.0"
 RETENTION_DAYS = 180
+GN_MAX_AGE_DAYS = 10    # Google ignores when:Nd on long OR queries; anything older is that, not news
 NOW = time.time()
 RUNNER = os.environ.get("ENGINE_RUNNER", "local")      # "pi" | "actions" | "local" - recorded in meta.json
 NYT_KEY = os.environ.get("NYT_API_KEY", "").strip()                       # Article Search app
@@ -77,18 +78,32 @@ def parse_ts(entry):
             except Exception: pass
     return NOW
 
-def passes_albany_filter(text):
-    """General-outlet filter: must hit an Albany term; a bare 'governor' with an out-of-state marker fails."""
-    if not any(t in text for t in ALBANY_TERMS): return False
-    specific = any(t in text for t in ALBANY_TERMS if t not in GENERIC_ALBANY)
-    if (not specific and any(t in text for t in OUT_OF_STATE)
-            and not any(t in text for t in NY_ANCHORS)): return False
-    return True
+NY_WORD = re.compile(r"\bny\b")
+COUNTY_LEG = re.compile(r"county legislat\w*")
+
+def has_ny_anchor(text):
+    return any(a in text for a in NY_ANCHORS) or bool(NY_WORD.search(text))
+
+def passes_albany_filter(text, need_ny=False):
+    """General-outlet filter. Returns (keep, gate): gate is None for an Albany-term hit, or the STATE_TERMS
+    term that admitted the item. A bare 'governor' with an out-of-state marker fails. A state-term hit needs
+    a New York anchor when the text names another state, or always for national feeds (need_ny)."""
+    text = COUNTY_LEG.sub(" ", text)   # "Onondaga County Legislature" is not the Legislature
+    ny = has_ny_anchor(text)
+    elsewhere = any(t in text for t in OUT_OF_STATE)
+    if any(t in text for t in ALBANY_TERMS):
+        specific = any(t in text for t in ALBANY_TERMS if t not in GENERIC_ALBANY)
+        return (specific or ny or not elsewhere), None
+    t2 = text.replace("law enforcement", "")
+    hit = next((t for t in STATE_TERMS if t in t2), None)
+    if not hit or ((need_ny or elsewhere) and not ny): return False, None
+    if any(b in text for b in BLOTTER): return False, None
+    return True, hit
 
 def http_get(url, accept="*/*", timeout=25):
     """requests first; on 403/5xx retry with a Chrome TLS fingerprint if curl_cffi is installed."""
     r = requests.get(url, headers={"User-Agent": UA, "Accept": accept}, timeout=timeout)
-    if r.status_code in (403, 429, 503) and crequests is not None:
+    if r.status_code in (403, 429, 503, 520, 521, 522, 523) and crequests is not None:   # 52x = Cloudflare
         r = crequests.get(url, impersonate="chrome", headers={"Accept": accept}, timeout=timeout)
     r.raise_for_status()
     return r
@@ -163,9 +178,9 @@ def _nyt_keep(title, abstract, facets):
     text = (title + " " + abstract).lower()
     f = " | ".join(facets).lower()
     if any(k in f for k in NYT_FACETS): return True
-    ny = "new york" in f or any(a in text for a in NY_ANCHORS)
+    ny = "new york" in f or has_ny_anchor(text)
     if ny and any(k in f for k in NYT_GENERIC): return True
-    return ny and passes_albany_filter(text)
+    return ny and passes_albany_filter(text)[0]
 
 def fetch_nyt(src):
     if not NYT_KEY:
@@ -255,22 +270,41 @@ def fetch_source(src):
         if is_site_name_only(title, outlet, src["name"], src.get("domain")): continue
         summary = dedupe_summary(title, clean_summary(e.get("summary", "") or e.get("description", "")), outlet)
         text = (title + " " + summary).lower()
-        if src.get("albany_filter") and not passes_albany_filter(text): continue
+        gate = None
+        if src.get("albany_filter"):
+            keep, gate = passes_albany_filter(text, need_ny=bool(src.get("ny_anchor")))
+            if not keep: continue
+            if src.get("sweep") and src.get("ny_anchor"):
+                # cross-outlet sweeps reach every state's press: "Assembly District 38" can be Ventura County
+                if not has_ny_anchor(text): continue
+                gate = gate or src["name"].replace("Google News: ", "") + " sweep"
         ts = parse_ts(e)
         if NOW - ts > RETENTION_DAYS * 86400: continue
-        out.append(make_item(title, link, outlet, domain, summary, ts, src))
+        if src["kind"] == "gnews" and NOW - ts > GN_MAX_AGE_DAYS * 86400: continue
+        extra = {"gate": gate} if gate else {}
+        out.append(make_item(title, link, outlet, domain, summary, ts, src, **extra))
     return out, f"ok {len(out)}"
 
 def _per_day(items, days=14):
-    """Unique stories per publication day (ET), last N days, official releases counted separately."""
+    """Unique stories per publication day (ET), last N days, official releases counted separately.
+    A story covered by twelve outlets counts once, on the day its lead item ran."""
     out = {}
     off = {"Governor's Office", "NY Senate", "NY Assembly"}
     for it in items:
+        if it.get("cid", it["id"]) != it["id"]: continue
         d = dt.datetime.fromtimestamp(it["published_ts"], ET).strftime("%Y-%m-%d")
         o = out.setdefault(d, {"stories": 0, "official": 0})
         o["official" if it["outlet"] in off else "stories"] += 1
     keys = sorted(out)[-days:]
     return {k: out[k] for k in keys}
+
+def _gates(items, days=7):
+    """Items admitted by the wider STATE_TERMS gate over the last week, by term: the #review page's tally."""
+    cut = NOW - days * 86400
+    c = {}
+    for it in items:
+        if it.get("gate") and it["published_ts"] >= cut: c[it["gate"]] = c.get(it["gate"], 0) + 1
+    return dict(sorted(c.items(), key=lambda kv: -kv[1]))
 
 def main():
     os.makedirs(DATA, exist_ok=True)
@@ -321,6 +355,7 @@ def main():
         print(f"extract step skipped: {type(e).__name__}: {e}")
     for it in items:
         it["score"], it["tags"], it["flags"] = score(it, NOW)
+    grouped = cluster.assign(items)
     items.sort(key=lambda x: (-x["score"], -x["published_ts"]))
     json.dump(items, open(ITEMS, "w"), ensure_ascii=False, separators=(",", ":"))
     pw = {}
@@ -330,9 +365,9 @@ def main():
                 sources=log, outlets=sorted({i["outlet"] for i in items}),
                 tags=sorted({t for i in items for t in i["tags"]}),
                 paywall=pw, extracted=sum(1 for i in items if "extracted_ts" in i), runner=RUNNER,
-                per_day=_per_day(items))
+                per_day=_per_day(items), grouped_stories=grouped, gates=_gates(items))
     json.dump(meta, open(META, "w"), indent=1)
-    print(f"\n{len(items)} items after dedupe; {len(fresh)} fetched this run.")
+    print(f"\n{len(items)} items after dedupe ({grouped} multi-outlet stories); {len(fresh)} fetched this run.")
 
 if __name__ == "__main__":
     main()

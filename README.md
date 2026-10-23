@@ -7,13 +7,36 @@ state government. **Live at <https://tedalcorn.org/nys-news-engine/>** (unlisted
 ## How it works
 
 `scripts/fetch.py` pulls every source in `scripts/sources.py`, normalizes items, drops anything
-from general outlets that doesn't hit an Albany keyword, dedupes by URL and by normalized title
+from general outlets that doesn't pass the keyword gate (below), dedupes by URL and by normalized title
 (keeping the higher-tier outlet, and a direct link over a Google redirect), scores each story,
-merges with the archive, and writes `docs/data/items.json` and `docs/data/meta.json`.
+groups different outlets' coverage of the same story (`scripts/cluster.py`), merges with the archive,
+and writes `docs/data/items.json` and `docs/data/meta.json`.
 `docs/index.html` renders that client-side: Picks (ranked, 72h), Latest (chronological),
 Official (Governor, Senate, Assembly), Paywalled; search, outlet and topic filters, a date window,
 and toggles for investigative signals, Governor-plus-Legislature co-mentions, and hiding opinion.
 Dot color is the source tier: red = Albany specialist, blue = general outlet, green = official or advocacy.
+
+### Story grouping (`scripts/cluster.py`)
+
+A Governor's announcement arrives as ten or more differently worded headlines. Each item gets a `cid`
+(its story's lead item id); the page shows one row per story with the other outlets folded under
+"+N more". Matching is TF-IDF cosine over headline words (dek at half weight) against each open story's
+centroid, within 72 hours, threshold 0.32, at least two distinctive words shared. A second item from an
+outlet already in the story joins only if near-identical (Empire Center's regional "What They Make"
+posts stay separate). Official releases, opinion, and native think-tank posts are never grouped.
+Tuned 2026-10-23 on a week of archive: 0.28 began merging unrelated items, 0.36 split one announcement
+four ways. Headline counts ("N stories today", Latest) count stories, not items.
+
+### Keyword gate, and the review page
+
+General feeds keep an item if it hits an Albany term (`ALBANY_TERMS`: Hochul, Legislature, budget…).
+Since 2026-10-23 a second list, `STATE_TERMS`, also admits state government that names neither:
+courts and rulings, the AG and Comptroller, agencies, individual lawmakers and districts. A state-term
+admission must name New York when the feed is national (`ny_anchor`) or the text names another state,
+and is dropped if it reads like a police blotter (`BLOTTER`). "County legislature" never counts as the
+Legislature. Every item admitted this way, or by the three state-government sweeps, records the term in
+`gate`. **`/nys-news-engine/#review`** (not in the nav) lists the last week of them with a tally by term;
+`meta.json` carries the same tally as `gates`. When a term mostly admits noise, cut it in `sources.py`.
 
 ### Refresh (every 30 minutes, two independent runners)
 
@@ -40,11 +63,21 @@ GitHub Pages serves `docs/`. Retention is 180 days. The repo is the off-device b
 | Reinvent Albany, Fiscal Policy Institute, Empire Center | native RSS | 3 |
 | Citizens Budget Commission, NY Senate, NY Assembly | Google News RSS | 3 |
 | Governor's Office | **governor.ny.gov/news scraped directly** (two pages, exact timestamps, Spanish duplicates dropped; needs `curl_cffi` for a browser TLS fingerprint past Cloudflare), with Google News as fallback | 3 |
-| Keyword sweeps: "Hochul"; Heastie / Stewart-Cousins / state budget / Executive Chamber | Google News RSS, cross-outlet | 2 |
+| Politico (news articles beyond Playbook), Wall Street Journal | Google News RSS `site:`, Albany-filtered | 1 / 2 |
+| Buffalo News, Syracuse.com (politics), FingerLakes1, Adirondack Explorer | Google News `site:` (Buffalo) or native RSS, filtered | 2 |
+| Citizens Union (Searchlight essays) | native RSS | 3 |
+| Times Union, Newsday, Daily News, Buffalo News: state-government terms | two extra Google News `site:` queries each (`STATE_QA`, `STATE_QB`) | as outlet |
+| Keyword sweeps: "Hochul"; Heastie / Stewart-Cousins / state budget / Executive Chamber | Google News RSS, cross-outlet | 3 |
+| State-government sweeps: courts & statewide officials; agencies; lawmakers | Google News RSS, cross-outlet, NY anchor required, `gate` recorded | 3 |
+
+Added 2026-10-23 after comparing a week of daily press clips with the engine: most
+misses came from outlets already covered, cut by the keyword gate, not from missing outlets. AP was
+tried and dropped (every AP clip that week was national news).
 
 Every Google News query carries a `when:Nd` operator. Without it Google returns its 100 most
 *relevant* hits, many of them months old, and recent items never surface (this is what made the
-Official tab go stale). Google News links redirect through news.google.com; titles arrive with an
+Official tab go stale). Google also silently ignores `when:` on long OR chains, so fetch.py drops any
+Google News item older than 10 days (`GN_MAX_AGE_DAYS`) and the state-term queries are split in two. Google News links redirect through news.google.com; titles arrive with an
 " - Outlet" suffix that is stripped.
 
 ## Scoring (`scripts/score.py`)
@@ -77,7 +110,8 @@ python -m http.server 8742 --directory docs   # then open http://localhost:8742/
 ## Caveats
 
 Paywalled outlets (Politico, Times Union, Newsday, NYT) contribute headlines and snippets only.
-The Albany keyword filter on general feeds will miss stories that don't name the Governor,
-the Legislature or Albany in the headline or lede. Google News has all but stopped indexing the
+The keyword gate on general feeds still misses stories whose headline and lede name neither an
+Albany term nor a state-government term. Story grouping can split one story in two or, rarely, merge
+two; the threshold is in `cluster.py`. Google News has all but stopped indexing the
 Daily News, and Gotham Gazette publishes rarely, so both run near zero. Senate and Assembly
 coverage via Google News is partial. Scores are a starting point, not a judgment.
