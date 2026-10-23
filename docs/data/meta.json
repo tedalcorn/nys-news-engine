@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-23 00:40 UTC",
- "last_run_iso": "2026-10-23T00:40:11Z",
- "total": 2937,
+ "last_run": "2026-10-23 01:00 UTC",
+ "last_run_iso": "2026-10-23T01:00:04Z",
+ "total": 2938,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 3",
   "City & State (gnews)": "ok 15",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 10",
-  "NY State of Politics": "ok 14",
+  "NY State of Politics": "ok 12",
   "Newsday": "ok 17",
   "Daily News": "ok 0",
   "Gotham Gazette": "ok 0",
@@ -23,11 +23,11 @@
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 3",
   "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 30",
-  "NY Senate": "ok 54",
+  "Governor's Office (gnews)": "ok 28",
+  "NY Senate": "ok 52",
   "NY Assembly": "ok 14",
   "Google News: Hochul": "ok 90",
-  "Google News: Legislature": "ok 13"
+  "Google News: Legislature": "ok 12"
  },
  "outlets": [
   "- Emerson Polling",
@@ -401,6 +401,7 @@
   "Washington Times",
   "WebWire",
   "Westfair Communications",
+  "World Socialist Web Site",
   "Yahoo",
   "Yahoo News New Zealand",
   "Yahoo News Singapore",
@@ -517,12 +518,12 @@
  ],
  "paywall": {
   "free": 65,
-  "unknown": 2667,
+  "unknown": 2668,
   "metered": 171,
   "hard": 34
  },
  "extracted": 326,
- "runner": "actions",
+ "runner": "pi",
  "per_day": {
   "2026-10-10": {
    "stories": 12,
@@ -577,7 +578,7 @@
    "official": 13
   },
   "2026-10-23": {
-   "stories": 1,
+   "stories": 2,
    "official": 0
   }
  }
