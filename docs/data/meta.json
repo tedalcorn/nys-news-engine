@@ -1,18 +1,18 @@
 {
- "last_run": "2026-10-23 10:30 UTC",
- "last_run_iso": "2026-10-23T10:30:03Z",
- "total": 2961,
+ "last_run": "2026-10-23 10:32 UTC",
+ "last_run_iso": "2026-10-23T10:32:03Z",
+ "total": 2963,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 3",
   "City & State (gnews)": "ok 13",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 10",
-  "NY State of Politics": "ok 12",
+  "NY State of Politics": "ok 2",
   "Newsday": "ok 17",
   "Daily News": "ok 0",
   "Gotham Gazette": "ok 0",
-  "Gothamist": "ok 4",
+  "Gothamist": "ok 5",
   "New York Times": "ok 3",
   "New York Times (nyt)": "ok 13",
   "NY Post Politics": "ok 1",
@@ -23,10 +23,10 @@
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 3",
   "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 36",
+  "Governor's Office (gnews)": "ok 35",
   "NY Senate": "ok 57",
   "NY Assembly": "ok 11",
-  "Google News: Hochul": "ok 88",
+  "Google News: Hochul": "ok 89",
   "Google News: Legislature": "ok 13"
  },
  "outlets": [
@@ -245,7 +245,6 @@
   "North Country Public Radio",
   "North Penn Now",
   "OBSERVER-REVIEW.COM",
-  "Observer Today",
   "Office for People With Developmental Disabilities (.gov)",
   "Olean Times Herald",
   "Oneida Dispatch",
@@ -521,13 +520,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 68,
-  "unknown": 2685,
+  "free": 69,
+  "unknown": 2686,
   "metered": 172,
   "hard": 36
  },
- "extracted": 332,
- "runner": "pi",
+ "extracted": 333,
+ "runner": "actions",
  "per_day": {
   "2026-10-10": {
    "stories": 12,
@@ -578,11 +577,11 @@
    "official": 14
   },
   "2026-10-22": {
-   "stories": 88,
+   "stories": 89,
    "official": 16
   },
   "2026-10-23": {
-   "stories": 15,
+   "stories": 16,
    "official": 1
   }
  }
