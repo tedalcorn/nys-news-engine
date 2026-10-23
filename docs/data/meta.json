@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-23 11:30 UTC",
- "last_run_iso": "2026-10-23T11:30:04Z",
- "total": 2964,
+ "last_run": "2026-10-23 12:01 UTC",
+ "last_run_iso": "2026-10-23T12:00:03Z",
+ "total": 2965,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 3",
   "City & State (gnews)": "ok 13",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 10",
-  "NY State of Politics": "ok 12",
+  "NY State of Politics": "ok 11",
   "Newsday": "ok 17",
   "Daily News": "ok 0",
   "Gotham Gazette": "ok 0",
@@ -26,7 +26,7 @@
   "Governor's Office (gnews)": "ok 36",
   "NY Senate": "ok 57",
   "NY Assembly": "ok 11",
-  "Google News: Hochul": "ok 89",
+  "Google News: Hochul": "ok 88",
   "Google News: Legislature": "ok 14"
  },
  "outlets": [
@@ -521,7 +521,7 @@
  ],
  "paywall": {
   "free": 69,
-  "unknown": 2687,
+  "unknown": 2688,
   "metered": 172,
   "hard": 36
  },
@@ -581,7 +581,7 @@
    "official": 16
   },
   "2026-10-23": {
-   "stories": 17,
+   "stories": 18,
    "official": 1
   }
  }
