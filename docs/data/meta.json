@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-23 08:00 UTC",
- "last_run_iso": "2026-10-23T08:00:04Z",
- "total": 2950,
+ "last_run": "2026-10-23 08:30 UTC",
+ "last_run_iso": "2026-10-23T08:30:02Z",
+ "total": 2952,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 3",
@@ -265,6 +265,7 @@
   "Politico NY Playbook",
   "PoliticsNY",
   "Post Journal",
+  "Press & Sun-Bulletin",
   "Press of Atlantic City",
   "Press-Republican",
   "PressReader",
@@ -521,7 +522,7 @@
  ],
  "paywall": {
   "free": 65,
-  "unknown": 2679,
+  "unknown": 2681,
   "metered": 171,
   "hard": 35
  },
@@ -581,7 +582,7 @@
    "official": 15
   },
   "2026-10-23": {
-   "stories": 6,
+   "stories": 8,
    "official": 1
   }
  }
