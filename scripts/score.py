@@ -17,7 +17,7 @@ LEG_TERMS = ["legislature","assembly","senate","heastie","stewart-cousins","lawm
 OPINION  = ["opinion:","op-ed","editorial:","letters:","commentary","column:","perspective:"]
 BREAKING = ["live updates","live:","breaking","watch:","video:","photos:"]
 NOISE    = ["knicks","yankees","mets","giants","jets","rangers","nets","islanders","celebrity","recipe","horoscope",
-    "concert","restaurant review","weather","lottery","obituary","real estate listing","dear abby"]
+    "concert","podcast","restaurant review","weather","lottery","obituary","real estate listing","dear abby"]
 
 TAGS = {
  "Budget":         ["budget","article vii","dob","comptroller","fiscal","spending","revenue","tax","pension","tier 6"],
@@ -33,6 +33,8 @@ TAGS = {
  "Economy & labor":["minimum wage","labor","union","workforce","economic development","empire state development","business","jobs"],
 }
 
+def is_op_head(text): return bool(_hits(text, OPINION))
+
 def _hits(text, terms): return sum(1 for t in terms if t in text)
 
 def score(item, now_ts):
@@ -44,15 +46,17 @@ def score(item, now_ts):
     pol = min(_hits(text, POLICY), 6);        s += pol*3
     gov = _hits(text, GOV_TERMS) > 0; leg = _hits(text, LEG_TERMS) > 0
     if gov and leg: s += 12
+    if _hits(item.get("title","").lower(), ["hochul","governor"]) and not is_op_head(text): s += 5   # she is the subject
     is_op = bool(_hits(text, OPINION)) or bool(item.get("opinion"))
     if is_op:  s -= 15
     if _hits(text, BREAKING): s -= 8
     if _hits(text, NOISE):    s -= 30
     age_h = max(0.0, (now_ts - item.get("published_ts", now_ts)) / 3600.0)
     s += 20 * math.exp(-age_h / 72.0)
-    if item.get("kind") == "gnews" and item.get("sweep"): s -= 4   # sweeps are noisier
+    if item.get("kind") == "gnews" and item.get("sweep"): s -= 12   # sweeps are noisier (tier 2 base, so net = old tier 3 - 4)
     w = item.get("words", 0)
-    if w >= 1200: s += 6            # long-form
+    if w >= 2000: s += 12           # magazine-length feature
+    elif w >= 1200: s += 6          # long-form
     elif w >= 700: s += 3
     tags = [k for k, terms in TAGS.items() if _hits(text, terms)]
     flags = []

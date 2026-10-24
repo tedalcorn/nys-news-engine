@@ -55,6 +55,14 @@ def classify_paywall(host, status, html_text, words):
     return "unknown"
 
 
+def domain_paywall(host):
+    """'hard' / 'metered' for outlets we know, else None: the fallback for items never fetched."""
+    host = (host or "").replace("www.", "")
+    if host in HARD_PAYWALL: return "hard"
+    if host in METERED: return "metered"
+    return None
+
+
 def fetch_one(url):
     host = urlparse(url).netloc.replace("www.", "")
     try:
@@ -79,6 +87,7 @@ def candidates(items, now_ts):
     pool = [i for i in items
             if "extracted_ts" not in i
             and "news.google" not in i.get("link", "")
+            and i.get("kind") != "nyt"                      # API already gives word count; site returns a stub
             and i.get("tier", 3) <= 2
             and (now_ts - i.get("published_ts", 0)) <= FRESH_H * 3600
             and "opinion" not in i.get("flags", [])]
@@ -103,7 +112,7 @@ def run(items, now_ts, verbose=True):
         print(f"\nextract: {len(todo)} candidates this run")
     for i in todo:
         res = fetch_one(i["link"])
-        i.update(words=res["words"], inv_body=res["inv_body"],
+        i.update(words=max(res["words"], i.get("words") or 0), inv_body=res["inv_body"],   # keep the NYT API count
                  paywall=res["paywall"], extracted_ts=int(now_ts))
         if verbose:
             print(f"  {str(res['status']):>6}  {res['words']:5d}w  {res['paywall']:8s} "

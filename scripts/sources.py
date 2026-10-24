@@ -5,8 +5,13 @@ kind: 'rss' = native feed; 'gnews' = Google News RSS (site: or keyword query) fo
 Google News queries carry a `when:Nd` operator: without it Google returns its 100 most *relevant* hits,
 many of them months old, and recent releases never surface (that is why Official went stale).
 tier: 1 = Albany-specialist / accountability; 2 = strong general outlet; 3 = official / advocacy / watchdog release.
+      Cross-outlet sweeps are tier 2: they return whatever outlet Google finds (Fox, local TV), which the page
+      must not color as official. score.py docks sweeps instead, so they still rank below the outlet feeds.
 albany_filter: True = general feed, keep only items that match Albany keywords, or STATE_TERMS (see fetch.py).
 ny_anchor: True = national feed; a STATE_TERMS hit must also name New York (a "state senator" in Texas is not ours).
+loose_anchor: True = unfiltered sweep whose query requires "New York" somewhere on the page; the headline+dek must
+      still name New York or carry an Albany term without naming another state (Czech and Azerbaijani "state
+      budget" stories were getting through).
 """
 from urllib.parse import quote_plus
 GN = "https://news.google.com/rss/search?q={q}&hl=en-US&gl=US&ceid=US:en"
@@ -70,13 +75,13 @@ SOURCES = [
  dict(name="NY Senate",           domain="nysenate.gov",        kind="gnews", url=GN.format(q="site:nysenate.gov+when:7d"),                  tier=3, albany_filter=False),
  dict(name="NY Assembly",         domain="nyassembly.gov",      kind="gnews", url=GN.format(q="site:nyassembly.gov+when:7d"),                tier=3, albany_filter=False),
  # --- Cross-outlet keyword sweeps (catch what the feeds miss) ---
- dict(name="Google News: Hochul", domain="",                    kind="gnews", url=GN.format(q="%22Hochul%22+when:2d"),                       tier=3, albany_filter=False, sweep=True),
- dict(name="Google News: Legislature", domain="",               kind="gnews", url=GN.format(q="%22New+York%22+(Heastie+OR+%22Stewart-Cousins%22+OR+%22state+budget%22+OR+%22Executive+Chamber%22)+when:2d"), tier=3, albany_filter=False, sweep=True),
+ dict(name="Google News: Hochul", domain="",                    kind="gnews", url=GN.format(q="%22Hochul%22+when:2d"),                       tier=2, albany_filter=False, sweep=True),
+ dict(name="Google News: Legislature", domain="",               kind="gnews", url=GN.format(q="%22New+York%22+(Heastie+OR+%22Stewart-Cousins%22+OR+%22state+budget%22+OR+%22Executive+Chamber%22)+when:2d"), tier=2, albany_filter=False, sweep=True, loose_anchor=True),
  # Wider state-government sweeps: kept only if they clear STATE_TERMS with a New York anchor (fetch.py),
  # and every item they admit carries `gate` so the #review page can show which terms let noise in.
- dict(name="Google News: Courts & statewide officials", domain="", kind="gnews", url=gn('"New York" ("Letitia James" OR "attorney general James" OR DiNapoli OR "state comptroller" OR "Court of Appeals" OR "Appellate Division" OR "state law" OR unconstitutional) when:2d'), tier=3, albany_filter=True, ny_anchor=True, sweep=True),
- dict(name="Google News: State agencies", domain="", kind="gnews", url=gn('"New York" ("Board of Elections" OR "Public Service Commission" OR DOCCS OR NYSERDA OR "Department of Environmental Conservation" OR "state Health Department" OR "Office of Mental Health" OR "Adirondack Park Agency" OR "Board of Regents" OR Thruway) when:2d'), tier=3, albany_filter=True, ny_anchor=True, sweep=True),
- dict(name="Google News: Lawmakers", domain="", kind="gnews", url=gn('"New York" (Assemblymember OR Assemblyman OR Assemblywoman OR "state Sen." OR "state senator" OR "Senate District" OR "Assembly District") when:2d'), tier=3, albany_filter=True, ny_anchor=True, sweep=True),
+ dict(name="Google News: Courts & statewide officials", domain="", kind="gnews", url=gn('"New York" ("Letitia James" OR "attorney general James" OR DiNapoli OR "state comptroller" OR "Court of Appeals" OR "Appellate Division" OR "state law" OR unconstitutional) when:2d'), tier=2, albany_filter=True, ny_anchor=True, sweep=True),
+ dict(name="Google News: State agencies", domain="", kind="gnews", url=gn('"New York" ("Board of Elections" OR "Public Service Commission" OR DOCCS OR NYSERDA OR "Department of Environmental Conservation" OR "state Health Department" OR "Office of Mental Health" OR "Adirondack Park Agency" OR "Board of Regents" OR Thruway) when:2d'), tier=2, albany_filter=True, ny_anchor=True, sweep=True),
+ dict(name="Google News: Lawmakers", domain="", kind="gnews", url=gn('"New York" (Assemblymember OR Assemblyman OR Assemblywoman OR "state Sen." OR "state senator" OR "Senate District" OR "Assembly District") when:2d'), tier=2, albany_filter=True, ny_anchor=True, sweep=True),
 ]
 
 # Keep general-feed items only if they hit one of these (case-insensitive, title+summary)
@@ -112,14 +117,15 @@ SWEEP_EXCLUDE_DOMAINS = {"nysfocus.com","cityandstateny.com","politico.com","got
 # A headline mentioning only a generic "governor" is not necessarily ours: "Gov. Gavin Newsom"
 # was clearing the Albany filter. Drop items that carry an out-of-state marker and no NY anchor.
 GENERIC_ALBANY = ["governor","gov."]   # match any state's governor; not proof of NY
-NY_ANCHORS = ["new york","n.y.","nys","hochul","albany","empire state","brooklyn","queens","bronx",
+NY_ANCHORS = ["new york","n.y.","nys","hochul","albany","heastie","stewart-cousins","dinapoli","letitia james",
+ "blakeman","mamdani","executive chamber","state senate passes","adirondack","upstate","catskill","empire state","brooklyn","queens","bronx",
  "staten island","manhattan","long island","buffalo","rochester","syracuse","yonkers","mta","nypd",
  "cuny","suny","hudson valley","westchester","nassau","suffolk"]
 OUT_OF_STATE = ["newsom","california","texas","florida","desantis","abbott","illinois","chicago",
  "new jersey","pennsylvania","shapiro","connecticut","massachusetts","boston","ohio","georgia",
  "michigan","virginia","arizona","colorado","washington state","oregon","nevada","wisconsin",
  "new mexico","haaland","maryland","minnesota","sherrill","ciattarelli","spanberger","vermont","maine","kentucky",
- "louisiana","tennessee","carolina","iowa","kansas","oklahoma","utah","idaho","montana","alaska","hawaii"]
+ "louisiana","tennessee","los angeles","karen bass","carolina","iowa","kansas","oklahoma","utah","idaho","montana","alaska","hawaii"]
 
 # NYT API items (facet names: Person:/Location:/Subject:/Organization:) are kept when a NY-specific facet
 # matches, or a generic state-government facet appears alongside a New York location, or title+abstract

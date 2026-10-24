@@ -12,7 +12,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
 from sources import SOURCES, ALBANY_TERMS, STATE_TERMS, BLOTTER, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS, NYT_GENERIC
 from score import score
-import extract, cluster
+import extract, cluster, gnlinks
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "docs", "data")
@@ -79,6 +79,11 @@ def parse_ts(entry):
     return NOW
 
 NY_WORD = re.compile(r"\bny\b")
+# ALBANY_TERMS match at word starts, and the short ones as whole words: as bare substrings "ed ra" (Ed Ra)
+# matched "heated race" and "backed Raman", which let two Los Angeles mayoral stories through.
+ALBANY_RE = [re.compile(r"(?<![a-z])" + re.escape(t) + (r"(?![a-z])" if len(t) <= 5 and t[-1].isalpha() else ""))
+             for t in ALBANY_TERMS]
+GENERIC_RE = [r for r, t in zip(ALBANY_RE, ALBANY_TERMS) if t in GENERIC_ALBANY]
 COUNTY_LEG = re.compile(r"county legislat\w*")
 
 def has_ny_anchor(text):
@@ -91,14 +96,19 @@ def passes_albany_filter(text, need_ny=False):
     text = COUNTY_LEG.sub(" ", text)   # "Onondaga County Legislature" is not the Legislature
     ny = has_ny_anchor(text)
     elsewhere = any(t in text for t in OUT_OF_STATE)
-    if any(t in text for t in ALBANY_TERMS):
-        specific = any(t in text for t in ALBANY_TERMS if t not in GENERIC_ALBANY)
+    if any(r.search(text) for r in ALBANY_RE):
+        specific = any(r.search(text) for r in ALBANY_RE if r not in GENERIC_RE)
         return (specific or ny or not elsewhere), None
     t2 = text.replace("law enforcement", "")
     hit = next((t for t in STATE_TERMS if t in t2), None)
     if not hit or ((need_ny or elsewhere) and not ny): return False, None
     if any(b in text for b in BLOTTER): return False, None
     return True, hit
+
+def loose_ny(text):
+    """Weaker test for the Legislature sweep: a New York anchor, or an Albany term with no other state named."""
+    if has_ny_anchor(text): return True
+    return any(r.search(text) for r in ALBANY_RE) and not any(t in text for t in OUT_OF_STATE)
 
 def http_get(url, accept="*/*", timeout=25):
     """requests first; on 403/5xx retry with a Chrome TLS fingerprint if curl_cffi is installed."""
@@ -278,6 +288,7 @@ def fetch_source(src):
                 # cross-outlet sweeps reach every state's press: "Assembly District 38" can be Ventura County
                 if not has_ny_anchor(text): continue
                 gate = gate or src["name"].replace("Google News: ", "") + " sweep"
+        if src.get("loose_anchor") and not loose_ny(text): continue
         ts = parse_ts(e)
         if NOW - ts > RETENTION_DAYS * 86400: continue
         if src["kind"] == "gnews" and NOW - ts > GN_MAX_AGE_DAYS * 86400: continue
@@ -328,6 +339,8 @@ def main():
         if it["id"] in archive:
             archive[it["id"]]["published_ts"] = min(archive[it["id"]]["published_ts"], it["published_ts"])
             archive[it["id"]]["fetched_ts"] = archive[it["id"]].get("fetched_ts", it["fetched_ts"])
+            if (it.get("words") or 0) > (archive[it["id"]].get("words") or 0):   # NYT API word count beats a paywall stub
+                archive[it["id"]]["words"] = it["words"]
         else:
             archive[it["id"]] = it
     # retention
@@ -346,6 +359,14 @@ def main():
              if not is_site_name_only(it["title"], it.get("outlet"), it.get("source"), it.get("domain"))]
     for it in items:
         it["summary"] = dedupe_summary(it["title"], it.get("summary", ""), it.get("outlet", ""))
+    # Google News links are redirects (and dead ends for anyone signed into a Workspace account that blocks
+    # Google News): swap in the publisher's URL, which also lets the extractor read the article.
+    try:
+        gnlinks.run(items, NOW)
+    except Exception as e:
+        print(f"gnlinks step skipped: {type(e).__name__}: {e}")
+    # with the real URL in hand, sections are visible: NY State of Politics carries Spectrum's wire sports
+    items = [it for it in items if not re.search(r"/(sports|entertainment)/", urlparse(it["link"]).path)]
     # first pass so candidate selection has headline-only scores to sort on
     for it in items:
         it["score"], it["tags"], it["flags"] = score(it, NOW)
@@ -355,6 +376,10 @@ def main():
         print(f"extract step skipped: {type(e).__name__}: {e}")
     for it in items:
         it["score"], it["tags"], it["flags"] = score(it, NOW)
+    for it in items:   # the extractor can't reach most paywalled sites; the domain is the next best evidence
+        if not it.get("paywall"):
+            pw0 = extract.domain_paywall(it.get("domain") or urlparse(it["link"]).netloc)
+            if pw0: it["paywall"] = pw0
     grouped = cluster.assign(items)
     items.sort(key=lambda x: (-x["score"], -x["published_ts"]))
     json.dump(items, open(ITEMS, "w"), ensure_ascii=False, separators=(",", ":"))
