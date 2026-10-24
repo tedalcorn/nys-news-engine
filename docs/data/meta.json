@@ -1,6 +1,6 @@
 {
- "last_run": "2026-10-24 14:31 UTC",
- "last_run_iso": "2026-10-24T14:30:18Z",
+ "last_run": "2026-10-24 14:33 UTC",
+ "last_run_iso": "2026-10-24T14:33:11Z",
  "total": 3171,
  "sources": {
   "New York Focus": "ok 49",
@@ -26,7 +26,7 @@
   "Buffalo News": "ok 5",
   "Buffalo News (gnews)": "ok 4",
   "Syracuse.com": "ok 7",
-  "FingerLakes1": "ok 6",
+  "FingerLakes1": "ok 0",
   "Adirondack Explorer": "ok 0",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
@@ -35,7 +35,7 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 28",
-  "NY Senate": "ok 54",
+  "NY Senate": "ok 53",
   "NY Assembly": "ok 14",
   "Google News: Hochul": "ok 91",
   "Google News: Legislature": "ok 14",
@@ -149,9 +149,9 @@
   "Essence",
   "FOX 5 DC",
   "FOX 5 New York",
+  "FOX 5 San Diego & KUSI News",
   "FOX 9 Minneapolis-St. Paul",
   "FOX One",
-  "FOX8 WGHP",
   "Facebook",
   "Finger Lakes Daily News",
   "FingerLakes1",
@@ -267,7 +267,6 @@
   "News12 | Connecticut",
   "News12 | Hudson Valley",
   "News12 | Long Island",
-  "News12 | New Jersey",
   "NewsCord",
   "NewsNation",
   "NewsRadio 570 WKBN",
@@ -576,7 +575,7 @@
   "hard": 38
  },
  "extracted": 362,
- "runner": "pi",
+ "runner": "actions",
  "per_day": {
   "2026-10-11": {
    "stories": 13,
