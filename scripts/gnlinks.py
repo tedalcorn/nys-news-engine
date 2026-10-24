@@ -11,8 +11,8 @@ import requests
 
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
-PER_RUN = 40       # Google answers 429 after ~110 rapid decodes from one IP; 40 per half-hour run is ample
-                   # (new Google items arrive at well under that rate) and drains the backlog within a day
+PER_RUN = 100      # Google answers 429 after ~100 requests from one IP, RSS queries included, so fetch.py
+                   # runs this only on GitHub Actions (fresh IP per run), never on the Pi
 MAX_AGE_D = 10     # older Google items fall off the page anyway
 MAX_TRIES = 2
 SLEEP = 1.5

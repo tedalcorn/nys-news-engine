@@ -80,8 +80,9 @@ Official tab go stale). Google also silently ignores `when:` on long OR chains, 
 Google News item older than 10 days (`GN_MAX_AGE_DAYS`) and the state-term queries are split in two. Google News links redirect through news.google.com; titles arrive with an
 " - Outlet" suffix that is stripped. `scripts/gnlinks.py` swaps the redirect for the publisher's URL (the original
 stays in `gn_link`): the redirect is a dead end for anyone signed into a Google Workspace account that blocks
-Google News, and the real URL lets the extractor read the article. Google answers 429 after ~110 rapid decodes
-from one IP, so it does 40 per run and stops at the first 429. Items whose resolved URL is a `/sports/` or
+Google News, and the real URL lets the extractor read the article. Google answers 429 after ~100 requests from
+one IP, and the limit is shared with the RSS queries, so decoding runs only on GitHub Actions (fresh IP each run,
+100 per run, stops at the first 429), never on the Pi. Items whose resolved URL is a `/sports/` or
 `/entertainment/` path are dropped. Albany terms match at word starts (short ones as whole words): as bare
 substrings, "ed ra" (Assemblyman Ed Ra) matched "heated race".
 

@@ -361,8 +361,10 @@ def main():
         it["summary"] = dedupe_summary(it["title"], it.get("summary", ""), it.get("outlet", ""))
     # Google News links are redirects (and dead ends for anyone signed into a Workspace account that blocks
     # Google News): swap in the publisher's URL, which also lets the extractor read the article.
+    # Never on the Pi: decodes count against the same Google limit as the RSS queries, and a throttled Pi loses
+    # every Google News source until it clears. Actions runners get a fresh IP each run.
     try:
-        gnlinks.run(items, NOW)
+        if RUNNER != "pi": gnlinks.run(items, NOW)
     except Exception as e:
         print(f"gnlinks step skipped: {type(e).__name__}: {e}")
     # with the real URL in hand, sections are visible: NY State of Politics carries Spectrum's wire sports
