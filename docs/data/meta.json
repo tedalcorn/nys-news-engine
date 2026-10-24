@@ -1,6 +1,6 @@
 {
- "last_run": "2026-10-24 16:33 UTC",
- "last_run_iso": "2026-10-24T16:32:26Z",
+ "last_run": "2026-10-24 16:40 UTC",
+ "last_run_iso": "2026-10-24T16:38:01Z",
  "total": 3128,
  "sources": {
   "New York Focus": "ok 49",
@@ -8,7 +8,7 @@
   "City & State (gnews)": "ok 10",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 6",
-  "NY State of Politics": "ok 9",
+  "NY State of Politics": "ok 10",
   "Newsday": "ok 20",
   "Daily News": "ok 3",
   "Times Union (gnews)": "ok 5",
@@ -18,7 +18,7 @@
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 6",
   "New York Times": "ok 3",
-  "New York Times (nyt)": "ERROR Top Stories API not enabled on this key (developer.nytimes.com/my-apps); Article Search not enabled on this key; Article Search not enabled on this key",
+  "New York Times (nyt)": "ok 15",
   "NY Post Politics": "ok 1",
   "NY Post Metro": "ok 3",
   "The City": "ok 2",
@@ -36,11 +36,11 @@
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 24",
   "NY Senate": "ok 54",
-  "NY Assembly": "ok 15",
+  "NY Assembly": "ok 14",
   "Google News: Hochul": "ok 91",
   "Google News: Legislature": "ok 9",
   "Google News: Courts & statewide officials": "ok 23",
-  "Google News: State agencies": "ok 4",
+  "Google News: State agencies": "ok 1",
   "Google News: Lawmakers": "ok 12"
  },
  "outlets": [
@@ -567,13 +567,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 86,
-  "unknown": 2503,
-  "metered": 187,
-  "hard": 352
+  "free": 92,
+  "unknown": 2493,
+  "hard": 353,
+  "metered": 190
  },
- "extracted": 339,
- "runner": "local",
+ "extracted": 359,
+ "runner": "pi",
  "per_day": {
   "2026-10-11": {
    "stories": 13,
@@ -624,19 +624,19 @@
    "official": 16
   },
   "2026-10-23": {
-   "stories": 96,
+   "stories": 94,
    "official": 10
   },
   "2026-10-24": {
-   "stories": 17,
+   "stories": 18,
    "official": 0
   }
  },
  "grouped_stories": 272,
  "gates": {
   "letitia james": 19,
-  "suny": 14,
   "Lawmakers sweep": 14,
+  "suny": 13,
   "second amendment": 5,
   "medicaid": 4,
   "state grant": 4,
