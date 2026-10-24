@@ -1,6 +1,6 @@
 {
- "last_run": "2026-10-24 19:32 UTC",
- "last_run_iso": "2026-10-24T19:30:22Z",
+ "last_run": "2026-10-24 19:50 UTC",
+ "last_run_iso": "2026-10-24T19:49:19Z",
  "total": 3137,
  "sources": {
   "New York Focus": "ok 49",
@@ -23,7 +23,7 @@
   "NY Post Metro": "ok 2",
   "The City": "ok 2",
   "Wall Street Journal": "ok 1",
-  "Buffalo News": "ok 4",
+  "Buffalo News": "ok 5",
   "Buffalo News (gnews)": "ok 4",
   "Syracuse.com": "ok 7",
   "FingerLakes1": "ok 8",
@@ -34,10 +34,10 @@
   "Citizens Budget Commission": "ok 3",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 14",
-  "Governor's Office (gnews)": "ok 21",
-  "NY Senate": "ok 54",
+  "Governor's Office (gnews)": "ok 19",
+  "NY Senate": "ok 53",
   "NY Assembly": "ok 15",
-  "Google News: Hochul": "ok 91",
+  "Google News: Hochul": "ok 92",
   "Google News: Legislature": "ok 8",
   "Google News: Courts & statewide officials": "ok 21",
   "Google News: State agencies": "ok 4",
@@ -569,14 +569,14 @@
   "Transit"
  ],
  "paywall": {
-  "free": 173,
-  "unknown": 2573,
+  "free": 175,
+  "unknown": 2571,
   "hard": 356,
   "null": 32,
   "metered": 3
  },
- "extracted": 488,
- "runner": "pi",
+ "extracted": 503,
+ "runner": "actions",
  "per_day": {
   "2026-10-11": {
    "stories": 13,
@@ -627,11 +627,11 @@
    "official": 16
   },
   "2026-10-23": {
-   "stories": 113,
+   "stories": 114,
    "official": 10
   },
   "2026-10-24": {
-   "stories": 32,
+   "stories": 33,
    "official": 1
   }
  },
@@ -639,7 +639,7 @@
  "gates": {
   "letitia james": 21,
   "Lawmakers sweep": 15,
-  "suny": 14,
+  "suny": 13,
   "second amendment": 5,
   "senate district": 5,
   "medicaid": 4,
@@ -661,5 +661,5 @@
   "2nd amendment": 1,
   "public service commission": 1
  },
- "unresolved_links": 5
+ "unresolved_links": 3
 }
