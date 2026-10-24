@@ -1,6 +1,6 @@
 {
- "last_run": "2026-10-24 17:31 UTC",
- "last_run_iso": "2026-10-24T17:30:04Z",
+ "last_run": "2026-10-24 17:38 UTC",
+ "last_run_iso": "2026-10-24T17:36:49Z",
  "total": 3134,
  "sources": {
   "New York Focus": "ok 49",
@@ -33,11 +33,11 @@
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 3",
   "Citizens Union": "ok 10",
-  "Governor's Office": "ok 15",
+  "Governor's Office": "ok 14",
   "Governor's Office (gnews)": "ok 23",
   "NY Senate": "ok 54",
   "NY Assembly": "ok 15",
-  "Google News: Hochul": "ok 86",
+  "Google News: Hochul": "ok 85",
   "Google News: Legislature": "ok 9",
   "Google News: Courts & statewide officials": "ok 24",
   "Google News: State agencies": "ok 4",
@@ -568,14 +568,14 @@
   "Transit"
  ],
  "paywall": {
-  "free": 152,
-  "unknown": 2590,
+  "free": 164,
+  "unknown": 2577,
   "hard": 358,
   "null": 32,
-  "metered": 2
+  "metered": 3
  },
- "extracted": 472,
- "runner": "pi",
+ "extracted": 492,
+ "runner": "actions",
  "per_day": {
   "2026-10-11": {
    "stories": 3,
