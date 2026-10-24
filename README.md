@@ -67,8 +67,8 @@ GitHub Pages serves `docs/`. Retention is 180 days. The repo is the off-device b
 | Buffalo News, Syracuse.com (politics), FingerLakes1, Adirondack Explorer | Google News `site:` (Buffalo) or native RSS, filtered | 2 |
 | Citizens Union (Searchlight essays) | native RSS | 3 |
 | Times Union, Newsday, Daily News, Buffalo News: state-government terms | two extra Google News `site:` queries each (`STATE_QA`, `STATE_QB`) | as outlet |
-| Keyword sweeps: "Hochul"; Heastie / Stewart-Cousins / state budget / Executive Chamber | Google News RSS, cross-outlet | 3 |
-| State-government sweeps: courts & statewide officials; agencies; lawmakers | Google News RSS, cross-outlet, NY anchor required, `gate` recorded | 3 |
+| Keyword sweeps: "Hochul"; Heastie / Stewart-Cousins / state budget / Executive Chamber (the latter needs a NY anchor or an Albany term with no other state named) | Google News RSS, cross-outlet | 2 (docked 12 in scoring) |
+| State-government sweeps: courts & statewide officials; agencies; lawmakers | Google News RSS, cross-outlet, NY anchor required, `gate` recorded | 2 (docked 12 in scoring) |
 
 Added 2026-10-23 after comparing a week of daily press clips with the engine: most
 misses came from outlets already covered, cut by the keyword gate, not from missing outlets. AP was
@@ -78,14 +78,21 @@ Every Google News query carries a `when:Nd` operator. Without it Google returns 
 *relevant* hits, many of them months old, and recent items never surface (this is what made the
 Official tab go stale). Google also silently ignores `when:` on long OR chains, so fetch.py drops any
 Google News item older than 10 days (`GN_MAX_AGE_DAYS`) and the state-term queries are split in two. Google News links redirect through news.google.com; titles arrive with an
-" - Outlet" suffix that is stripped.
+" - Outlet" suffix that is stripped. `scripts/gnlinks.py` swaps the redirect for the publisher's URL (the original
+stays in `gn_link`): the redirect is a dead end for anyone signed into a Google Workspace account that blocks
+Google News, and the real URL lets the extractor read the article. Google answers 429 after ~110 rapid decodes
+from one IP, so it does 40 per run and stops at the first 429. Items whose resolved URL is a `/sports/` or
+`/entertainment/` path are dropped. Albany terms match at word starts (short ones as whole words): as bare
+substrings, "ed ra" (Assemblyman Ed Ra) matched "heated race".
 
 ## Scoring (`scripts/score.py`)
 
 Outlet tier (30/20/12) + investigative signals (FOIL, records, audit, obtained, data show…; up to 32)
 + policy relevance (up to 18) + 12 if both the Governor and the Legislature appear − 15 opinion
 − 8 breaking/live − 30 sports/entertainment + a 20-point recency term decaying over three days
-+ a long-form bonus when the extractor has a word count. Topic tags come from keyword lists.
++ a long-form bonus (+3 at 700 words, +6 at 1,200, +12 at 2,000; the NYT API word count is kept over the
+paywall stub the extractor sees) + 5 when the headline names Hochul or the governor. Paywall status falls back
+to the outlet's known policy (`HARD_PAYWALL` / `METERED` in `extract.py`) for items never fetched. Topic tags come from keyword lists.
 All heuristic; tune the lists in `score.py`.
 
 ## Run locally
