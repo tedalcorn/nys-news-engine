@@ -8,13 +8,19 @@ the page shows one row per story with the other outlets folded underneath.
 Method: TF-IDF over headline words (dek words at half weight), IDF taken from the whole archive so
 "Hochul" and "New York" count for little and "insurance", "staged", "16" count for a lot. Items are
 visited oldest first; each joins the most similar open story within WINDOW_H hours if cosine
-similarity to that story's centroid clears THRESHOLD, else starts a new story. Tuned 2026-10-23 on a
-week of archive: 0.28 began merging unrelated items, 0.36 split the 2-K announcement four ways."""
+similarity to that story's centroid clears the threshold, else starts a new story.
+
+Two passes (2026-10-24). FOLD (THRESHOLD 0.70) merges only near-identical copies: the same poll story
+under three mastheads, a syndicated wire piece. Two outlets' own reporting of one event stays as two
+rows; Ted: that repetition is itself the signal that a story matters. So the TOPIC pass (0.32, tuned
+2026-10-23: 0.28 merged unrelated items, 0.36 split one announcement four ways) only counts the outlets
+covering the same event, stored as `n_cov`, which score.py rewards and the page shows as a chip."""
 import math, re, html
 from collections import Counter
 from score import OUTLET_RANK
 
-THRESHOLD = 0.32
+THRESHOLD = 0.70        # fold: near-identical copies only
+TOPIC_THRESHOLD = 0.32  # coverage count: same event, different reporting
 WINDOW_H = 72
 MIN_SHARED = 2          # distinctive words in common, so two short headlines can't match on one word
 SAME_OUTLET = 0.70      # a second item from an outlet already in the story joins only if near-identical:
@@ -53,14 +59,8 @@ def eligible(it):
     if it.get("outlet") in OFFICIAL or it.get("opinion") or "opinion" in (it.get("flags") or []): return False
     return not (it.get("tier") == 3 and not it.get("sweep"))
 
-def assign(items):
-    """Set it["cid"] on every item (its story's lead) and it["n_cov"] (outlets covering that story).
-    The lead is the member from the best outlet (tier, then OUTLET_RANK), score breaking ties; the page
-    ranks the story by its best member's score, so a strong copy still lifts the group."""
-    df = Counter()
-    for it in items: df.update(set(tokens(it.get("title", ""))))
-    N = max(len(items), 1)
-    idf = {w: math.log((N + 1) / (c + 0.5)) for w, c in df.items()}
+def _cluster(items, idf, threshold):
+    """Group eligible items into stories at the given similarity threshold; returns lists of members."""
     rare = lambda w: idf.get(w, 0) > 3.0
     stories, live = [], []   # live = stories still inside the time window
     for it in sorted((x for x in items if eligible(x)), key=lambda x: x["published_ts"]):
@@ -73,7 +73,7 @@ def assign(items):
             sim = sum(x * s["c"].get(w, 0.0) for w, x in v.items()) / n
             if it["outlet"] in s["outlets"] and sim < SAME_OUTLET: continue
             if sim > bs: best, bs = s, sim
-        if best and bs >= THRESHOLD and len({w for w in v if rare(w)} & best["words"]) >= MIN_SHARED:
+        if best and bs >= threshold and len({w for w in v if rare(w)} & best["words"]) >= MIN_SHARED:
             best["m"].append(it)
             for w, x in v.items(): best["c"][w] = best["c"].get(w, 0.0) + x
             best["words"] |= {w for w in v if rare(w)}
@@ -81,12 +81,24 @@ def assign(items):
         else:
             s = dict(start=it["published_ts"], m=[it], c=dict(v), words={w for w in v if rare(w)}, outlets={it["outlet"]})
             stories.append(s); live.append(s)
+    return [s["m"] for s in stories]
+
+def assign(items):
+    """Set it["cid"] (the lead of its fold group, itself if unfolded) and it["n_cov"] (outlets covering the
+    same event, loose pass). The lead is the member from the best outlet (tier, then OUTLET_RANK), score
+    breaking ties. Returns the number of folded groups."""
+    df = Counter()
+    for it in items: df.update(set(tokens(it.get("title", ""))))
+    N = max(len(items), 1)
+    idf = {w: math.log((N + 1) / (c + 0.5)) for w, c in df.items()}
     for it in items: it["cid"], it["n_cov"] = it["id"], 1
+    for m in _cluster(items, idf, TOPIC_THRESHOLD):
+        n = len({x["outlet"] for x in m})
+        for x in m: x["n_cov"] = n
     multi = 0
-    for s in stories:
-        if len(s["m"]) < 2: continue
+    for m in _cluster(items, idf, THRESHOLD):
+        if len(m) < 2: continue
         multi += 1
-        lead = max(s["m"], key=lambda x: (-x.get("tier", 2), OUTLET_RANK.get(x.get("outlet"), 0), x.get("score", 0), -x["published_ts"]))
-        n = len({x["outlet"] for x in s["m"]})
-        for x in s["m"]: x["cid"], x["n_cov"] = lead["id"], n
+        lead = max(m, key=lambda x: (-x.get("tier", 2), OUTLET_RANK.get(x.get("outlet"), 0), x.get("score", 0), -x["published_ts"]))
+        for x in m: x["cid"] = lead["id"]
     return multi

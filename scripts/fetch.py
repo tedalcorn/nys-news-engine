@@ -383,6 +383,8 @@ def main():
             pw0 = extract.domain_paywall(it.get("domain") or urlparse(it["link"]).netloc)
             if pw0: it["paywall"] = pw0
     grouped = cluster.assign(items)
+    for it in items:   # the coverage bonus needs n_cov
+        it["score"], it["tags"], it["flags"] = score(it, NOW)
     items.sort(key=lambda x: (-x["score"], -x["published_ts"]))
     json.dump(items, open(ITEMS, "w"), ensure_ascii=False, separators=(",", ":"))
     pw = {}

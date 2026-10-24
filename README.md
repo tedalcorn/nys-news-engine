@@ -18,14 +18,16 @@ Dot color is the source tier: red = Albany specialist, blue = general outlet, gr
 
 ### Story grouping (`scripts/cluster.py`)
 
-A Governor's announcement arrives as ten or more differently worded headlines. Each item gets a `cid`
-(its story's lead item id); the page shows one row per story with the other outlets folded under
-"+N more". Matching is TF-IDF cosine over headline words (dek at half weight) against each open story's
-centroid, within 72 hours, threshold 0.32, at least two distinctive words shared. A second item from an
-outlet already in the story joins only if near-identical (Empire Center's regional "What They Make"
-posts stay separate). Official releases, opinion, and native think-tank posts are never grouped.
-Tuned 2026-10-23 on a week of archive: 0.28 began merging unrelated items, 0.36 split one announcement
-four ways. Headline counts ("N stories today", Latest) count stories, not items.
+Matching is TF-IDF cosine over headline words (dek at half weight) against each open story's centroid,
+within 72 hours, at least two distinctive words shared. Two passes. **Fold** (threshold 0.70) merges only
+near-identical copies, such as the same poll story under three mastheads or a syndicated wire piece; each
+item gets a `cid` (the lead item of its fold group: best tier, then `OUTLET_RANK` in `score.py`, then score)
+and the page shows one row with the others under "+N more". Two outlets' own reporting of one event stays
+as two rows (Ted, 2026-10-24: that repetition is itself the signal that a story matters). **Topic**
+(threshold 0.32; tuned 2026-10-23, when 0.28 merged unrelated items and 0.36 split one announcement four
+ways) only counts the outlets covering the same event as `n_cov`, which adds up to 12 points to the score
+and shows as an "N outlets" chip. Official releases, opinion, and native think-tank posts are never
+grouped. Headline counts ("N stories today", Latest) count folded stories, not items.
 
 ### Keyword gate, and the review page
 

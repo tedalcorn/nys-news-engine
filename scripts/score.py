@@ -79,6 +79,7 @@ def score(item, now_ts):
     if _hits(text, NOISE):    s -= 30
     age_h = max(0.0, (now_ts - item.get("published_ts", now_ts)) / 3600.0)
     s += 20 * math.exp(-age_h / 72.0)
+    s += 4 * min(item.get("n_cov", 1) - 1, 3)   # several outlets on the same event: the story matters (cluster.py)
     if item.get("kind") == "gnews" and item.get("sweep"): s -= 12   # sweeps are noisier (tier 2 base, so net = old tier 3 - 4)
     w = item.get("words", 0)
     if w >= 2000: s += 12           # magazine-length feature

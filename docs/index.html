@@ -111,7 +111,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
       <div class="box"><h3>Investigative, this week</h3><div id="invlist"></div></div>
     </aside>
   </div>
-  <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; the Governor's releases come straight from governor.ny.gov. Refreshes every 30 minutes. Coverage of the same story from several outlets is folded under one headline. Dot color is the source tier; scores are heuristic.</div>
+  <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; the Governor's releases come straight from governor.ny.gov. Refreshes every 30 minutes. Identical stories carried by several outlets are folded under one headline; an "N outlets" chip marks a story others are also reporting. Dot color is the source tier; scores are heuristic.</div>
 </div>
 <script>
 const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",inv:false,hd:false,op:true,gate:""};
@@ -122,17 +122,20 @@ const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const TIERCOL={1:"#b3411f",2:"#1c4587",3:"#5b7f3a"};
 let OT={};   // outlet -> best tier seen, for the sidebar
 const col=o=>TIERCOL[OT[o]||2];
-const ago=ts=>{const m=Math.max(1,Math.round((Date.now()/1000-ts)/60));if(m<60)return m+"m";const h=Math.round(m/60);if(h<24)return h+"h";const d=Math.round(h/24);return d<14?d+"d":new Date(ts*1000).toLocaleDateString(undefined,{month:"short",day:"numeric"})};
+const ago=ts=>{const m=Math.max(1,Math.round((Date.now()/1000-ts)/60));if(m<60)return "within the last hour";const h=Math.round(m/60);if(h<24)return h+"h ago";const d=Math.round(h/24);return d<14?d+"d ago":new Date(ts*1000).toLocaleDateString(undefined,{month:"short",day:"numeric"})};
+// publish times come from the feeds; the labels are relative, so they are recomputed every minute (tick) rather than frozen at load
+const tsSpan=(ts,full)=>`<span class="ts" data-ts="${ts}"${full?' data-full="1"':""}>${full?dstamp(ts)+", ":""}${ago(ts)}</span>`;
+const tick=()=>$$(".ts").forEach(el=>{const t=+el.dataset.ts;el.textContent=(el.dataset.full?dstamp(t)+", ":"")+ago(t)});
 const dstamp=ts=>{const d=new Date(ts*1000);return `${d.getMonth()+1}/${d.getDate()}/${String(d.getFullYear()).slice(2)}`};
 const pwBadge=i=>(i.paywall==="hard"||i.paywall==="metered")?`<span class="pw ${i.paywall}">${i.paywall==="hard"?"paywall":"limited"}</span>`:"";
 const isNew=i=>(Date.now()/1000-i.fetched_ts)<6*3600;
 const official=new Set(["Governor's Office","NY Senate","NY Assembly"]);
-function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${TIERCOL[i.tier]||TIERCOL[2]}" title="${i.tier===1?"Albany specialist":i.tier===3?"Official / advocacy":"General outlet"}"></i><span class="outlet">${esc(i.outlet)}</span></span><span>${dstamp(i.published_ts)}, ${ago(i.published_ts)} ago</span>${isNew(i)?'<span class="new">NEW</span>':""}${pwBadge(i)}</div>`}
-function chips(i){return `<div class="chips">${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}${S.view==="review"&&i.gate?`<span class="chip flag">gate: ${esc(i.gate)}</span>`:""}</div>`}
+function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${TIERCOL[i.tier]||TIERCOL[2]}" title="${i.tier===1?"Albany specialist":i.tier===3?"Official / advocacy":"General outlet"}"></i><span class="outlet">${esc(i.outlet)}</span></span>${tsSpan(i.published_ts,true)}${isNew(i)?'<span class="new">NEW</span>':""}${pwBadge(i)}</div>`}
+function chips(i){return `<div class="chips">${i.n_cov>1?`<span class="chip flag" title="Outlets reporting this same event in the last 72 hours">${i.n_cov} outlets</span>`:""}${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}${S.view==="review"&&i.gate?`<span class="chip flag">gate: ${esc(i.gate)}</span>`:""}</div>`}
 // The same story from other outlets, folded under the lead (grouping is done in scripts/cluster.py)
 function more(i){if(!i.more||!i.more.length)return "";const outs=[...new Set(i.more.map(x=>x.outlet))];
- return `<details class="more"><summary>+${i.more.length} more · ${esc(outs.slice(0,4).join(", "))}${outs.length>4?` and ${outs.length-4} others`:""}</summary>${[...i.more].sort((a,b)=>a.published_ts-b.published_ts).map(x=>`<div><span class="outlet">${esc(x.outlet)}</span> · <a href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.title)}</a> · ${ago(x.published_ts)} ago</div>`).join("")}</details>`}
-const SCORE_HELP="A rough guide to relevance, not a judgment. The score elevates stories from outlets that focus on state policy, stories whose language suggests investigative reporting or policy substance, stories centered on the Governor and other key state officials, and longer pieces. It diminishes opinion, live or breaking formats, sports and entertainment, and loosely matched stories swept in from across the web. Freshness adds a bonus that fades over three days. Roughly: under 30 is routine, 40 to 60 worth a look, above 60 a must-read.";
+ return `<details class="more"><summary>+${i.more.length} more · ${esc(outs.slice(0,4).join(", "))}${outs.length>4?` and ${outs.length-4} others`:""}</summary>${[...i.more].sort((a,b)=>a.published_ts-b.published_ts).map(x=>`<div><span class="outlet">${esc(x.outlet)}</span> · <a href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.title)}</a> · ${tsSpan(x.published_ts)}</div>`).join("")}</details>`}
+const SCORE_HELP="A rough guide to relevance, not a judgment. The score elevates stories from outlets that focus on state policy, stories whose language suggests investigative reporting or policy substance, stories centered on the Governor and other key state officials, stories several outlets are reporting at once, and longer pieces. It diminishes opinion, live or breaking formats, sports and entertainment, and loosely matched stories swept in from across the web. Freshness adds a bonus that fades over three days. Roughly: under 30 is routine, 40 to 60 worth a look, above 60 a must-read.";
 function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div><div class="rcol" data-tip="${esc(SCORE_HELP)}"><b>${i.score.toFixed(0)}</b>score</div></div>`}
 function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div>`}
 // One entry per story: items sharing a cid fold under the best-scoring one that survives the current filters
@@ -167,7 +170,7 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.
  const oc={};for(const i of wk)oc[i.outlet]=(oc[i.outlet]||0)+1;const oo=Object.entries(oc).sort((a,b)=>b[1]-a[1]).slice(0,16);
  $("#outlets").innerHTML=oo.map(([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}"><span><i class="dot" style="background:${col(o)}"></i>${esc(o)}</span><span class="n">${n}</span></li>`).join("");
  const inv=wk.filter(i=>i.flags.includes("investigative")).sort((a,b)=>b.score-a.score).slice(0,6);
- $("#invlist").innerHTML=inv.map(i=>`<div class="mini"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a><small>${esc(i.outlet)} · ${ago(i.published_ts)} ago</small></div>`).join("")||'<div class="empty">None flagged.</div>';
+ $("#invlist").innerHTML=inv.map(i=>`<div class="mini"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a><small>${esc(i.outlet)} · ${tsSpan(i.published_ts)}</small></div>`).join("")||'<div class="empty">None flagged.</div>';
  $("#n-inv").textContent=wk.filter(i=>i.flags.includes("investigative")).length;$("#n-hd").textContent=wk.filter(i=>i.hochul).length;
  $$("#buzz li").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
  $$("#outlets li").forEach(el=>el.onclick=()=>{S.outlet=S.outlet===el.dataset.outlet?"":el.dataset.outlet;render()})}
@@ -188,7 +191,7 @@ window.addEventListener("hashchange",()=>{if(location.hash==="#review"){S.view="
 if(S.view==="review")$$(".nav button").forEach(x=>x.classList.remove("active"));
 $("#q").oninput=e=>{S.q=e.target.value;render()};
 $$("#flags li").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});
-load();
+load();setInterval(tick,60000);
 </script>
 </body>
 </html>
