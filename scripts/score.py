@@ -44,7 +44,9 @@ OUTLET_WEIGHT = {"New York Times": 10, "Fox News": -8, "Fox Business": -8, "FOX 
 # rewrite of an AG release) over paywalled ones that arrive via Google with neither (Newsday's own report).
 OUTLET_RANK = {"New York Times": 3, "Wall Street Journal": 2, "Newsday": 2, "Times Union": 2, "Daily News": 2,
     "Buffalo News": 2, "Politico": 2, "Politico NY Playbook": 2, "City & State": 2, "New York Focus": 2,
-    "NY State of Politics": 2, "Gothamist": 2, "The City": 2, "Syracuse.com": 1, "Spectrum News": 1, "Crain's New York": 1}
+    "NY State of Politics": 2, "Gothamist": 2, "The City": 2, "Syracuse.com": 1, "Spectrum News": 1, "Crain's New York": 1,
+    # syndicators and transcripts never lead: the original report does
+    "AOL.com": -2, "Yahoo": -2, "Yahoo News": -2, "MSN": -2, "Mirage News": -2, "Hoodline": -2, "NYC.gov": -1, "Daily Kos": -1}
 NYT_HOCHUL = 8          # on top of the outlet weight: the Times on the Governor is always worth reading
 HOCHUL_RE = re.compile(r"\bhochul\b|\bgovernor\b|\bgov\.")
 
