@@ -3,9 +3,12 @@ Mirrors the idea behind nycnewsengine.com: reward reporting depth and policy rel
 breaking/opinion/entertainment, boost stories where the Governor and the Legislature both appear."""
 import math, re
 
-INVESTIGATIVE = ["foil","freedom of information","records show","obtained by","documents show","internal","memo",
-    "audit","investigation","analysis of","data show","according to data","exclusive","emails show","filings show",
-    "review of","found that","comptroller","inspector general"]
+# The language of investigative reporting: records obtained and analyzed. Kept narrow on purpose. Earlier
+# versions included "investigation", "internal", "memo", "exclusive", "review of", "found that" and
+# "comptroller", which pulled in criminal investigations, Fox exclusives and every DiNapoli story.
+INVESTIGATIVE = ["foil","freedom of information","records show","records obtained","obtained by","documents show",
+    "documents obtained","audit","analysis of","data show","according to data","emails show","filings show",
+    "investigation found","investigation reveals","inspector general","whistleblower"]
 POLICY = ["budget","article vii","bill","veto","sign","chapter amendment","legislat","assembly","senate","governor",
     "hochul","heastie","stewart-cousins","medicaid","essential plan","housing","seqra","rent","mta","congestion",
     "child care","childcare","pre-k","bail","discovery","involuntary","prison","doccs","parole","climate","clcpa",
