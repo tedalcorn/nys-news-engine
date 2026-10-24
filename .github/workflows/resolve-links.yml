@@ -1,0 +1,65 @@
+name: Resolve Google News links
+
+# Google News RSS gives redirect links that dead-end for anyone signed into a Google Workspace account that
+# blocks Google News. Decoding them costs two requests each and Google throttles an IP after ~100 requests,
+# a limit shared with the RSS queries themselves, so this never runs on the Pi. Instead, every push of
+# items.json (the Pi refreshes at :00/:30) fans out to several runners, each with its own IP, and a merge
+# job commits docs/data/links.json for fetch.py to apply on its next run. Push triggers are not throttled
+# the way cron schedules are. The merge commit touches only links.json, so it does not retrigger this.
+on:
+  push:
+    paths: ["docs/data/items.json"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: resolve-links
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        k: [0, 1, 2, 3, 4, 5]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python scripts/gnlinks.py shard ${{ matrix.k }} 6 "$RUNNER_TEMP/shard-${{ matrix.k }}.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shard-${{ matrix.k }}
+          path: ${{ runner.temp }}/shard-${{ matrix.k }}.json
+          retention-days: 1
+
+  merge:
+    needs: shard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - uses: actions/download-artifact@v4
+        with:
+          path: ${{ runner.temp }}/shards
+      - name: Merge, commit, push (retry if a refresh pushed meanwhile)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            python scripts/gnlinks.py merge "$RUNNER_TEMP"/shards/*/*.json
+            git add docs/data/links.json
+            if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+            git commit -q -m "Resolve Google News links $(date -u +'%Y-%m-%d %H:%M')"
+            git push && exit 0
+            echo "push rejected, retrying ($i)"; sleep 20
+          done
+          exit 1

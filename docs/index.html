@@ -170,6 +170,9 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.
  $$("#buzz li").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
  $$("#outlets li").forEach(el=>el.onclick=()=>{S.outlet=S.outlet===el.dataset.outlet?"":el.dataset.outlet;render()})}
 async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json())])}catch(e){$("#meta").textContent="Could not load data.";return}
+ // Google News redirect links dead-end for Workspace accounts that block Google News; the resolve-links
+ // workflow swaps in publisher URLs within the hour, and a story stays hidden until that has happened.
+ ITEMS=ITEMS.filter(i=>!i.link.includes("news.google."));
  const iso=META.last_run_iso||(META.last_run||"").replace(" UTC","Z").replace(" ","T");
  let when=META.last_run;
  try{const d=new Date(iso);if(!isNaN(d))when=d.toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET"}catch(e){}

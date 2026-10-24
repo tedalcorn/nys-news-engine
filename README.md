@@ -78,11 +78,14 @@ Every Google News query carries a `when:Nd` operator. Without it Google returns 
 *relevant* hits, many of them months old, and recent items never surface (this is what made the
 Official tab go stale). Google also silently ignores `when:` on long OR chains, so fetch.py drops any
 Google News item older than 10 days (`GN_MAX_AGE_DAYS`) and the state-term queries are split in two. Google News links redirect through news.google.com; titles arrive with an
-" - Outlet" suffix that is stripped. `scripts/gnlinks.py` swaps the redirect for the publisher's URL (the original
+" - Outlet" suffix that is stripped. `scripts/gnlinks.py` resolves each redirect to the publisher's URL (the original
 stays in `gn_link`): the redirect is a dead end for anyone signed into a Google Workspace account that blocks
-Google News, and the real URL lets the extractor read the article. Google answers 429 after ~100 requests from
-one IP, and the limit is shared with the RSS queries, so decoding runs only on GitHub Actions (fresh IP each run,
-100 per run, stops at the first 429), never on the Pi. Items whose resolved URL is a `/sports/` or
+Google News, and the real URL lets the extractor read the article. Decoding costs two requests a link and
+Google throttles an IP after ~100 requests, a limit shared with the RSS queries, so it never runs on the Pi:
+the `resolve-links` workflow fires on every push of `items.json`, fans out to six runners (six IPs, 45 links
+each), and commits `docs/data/links.json`, which `fetch.py` applies on its next run. The page hides a story
+until its link is resolved, normally within the hour; `meta.unresolved_links` counts the backlog.
+Items whose resolved URL is a `/sports/` or
 `/entertainment/` path are dropped. Albany terms match at word starts (short ones as whole words): as bare
 substrings, "ed ra" (Assemblyman Ed Ra) matched "heated race".
 

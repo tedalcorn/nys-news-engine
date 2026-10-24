@@ -302,7 +302,7 @@ def _per_day(items, days=14):
     out = {}
     off = {"Governor's Office", "NY Senate", "NY Assembly"}
     for it in items:
-        if it.get("cid", it["id"]) != it["id"]: continue
+        if it.get("cid", it["id"]) != it["id"] or gnlinks.is_google(it["link"]): continue   # hidden until resolved
         d = dt.datetime.fromtimestamp(it["published_ts"], ET).strftime("%Y-%m-%d")
         o = out.setdefault(d, {"stories": 0, "official": 0})
         o["official" if it["outlet"] in off else "stories"] += 1
@@ -360,11 +360,11 @@ def main():
     for it in items:
         it["summary"] = dedupe_summary(it["title"], it.get("summary", ""), it.get("outlet", ""))
     # Google News links are redirects (and dead ends for anyone signed into a Workspace account that blocks
-    # Google News): swap in the publisher's URL, which also lets the extractor read the article.
-    # Never on the Pi: decodes count against the same Google limit as the RSS queries, and a throttled Pi loses
-    # every Google News source until it clears. Actions runners get a fresh IP each run.
+    # Google News). The resolve-links workflow decodes them on GitHub Actions into docs/data/links.json
+    # (never here: decoding counts against the same Google limit as the RSS queries, and a throttled Pi loses
+    # every Google source until it clears); apply that map, and the page hides whatever is still unresolved.
     try:
-        if RUNNER != "pi": gnlinks.run(items, NOW)
+        print(f"\ngnlinks: {gnlinks.apply(items)} links applied from links.json")
     except Exception as e:
         print(f"gnlinks step skipped: {type(e).__name__}: {e}")
     # with the real URL in hand, sections are visible: NY State of Politics carries Spectrum's wire sports
@@ -392,7 +392,8 @@ def main():
                 sources=log, outlets=sorted({i["outlet"] for i in items}),
                 tags=sorted({t for i in items for t in i["tags"]}),
                 paywall=pw, extracted=sum(1 for i in items if "extracted_ts" in i), runner=RUNNER,
-                per_day=_per_day(items), grouped_stories=grouped, gates=_gates(items))
+                per_day=_per_day(items), grouped_stories=grouped, gates=_gates(items),
+                unresolved_links=len(gnlinks.unresolved(items, NOW)))
     json.dump(meta, open(META, "w"), indent=1)
     print(f"\n{len(items)} items after dedupe ({grouped} multi-outlet stories); {len(fresh)} fetched this run.")
 
