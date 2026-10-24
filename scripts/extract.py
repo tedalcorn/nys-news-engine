@@ -26,7 +26,9 @@ SLEEP     = 0.8
 # domains we know sit behind a hard paywall - used as a fallback when the page won't tell us
 HARD_PAYWALL = {"nytimes.com","wsj.com","bloomberg.com","newsday.com","timesunion.com",
                 "nydailynews.com","politicopro.com","crainsnewyork.com","law360.com"}
-METERED      = {"politico.com","nypost.com","thecity.nyc","gothamist.com"}
+# Subscription meters we know of. NY Post, Politico news pages, The City and Gothamist are free: they were listed
+# here until 2026-10-24 and every story of theirs read "limited".
+METERED      = set()
 
 PAY_MARKERS = re.compile(
     r"subscribe to continue|already a subscriber|this content is for subscribers|"
@@ -42,8 +44,10 @@ def classify_paywall(host, status, html_text, words):
         return "hard"
     if re.search(r'"isAccessibleForFree"\s*:\s*(true|"True"|"true")', html_text or "", re.I):
         return "free"
-    if status in (401, 402, 403):
+    if status in (401, 402):
         return "hard" if host in HARD_PAYWALL else "metered"
+    if status == 403:        # bot block (PIX11, SILive, Syracuse.com, Playbook), not a paywall
+        return "hard" if host in HARD_PAYWALL else "unknown"
     if html_text and PAY_MARKERS.search(html_text):
         return "metered"
     if host in HARD_PAYWALL:
