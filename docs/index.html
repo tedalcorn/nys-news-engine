@@ -15,7 +15,7 @@ a{color:inherit}
 .wrap{max-width:1320px;margin:0 auto;padding:0 22px}
 /* masthead */
 .mast{border-bottom:3px double var(--fg);padding:22px 0 12px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.brand{font:700 34px/1 var(--serif);letter-spacing:-.01em}.brand em{font-style:normal;color:var(--accent)}
+.brand{display:block;font:700 34px/1 var(--serif);letter-spacing:-.01em;color:inherit;text-decoration:none}.brand em{font-style:normal;color:var(--accent)}
 .tag{font-size:12.5px;color:var(--muted);margin-top:6px;letter-spacing:.02em;text-transform:uppercase}
 .mast .right{text-align:right;font-size:12.5px;color:var(--muted);line-height:1.5}
 .mast .right b{display:block;color:var(--fg);font:600 15px var(--serif)}
@@ -85,7 +85,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 <body>
 <div class="wrap">
   <header class="mast">
-    <div><div class="brand">NYS <em>News</em> Engine</div><div class="tag">Albany · the Governor · the Legislature · ranked for reporting depth</div></div>
+    <div><a class="brand" href="./" title="Back to Picks, freshly loaded">NYS <em>News</em> Engine</a><div class="tag">Albany · the Governor · the Legislature · ranked for reporting depth</div></div>
     <div class="right"><span id="meta">loading…</span></div>
   </header>
   <nav class="nav">
