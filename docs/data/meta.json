@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-24 12:31 UTC",
- "last_run_iso": "2026-10-24T12:30:25Z",
- "total": 3167,
+ "last_run": "2026-10-24 13:01 UTC",
+ "last_run_iso": "2026-10-24T13:00:18Z",
+ "total": 3169,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
   "City & State (gnews)": "ok 10",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 7",
-  "NY State of Politics": "ok 10",
+  "NY State of Politics": "ok 2",
   "Newsday": "ok 22",
   "Daily News": "ok 3",
   "Times Union (gnews)": "ok 4",
@@ -20,7 +20,7 @@
   "New York Times": "ok 3",
   "New York Times (nyt)": "ok 15",
   "NY Post Politics": "ok 1",
-  "NY Post Metro": "ok 3",
+  "NY Post Metro": "ok 4",
   "The City": "ok 2",
   "Wall Street Journal": "ok 1",
   "Buffalo News": "ok 5",
@@ -35,10 +35,10 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 28",
-  "NY Senate": "ok 54",
+  "NY Senate": "ok 42",
   "NY Assembly": "ok 14",
-  "Google News: Hochul": "ok 90",
-  "Google News: Legislature": "ok 12",
+  "Google News: Hochul": "ok 91",
+  "Google News: Legislature": "ok 15",
   "Google News: Courts & statewide officials": "ok 19",
   "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 15"
@@ -568,12 +568,12 @@
   "Transit"
  ],
  "paywall": {
-  "free": 88,
-  "unknown": 2867,
+  "free": 89,
+  "unknown": 2868,
   "metered": 174,
   "hard": 38
  },
- "extracted": 361,
+ "extracted": 362,
  "runner": "pi",
  "per_day": {
   "2026-10-11": {
@@ -629,7 +629,7 @@
    "official": 14
   },
   "2026-10-24": {
-   "stories": 16,
+   "stories": 18,
    "official": 0
   }
  },
@@ -642,8 +642,8 @@
   "medicaid": 4,
   "state grant": 4,
   "senate district": 4,
+  "ballot question": 3,
   "Courts & statewide officials sweep": 3,
-  "ballot question": 2,
   "state police": 2,
   "unconstitutional": 2,
   "nyserda": 2,
