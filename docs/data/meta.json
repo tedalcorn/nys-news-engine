@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-24 11:00 UTC",
- "last_run_iso": "2026-10-24T10:59:59Z",
- "total": 3161,
+ "last_run": "2026-10-24 11:02 UTC",
+ "last_run_iso": "2026-10-24T11:01:46Z",
+ "total": 3162,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
   "City & State (gnews)": "ok 10",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 8",
-  "NY State of Politics": "ok 8",
+  "NY State of Politics": "ok 9",
   "Newsday": "ok 22",
   "Daily News": "ok 3",
   "Times Union (gnews)": "ok 5",
@@ -35,11 +35,11 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 28",
-  "NY Senate": "ok 41",
+  "NY Senate": "ok 55",
   "NY Assembly": "ok 14",
   "Google News: Hochul": "ok 90",
   "Google News: Legislature": "ok 15",
-  "Google News: Courts & statewide officials": "ok 19",
+  "Google News: Courts & statewide officials": "ok 20",
   "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 15"
  },
@@ -568,12 +568,12 @@
  ],
  "paywall": {
   "free": 87,
-  "unknown": 2862,
+  "unknown": 2863,
   "metered": 174,
   "hard": 38
  },
  "extracted": 360,
- "runner": "actions",
+ "runner": "pi",
  "per_day": {
   "2026-10-11": {
    "stories": 13,
@@ -628,7 +628,7 @@
    "official": 14
   },
   "2026-10-24": {
-   "stories": 13,
+   "stories": 14,
    "official": 0
   }
  },
@@ -639,8 +639,8 @@
   "Lawmakers sweep": 14,
   "second amendment": 5,
   "medicaid": 4,
+  "state grant": 4,
   "senate district": 4,
-  "state grant": 3,
   "Courts & statewide officials sweep": 3,
   "ballot question": 2,
   "state police": 2,
