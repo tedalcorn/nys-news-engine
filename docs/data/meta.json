@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-24 18:33 UTC",
- "last_run_iso": "2026-10-24T18:31:58Z",
- "total": 3136,
+ "last_run": "2026-10-24 19:02 UTC",
+ "last_run_iso": "2026-10-24T19:00:25Z",
+ "total": 3133,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
@@ -9,7 +9,7 @@
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 5",
   "NY State of Politics": "ok 8",
-  "Newsday": "ok 20",
+  "Newsday": "ok 21",
   "Daily News": "ok 2",
   "Times Union (gnews)": "ok 4",
   "Newsday (gnews)": "ok 17",
@@ -34,12 +34,12 @@
   "Citizens Budget Commission": "ok 3",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 14",
-  "Governor's Office (gnews)": "ok 23",
+  "Governor's Office (gnews)": "ok 21",
   "NY Senate": "ok 54",
   "NY Assembly": "ok 15",
-  "Google News: Hochul": "ok 87",
+  "Google News: Hochul": "ok 90",
   "Google News: Legislature": "ok 8",
-  "Google News: Courts & statewide officials": "ok 23",
+  "Google News: Courts & statewide officials": "ok 22",
   "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 13"
  },
@@ -569,13 +569,13 @@
   "Transit"
  ],
  "paywall": {
+  "hard": 356,
   "free": 172,
-  "unknown": 2572,
-  "hard": 357,
+  "unknown": 2570,
   "null": 32,
   "metered": 3
  },
- "extracted": 501,
+ "extracted": 468,
  "runner": "pi",
  "per_day": {
   "2026-10-11": {
@@ -583,65 +583,65 @@
    "official": 0
   },
   "2026-10-12": {
-   "stories": 17,
+   "stories": 25,
    "official": 3
   },
   "2026-10-13": {
-   "stories": 51,
+   "stories": 76,
    "official": 3
   },
   "2026-10-14": {
-   "stories": 51,
+   "stories": 72,
    "official": 7
   },
   "2026-10-15": {
-   "stories": 41,
+   "stories": 52,
    "official": 12
   },
   "2026-10-16": {
-   "stories": 22,
+   "stories": 26,
    "official": 12
   },
   "2026-10-17": {
-   "stories": 6,
+   "stories": 11,
    "official": 6
   },
   "2026-10-18": {
-   "stories": 16,
+   "stories": 17,
    "official": 5
   },
   "2026-10-19": {
-   "stories": 45,
+   "stories": 64,
    "official": 14
   },
   "2026-10-20": {
-   "stories": 64,
+   "stories": 85,
    "official": 19
   },
   "2026-10-21": {
-   "stories": 80,
+   "stories": 103,
    "official": 14
   },
   "2026-10-22": {
-   "stories": 90,
+   "stories": 115,
    "official": 16
   },
   "2026-10-23": {
-   "stories": 92,
+   "stories": 113,
    "official": 10
   },
   "2026-10-24": {
-   "stories": 24,
+   "stories": 31,
    "official": 1
   }
  },
- "grouped_stories": 275,
+ "grouped_stories": 142,
  "gates": {
   "letitia james": 21,
   "Lawmakers sweep": 15,
-  "suny": 14,
-  "senate district": 5,
+  "suny": 13,
   "second amendment": 5,
+  "senate district": 5,
   "medicaid": 4,
   "state grant": 4,
   "ballot question": 3,
@@ -652,14 +652,14 @@
   "ballot proposal": 1,
   "state senator": 1,
   "department of environmental conservation": 1,
-  "attorney general debate": 1,
   "attorney general race": 1,
-  "court of appeals": 1,
-  "board of elections": 1,
   "new york attorney general": 1,
+  "attorney general debate": 1,
   "struck down": 1,
+  "board of elections": 1,
+  "court of appeals": 1,
   "2nd amendment": 1,
   "public service commission": 1
  },
- "unresolved_links": 1149
+ "unresolved_links": 88
 }
