@@ -41,7 +41,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .lead .snip{color:var(--muted);font-size:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 /* story rows */
 .row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:11px 2px;border-bottom:1px solid var(--line)}
-.row .ttl{font:600 16.5px/1.3 var(--serif)}.row .ttl a{text-decoration:none}.row .ttl a:hover{text-decoration:underline}
+.rcol{cursor:help}.row .ttl{font:600 16.5px/1.3 var(--serif)}.row .ttl a{text-decoration:none}.row .ttl a:hover{text-decoration:underline}
 .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;color:var(--muted);margin-bottom:3px}
 .dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:1px}
 .outlet{font-weight:700;color:var(--fg);letter-spacing:.02em}
@@ -71,7 +71,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .side .mini{font-size:13px;line-height:1.35;padding:6px 0;border-bottom:1px dotted var(--line)}
 .side .mini:last-child{border-bottom:0}.side .mini a{text-decoration:none}.side .mini a:hover{text-decoration:underline}
 .side .mini small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
-.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:var(--muted);margin:-4px 0 8px}
+.legend{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted);margin:-4px 0 10px}.legend span{white-space:nowrap}
 .stale{color:#fff;background:#b3411f;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
 .empty{color:var(--muted);padding:30px 0}
 .more{margin-top:6px;font-size:12.5px;color:var(--muted)}.more summary{cursor:pointer}
@@ -100,21 +100,22 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <main id="main"></main>
     <aside class="side">
       <div class="box"><h3>Filters</h3><ul id="flags">
-        <li data-k="inv">Investigative signals <span class="n" id="n-inv"></span></li>
-        <li data-k="gl">Governor + Legislature <span class="n" id="n-gl"></span></li>
+        <li data-k="hh" title="The Governor is named in the headline">Hochul in headline <span class="n" id="n-hh"></span></li>
+        <li data-k="hd" title="The Governor is named in the headline or the summary (dek)">Hochul in headline or dek <span class="n" id="n-hd"></span></li>
+        <li data-k="inv" title="Headline or summary mentions records, FOIL, audits, data, documents or internal emails">Records-based reporting <span class="n" id="n-inv"></span></li>
         <li data-k="op" class="on">Hide opinion</li>
       </ul></div>
-      <div class="box"><h3>Buzzing this week</h3><ul id="buzz" class="buzz"></ul></div>
-      <div class="box"><h3>Outlets</h3>
+      <div class="box"><h3>Filter by topic</h3><ul id="buzz" class="buzz"></ul></div>
+      <div class="box"><h3>Filter by outlet</h3>
         <div class="legend"><span><i class="dot" style="background:#b3411f"></i>Albany specialist</span><span><i class="dot" style="background:#1c4587"></i>General outlet</span><span><i class="dot" style="background:#5b7f3a"></i>Official / advocacy</span></div>
         <ul id="outlets"></ul></div>
-      <div class="box"><h3>Investigative, this week</h3><div id="invlist"></div></div>
+      <div class="box"><h3>Records-based, this week</h3><div id="invlist"></div></div>
     </aside>
   </div>
   <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; the Governor's releases come straight from governor.ny.gov. Refreshes every 30 minutes. Coverage of the same story from several outlets is folded under one headline. Dot color is the source tier; scores are heuristic.</div>
 </div>
 <script>
-const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",inv:false,gl:false,op:true,gate:""};
+const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",inv:false,hh:false,hd:false,op:true,gate:""};
 let ITEMS=[],META={};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -132,14 +133,15 @@ function chips(i){return `<div class="chips">${i.tags.map(t=>`<span class="chip"
 // The same story from other outlets, folded under the lead (grouping is done in scripts/cluster.py)
 function more(i){if(!i.more||!i.more.length)return "";const outs=[...new Set(i.more.map(x=>x.outlet))];
  return `<details class="more"><summary>+${i.more.length} more · ${esc(outs.slice(0,4).join(", "))}${outs.length>4?` and ${outs.length-4} others`:""}</summary>${[...i.more].sort((a,b)=>a.published_ts-b.published_ts).map(x=>`<div><span class="outlet">${esc(x.outlet)}</span> · <a href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.title)}</a> · ${ago(x.published_ts)} ago</div>`).join("")}</details>`}
-function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div><div class="rcol"><b>${i.score.toFixed(0)}</b>score</div></div>`}
+const SCORE_HELP="How the score works. Every story starts from its source tier: 30 for an Albany specialist (New York Focus, Times Union, City & State, NY State of Politics), 20 for a general outlet, 12 for an official release or advocacy group. The New York Times gets 10 more; the national Fox brands get 8 less. Points are added for signs of depth: records-based reporting terms such as FOIL, audit, documents show or data (up to 32), policy vocabulary (up to 18), a story touching both the Governor and the Legislature (12), Hochul named in the headline (5, plus 8 more if it is the Times), and length when known (3 at 700 words, 6 at 1,200, 12 at 2,000). Points are taken off for opinion (15), live or breaking formats (8), sports and entertainment (30) and cross-outlet Google sweeps (12). A freshness bonus of up to 20 fades over three days, so a strong story from Monday sits below a comparable one from today. Roughly: under 30 is routine, 40 to 60 is worth a look, above 60 is a must-read. All of it is keyword heuristics, not editorial judgment.";
+function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div><div class="rcol" title="${esc(SCORE_HELP)}"><b>${i.score.toFixed(0)}</b>score</div></div>`}
 function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div>`}
 // One entry per story: items sharing a cid fold under the best-scoring one that survives the current filters
 function stories(list){const m=new Map();for(const i of list){const k=i.cid||i.id;if(!m.has(k))m.set(k,[]);m.get(k).push(i)}
  return [...m.values()].map(g=>{g.sort((a,b)=>b.score-a.score);return {...g[0],more:g.slice(1)}})}
 // Browsing views show the last week; a search covers the whole archive (180 days). Every word must match.
 function base(){const q=S.q.toLowerCase().split(/\s+/).filter(Boolean),cut=q.length?0:Date.now()/1000-S.range*86400;
- return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.inv||i.flags.includes("investigative"))&&(!S.gl||i.flags.includes("gov+leg"))&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
+ return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.inv||i.flags.includes("investigative"))&&(!S.hh||i.hochul==="headline")&&(!S.hd||i.hochul)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
 function render(){const f=base();let html="";
  if(S.q.trim()){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Search <span>${l.length} ${l.length===1?"story":"stories"} in the archive, newest first</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="picks"){const now=Date.now()/1000;const p=stories(f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet))).sort((a,b)=>b.score-a.score);
@@ -166,7 +168,7 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.
  $("#outlets").innerHTML=oo.map(([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}"><span><i class="dot" style="background:${col(o)}"></i>${esc(o)}</span><span class="n">${n}</span></li>`).join("");
  const inv=wk.filter(i=>i.flags.includes("investigative")).sort((a,b)=>b.score-a.score).slice(0,6);
  $("#invlist").innerHTML=inv.map(i=>`<div class="mini"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a><small>${esc(i.outlet)} · ${ago(i.published_ts)} ago</small></div>`).join("")||'<div class="empty">None flagged.</div>';
- $("#n-inv").textContent=wk.filter(i=>i.flags.includes("investigative")).length;$("#n-gl").textContent=wk.filter(i=>i.flags.includes("gov+leg")).length;
+ $("#n-inv").textContent=wk.filter(i=>i.flags.includes("investigative")).length;$("#n-hh").textContent=wk.filter(i=>i.hochul==="headline").length;$("#n-hd").textContent=wk.filter(i=>i.hochul).length;
  $$("#buzz li").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
  $$("#outlets li").forEach(el=>el.onclick=()=>{S.outlet=S.outlet===el.dataset.outlet?"":el.dataset.outlet;render()})}
 async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json())])}catch(e){$("#meta").textContent="Could not load data.";return}
@@ -185,7 +187,9 @@ $$(".nav button").forEach(b=>b.onclick=()=>{S.view=b.dataset.view;if(location.ha
 window.addEventListener("hashchange",()=>{if(location.hash==="#review"){S.view="review";$$(".nav button").forEach(x=>x.classList.remove("active"));render()}});
 if(S.view==="review")$$(".nav button").forEach(x=>x.classList.remove("active"));
 $("#q").oninput=e=>{S.q=e.target.value;render()};
-$$("#flags li").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});
+$$("#flags li").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];
+ if(S[k]&&(k==="hh"||k==="hd")){const o=k==="hh"?"hd":"hh";S[o]=false;$(`#flags li[data-k=${o}]`).classList.remove("on")}   // the two Hochul filters are alternatives
+ el.classList.toggle("on",S[k]);render()});
 load();
 </script>
 </body>

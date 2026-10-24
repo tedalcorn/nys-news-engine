@@ -33,6 +33,18 @@ TAGS = {
  "Economy & labor":["minimum wage","labor","union","workforce","economic development","empire state development","business","jobs"],
 }
 
+# Outlet adjustments on top of tier (Chamber colleagues, 2026-10-24): the Times matters most, Fox a little less.
+# A Fox 5 New York local-news segment is not docked; the national Fox brands are.
+OUTLET_WEIGHT = {"New York Times": 10, "Fox News": -8, "Fox Business": -8, "FOX One": -8}
+NYT_HOCHUL = 8          # on top of the outlet weight: the Times on the Governor is always worth reading
+HOCHUL_RE = re.compile(r"\bhochul\b|\bgovernor\b|\bgov\.")
+
+def hochul_where(item):
+    """'headline' if the Governor is named in the headline, 'dek' if only in the summary, else None."""
+    if HOCHUL_RE.search(item.get("title", "").lower()): return "headline"
+    if HOCHUL_RE.search(item.get("summary", "").lower()): return "dek"
+    return None
+
 def is_op_head(text): return bool(_hits(text, OPINION))
 
 def _hits(text, terms): return sum(1 for t in terms if t in text)
@@ -46,7 +58,10 @@ def score(item, now_ts):
     pol = min(_hits(text, POLICY), 6);        s += pol*3
     gov = _hits(text, GOV_TERMS) > 0; leg = _hits(text, LEG_TERMS) > 0
     if gov and leg: s += 12
-    if _hits(item.get("title","").lower(), ["hochul","governor"]) and not is_op_head(text): s += 5   # she is the subject
+    hoch = hochul_where(item)
+    if hoch == "headline" and not is_op_head(text): s += 5   # she is the subject
+    s += OUTLET_WEIGHT.get(item.get("outlet", ""), 0)
+    if hoch and item.get("outlet") == "New York Times": s += NYT_HOCHUL
     is_op = bool(_hits(text, OPINION)) or bool(item.get("opinion"))
     if is_op:  s -= 15
     if _hits(text, BREAKING): s -= 8
@@ -63,4 +78,5 @@ def score(item, now_ts):
     if inv: flags.append("investigative")
     if gov and leg: flags.append("gov+leg")
     if is_op: flags.append("opinion")
+    item["hochul"] = hoch
     return round(s, 1), tags, flags
