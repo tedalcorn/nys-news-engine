@@ -39,6 +39,12 @@ TAGS = {
 # Outlet adjustments on top of tier (Chamber colleagues, 2026-10-24): the Times matters most, Fox a little less.
 # A Fox 5 New York local-news segment is not docked; the national Fox brands are.
 OUTLET_WEIGHT = {"New York Times": 10, "Fox News": -8, "Fox Business": -8, "FOX One": -8}
+# Which outlet leads a grouped story (cluster.py): tier first, then this rank, then score. Without it the lead
+# was whichever copy scored highest, which favored free outlets with deks and readable bodies (FingerLakes1's
+# rewrite of an AG release) over paywalled ones that arrive via Google with neither (Newsday's own report).
+OUTLET_RANK = {"New York Times": 3, "Wall Street Journal": 2, "Newsday": 2, "Times Union": 2, "Daily News": 2,
+    "Buffalo News": 2, "Politico": 2, "Politico NY Playbook": 2, "City & State": 2, "New York Focus": 2,
+    "NY State of Politics": 2, "Gothamist": 2, "The City": 2, "Syracuse.com": 1, "Spectrum News": 1, "Crain's New York": 1}
 NYT_HOCHUL = 8          # on top of the outlet weight: the Times on the Governor is always worth reading
 HOCHUL_RE = re.compile(r"\bhochul\b|\bgovernor\b|\bgov\.")
 

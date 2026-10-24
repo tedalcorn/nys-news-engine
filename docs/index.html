@@ -137,7 +137,8 @@ function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a 
 function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div>`}
 // One entry per story: items sharing a cid fold under the best-scoring one that survives the current filters
 function stories(list){const m=new Map();for(const i of list){const k=i.cid||i.id;if(!m.has(k))m.set(k,[]);m.get(k).push(i)}
- return [...m.values()].map(g=>{g.sort((a,b)=>b.score-a.score);return {...g[0],more:g.slice(1)}})}
+ return [...m.values()].map(g=>{const lead=g.find(x=>x.id===x.cid)||g[0];const more=g.filter(x=>x!==lead).sort((a,b)=>b.score-a.score);
+  return {...lead,score:Math.max(...g.map(x=>x.score)),more}})}   // lead = best outlet (cluster.py); score = the group's best
 // Browsing views show the last week; a search covers the whole archive (180 days). Every word must match.
 function base(){const q=S.q.toLowerCase().split(/\s+/).filter(Boolean),cut=q.length?0:Date.now()/1000-S.range*86400;
  return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.inv||i.flags.includes("investigative"))&&(!S.hd||i.hochul)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}

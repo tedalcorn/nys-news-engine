@@ -12,6 +12,7 @@ similarity to that story's centroid clears THRESHOLD, else starts a new story. T
 week of archive: 0.28 began merging unrelated items, 0.36 split the 2-K announcement four ways."""
 import math, re, html
 from collections import Counter
+from score import OUTLET_RANK
 
 THRESHOLD = 0.32
 WINDOW_H = 72
@@ -54,7 +55,8 @@ def eligible(it):
 
 def assign(items):
     """Set it["cid"] on every item (its story's lead) and it["n_cov"] (outlets covering that story).
-    The lead is the highest-scoring member, so it must run after scoring."""
+    The lead is the member from the best outlet (tier, then OUTLET_RANK), score breaking ties; the page
+    ranks the story by its best member's score, so a strong copy still lifts the group."""
     df = Counter()
     for it in items: df.update(set(tokens(it.get("title", ""))))
     N = max(len(items), 1)
@@ -84,7 +86,7 @@ def assign(items):
     for s in stories:
         if len(s["m"]) < 2: continue
         multi += 1
-        lead = max(s["m"], key=lambda x: (x.get("score", 0), -x["published_ts"]))
+        lead = max(s["m"], key=lambda x: (-x.get("tier", 2), OUTLET_RANK.get(x.get("outlet"), 0), x.get("score", 0), -x["published_ts"]))
         n = len({x["outlet"] for x in s["m"]})
         for x in s["m"]: x["cid"], x["n_cov"] = lead["id"], n
     return multi
