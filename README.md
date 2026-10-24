@@ -93,11 +93,11 @@ substrings, "ed ra" (Assemblyman Ed Ra) matched "heated race".
 
 ## Scoring (`scripts/score.py`)
 
-Outlet tier (30/20/12; the Times +10, national Fox brands −8, `OUTLET_WEIGHT`) + investigative signals (FOIL, records, audit, obtained, data show…; up to 32)
+Outlet tier (30/20/12; the Times +6, national Fox brands −8, `OUTLET_WEIGHT`) + investigative signals (FOIL, records, audit, obtained, data show…; up to 32)
 + policy relevance (up to 18) + 12 if both the Governor and the Legislature appear − 15 opinion
 − 8 breaking/live − 30 sports/entertainment + a 20-point recency term decaying over three days
 + a long-form bonus (+3 at 700 words, +6 at 1,200, +12 at 2,000; the NYT API word count is kept over the
-paywall stub the extractor sees) + 5 when the headline names Hochul or the governor (+8 more if the outlet is the Times). Each item carries
+paywall stub the extractor sees) + 5 when the headline names Hochul or the governor (+6 more if the outlet is the Times; the Picks lead cards also allow at most two per outlet). Each item carries
 `hochul` = `headline` / `dek` / null, which drives the sidebar's two Hochul filters. The page shows the full
 recipe as a rollover on any score. Paywall status falls back
 to the outlet's known policy (`HARD_PAYWALL` / `METERED` in `extract.py`) for items never fetched. Topic tags come from keyword lists.

@@ -148,8 +148,11 @@ function base(){const q=S.q.toLowerCase().split(/\s+/).filter(Boolean),cut=q.len
 function render(){const f=base();let html="";
  if(S.q.trim()){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Search <span>${l.length} ${l.length===1?"story":"stories"} in the archive, newest first</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="picks"){const now=Date.now()/1000;const p=stories(f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet))).sort((a,b)=>b.score-a.score);
-  html+=`<h2 class="sec">Today's picks <span>last 72h, by score</span></h2>`;html+=p.length?`<div class="picks">${p.slice(0,5).map(lead).join("")}</div>`:'<div class="empty">Nothing yet.</div>';
-  html+=`<h2 class="sec">More <span>${Math.max(0,p.length-5)}</span></h2>`+p.slice(5,60).map(row).join("")}
+  // lead cards: at most two per outlet, so one strong outlet cannot fill the top of the page; the rest flow into More
+  const top=[],per={};for(const i of p){if(top.length>=5)break;if((per[i.outlet]||0)>=2)continue;per[i.outlet]=(per[i.outlet]||0)+1;top.push(i)}
+  const rest=p.filter(i=>!top.includes(i));
+  html+=`<h2 class="sec">Today's picks <span>last 72h, by score</span></h2>`;html+=top.length?`<div class="picks">${top.map(lead).join("")}</div>`:'<div class="empty">Nothing yet.</div>';
+  html+=`<h2 class="sec">More <span>${rest.length}</span></h2>`+rest.slice(0,55).map(row).join("")}
  else if(S.view==="latest"){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Latest <span>${l.length} stories</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="missing"){const cut=Date.now()/1000-30*86400;
   const locked=ITEMS.filter(i=>i.published_ts>=cut&&(i.paywall==="hard"||i.paywall==="metered")&&!i.flags.includes("opinion"));
