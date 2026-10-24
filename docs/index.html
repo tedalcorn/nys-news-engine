@@ -94,8 +94,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <button data-view="official">Official</button>
     <button data-view="missing">Paywalled</button>
     <span class="sp"></span>
-    <input type="search" id="q" placeholder="Search…">
-    <select id="range"><option value="2">48h</option><option value="7" selected>7 days</option><option value="30">30 days</option><option value="9999">180 days</option></select>
+    <input type="search" id="q" placeholder="Search the archive…">
   </nav>
   <div class="grid">
     <main id="main"></main>
@@ -138,10 +137,12 @@ function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a hre
 // One entry per story: items sharing a cid fold under the best-scoring one that survives the current filters
 function stories(list){const m=new Map();for(const i of list){const k=i.cid||i.id;if(!m.has(k))m.set(k,[]);m.get(k).push(i)}
  return [...m.values()].map(g=>{g.sort((a,b)=>b.score-a.score);return {...g[0],more:g.slice(1)}})}
-function base(){const cut=Date.now()/1000-S.range*86400,q=S.q.toLowerCase();
- return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.inv||i.flags.includes("investigative"))&&(!S.gl||i.flags.includes("gov+leg"))&&(!S.op||!i.flags.includes("opinion"))&&(!q||(i.title+" "+i.summary).toLowerCase().includes(q)))}
+// Browsing views show the last week; a search covers the whole archive (180 days). Every word must match.
+function base(){const q=S.q.toLowerCase().split(/\s+/).filter(Boolean),cut=q.length?0:Date.now()/1000-S.range*86400;
+ return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.inv||i.flags.includes("investigative"))&&(!S.gl||i.flags.includes("gov+leg"))&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
 function render(){const f=base();let html="";
- if(S.view==="picks"){const now=Date.now()/1000;const p=stories(f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet))).sort((a,b)=>b.score-a.score);
+ if(S.q.trim()){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Search <span>${l.length} ${l.length===1?"story":"stories"} in the archive, newest first</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
+ else if(S.view==="picks"){const now=Date.now()/1000;const p=stories(f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet))).sort((a,b)=>b.score-a.score);
   html+=`<h2 class="sec">Today's picks <span>last 72h, by score</span></h2>`;html+=p.length?`<div class="picks">${p.slice(0,5).map(lead).join("")}</div>`:'<div class="empty">Nothing yet.</div>';
   html+=`<h2 class="sec">More <span>${Math.max(0,p.length-5)}</span></h2>`+p.slice(5,60).map(row).join("")}
  else if(S.view==="latest"){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Latest <span>${l.length} stories</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
@@ -149,13 +150,7 @@ function render(){const f=base();let html="";
   const locked=ITEMS.filter(i=>i.published_ts>=cut&&(i.paywall==="hard"||i.paywall==="metered")&&!i.flags.includes("opinion"));
   const med=(()=>{const a=ITEMS.filter(i=>i.published_ts>=cut).map(i=>i.score).sort((x,y)=>x-y);return a.length?a[Math.floor(a.length/2)]:0})();
   const worth=locked.filter(i=>i.score>=med);
-  const by={};for(const i of worth){(by[i.outlet]=by[i.outlet]||[]).push(i)}
-  const rows=Object.entries(by).sort((a,b)=>b[1].length-a[1].length);
-  html+=`<h2 class="sec">Behind a paywall <span>last 30 days, ranked above the median story (${med.toFixed(0)}) — what a subscription would buy you</span></h2>`;
-  if(!rows.length){html+='<div class="empty">Nothing paywalled above the median yet — the extractor only classifies stories it has fetched.</div>'}
-  for(const [outlet,list] of rows){const inv=list.filter(i=>i.flags.includes("investigative")).length;
-    html+=`<div class="miss"><b>${esc(outlet)}</b><span>${list.length} stor${list.length===1?"y":"ies"}${inv?` · ${inv} investigative`:""}</span></div>`}
-  if(rows.length){html+=`<h2 class="sec">The stories <span>${worth.length}</span></h2>`+worth.sort((a,b)=>b.score-a.score).slice(0,60).map(row).join("")}}
+  html+=`<h2 class="sec">Paywalled <span>last 30 days, above the median score · ${worth.length}</span></h2>`+(worth.length?worth.sort((a,b)=>b.score-a.score).slice(0,60).map(row).join(""):'<div class="empty">Nothing paywalled above the median yet.</div>')}
  else if(S.view==="review"){const cut=Date.now()/1000-7*86400;
   const g=ITEMS.filter(i=>i.gate&&i.published_ts>=cut&&(!S.gate||i.gate===S.gate)).sort((a,b)=>b.published_ts-a.published_ts);
   const tally=Object.entries(META.gates||{});
@@ -186,7 +181,7 @@ $$(".nav button").forEach(b=>b.onclick=()=>{S.view=b.dataset.view;if(location.ha
 // #review (not in the nav): what the wider keyword gate let in
 window.addEventListener("hashchange",()=>{if(location.hash==="#review"){S.view="review";$$(".nav button").forEach(x=>x.classList.remove("active"));render()}});
 if(S.view==="review")$$(".nav button").forEach(x=>x.classList.remove("active"));
-$("#q").oninput=e=>{S.q=e.target.value;render()};$("#range").onchange=e=>{S.range=+e.target.value;render()};
+$("#q").oninput=e=>{S.q=e.target.value;render()};
 $$("#flags li").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});
 load();
 </script>
