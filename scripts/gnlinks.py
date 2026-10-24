@@ -22,7 +22,7 @@ LINKS = os.path.join(ROOT, "docs", "data", "links.json")
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
 PER_SHARD = 45     # ~90 requests: under the 429 threshold for a fresh IP
-MAX_AGE_D = 10     # older Google items fall off the page anyway
+MAX_AGE_D = 180    # the whole archive: the page hides unresolved items and search covers 180 days
 MAX_TRIES = 4      # failures that are not 429 (page without a signature): give up after this many runs
 SLEEP = 1.0
 
