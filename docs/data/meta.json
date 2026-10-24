@@ -1,6 +1,6 @@
 {
- "last_run": "2026-10-24 22:29 UTC",
- "last_run_iso": "2026-10-24T22:28:49Z",
+ "last_run": "2026-10-24 22:31 UTC",
+ "last_run_iso": "2026-10-24T22:30:28Z",
  "total": 3151,
  "sources": {
   "New York Focus": "ok 49",
@@ -34,14 +34,14 @@
   "Citizens Budget Commission": "ok 2",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 20",
-  "NY Senate": "ok 54",
+  "Governor's Office (gnews)": "ok 24",
+  "NY Senate": "ok 53",
   "NY Assembly": "ok 15",
-  "Google News: Hochul": "ok 91",
+  "Google News: Hochul": "ok 90",
   "Google News: Legislature": "ok 8",
   "Google News: Courts & statewide officials": "ok 22",
   "Google News: State agencies": "ok 4",
-  "Google News: Lawmakers": "ok 5"
+  "Google News: Lawmakers": "ok 11"
  },
  "outlets": [
   "- Emerson Polling",
@@ -578,7 +578,7 @@
   "metered": 4
  },
  "extracted": 513,
- "runner": "actions",
+ "runner": "pi",
  "per_day": {
   "2026-10-11": {
    "stories": 13,
