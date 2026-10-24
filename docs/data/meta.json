@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-24 15:01 UTC",
- "last_run_iso": "2026-10-24T15:00:19Z",
- "total": 3171,
+ "last_run": "2026-10-24 15:31 UTC",
+ "last_run_iso": "2026-10-24T15:30:13Z",
+ "total": 3174,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
@@ -20,7 +20,7 @@
   "New York Times": "ok 3",
   "New York Times (nyt)": "ok 15",
   "NY Post Politics": "ok 1",
-  "NY Post Metro": "ok 4",
+  "NY Post Metro": "ok 5",
   "The City": "ok 2",
   "Wall Street Journal": "ok 1",
   "Buffalo News": "ok 5",
@@ -34,7 +34,7 @@
   "Citizens Budget Commission": "ok 3",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 28",
+  "Governor's Office (gnews)": "ok 27",
   "NY Senate": "ok 54",
   "NY Assembly": "ok 14",
   "Google News: Hochul": "ok 91",
@@ -569,12 +569,12 @@
   "Transit"
  ],
  "paywall": {
-  "free": 89,
-  "unknown": 2870,
+  "free": 91,
+  "unknown": 2871,
   "metered": 174,
   "hard": 38
  },
- "extracted": 362,
+ "extracted": 364,
  "runner": "pi",
  "per_day": {
   "2026-10-11": {
@@ -610,7 +610,7 @@
    "official": 5
   },
   "2026-10-19": {
-   "stories": 46,
+   "stories": 47,
    "official": 14
   },
   "2026-10-20": {
@@ -630,11 +630,11 @@
    "official": 14
   },
   "2026-10-24": {
-   "stories": 20,
+   "stories": 22,
    "official": 0
   }
  },
- "grouped_stories": 277,
+ "grouped_stories": 276,
  "gates": {
   "letitia james": 15,
   "suny": 14,
