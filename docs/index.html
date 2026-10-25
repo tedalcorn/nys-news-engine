@@ -101,20 +101,19 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <aside class="side">
       <div class="box"><h3>Filters</h3><ul id="flags">
         <li data-k="hd" title="The Governor is named in the headline or the summary">Centered on GKH <span class="n" id="n-hd"></span></li>
-        <li data-k="inv" title="Headline or summary uses the language of investigative reporting: FOIL, records obtained, documents show, audit, data analysis">Investigative reporting <span class="n" id="n-inv"></span></li>
+        <li data-k="d1" title="Only stories published in the last 24 hours">Last 24 hours <span class="n" id="n-d1"></span></li>
         <li data-k="op" class="on">Hide opinion</li>
       </ul></div>
       <div class="box"><h3>Filter by topic</h3><ul id="buzz" class="buzz"></ul></div>
       <div class="box"><h3>Filter by outlet</h3>
         <div class="legend"><span><i class="dot" style="background:#b3411f"></i>Albany specialist</span><span><i class="dot" style="background:#1c4587"></i>General outlet</span><span><i class="dot" style="background:#5b7f3a"></i>Official / advocacy</span></div>
         <ul id="outlets"></ul></div>
-      <div class="box"><h3>Investigative, this week</h3><div id="invlist"></div></div>
     </aside>
   </div>
   <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; the Governor's releases come straight from governor.ny.gov. Refreshes every 30 minutes. Identical stories carried by several outlets are folded under one headline; an "N outlets" chip marks a story others are also reporting. Dot color is the source tier; scores are heuristic.</div>
 </div>
 <script>
-const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",inv:false,hd:false,op:true,gate:""};
+const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",d1:false,hd:false,op:true,gate:""};
 let ITEMS=[],META={};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -135,7 +134,7 @@ function chips(i){return `<div class="chips">${i.n_cov>1?`<span class="chip flag
 // The same story from other outlets, folded under the lead (grouping is done in scripts/cluster.py)
 function more(i){if(!i.more||!i.more.length)return "";const outs=[...new Set(i.more.map(x=>x.outlet))];
  return `<details class="more"><summary>+${i.more.length} more · ${esc(outs.slice(0,4).join(", "))}${outs.length>4?` and ${outs.length-4} others`:""}</summary>${[...i.more].sort((a,b)=>a.published_ts-b.published_ts).map(x=>`<div><span class="outlet">${esc(x.outlet)}</span> · <a href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.title)}</a> · ${tsSpan(x.published_ts)}</div>`).join("")}</details>`}
-const SCORE_HELP="A rough guide to relevance, not a judgment. The score elevates stories from outlets that focus on state policy, stories whose language suggests investigative reporting or policy substance, stories centered on the Governor and other key state officials, stories several outlets are reporting at once, and longer pieces. It diminishes opinion, live or breaking formats, sports and entertainment, and loosely matched stories swept in from across the web. Freshness adds a bonus that fades over three days. Roughly: under 30 is routine, 40 to 60 worth a look, above 60 a must-read.";
+const SCORE_HELP="A rough guide to relevance, not a judgment. The score elevates stories from outlets that focus on state policy, stories whose language suggests policy substance, stories centered on the Governor and other key state officials, stories several outlets are reporting at once, and longer pieces. It diminishes opinion, live or breaking formats, sports and entertainment, and loosely matched stories swept in from across the web. Freshness adds a bonus that halves about every 17 hours. Roughly: under 30 is routine, 40 to 60 worth a look, above 60 a must-read.";
 function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div><div class="rcol" data-tip="${esc(SCORE_HELP)}"><b>${i.score.toFixed(0)}</b>score</div></div>`}
 function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div>`}
 // One entry per story: items sharing a cid fold under the best-scoring one that survives the current filters
@@ -143,15 +142,15 @@ function stories(list){const m=new Map();for(const i of list){const k=i.cid||i.i
  return [...m.values()].map(g=>{const lead=g.find(x=>x.id===x.cid)||g[0];const more=g.filter(x=>x!==lead).sort((a,b)=>b.score-a.score);
   return {...lead,score:Math.max(...g.map(x=>x.score)),more}})}   // lead = best outlet (cluster.py); score = the group's best
 // Browsing views show the last week; a search covers the whole archive (180 days). Every word must match.
-function base(){const q=S.q.toLowerCase().split(/\s+/).filter(Boolean),cut=q.length?0:Date.now()/1000-S.range*86400;
- return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.inv||i.flags.includes("investigative"))&&(!S.hd||i.hochul)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
+function base(){const q=S.q.toLowerCase().split(/\s+/).filter(Boolean),cut=S.d1?Date.now()/1000-86400:q.length?0:Date.now()/1000-S.range*86400;
+ return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.hd||i.hochul)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
 function render(){const f=base();let html="";
  if(S.q.trim()){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Search <span>${l.length} ${l.length===1?"story":"stories"} in the archive, newest first</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="picks"){const now=Date.now()/1000;const p=stories(f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet))).sort((a,b)=>b.score-a.score);
   // lead cards: at most two per outlet, so one strong outlet cannot fill the top of the page; the rest flow into More
   const top=[],per={};for(const i of p){if(top.length>=5)break;if((per[i.outlet]||0)>=2)continue;per[i.outlet]=(per[i.outlet]||0)+1;top.push(i)}
   const rest=p.filter(i=>!top.includes(i));
-  html+=`<h2 class="sec">Today's picks <span>last 72h, by score</span></h2>`;html+=top.length?`<div class="picks">${top.map(lead).join("")}</div>`:'<div class="empty">Nothing yet.</div>';
+  html+=`<h2 class="sec">Today's picks <span>${S.d1?"last 24h":"last 72h"}, by score</span></h2>`;html+=top.length?`<div class="picks">${top.map(lead).join("")}</div>`:'<div class="empty">Nothing yet.</div>';
   html+=`<h2 class="sec">More <span>${rest.length}</span></h2>`+rest.slice(0,55).map(row).join("")}
  else if(S.view==="latest"){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Latest <span>${l.length} stories</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="missing"){const cut=Date.now()/1000-30*86400;
@@ -172,9 +171,7 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.
  $("#buzz").innerHTML=tt.map(([t,n])=>`<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}"><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div><div class="bar"><i style="width:${Math.round(100*n/mx)}%"></i></div></li>`).join("");
  const oc={};for(const i of wk)oc[i.outlet]=(oc[i.outlet]||0)+1;const oo=Object.entries(oc).sort((a,b)=>b[1]-a[1]).slice(0,16);
  $("#outlets").innerHTML=oo.map(([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}"><span><i class="dot" style="background:${col(o)}"></i>${esc(o)}</span><span class="n">${n}</span></li>`).join("");
- const inv=wk.filter(i=>i.flags.includes("investigative")).sort((a,b)=>b.score-a.score).slice(0,6);
- $("#invlist").innerHTML=inv.map(i=>`<div class="mini"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a><small>${esc(i.outlet)} · ${tsSpan(i.published_ts)}</small></div>`).join("")||'<div class="empty">None flagged.</div>';
- $("#n-inv").textContent=wk.filter(i=>i.flags.includes("investigative")).length;$("#n-hd").textContent=wk.filter(i=>i.hochul).length;
+ $("#n-d1").textContent=stories(wk.filter(i=>i.published_ts>=Date.now()/1000-86400)).length;$("#n-hd").textContent=wk.filter(i=>i.hochul).length;
  $$("#buzz li").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
  $$("#outlets li").forEach(el=>el.onclick=()=>{S.outlet=S.outlet===el.dataset.outlet?"":el.dataset.outlet;render()})}
 async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json())])}catch(e){$("#meta").textContent="Could not load data.";return}

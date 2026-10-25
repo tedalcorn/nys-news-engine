@@ -67,8 +67,8 @@ def score(item, now_ts):
     text = (item.get("title","") + " " + item.get("summary","")).lower()
     tier = item.get("tier", 2)
     s = {1:30, 2:20, 3:12}.get(tier, 15)
-    inv_head = _hits(text, INVESTIGATIVE)
-    inv = min(inv_head + item.get("inv_body", 0), 4); s += inv*8
+    # No investigative bonus (10/25): the INVESTIGATIVE phrases flagged ~2 real records stories in 22 a week and
+    # added up to +32, the largest term, to campaign coverage and AG releases. extract.py still counts inv_body.
     pol = min(sum(1 for r in POLICY_RE if r.search(text)), 6); s += pol*3
     gov = _hits(text, GOV_TERMS) > 0; leg = _hits(text, LEG_TERMS) > 0
     if gov and leg: s += 12
@@ -90,7 +90,6 @@ def score(item, now_ts):
     elif w >= 700: s += 3
     tags = [k for k, terms in TAGS.items() if _hits(text, terms)]
     flags = []
-    if inv: flags.append("investigative")
     if gov and leg: flags.append("gov+leg")
     if is_op: flags.append("opinion")
     item["hochul"] = hoch
