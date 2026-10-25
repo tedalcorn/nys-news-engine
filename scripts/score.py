@@ -15,9 +15,12 @@ POLICY = ["budget","article vii","bill","veto","sign","chapter amendment","legis
     "energy","utility","tax","pension","tier 6","immigration","ice","redistricting","ethics","lobbying","dob",
     "comptroller","authority","agency","commissioner","regulation","school aid","foundation aid","cannabis",
     "casino","gun","3d-printed","insurance","transit","subway","election","primary","blakeman","campaign"]
+# Word-start match, so "rent" is not "current", "gun" not "begun", "sign" not "design"; "ice" must be the whole word
+# (as a substring it matched "service" and "office"). Prefix terms like "legislat" still work.
+POLICY_RE = [re.compile(r"\bice\b" if t == "ice" else r"\b" + re.escape(t)) for t in POLICY]
 GOV_TERMS = ["hochul","governor","gov.","executive chamber"]
 LEG_TERMS = ["legislature","assembly","senate","heastie","stewart-cousins","lawmakers","legislators","albany"]
-OPINION  = ["opinion:","op-ed","editorial:","letters:","commentary","column:","perspective:"]
+OPINION  = ["opinion:","op-ed","editorial:","editorial board","letters:","commentary","column:","perspective:"]
 BREAKING = ["live updates","live:","breaking","watch:","video:","photos:"]
 NOISE    = ["knicks","yankees","mets","giants","jets","rangers","nets","islanders","celebrity","recipe","horoscope",
     "concert","podcast","restaurant review","weather","lottery","obituary","real estate listing","dear abby"]
@@ -66,7 +69,7 @@ def score(item, now_ts):
     s = {1:30, 2:20, 3:12}.get(tier, 15)
     inv_head = _hits(text, INVESTIGATIVE)
     inv = min(inv_head + item.get("inv_body", 0), 4); s += inv*8
-    pol = min(_hits(text, POLICY), 6);        s += pol*3
+    pol = min(sum(1 for r in POLICY_RE if r.search(text)), 6); s += pol*3
     gov = _hits(text, GOV_TERMS) > 0; leg = _hits(text, LEG_TERMS) > 0
     if gov and leg: s += 12
     hoch = hochul_where(item)
@@ -78,7 +81,7 @@ def score(item, now_ts):
     if _hits(text, BREAKING): s -= 8
     if _hits(text, NOISE):    s -= 30
     age_h = max(0.0, (now_ts - item.get("published_ts", now_ts)) / 3600.0)
-    s += 20 * math.exp(-age_h / 72.0)
+    s += 30 * math.exp(-age_h / 24.0)   # 10/25: was 20*exp(-h/72), which let a 3-day-old story hold the top of Picks
     s += 4 * min(item.get("n_cov", 1) - 1, 3)   # several outlets on the same event: the story matters (cluster.py)
     if item.get("kind") == "gnews" and item.get("sweep"): s -= 12   # sweeps are noisier (tier 2 base, so net = old tier 3 - 4)
     w = item.get("words", 0)
