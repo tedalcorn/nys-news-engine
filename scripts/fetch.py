@@ -12,7 +12,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
 from sources import SOURCES, ALBANY_TERMS, STATE_TERMS, BLOTTER, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS, NYT_GENERIC
 from score import score
-import extract, cluster, gnlinks, classify
+import extract, gnlinks, classify
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "docs", "data")
@@ -388,9 +388,12 @@ def main():
         if not it.get("paywall"):
             pw0 = extract.domain_paywall(it.get("domain") or urlparse(it["link"]).netloc)
             if pw0: it["paywall"] = pw0
-    grouped = cluster.assign(items)
-    for it in items:   # the coverage bonus needs n_cov
-        it["score"], it["tags"], it["flags"] = score(it, NOW)
+    # No similarity grouping (Ted, 2026-10-25): the TF-IDF passes in cluster.py nested a WXXI candidate interview
+    # under the Times Union's District 134 Q&A and counted 17 "outlets" on an early-voting story. His standard is
+    # 100% or not at all, and headline similarity cannot give that. Exact duplicates are still removed by title above.
+    grouped = 0
+    for it in items:
+        it["cid"] = it["id"]; it["n_cov"] = 1
     items.sort(key=lambda x: (-x["score"], -x["published_ts"]))
     json.dump(items, open(ITEMS, "w"), ensure_ascii=False, separators=(",", ":"))
     pw = {}

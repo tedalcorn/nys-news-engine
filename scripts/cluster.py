@@ -1,3 +1,8 @@
+"""NOT CALLED since 2026-10-25. Kept for reference. Ted: a WXXI candidate interview was nested under the Times Union's
+District 134 Q&A (the candidates' rare names drove the 0.70 match) and the topic pass counted 17 outlets on one
+early-voting story; grouping must be 100% right or not done. Headline similarity cannot promise that.
+
+"""
 """Group items that report the same story from different outlets.
 
 Same-title dedupe in fetch.py only catches syndicated copies. A Governor's announcement typically

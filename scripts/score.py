@@ -60,7 +60,7 @@ TAG_RE      = {k: [_rx(t) for t in terms] for k, terms in TAGS.items()}
 # Outlet adjustments on top of tier (Chamber colleagues, 2026-10-24): the Times matters most, Fox a little less.
 # A Fox 5 New York local-news segment is not docked; the national Fox brands are.
 OUTLET_WEIGHT = {"New York Times": 6, "Fox News": -8, "Fox Business": -8, "FOX One": -8}   # Times trimmed 10 -> 6 (10/24): it was crowding Picks
-# Which outlet leads a grouped story (cluster.py): tier first, then this rank, then score. Without it the lead
+# Which outlet led a grouped story when cluster.py ran (grouping off since 10/25; kept for cluster.py's import). Without it the lead
 # was whichever copy scored highest, which favored free outlets with deks and readable bodies (FingerLakes1's
 # rewrite of an AG release) over paywalled ones that arrive via Google with neither (Newsday's own report).
 OUTLET_RANK = {"New York Times": 3, "Wall Street Journal": 2, "Newsday": 2, "Times Union": 2, "Daily News": 2,
@@ -114,7 +114,6 @@ def score(item, now_ts):
     if llm and not llm.get("miss"): s += TYPE_ADJ.get(llm.get("type"), 0)
     age_h = max(0.0, (now_ts - item.get("published_ts", now_ts)) / 3600.0)
     s += 20 * math.exp(-age_h / 30.0)   # 20/9/4/2 at 0/24/48/72 h: a tiebreak among substantive stories, not a score of its own
-    s += 4 * min(item.get("n_cov", 1) - 1, 3)   # several outlets on the same event: the story matters (cluster.py)
     if item.get("kind") == "gnews" and item.get("sweep"): s -= 12   # sweeps are noisier (tier 2 base, so net = old tier 3 - 4)
     w = item.get("words", 0)
     if w >= 2000: s += 12           # magazine-length feature
