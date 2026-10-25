@@ -1,6 +1,6 @@
 {
- "last_run": "2026-10-25 20:51 UTC",
- "last_run_iso": "2026-10-25T20:51:03Z",
+ "last_run": "2026-10-25 21:01 UTC",
+ "last_run_iso": "2026-10-25T21:00:12Z",
  "total": 3206,
  "sources": {
   "New York Focus": "ok 49",
@@ -37,11 +37,11 @@
   "Governor's Office (gnews)": "ok 17",
   "NY Senate": "ok 53",
   "NY Assembly": "ok 15",
-  "Google News: Hochul": "ok 62",
+  "Google News: Hochul": "ok 81",
   "Google News: Legislature": "ok 5",
   "Google News: Courts & statewide officials": "ok 15",
   "Google News: State agencies": "ok 4",
-  "Google News: Lawmakers": "ok 8"
+  "Google News: Lawmakers": "ok 6"
  },
  "outlets": [
   "- Emerson Polling",
@@ -581,7 +581,7 @@
   "metered": 4
  },
  "extracted": 574,
- "runner": "actions",
+ "runner": "pi",
  "per_day": {
   "2026-10-12": {
    "stories": 25,
