@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-25 10:01 UTC",
- "last_run_iso": "2026-10-25T10:00:14Z",
- "total": 3175,
+ "last_run": "2026-10-25 10:10 UTC",
+ "last_run_iso": "2026-10-25T10:09:58Z",
+ "total": 3178,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
   "City & State (gnews)": "ok 6",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 11",
-  "NY State of Politics": "ok 6",
+  "NY State of Politics": "ok 7",
   "Newsday": "ok 15",
   "Daily News": "ok 3",
   "Times Union (gnews)": "ok 3",
@@ -23,10 +23,10 @@
   "NY Post Metro": "ok 2",
   "The City": "ok 2",
   "Wall Street Journal": "ok 1",
-  "Buffalo News": "ok 7",
+  "Buffalo News": "ok 9",
   "Buffalo News (gnews)": "ok 6",
   "Syracuse.com": "ok 8",
-  "FingerLakes1": "ok 7",
+  "FingerLakes1": "ok 0",
   "Adirondack Explorer": "ok 0",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
@@ -34,13 +34,13 @@
   "Citizens Budget Commission": "ok 2",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 20",
-  "NY Senate": "ok 50",
+  "Governor's Office (gnews)": "ok 22",
+  "NY Senate": "ok 51",
   "NY Assembly": "ok 15",
-  "Google News: Hochul": "ok 88",
+  "Google News: Hochul": "ok 70",
   "Google News: Legislature": "ok 9",
   "Google News: Courts & statewide officials": "ok 20",
-  "Google News: State agencies": "ok 1",
+  "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 11"
  },
  "outlets": [
@@ -573,14 +573,14 @@
   "Transit"
  ],
  "paywall": {
-  "free": 197,
+  "free": 196,
   "hard": 361,
-  "unknown": 2581,
+  "unknown": 2585,
   "null": 32,
   "metered": 4
  },
- "extracted": 544,
- "runner": "pi",
+ "extracted": 543,
+ "runner": "actions",
  "per_day": {
   "2026-10-12": {
    "stories": 25,
@@ -623,11 +623,11 @@
    "official": 14
   },
   "2026-10-22": {
-   "stories": 115,
+   "stories": 116,
    "official": 16
   },
   "2026-10-23": {
-   "stories": 116,
+   "stories": 115,
    "official": 10
   },
   "2026-10-24": {
@@ -643,7 +643,7 @@
  "gates": {
   "letitia james": 23,
   "Lawmakers sweep": 18,
-  "suny": 15,
+  "suny": 14,
   "senate district": 6,
   "second amendment": 5,
   "medicaid": 4,
@@ -666,5 +666,5 @@
   "2nd amendment": 1,
   "public service commission": 1
  },
- "unresolved_links": 3
+ "unresolved_links": 6
 }
