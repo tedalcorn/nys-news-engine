@@ -76,7 +76,7 @@ SCHEMA = {
                 "type": "object",
                 "properties": {
                     "n":      {"type": "integer"},
-                    "topics": {"type": "array", "items": {"type": "string", "enum": list(TAGS.keys())}, "maxItems": 3},
+                    "topics": {"type": "array", "items": {"type": "string", "enum": list(TAGS.keys())}},   # the API rejects maxItems; the prompt says three and the code truncates
                     "type":   {"type": "string", "enum": list(TYPES.keys())},
                     "investigative": {"type": "boolean"},
                 },
