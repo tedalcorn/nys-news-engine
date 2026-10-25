@@ -22,12 +22,13 @@ jobs:
       ENGINE_RUNNER: actions
       NYT_API_KEY: ${{ secrets.NYT_API_KEY }}
       NYT_TOPSTORIES_KEY: ${{ secrets.NYT_TOPSTORIES_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install feedparser requests curl_cffi trafilatura
+      - run: pip install feedparser requests curl_cffi trafilatura anthropic
       - name: Fetch, commit, push (retry if the Pi pushed meanwhile)
         run: |
           git config user.name "github-actions[bot]"

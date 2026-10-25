@@ -101,6 +101,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <aside class="side">
       <div class="box"><h3>Filters</h3><ul id="flags">
         <li data-k="hd" title="The Governor is named in the headline or the summary">Centered on GKH <span class="n" id="n-hd"></span></li>
+        <li data-k="zm" title="Mayor Mamdani is named in the headline or the summary">Centered on ZM <span class="n" id="n-zm"></span></li>
         <li data-k="d1" title="Only stories published in the last 24 hours">Last 24 hours <span class="n" id="n-d1"></span></li>
         <li data-k="op" class="on">Hide opinion</li>
       </ul></div>
@@ -113,7 +114,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
   <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; the Governor's releases come straight from governor.ny.gov. Refreshes every 30 minutes. Identical stories carried by several outlets are folded under one headline; an "N outlets" chip marks a story others are also reporting. Dot color is the source tier; scores are heuristic.</div>
 </div>
 <script>
-const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",d1:false,hd:false,op:true,gate:""};
+const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",d1:false,hd:false,zm:false,op:true,gate:""};
 let ITEMS=[],META={};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -130,11 +131,11 @@ const pwBadge=i=>(i.paywall==="hard"||i.paywall==="metered")?`<span class="pw ${
 const isNew=i=>(Date.now()/1000-i.fetched_ts)<6*3600;
 const official=new Set(["Governor's Office","NY Senate","NY Assembly"]);
 function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${TIERCOL[i.tier]||TIERCOL[2]}" title="${i.tier===1?"Albany specialist":i.tier===3?"Official / advocacy":"General outlet"}"></i><span class="outlet">${esc(i.outlet)}</span></span>${tsSpan(i.published_ts,true)}${isNew(i)?'<span class="new">NEW</span>':""}${pwBadge(i)}</div>`}
-function chips(i){return `<div class="chips">${i.n_cov>1?`<span class="chip flag" title="Outlets reporting this same event in the last 72 hours">${i.n_cov} outlets</span>`:""}${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}${S.view==="review"&&i.gate?`<span class="chip flag">gate: ${esc(i.gate)}</span>`:""}</div>`}
+function chips(i){return `<div class="chips">${i.n_cov>1?`<span class="chip flag" title="Outlets reporting this same event in the last 72 hours">${i.n_cov} outlets</span>`:""}${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}${S.view==="review"&&i.gate?`<span class="chip flag">gate: ${esc(i.gate)}</span>`:""}${S.view==="review"&&i.llm?`<span class="chip flag">${esc(i.llm.type)}${i.llm.inv?" · investigative":""}</span>`:""}</div>`}
 // The same story from other outlets, folded under the lead (grouping is done in scripts/cluster.py)
 function more(i){if(!i.more||!i.more.length)return "";const outs=[...new Set(i.more.map(x=>x.outlet))];
  return `<details class="more"><summary>+${i.more.length} more · ${esc(outs.slice(0,4).join(", "))}${outs.length>4?` and ${outs.length-4} others`:""}</summary>${[...i.more].sort((a,b)=>a.published_ts-b.published_ts).map(x=>`<div><span class="outlet">${esc(x.outlet)}</span> · <a href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.title)}</a> · ${tsSpan(x.published_ts)}</div>`).join("")}</details>`}
-const SCORE_HELP="A rough guide to relevance, not a judgment. The score elevates stories from outlets that focus on state policy, stories whose language suggests policy substance, stories centered on the Governor and other key state officials, stories several outlets are reporting at once, and longer pieces. It diminishes opinion, live or breaking formats, sports and entertainment, and loosely matched stories swept in from across the web. Freshness adds a bonus that halves about every 17 hours. Roughly: under 30 is routine, 40 to 60 worth a look, above 60 a must-read.";
+const SCORE_HELP="A rough guide to relevance, not a judgment. The score elevates stories from outlets that focus on state policy, stories whose language suggests policy substance, stories centered on the Governor and other key state officials, stories several outlets are reporting at once, and longer pieces. It diminishes opinion, live or breaking formats, sports and entertainment, and loosely matched stories swept in from across the web. When a model has classified a story, its kind adjusts the score: policy reporting up a little; press-release rewrites, crime stories, purely City or national stories down. Freshness adds a bonus that halves about every 21 hours. Roughly: under 30 is routine, 40 to 60 worth a look, above 60 a must-read.";
 function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div><div class="rcol" data-tip="${esc(SCORE_HELP)}"><b>${i.score.toFixed(0)}</b>score</div></div>`}
 function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${more(i)}</div>`}
 // One entry per story: items sharing a cid fold under the best-scoring one that survives the current filters
@@ -143,7 +144,7 @@ function stories(list){const m=new Map();for(const i of list){const k=i.cid||i.i
   return {...lead,score:Math.max(...g.map(x=>x.score)),more}})}   // lead = best outlet (cluster.py); score = the group's best
 // Browsing views show the last week; a search covers the whole archive (180 days). Every word must match.
 function base(){const q=S.q.toLowerCase().split(/\s+/).filter(Boolean),cut=S.d1?Date.now()/1000-86400:q.length?0:Date.now()/1000-S.range*86400;
- return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.hd||i.hochul)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
+ return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.hd||i.hochul)&&(!S.zm||i.mamdani)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
 function render(){const f=base();let html="";
  if(S.q.trim()){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Search <span>${l.length} ${l.length===1?"story":"stories"} in the archive, newest first</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="picks"){const now=Date.now()/1000;const p=stories(f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet))).sort((a,b)=>b.score-a.score);
@@ -159,6 +160,11 @@ function render(){const f=base();let html="";
   const worth=locked.filter(i=>i.score>=med);
   html+=`<h2 class="sec">Paywalled <span>last 30 days, above the median score · ${worth.length}</span></h2>`+(worth.length?worth.sort((a,b)=>b.score-a.score).slice(0,60).map(row).join(""):'<div class="empty">Nothing paywalled above the median yet.</div>')}
  else if(S.view==="review"){const cut=Date.now()/1000-7*86400;
+  const L=META.llm||{},W=L.week||{},SM=META.summaries||{};
+  html+=`<h2 class="sec">Model classification <span>Claude Haiku · spend to date $${(L.cost_usd||0).toFixed(2)} over ${L.calls||0} calls, ${L.items||0} items</span></h2>`;
+  html+=`<p class="note">Each new story goes to a small model once, with its headline, outlet and summary, and comes back with topics and a story type that the score uses in place of keyword guesses. Last 7 days: ${W.classified||0} classified, ${W.unclassified||0} waiting. Types: ${Object.entries(W.types||{}).map(([t,n])=>`${t} ${n}`).join(" · ")||"none yet"}. Judged investigative: ${W.investigative||0}. Summaries: ${SM.total||0} of ${META.total||0} items have one (${SM.og||0} recovered from the article page). Mamdani named without the Governor, last 7 days: ${META.zm_only||0}.</p>`;
+  const zm=ITEMS.filter(i=>i.mamdani&&!i.hochul&&i.published_ts>=cut).sort((a,b)=>b.score-a.score);
+  if(zm.length)html+=`<h2 class="sec">Mamdani, not Hochul <span>${zm.length} · is this a clean City-story signal?</span></h2>`+zm.slice(0,25).map(row).join("");
   const g=ITEMS.filter(i=>i.gate&&i.published_ts>=cut&&(!S.gate||i.gate===S.gate)).sort((a,b)=>b.published_ts-a.published_ts);
   const tally=Object.entries(META.gates||{});
   html+=`<h2 class="sec">Gate review <span>last 7 days · ${g.length} items</span></h2><p class="note">Stories let in only by the wider state-government gate: courts, the AG and Comptroller, agencies, individual lawmakers. Each shows the term that admitted it. A term that mostly admits noise should be cut from STATE_TERMS or the sweeps in scripts/sources.py.</p>`;
@@ -171,7 +177,7 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.
  $("#buzz").innerHTML=tt.map(([t,n])=>`<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}"><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div><div class="bar"><i style="width:${Math.round(100*n/mx)}%"></i></div></li>`).join("");
  const oc={};for(const i of wk)oc[i.outlet]=(oc[i.outlet]||0)+1;const oo=Object.entries(oc).sort((a,b)=>b[1]-a[1]).slice(0,16);
  $("#outlets").innerHTML=oo.map(([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}"><span><i class="dot" style="background:${col(o)}"></i>${esc(o)}</span><span class="n">${n}</span></li>`).join("");
- $("#n-d1").textContent=stories(wk.filter(i=>i.published_ts>=Date.now()/1000-86400)).length;$("#n-hd").textContent=wk.filter(i=>i.hochul).length;
+ $("#n-d1").textContent=stories(wk.filter(i=>i.published_ts>=Date.now()/1000-86400)).length;$("#n-hd").textContent=wk.filter(i=>i.hochul).length;$("#n-zm").textContent=wk.filter(i=>i.mamdani).length;
  $$("#buzz li").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
  $$("#outlets li").forEach(el=>el.onclick=()=>{S.outlet=S.outlet===el.dataset.outlet?"":el.dataset.outlet;render()})}
 async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json())])}catch(e){$("#meta").textContent="Could not load data.";return}

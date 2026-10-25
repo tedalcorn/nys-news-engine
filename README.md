@@ -13,7 +13,24 @@ groups different outlets' coverage of the same story (`scripts/cluster.py`), mer
 and writes `docs/data/items.json` and `docs/data/meta.json`.
 `docs/index.html` renders that client-side: Picks (ranked, 72h), Latest (chronological),
 Official (Governor, Senate, Assembly), Paywalled; search, outlet and topic filters, a date window,
-and toggles for the last 24 hours, stories centered on the Governor, and hiding opinion.
+and toggles for the last 24 hours, stories centered on the Governor, stories centered on Mayor Mamdani, and hiding opinion.
+
+### Summaries and the model pass (`scripts/extract.py`, `scripts/classify.py`)
+
+Four items in five arrive as a bare headline. `extract.py` fetches each new direct-linked item once (60 a
+run, newest first, 7-day window; `curl_cffi` browser impersonation gets past most bot blocks) and keeps the
+page's `og:description` as the item's summary (`summary_src: "og"`), along with the word count and the
+paywall class. Paywalled sites still serve that tag to crawlers. Boilerplate descriptions (site names,
+section blurbs, sign-up pitches) are dropped.
+
+`classify.py` then sends every item without an `llm` field (7-day window, 150 a run in batches of 25) to
+Claude Haiku with its outlet, headline and summary, asking for up to three topics from the fixed `TAGS` list,
+one story type (`policy`, `campaign`, `announcement`, `opinion`, `blotter`, `local`, `national`, `other`)
+and an investigative yes/no. The answer is cached on the item; `score.py` uses the topics in place of its
+keyword tags and the type as a score adjustment (`TYPE_ADJ`). Each call's token usage and cost go to
+`docs/data/llm_usage.json` (totals and by day) and the `#review` page shows spend to date. The step runs
+only when `ANTHROPIC_API_KEY` is set (the Pi's env file and the Actions secret); without it the page runs
+on keywords alone.
 Dot color is the source tier: red = Albany specialist, blue = general outlet, green = official or advocacy.
 
 ### Story grouping (`scripts/cluster.py`)
@@ -93,21 +110,25 @@ substrings, "ed ra" (Assemblyman Ed Ra) matched "heated race".
 
 ## Scoring (`scripts/score.py`)
 
-Outlet tier (30/20/12; the Times +6, national Fox brands −8, `OUTLET_WEIGHT`) (no investigative term since 10/25: it mostly flagged campaign and AG-release copy)
-+ policy relevance (up to 18) + 12 if both the Governor and the Legislature appear − 15 opinion
-− 8 breaking/live − 30 sports/entertainment + a 30-point recency term, 30·e^(−h/24), so about 11 at a day old and 4 at two days
+Outlet tier (30/20/12; the Times +6, national Fox brands −8, `OUTLET_WEIGHT`)
++ governance vocabulary (`POLICY`, word-start matches, up to 15) + 3 if campaign vocabulary appears (one slot, however
+many words: a race story is not policy substance) − 15 opinion (headline label, `/opinion/`-style URL path, an
+endorsement-shaped headline, or the model's verdict) − 8 breaking/live − 30 sports/entertainment (only when no
+governance word is present; "Knicks" was sinking James Dolan donor stories) + the model's story-type adjustment
+(`TYPE_ADJ`: policy +4, announcement −6, blotter −12, local −10, national −15) + a recency term, 20·e^(−h/30),
+so 9 at a day old, 4 at two, 2 at three
 + a long-form bonus (+3 at 700 words, +6 at 1,200, +12 at 2,000; the NYT API word count is kept over the
 paywall stub the extractor sees) + 5 when the headline names Hochul or the governor (+6 more if the outlet is the Times; the Picks lead cards also allow at most two per outlet). Each item carries
-`hochul` = `headline` / `dek` / null, which drives the sidebar's two Hochul filters. The page shows the full
+`hochul` and `mamdani` = `headline` / `dek` / null, which drive the sidebar's "Centered on" filters. The page shows the full
 recipe as a rollover on any score. Paywall status falls back
-to the outlet's known policy (`HARD_PAYWALL` / `METERED` in `extract.py`) for items never fetched. Topic tags come from keyword lists.
-All heuristic; tune the lists in `score.py`.
+to the outlet's known policy (`HARD_PAYWALL` / `METERED` in `extract.py`) for items never fetched. Topic tags are the model's when an item has been classified, else word-start keyword matches (`TAGS`).
+Tune the lists and `TYPE_ADJ` in `score.py`, the type definitions and prompt in `classify.py`.
 
 ## Run locally
 
 ```
-pip install feedparser requests curl_cffi trafilatura
-NYT_API_KEY=... python scripts/fetch.py        # key optional; NYT API is skipped without it
+pip install feedparser requests curl_cffi trafilatura anthropic
+NYT_API_KEY=... ANTHROPIC_API_KEY=... python scripts/fetch.py   # both optional; NYT API and the model pass are skipped without them
 python -m http.server 8742 --directory docs   # then open http://localhost:8742/
 ```
 

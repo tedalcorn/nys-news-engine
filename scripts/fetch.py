@@ -12,7 +12,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
 from sources import SOURCES, ALBANY_TERMS, STATE_TERMS, BLOTTER, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS, NYT_GENERIC
 from score import score
-import extract, cluster, gnlinks
+import extract, cluster, gnlinks, classify
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "docs", "data")
@@ -376,6 +376,12 @@ def main():
         extract.run(items, NOW)
     except Exception as e:
         print(f"extract step skipped: {type(e).__name__}: {e}")
+    # with summaries in hand, a small model says what kind of story each new item is (classify.py); score.py
+    # prefers its topics and type to the keyword guesses. Off when there is no API key.
+    try:
+        classify.run(items, NOW)
+    except Exception as e:
+        print(f"classify step skipped: {type(e).__name__}: {e}")
     for it in items:
         it["score"], it["tags"], it["flags"] = score(it, NOW)
     for it in items:   # the extractor can't reach most paywalled sites; the domain is the next best evidence
@@ -395,7 +401,12 @@ def main():
                 tags=sorted({t for i in items for t in i["tags"]}),
                 paywall=pw, extracted=sum(1 for i in items if "extracted_ts" in i), runner=RUNNER,
                 per_day=_per_day(items), grouped_stories=grouped, gates=_gates(items),
-                unresolved_links=len(gnlinks.unresolved(items, NOW)))
+                unresolved_links=len(gnlinks.unresolved(items, NOW)),
+                summaries=dict(total=sum(1 for i in items if i.get("summary")), og=sum(1 for i in items if i.get("summary_src") == "og"),
+                               none=sum(1 for i in items if not i.get("summary"))),
+                llm=classify.summary(items, NOW),
+                # Mamdani named, the Governor not: Ted's candidate signal for "this is a City story" (10/25)
+                zm_only=sum(1 for i in items if i.get("mamdani") and not i.get("hochul") and i["published_ts"] >= NOW - 7*86400))
     json.dump(meta, open(META, "w"), indent=1)
     print(f"\n{len(items)} items after dedupe ({grouped} multi-outlet stories); {len(fresh)} fetched this run.")
 
