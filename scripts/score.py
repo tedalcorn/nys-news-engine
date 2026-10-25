@@ -114,6 +114,7 @@ def score(item, now_ts):
     if llm and not llm.get("miss"): s += TYPE_ADJ.get(llm.get("type"), 0)
     age_h = max(0.0, (now_ts - item.get("published_ts", now_ts)) / 3600.0)
     s += 20 * math.exp(-age_h / 30.0)   # 20/9/4/2 at 0/24/48/72 h: a tiebreak among substantive stories, not a score of its own
+    s += 4 * min(item.get("n_cov", 1) - 1, 3)   # several outlets on the same subject: the story matters (cluster.topics)
     if item.get("kind") == "gnews" and item.get("sweep"): s -= 12   # sweeps are noisier (tier 2 base, so net = old tier 3 - 4)
     w = item.get("words", 0)
     if w >= 2000: s += 12           # magazine-length feature

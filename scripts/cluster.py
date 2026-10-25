@@ -1,6 +1,7 @@
-"""NOT CALLED since 2026-10-25. Kept for reference. Ted: a WXXI candidate interview was nested under the Times Union's
-District 134 Q&A (the candidates' rare names drove the 0.70 match) and the topic pass counted 17 outlets on one
-early-voting story; grouping must be 100% right or not done. Headline similarity cannot promise that.
+"""Since 2026-10-25 only `topics()` is called: it counts related stories, it never folds rows. The 0.70 fold pass
+nested a WXXI candidate interview under the Times Union's District 134 Q&A (the candidates' rare names drove
+the match), and the count was shown as "17 outlets", which read as "this article ran in 17 places". Ted
+likes the count; the page now says "+N related stories" and shows them under the row, every article its own row.
 
 """
 """Group items that report the same story from different outlets.
@@ -107,3 +108,21 @@ def assign(items):
         lead = max(m, key=lambda x: (-x.get("tier", 2), OUTLET_RANK.get(x.get("outlet"), 0), x.get("score", 0), -x["published_ts"]))
         for x in m: x["cid"] = lead["id"]
     return multi
+
+
+def topics(items):
+    """Set it["tid"] (the id shared by stories on the same subject, loose pass) and it["n_cov"] (distinct outlets
+    in that group), leaving every item its own row (cid = id). Returns the number of groups with 2+ stories."""
+    df = Counter()
+    for it in items: df.update(set(tokens(it.get("title", ""))))
+    N = max(len(items), 1)
+    idf = {w: math.log((N + 1) / (c + 0.5)) for w, c in df.items()}
+    groups = 0
+    for it in items: it["cid"], it["tid"], it["n_cov"] = it["id"], it["id"], 1
+    for m in _cluster(items, idf, TOPIC_THRESHOLD):
+        if len(m) < 2: continue
+        groups += 1
+        tid = min(m, key=lambda x: x["published_ts"])["id"]
+        n = len({x["outlet"] for x in m})
+        for x in m: x["tid"], x["n_cov"] = tid, n
+    return groups

@@ -33,15 +33,17 @@ only when `ANTHROPIC_API_KEY` is set (the Pi's env file and the Actions secret);
 on keywords alone.
 Dot color is the source tier: red = Albany specialist, blue = general outlet, green = official or advocacy.
 
-### Story grouping: off (`scripts/cluster.py`, not called)
+### Related stories (`scripts/cluster.py`)
 
 Items with the same normalized headline are deduped in `fetch.py` (best tier kept, direct link over a Google
-redirect). Beyond that, every article is its own row. `cluster.py` grouped by TF-IDF headline similarity
-(2026-10-23 to 10-25: a 0.70 "fold" pass nested near-copies under "+N more", a 0.32 "topic" pass counted
-outlets on one event as `n_cov`, shown as an "N outlets" chip and worth up to 12 points). It nested a WXXI
-candidate interview under the Times Union's District 134 Q&A on the strength of the candidates' names and
-counted 17 outlets on an early-voting story. Ted's standard is 100% or nothing, which similarity cannot
-give, so it is off. `cid` = `id` and `n_cov` = 1 on every item; the page's fold code is dormant.
+redirect). Beyond that every article is its own row; nothing is nested. `cluster.topics()` groups items by
+TF-IDF cosine over headline words (dek at half weight, 72 hours, threshold 0.32, at least two distinctive
+words shared) and sets `tid` (shared id) and `n_cov` (distinct outlets in the group). The score adds 4 points
+per extra outlet up to 12; the page shows "+N related stories · outlets" under the row, expanding to the
+headlines. The wording matters (Ted, 2026-10-25): the old "17 outlets" chip read as "this article ran in 17
+places", and the old 0.70 fold pass, which did nest rows, put a WXXI candidate interview under the Times
+Union's District 134 Q&A on the strength of the candidates' names. Similarity can say "same subject", not
+"same article", so it is only ever presented as related coverage.
 
 ### Keyword gate, and the review page
 
