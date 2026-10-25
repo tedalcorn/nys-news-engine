@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-25 22:11 UTC",
- "last_run_iso": "2026-10-25T22:08:36Z",
- "total": 3212,
+ "last_run": "2026-10-25 22:31 UTC",
+ "last_run_iso": "2026-10-25T22:28:31Z",
+ "total": 3214,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
@@ -20,7 +20,7 @@
   "New York Times": "ok 3",
   "New York Times (nyt)": "ok 12",
   "NY Post Politics": "ok 2",
-  "NY Post Metro": "ok 3",
+  "NY Post Metro": "ok 4",
   "The City": "ok 2",
   "Wall Street Journal": "ok 0",
   "Buffalo News": "ok 7",
@@ -37,10 +37,10 @@
   "Governor's Office (gnews)": "ok 16",
   "NY Senate": "ok 53",
   "NY Assembly": "ok 14",
-  "Google News: Hochul": "ok 81",
-  "Google News: Legislature": "ok 5",
-  "Google News: Courts & statewide officials": "ok 14",
-  "Google News: State agencies": "ok 1",
+  "Google News: Hochul": "ok 79",
+  "Google News: Legislature": "ok 4",
+  "Google News: Courts & statewide officials": "ok 11",
+  "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 7"
  },
  "outlets": [
@@ -575,13 +575,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 368,
-  "free": 224,
-  "unknown": 2584,
+  "hard": 370,
+  "free": 233,
+  "unknown": 2576,
   "null": 32,
-  "metered": 4
+  "metered": 3
  },
- "extracted": 583,
+ "extracted": 591,
  "runner": "pi",
  "per_day": {
   "2026-10-13": {
@@ -629,23 +629,23 @@
    "official": 10
   },
   "2026-10-24": {
-   "stories": 63,
+   "stories": 64,
    "official": 5
   },
   "2026-10-25": {
-   "stories": 33,
+   "stories": 34,
    "official": 0
   },
   "2026-10-26": {
-   "stories": 3,
+   "stories": 4,
    "official": 0
   }
  },
- "grouped_stories": 146,
+ "grouped_stories": 145,
  "gates": {
   "letitia james": 24,
   "Lawmakers sweep": 20,
-  "suny": 14,
+  "suny": 15,
   "senate district": 6,
   "second amendment": 5,
   "medicaid": 4,
@@ -671,9 +671,9 @@
  },
  "unresolved_links": 3,
  "summaries": {
-  "total": 588,
-  "og": 55,
-  "none": 2624
+  "total": 630,
+  "og": 96,
+  "none": 2584
  },
  "llm": {
   "model": "claude-haiku-5-5",
@@ -683,11 +683,11 @@
   "last": null,
   "week": {
    "classified": 0,
-   "unclassified": 703,
+   "unclassified": 705,
    "types": {},
    "investigative": 0
   },
   "by_day": {}
  },
- "zm_only": 9
+ "zm_only": 8
 }
