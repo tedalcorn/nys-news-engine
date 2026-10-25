@@ -62,7 +62,9 @@ SYSTEM = (
     "Rules. A story about a candidate's record or plans on a policy question is 'campaign' if framed by the "
     "race and 'policy' if framed by the policy. A story that names the Governor only in passing is not "
     "automatically 'policy'. A newspaper endorsement ('Jane Doe for Assembly District 12') is 'opinion'. "
-    "Mayor Mamdani acting as mayor, with no state role, is 'local'. 'investigative' is true only when the "
+    "Mayor Mamdani acting as mayor, with no state role, is 'local'. A crime, misconduct or court story involving a "
+    "state agency, state official or state employee (the State Police, DOCCS, a legislator, a commissioner) is "
+    "'policy', not 'blotter': the office reads those. 'investigative' is true only when the "
     "outlet's own reporting rests on records, data, documents or an inquiry it conducted, not when the story "
     "reports someone else's investigation or audit. Judge from the text given; do not guess beyond it."
 )
