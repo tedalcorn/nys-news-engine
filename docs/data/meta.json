@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-25 00:31 UTC",
- "last_run_iso": "2026-10-25T00:30:21Z",
- "total": 3157,
+ "last_run": "2026-10-25 00:33 UTC",
+ "last_run_iso": "2026-10-25T00:32:23Z",
+ "total": 3156,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
@@ -34,8 +34,8 @@
   "Citizens Budget Commission": "ok 2",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 24",
-  "NY Senate": "ok 52",
+  "Governor's Office (gnews)": "ok 22",
+  "NY Senate": "ok 53",
   "NY Assembly": "ok 15",
   "Google News: Hochul": "ok 90",
   "Google News: Legislature": "ok 8",
@@ -574,13 +574,17 @@
  "paywall": {
   "free": 188,
   "unknown": 2577,
-  "hard": 356,
+  "hard": 355,
   "null": 32,
   "metered": 4
  },
- "extracted": 522,
- "runner": "pi",
+ "extracted": 521,
+ "runner": "actions",
  "per_day": {
+  "2026-10-11": {
+   "stories": 13,
+   "official": 0
+  },
   "2026-10-12": {
    "stories": 25,
    "official": 3
@@ -626,23 +630,19 @@
    "official": 16
   },
   "2026-10-23": {
-   "stories": 115,
+   "stories": 116,
    "official": 10
   },
   "2026-10-24": {
    "stories": 48,
    "official": 3
-  },
-  "2026-10-25": {
-   "stories": 1,
-   "official": 0
   }
  },
  "grouped_stories": 143,
  "gates": {
   "letitia james": 23,
   "Lawmakers sweep": 16,
-  "suny": 14,
+  "suny": 13,
   "senate district": 6,
   "second amendment": 5,
   "medicaid": 4,
