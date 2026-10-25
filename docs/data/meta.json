@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-25 17:01 UTC",
- "last_run_iso": "2026-10-25T17:00:08Z",
- "total": 3197,
+ "last_run": "2026-10-25 17:31 UTC",
+ "last_run_iso": "2026-10-25T17:30:13Z",
+ "total": 3200,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
   "City & State (gnews)": "ok 5",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 12",
-  "NY State of Politics": "ok 6",
+  "NY State of Politics": "ok 5",
   "Newsday": "ok 15",
   "Daily News": "ok 3",
   "Times Union (gnews)": "ok 4",
@@ -20,7 +20,7 @@
   "New York Times": "ok 3",
   "New York Times (nyt)": "ok 11",
   "NY Post Politics": "ok 2",
-  "NY Post Metro": "ok 0",
+  "NY Post Metro": "ok 1",
   "The City": "ok 2",
   "Wall Street Journal": "ok 1",
   "Buffalo News": "ok 8",
@@ -37,11 +37,11 @@
   "Governor's Office (gnews)": "ok 19",
   "NY Senate": "ok 52",
   "NY Assembly": "ok 15",
-  "Google News: Hochul": "ok 86",
+  "Google News: Hochul": "ok 87",
   "Google News: Legislature": "ok 5",
-  "Google News: Courts & statewide officials": "ok 15",
+  "Google News: Courts & statewide officials": "ok 14",
   "Google News: State agencies": "ok 4",
-  "Google News: Lawmakers": "ok 10"
+  "Google News: Lawmakers": "ok 11"
  },
  "outlets": [
   "- Emerson Polling",
@@ -573,13 +573,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 208,
+  "free": 212,
   "hard": 364,
-  "unknown": 2589,
+  "unknown": 2588,
   "null": 32,
   "metered": 4
  },
- "extracted": 562,
+ "extracted": 566,
  "runner": "pi",
  "per_day": {
   "2026-10-12": {
@@ -631,19 +631,19 @@
    "official": 10
   },
   "2026-10-24": {
-   "stories": 63,
+   "stories": 64,
    "official": 5
   },
   "2026-10-25": {
-   "stories": 20,
+   "stories": 23,
    "official": 0
   }
  },
  "grouped_stories": 147,
  "gates": {
   "letitia james": 23,
-  "Lawmakers sweep": 19,
-  "suny": 15,
+  "Lawmakers sweep": 20,
+  "suny": 14,
   "senate district": 6,
   "second amendment": 5,
   "medicaid": 4,
@@ -660,11 +660,11 @@
   "state senator": 1,
   "attorney general race": 1,
   "attorney general debate": 1,
-  "struck down": 1,
   "board of elections": 1,
+  "struck down": 1,
   "court of appeals": 1,
   "public service commission": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 5
+ "unresolved_links": 4
 }
