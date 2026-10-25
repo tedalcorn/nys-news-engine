@@ -1,11 +1,11 @@
 {
- "last_run": "2026-10-25 22:01 UTC",
- "last_run_iso": "2026-10-25T22:00:20Z",
- "total": 3211,
+ "last_run": "2026-10-25 22:11 UTC",
+ "last_run_iso": "2026-10-25T22:08:36Z",
+ "total": 3212,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
-  "City & State (gnews)": "ok 3",
+  "City & State (gnews)": "ok 2",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 13",
   "NY State of Politics": "ok 6",
@@ -36,11 +36,11 @@
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 16",
   "NY Senate": "ok 53",
-  "NY Assembly": "ok 15",
-  "Google News: Hochul": "ok 80",
+  "NY Assembly": "ok 14",
+  "Google News: Hochul": "ok 81",
   "Google News: Legislature": "ok 5",
   "Google News: Courts & statewide officials": "ok 14",
-  "Google News: State agencies": "ok 4",
+  "Google News: State agencies": "ok 1",
   "Google News: Lawmakers": "ok 7"
  },
  "outlets": [
@@ -77,6 +77,7 @@
   "Audacy",
   "BBC",
   "BKReader",
+  "Balkanweb.com",
   "Baltimore Sun",
   "Bee Group Newspapers",
   "Beinsure",
@@ -574,13 +575,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 367,
-  "free": 218,
-  "unknown": 2590,
+  "hard": 368,
+  "free": 224,
+  "unknown": 2584,
   "null": 32,
   "metered": 4
  },
- "extracted": 578,
+ "extracted": 583,
  "runner": "pi",
  "per_day": {
   "2026-10-13": {
@@ -632,11 +633,11 @@
    "official": 5
   },
   "2026-10-25": {
-   "stories": 32,
+   "stories": 33,
    "official": 0
   },
   "2026-10-26": {
-   "stories": 2,
+   "stories": 3,
    "official": 0
   }
  },
@@ -644,7 +645,7 @@
  "gates": {
   "letitia james": 24,
   "Lawmakers sweep": 20,
-  "suny": 15,
+  "suny": 14,
   "senate district": 6,
   "second amendment": 5,
   "medicaid": 4,
@@ -657,16 +658,36 @@
   "new york attorney general": 2,
   "unconstitutional": 2,
   "nyserda": 2,
-  "state attorney general": 1,
   "ballot proposal": 1,
+  "state attorney general": 1,
   "state sen.": 1,
   "state senator": 1,
-  "board of elections": 1,
   "attorney general debate": 1,
+  "board of elections": 1,
   "struck down": 1,
   "court of appeals": 1,
   "2nd amendment": 1,
   "public service commission": 1
  },
- "unresolved_links": 3
+ "unresolved_links": 3,
+ "summaries": {
+  "total": 588,
+  "og": 55,
+  "none": 2624
+ },
+ "llm": {
+  "model": "claude-haiku-5-5",
+  "calls": 0,
+  "items": 0,
+  "cost_usd": 0.0,
+  "last": null,
+  "week": {
+   "classified": 0,
+   "unclassified": 703,
+   "types": {},
+   "investigative": 0
+  },
+  "by_day": {}
+ },
+ "zm_only": 9
 }
