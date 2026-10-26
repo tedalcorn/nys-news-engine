@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-26 14:31 UTC",
- "last_run_iso": "2026-10-26T14:30:26Z",
- "total": 3253,
+ "last_run": "2026-10-26 15:01 UTC",
+ "last_run_iso": "2026-10-26T15:00:18Z",
+ "total": 3259,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
   "City & State (gnews)": "ok 4",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 13",
-  "NY State of Politics": "ok 4",
+  "NY State of Politics": "ok 3",
   "Newsday": "ok 8",
   "Daily News": "ok 3",
   "Times Union (gnews)": "ok 5",
@@ -37,10 +37,10 @@
   "Governor's Office (gnews)": "ok 18",
   "NY Senate": "ok 52",
   "NY Assembly": "ok 12",
-  "Google News: Hochul": "ok 73",
+  "Google News: Hochul": "ok 74",
   "Google News: Legislature": "ok 5",
-  "Google News: Courts & statewide officials": "ok 11",
-  "Google News: State agencies": "ok 2",
+  "Google News: Courts & statewide officials": "ok 12",
+  "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 8"
  },
  "outlets": [
@@ -76,6 +76,7 @@
   "Auburn Citizen",
   "Audacy",
   "BBC",
+  "BIN: Black Information Network",
   "BKReader",
   "Balkanweb.com",
   "Baltimore Sun",
@@ -232,6 +233,7 @@
   "Modern Ghana",
   "Monsey Scoop",
   "Morning Honey",
+  "MultiState",
   "MyChamplainValley.com",
   "MyRye.com",
   "NBC 4 New York",
@@ -582,13 +584,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 497,
+  "free": 503,
   "hard": 386,
   "unknown": 2340,
   "null": 29,
   "metered": 1
  },
- "extracted": 997,
+ "extracted": 1004,
  "runner": "pi",
  "per_day": {
   "2026-10-13": {
@@ -640,27 +642,27 @@
    "official": 5
   },
   "2026-10-25": {
-   "stories": 53,
+   "stories": 56,
    "official": 0
   },
   "2026-10-26": {
-   "stories": 18,
-   "official": 2
+   "stories": 21,
+   "official": 3
   }
  },
- "grouped_stories": 285,
+ "grouped_stories": 287,
  "gates": {
-  "letitia james": 28,
+  "letitia james": 29,
   "Lawmakers sweep": 22,
-  "suny": 13,
+  "suny": 15,
   "senate district": 7,
   "medicaid": 5,
   "second amendment": 5,
   "state grant": 4,
   "ballot question": 3,
   "state police": 3,
-  "Courts & statewide officials sweep": 3,
   "new york attorney general": 3,
+  "Courts & statewide officials sweep": 3,
   "department of environmental conservation": 2,
   "unconstitutional": 2,
   "nyserda": 2,
@@ -676,29 +678,29 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 7,
+ "unresolved_links": 6,
  "summaries": {
-  "total": 1054,
-  "og": 513,
-  "none": 2199
+  "total": 1061,
+  "og": 519,
+  "none": 2198
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 61,
-  "items": 805,
-  "cost_usd": 0.0295,
-  "last": "2026-10-26T14:30:26Z",
+  "calls": 62,
+  "items": 812,
+  "cost_usd": 0.0298,
+  "last": "2026-10-26T15:00:18Z",
   "week": {
-   "classified": 728,
+   "classified": 732,
    "unclassified": 0,
    "types": {
-    "campaign": 255,
+    "campaign": 257,
     "policy": 147,
-    "announcement": 132,
-    "other": 75,
+    "announcement": 134,
+    "other": 76,
     "opinion": 53,
     "national": 27,
-    "local": 21,
+    "local": 20,
     "blotter": 18
    },
    "investigative": 18
@@ -712,11 +714,11 @@
     "cost_usd": 0.022554
    },
    "2026-10-26": {
-    "calls": 32,
-    "items": 87,
-    "input_tokens": 47080,
-    "output_tokens": 2667,
-    "cost_usd": 0.006927
+    "calls": 33,
+    "items": 94,
+    "input_tokens": 48876,
+    "output_tokens": 2884,
+    "cost_usd": 0.007247
    }
   }
  },
