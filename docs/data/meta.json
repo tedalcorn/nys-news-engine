@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-26 16:31 UTC",
- "last_run_iso": "2026-10-26T16:30:07Z",
- "total": 3269,
+ "last_run": "2026-10-26 17:01 UTC",
+ "last_run_iso": "2026-10-26T17:00:24Z",
+ "total": 3277,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
@@ -23,7 +23,7 @@
   "NY Post Metro": "ok 3",
   "The City": "ok 2",
   "Wall Street Journal": "ok 0",
-  "Buffalo News": "ok 5",
+  "Buffalo News": "ok 6",
   "Buffalo News (gnews)": "ok 4",
   "Syracuse.com": "ok 6",
   "FingerLakes1": "ERROR HTTPError: HTTP Error 502: ",
@@ -34,14 +34,14 @@
   "Citizens Budget Commission": "ok 2",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 16",
+  "Governor's Office (gnews)": "ok 17",
   "NY Senate": "ok 46",
-  "NY Assembly": "ok 12",
-  "Google News: Hochul": "ok 59",
-  "Google News: Legislature": "ok 6",
+  "NY Assembly": "ok 10",
+  "Google News: Hochul": "ok 79",
+  "Google News: Legislature": "ok 4",
   "Google News: Courts & statewide officials": "ok 14",
   "Google News: State agencies": "ok 4",
-  "Google News: Lawmakers": "ok 8"
+  "Google News: Lawmakers": "ok 7"
  },
  "outlets": [
   "- Emerson Polling",
@@ -223,6 +223,7 @@
   "Long Island Business News",
   "Long Island Life & Politics",
   "LongIsland.com",
+  "MEAWW News",
   "MS NOW",
   "Manhattan Times News",
   "Marist Poll",
@@ -333,6 +334,7 @@
   "Rockland News",
   "Rome Sentinel",
   "Rutland Herald",
+  "SBU News",
   "SILive.com",
   "SUNY - The State University of New York",
   "Sambad English",
@@ -587,11 +589,11 @@
  "paywall": {
   "free": 514,
   "hard": 386,
-  "unknown": 2339,
+  "unknown": 2347,
   "null": 29,
   "metered": 1
  },
- "extracted": 1017,
+ "extracted": 1018,
  "runner": "pi",
  "per_day": {
   "2026-10-13": {
@@ -647,15 +649,15 @@
    "official": 0
   },
   "2026-10-26": {
-   "stories": 32,
-   "official": 4
+   "stories": 34,
+   "official": 3
   }
  },
  "grouped_stories": 288,
  "gates": {
   "letitia james": 31,
   "Lawmakers sweep": 22,
-  "suny": 13,
+  "suny": 15,
   "senate district": 7,
   "medicaid": 5,
   "second amendment": 5,
@@ -679,27 +681,27 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 3,
+ "unresolved_links": 10,
  "summaries": {
   "total": 1072,
-  "og": 528,
-  "none": 2197
+  "og": 529,
+  "none": 2205
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 65,
-  "items": 829,
-  "cost_usd": 0.0307,
-  "last": "2026-10-26T16:30:07Z",
+  "calls": 66,
+  "items": 839,
+  "cost_usd": 0.0311,
+  "last": "2026-10-26T17:00:24Z",
   "week": {
-   "classified": 732,
+   "classified": 736,
    "unclassified": 0,
    "types": {
-    "campaign": 258,
-    "policy": 149,
-    "announcement": 132,
-    "other": 74,
-    "opinion": 55,
+    "campaign": 262,
+    "policy": 150,
+    "announcement": 134,
+    "other": 73,
+    "opinion": 53,
     "national": 28,
     "local": 18,
     "blotter": 18
@@ -715,13 +717,13 @@
     "cost_usd": 0.022554
    },
    "2026-10-26": {
-    "calls": 36,
-    "items": 111,
-    "input_tokens": 54228,
-    "output_tokens": 3412,
-    "cost_usd": 0.008142
+    "calls": 37,
+    "items": 121,
+    "input_tokens": 56210,
+    "output_tokens": 3742,
+    "cost_usd": 0.008537
    }
   }
  },
- "zm_only": 7
+ "zm_only": 8
 }
