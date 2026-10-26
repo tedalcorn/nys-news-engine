@@ -1,6 +1,6 @@
 {
- "last_run": "2026-10-26 06:31 UTC",
- "last_run_iso": "2026-10-26T06:30:26Z",
+ "last_run": "2026-10-26 07:01 UTC",
+ "last_run_iso": "2026-10-26T07:00:24Z",
  "total": 3231,
  "sources": {
   "New York Focus": "ok 49",
@@ -35,12 +35,12 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 16",
-  "NY Senate": "ok 52",
+  "NY Senate": "ok 53",
   "NY Assembly": "ok 12",
-  "Google News: Hochul": "ok 62",
-  "Google News: Legislature": "ok 3",
-  "Google News: Courts & statewide officials": "ok 9",
-  "Google News: State agencies": "ok 2",
+  "Google News: Hochul": "ok 61",
+  "Google News: Legislature": "ok 4",
+  "Google News: Courts & statewide officials": "ok 11",
+  "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 8"
  },
  "outlets": [
@@ -644,11 +644,11 @@
    "official": 0
   }
  },
- "grouped_stories": 285,
+ "grouped_stories": 286,
  "gates": {
   "letitia james": 26,
   "Lawmakers sweep": 21,
-  "suny": 13,
+  "suny": 15,
   "senate district": 6,
   "medicaid": 5,
   "second amendment": 5,
@@ -672,7 +672,7 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 1,
+ "unresolved_links": 3,
  "summaries": {
   "total": 1037,
   "og": 501,
@@ -680,18 +680,18 @@
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 43,
-  "items": 752,
-  "cost_usd": 0.0255,
-  "last": "2026-10-26T06:30:26Z",
+  "calls": 44,
+  "items": 755,
+  "cost_usd": 0.0258,
+  "last": "2026-10-26T07:00:24Z",
   "week": {
-   "classified": 716,
+   "classified": 718,
    "unclassified": 0,
    "types": {
     "campaign": 249,
     "policy": 146,
-    "announcement": 129,
-    "other": 73,
+    "announcement": 130,
+    "other": 74,
     "opinion": 52,
     "national": 27,
     "local": 21,
@@ -708,11 +708,11 @@
     "cost_usd": 0.022554
    },
    "2026-10-26": {
-    "calls": 14,
-    "items": 34,
-    "input_tokens": 20162,
-    "output_tokens": 1036,
-    "cost_usd": 0.002988
+    "calls": 15,
+    "items": 37,
+    "input_tokens": 21634,
+    "output_tokens": 1126,
+    "cost_usd": 0.003212
    }
   }
  },
