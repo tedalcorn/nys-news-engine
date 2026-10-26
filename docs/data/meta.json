@@ -1,6 +1,6 @@
 {
- "last_run": "2026-10-26 20:01 UTC",
- "last_run_iso": "2026-10-26T20:00:14Z",
+ "last_run": "2026-10-26 20:10 UTC",
+ "last_run_iso": "2026-10-26T20:09:44Z",
  "total": 3309,
  "sources": {
   "New York Focus": "ok 49",
@@ -16,31 +16,31 @@
   "Daily News (gnews)": "ok 2",
   "Politico": "ok 2",
   "Gotham Gazette": "ok 0",
-  "Gothamist": "ok 4",
+  "Gothamist": "ok 5",
   "New York Times": "ok 2",
   "New York Times (nyt)": "ok 9",
-  "NY Post Politics": "ok 3",
+  "NY Post Politics": "ok 2",
   "NY Post Metro": "ok 3",
   "The City": "ok 1",
   "Wall Street Journal": "ok 0",
   "Buffalo News": "ok 6",
   "Buffalo News (gnews)": "ok 3",
   "Syracuse.com": "ok 6",
-  "FingerLakes1": "ok 1",
+  "FingerLakes1": "ok 0",
   "Adirondack Explorer": "ok 0",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
-  "Citizens Budget Commission": "ok 2",
+  "Citizens Budget Commission": "ok 1",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 15",
-  "NY Senate": "ok 53",
+  "NY Senate": "ok 54",
   "NY Assembly": "ok 10",
   "Google News: Hochul": "ok 90",
-  "Google News: Legislature": "ok 6",
-  "Google News: Courts & statewide officials": "ok 10",
-  "Google News: State agencies": "ok 4",
+  "Google News: Legislature": "ok 4",
+  "Google News: Courts & statewide officials": "ok 9",
+  "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 8"
  },
  "outlets": [
@@ -273,6 +273,7 @@
   "News12 | Connecticut",
   "News12 | Hudson Valley",
   "News12 | Long Island",
+  "NewsBreak: Local News & Alerts",
   "NewsBytes",
   "NewsCord",
   "NewsNation",
@@ -588,14 +589,14 @@
   "Transit"
  ],
  "paywall": {
-  "free": 548,
+  "free": 545,
   "hard": 386,
-  "unknown": 2344,
+  "unknown": 2347,
   "metered": 2,
   "null": 29
  },
- "extracted": 1056,
- "runner": "pi",
+ "extracted": 1053,
+ "runner": "actions",
  "per_day": {
   "2026-10-13": {
    "stories": 86,
@@ -646,19 +647,19 @@
    "official": 4
   },
   "2026-10-25": {
-   "stories": 59,
+   "stories": 60,
    "official": 0
   },
   "2026-10-26": {
-   "stories": 68,
+   "stories": 64,
    "official": 5
   }
  },
- "grouped_stories": 293,
+ "grouped_stories": 294,
  "gates": {
   "letitia james": 35,
   "Lawmakers sweep": 24,
-  "suny": 15,
+  "suny": 13,
   "senate district": 8,
   "medicaid": 5,
   "second amendment": 5,
@@ -667,15 +668,15 @@
   "state police": 3,
   "Courts & statewide officials sweep": 3,
   "new york attorney general": 3,
+  "state law": 2,
   "state sen.": 2,
   "department of environmental conservation": 2,
-  "board of elections": 2,
   "unconstitutional": 2,
   "nyserda": 2,
   "attorney general race": 2,
   "ballot proposal": 1,
-  "state law": 1,
   "ny attorney general": 1,
+  "board of elections": 1,
   "state senator": 1,
   "struck down": 1,
   "attorney general debate": 1,
@@ -683,29 +684,29 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 4,
+ "unresolved_links": 7,
  "summaries": {
-  "total": 1106,
-  "og": 559,
-  "none": 2203
+  "total": 1102,
+  "og": 554,
+  "none": 2207
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 72,
-  "items": 880,
-  "cost_usd": 0.033,
-  "last": "2026-10-26T20:00:14Z",
+  "calls": 73,
+  "items": 888,
+  "cost_usd": 0.0334,
+  "last": "2026-10-26T20:09:44Z",
   "week": {
-   "classified": 749,
+   "classified": 748,
    "unclassified": 0,
    "types": {
     "campaign": 270,
-    "policy": 158,
-    "announcement": 132,
-    "other": 74,
+    "policy": 159,
+    "announcement": 133,
+    "other": 72,
     "opinion": 52,
     "national": 28,
-    "local": 18,
+    "local": 17,
     "blotter": 17
    },
    "investigative": 18
@@ -719,13 +720,13 @@
     "cost_usd": 0.022554
    },
    "2026-10-26": {
-    "calls": 43,
-    "items": 162,
-    "input_tokens": 67187,
-    "output_tokens": 5007,
-    "cost_usd": 0.010462
+    "calls": 44,
+    "items": 170,
+    "input_tokens": 69109,
+    "output_tokens": 5258,
+    "cost_usd": 0.010812
    }
   }
  },
- "zm_only": 7
+ "zm_only": 8
 }
