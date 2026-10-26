@@ -1,25 +1,25 @@
 {
- "last_run": "2026-10-26 20:31 UTC",
- "last_run_iso": "2026-10-26T20:30:23Z",
- "total": 3311,
+ "last_run": "2026-10-26 21:01 UTC",
+ "last_run_iso": "2026-10-26T21:00:22Z",
+ "total": 3319,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
-  "City & State (gnews)": "ok 5",
+  "City & State (gnews)": "ok 6",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 12",
   "NY State of Politics": "ok 2",
-  "Newsday": "ok 5",
+  "Newsday": "ok 6",
   "Daily News": "ok 3",
   "Times Union (gnews)": "ok 3",
-  "Newsday (gnews)": "ok 14",
+  "Newsday (gnews)": "ok 15",
   "Daily News (gnews)": "ok 2",
   "Politico": "ok 2",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 5",
   "New York Times": "ok 2",
   "New York Times (nyt)": "ok 9",
-  "NY Post Politics": "ok 2",
+  "NY Post Politics": "ok 3",
   "NY Post Metro": "ok 3",
   "The City": "ok 1",
   "Wall Street Journal": "ok 0",
@@ -39,8 +39,8 @@
   "NY Assembly": "ok 10",
   "Google News: Hochul": "ok 90",
   "Google News: Legislature": "ok 4",
-  "Google News: Courts & statewide officials": "ok 15",
-  "Google News: State agencies": "ok 4",
+  "Google News: Courts & statewide officials": "ok 14",
+  "Google News: State agencies": "ok 2",
   "Google News: Lawmakers": "ok 9"
  },
  "outlets": [
@@ -163,6 +163,7 @@
   "Flack Broadcasting",
   "Focus Gaming News",
   "Forbes",
+  "Foreign Policy Journal",
   "Fortune",
   "Fox Business",
   "Fox News",
@@ -393,6 +394,7 @@
   "The Long Island Advance",
   "The Lufkin Daily News",
   "The Nature Conservancy",
+  "The Nerd Stash",
   "The New Paltz Oracle",
   "The New York Editorial Board",
   "The New York Sun",
@@ -589,13 +591,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 546,
-  "hard": 386,
-  "unknown": 2348,
+  "free": 552,
+  "hard": 387,
+  "unknown": 2349,
   "metered": 2,
   "null": 29
  },
- "extracted": 1054,
+ "extracted": 1063,
  "runner": "pi",
  "per_day": {
   "2026-10-13": {
@@ -647,20 +649,20 @@
    "official": 4
   },
   "2026-10-25": {
-   "stories": 60,
+   "stories": 61,
    "official": 0
   },
   "2026-10-26": {
-   "stories": 65,
-   "official": 5
+   "stories": 72,
+   "official": 6
   }
  },
- "grouped_stories": 294,
+ "grouped_stories": 295,
  "gates": {
-  "letitia james": 35,
+  "letitia james": 36,
   "Lawmakers sweep": 25,
-  "suny": 13,
-  "senate district": 8,
+  "suny": 15,
+  "senate district": 9,
   "medicaid": 5,
   "second amendment": 5,
   "state grant": 4,
@@ -684,30 +686,30 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 8,
+ "unresolved_links": 7,
  "summaries": {
-  "total": 1103,
-  "og": 554,
+  "total": 1111,
+  "og": 561,
   "none": 2208
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 74,
-  "items": 890,
-  "cost_usd": 0.0336,
-  "last": "2026-10-26T20:30:23Z",
+  "calls": 75,
+  "items": 898,
+  "cost_usd": 0.0339,
+  "last": "2026-10-26T21:00:22Z",
   "week": {
-   "classified": 747,
+   "classified": 751,
    "unclassified": 0,
    "types": {
-    "campaign": 271,
+    "campaign": 273,
     "policy": 157,
     "announcement": 134,
-    "other": 71,
+    "other": 74,
     "opinion": 52,
-    "national": 28,
+    "national": 29,
     "local": 17,
-    "blotter": 17
+    "blotter": 15
    },
    "investigative": 18
   },
@@ -720,11 +722,11 @@
     "cost_usd": 0.022554
    },
    "2026-10-26": {
-    "calls": 45,
-    "items": 172,
-    "input_tokens": 70671,
-    "output_tokens": 5332,
-    "cost_usd": 0.011037
+    "calls": 46,
+    "items": 180,
+    "input_tokens": 72631,
+    "output_tokens": 5574,
+    "cost_usd": 0.011386
    }
   }
  },
