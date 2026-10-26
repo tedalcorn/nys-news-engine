@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-26 12:31 UTC",
- "last_run_iso": "2026-10-26T12:30:17Z",
- "total": 3248,
+ "last_run": "2026-10-26 13:01 UTC",
+ "last_run_iso": "2026-10-26T13:00:27Z",
+ "total": 3249,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
@@ -580,7 +580,7 @@
  "paywall": {
   "free": 499,
   "hard": 386,
-  "unknown": 2333,
+  "unknown": 2334,
   "null": 29,
   "metered": 1
  },
@@ -644,11 +644,11 @@
    "official": 1
   }
  },
- "grouped_stories": 285,
+ "grouped_stories": 286,
  "gates": {
   "letitia james": 27,
   "Lawmakers sweep": 21,
-  "suny": 13,
+  "suny": 15,
   "senate district": 7,
   "medicaid": 5,
   "second amendment": 5,
@@ -672,26 +672,26 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 1,
+ "unresolved_links": 2,
  "summaries": {
   "total": 1055,
   "og": 515,
-  "none": 2193
+  "none": 2194
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 56,
-  "items": 790,
-  "cost_usd": 0.0283,
-  "last": "2026-10-26T12:30:17Z",
+  "calls": 57,
+  "items": 792,
+  "cost_usd": 0.0285,
+  "last": "2026-10-26T13:00:27Z",
   "week": {
    "classified": 727,
    "unclassified": 0,
    "types": {
     "campaign": 254,
-    "policy": 148,
+    "policy": 147,
     "announcement": 132,
-    "other": 74,
+    "other": 75,
     "opinion": 53,
     "national": 27,
     "local": 21,
@@ -708,11 +708,11 @@
     "cost_usd": 0.022554
    },
    "2026-10-26": {
-    "calls": 27,
-    "items": 72,
-    "input_tokens": 39515,
-    "output_tokens": 2212,
-    "cost_usd": 0.005782
+    "calls": 28,
+    "items": 74,
+    "input_tokens": 40933,
+    "output_tokens": 2274,
+    "cost_usd": 0.005987
    }
   }
  },
