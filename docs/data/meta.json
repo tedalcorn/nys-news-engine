@@ -1,15 +1,15 @@
 {
- "last_run": "2026-10-26 23:01 UTC",
- "last_run_iso": "2026-10-26T23:00:07Z",
- "total": 3332,
+ "last_run": "2026-10-26 23:31 UTC",
+ "last_run_iso": "2026-10-26T23:30:31Z",
+ "total": 3334,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
   "City & State (gnews)": "ok 8",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 12",
-  "NY State of Politics": "ok 2",
-  "Newsday": "ok 5",
+  "NY State of Politics": "ok 1",
+  "Newsday": "ok 6",
   "Daily News": "ok 2",
   "Times Union (gnews)": "ok 3",
   "Newsday (gnews)": "ok 14",
@@ -20,7 +20,7 @@
   "New York Times": "ok 2",
   "New York Times (nyt)": "ok 9",
   "NY Post Politics": "ok 3",
-  "NY Post Metro": "ok 4",
+  "NY Post Metro": "ok 3",
   "The City": "ok 1",
   "Wall Street Journal": "ok 0",
   "Buffalo News": "ok 6",
@@ -35,12 +35,12 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 13",
-  "NY Senate": "ok 52",
+  "NY Senate": "ok 44",
   "NY Assembly": "ok 10",
-  "Google News: Hochul": "ok 88",
-  "Google News: Legislature": "ok 5",
-  "Google News: Courts & statewide officials": "ok 15",
-  "Google News: State agencies": "ok 4",
+  "Google News: Hochul": "ok 79",
+  "Google News: Legislature": "ok 4",
+  "Google News: Courts & statewide officials": "ok 14",
+  "Google News: State agencies": "ok 1",
   "Google News: Lawmakers": "ok 8"
  },
  "outlets": [
@@ -591,13 +591,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 565,
-  "hard": 388,
+  "free": 566,
+  "hard": 389,
   "unknown": 2348,
   "metered": 2,
   "null": 29
  },
- "extracted": 1080,
+ "extracted": 1081,
  "runner": "pi",
  "per_day": {
   "2026-10-14": {
@@ -653,7 +653,7 @@
    "official": 6
   },
   "2026-10-27": {
-   "stories": 8,
+   "stories": 9,
    "official": 1
   }
  },
@@ -661,7 +661,7 @@
  "gates": {
   "letitia james": 37,
   "Lawmakers sweep": 25,
-  "suny": 15,
+  "suny": 13,
   "senate district": 9,
   "second amendment": 5,
   "medicaid": 5,
@@ -687,26 +687,26 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 3,
+ "unresolved_links": 4,
  "summaries": {
-  "total": 1126,
-  "og": 573,
-  "none": 2206
+  "total": 1127,
+  "og": 574,
+  "none": 2207
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 79,
-  "items": 916,
-  "cost_usd": 0.035,
-  "last": "2026-10-26T23:00:07Z",
+  "calls": 80,
+  "items": 920,
+  "cost_usd": 0.0353,
+  "last": "2026-10-26T23:30:31Z",
   "week": {
-   "classified": 751,
+   "classified": 750,
    "unclassified": 0,
    "types": {
-    "campaign": 274,
+    "campaign": 275,
     "policy": 156,
-    "announcement": 133,
-    "other": 75,
+    "announcement": 132,
+    "other": 74,
     "opinion": 53,
     "national": 29,
     "local": 16,
@@ -723,11 +723,11 @@
     "cost_usd": 0.022554
    },
    "2026-10-26": {
-    "calls": 50,
-    "items": 198,
-    "input_tokens": 79247,
-    "output_tokens": 6164,
-    "cost_usd": 0.012471
+    "calls": 51,
+    "items": 202,
+    "input_tokens": 80761,
+    "output_tokens": 6287,
+    "cost_usd": 0.012716
    }
   }
  },
