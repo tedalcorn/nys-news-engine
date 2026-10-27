@@ -1,17 +1,17 @@
 {
- "last_run": "2026-10-27 08:31 UTC",
- "last_run_iso": "2026-10-27T08:30:26Z",
- "total": 3369,
+ "last_run": "2026-10-27 09:01 UTC",
+ "last_run_iso": "2026-10-27T09:00:07Z",
+ "total": 3372,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
   "City & State (gnews)": "ok 8",
   "Politico NY Playbook": "ok 25",
-  "Times Union": "ok 12",
+  "Times Union": "ok 11",
   "NY State of Politics": "ok 2",
   "Newsday": "ok 4",
   "Daily News": "ok 2",
-  "Times Union (gnews)": "ok 3",
+  "Times Union (gnews)": "ok 2",
   "Newsday (gnews)": "ok 6",
   "Daily News (gnews)": "ok 1",
   "Politico": "ok 2",
@@ -35,11 +35,11 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 15",
-  "NY Senate": "ok 54",
+  "NY Senate": "ok 38",
   "NY Assembly": "ok 8",
-  "Google News: Hochul": "ok 84",
-  "Google News: Legislature": "ok 4",
-  "Google News: Courts & statewide officials": "ok 12",
+  "Google News: Hochul": "ok 86",
+  "Google News: Legislature": "ok 6",
+  "Google News: Courts & statewide officials": "ok 15",
   "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 13"
  },
@@ -209,6 +209,7 @@
   "KSNV",
   "KTVN",
   "Kingsport Times News",
+  "Knewz",
   "LAmag",
   "LI Press",
   "La Voce di New York",
@@ -599,13 +600,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 594,
+  "free": 595,
   "hard": 392,
-  "unknown": 2353,
+  "unknown": 2355,
   "null": 29,
   "metered": 1
  },
- "extracted": 1118,
+ "extracted": 1120,
  "runner": "pi",
  "per_day": {
   "2026-10-14": {
@@ -661,15 +662,15 @@
    "official": 9
   },
   "2026-10-27": {
-   "stories": 15,
-   "official": 0
+   "stories": 16,
+   "official": 1
   }
  },
- "grouped_stories": 301,
+ "grouped_stories": 302,
  "gates": {
   "letitia james": 39,
   "Lawmakers sweep": 26,
-  "suny": 13,
+  "suny": 15,
   "senate district": 9,
   "state grant": 5,
   "second amendment": 5,
@@ -687,36 +688,36 @@
   "state education department": 1,
   "ballot proposal": 1,
   "state senator": 1,
-  "ny attorney general": 1,
   "struck down": 1,
+  "ny attorney general": 1,
   "attorney general debate": 1,
   "board of elections": 1,
   "state attorney general": 1,
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 2,
+ "unresolved_links": 3,
  "summaries": {
-  "total": 1163,
-  "og": 606,
-  "none": 2206
+  "total": 1165,
+  "og": 608,
+  "none": 2207
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 98,
-  "items": 979,
-  "cost_usd": 0.0394,
-  "last": "2026-10-27T08:30:26Z",
+  "calls": 99,
+  "items": 982,
+  "cost_usd": 0.0396,
+  "last": "2026-10-27T09:00:07Z",
   "week": {
-   "classified": 772,
+   "classified": 770,
    "unclassified": 0,
    "types": {
-    "campaign": 288,
+    "campaign": 287,
     "policy": 157,
     "announcement": 136,
-    "other": 75,
-    "opinion": 57,
-    "national": 28,
+    "other": 76,
+    "opinion": 56,
+    "national": 27,
     "blotter": 16,
     "local": 15
    },
@@ -738,11 +739,11 @@
     "cost_usd": 0.013068
    },
    "2026-10-27": {
-    "calls": 17,
-    "items": 51,
-    "input_tokens": 25561,
-    "output_tokens": 1636,
-    "cost_usd": 0.003775
+    "calls": 18,
+    "items": 54,
+    "input_tokens": 27041,
+    "output_tokens": 1719,
+    "cost_usd": 0.003997
    }
   }
  },
