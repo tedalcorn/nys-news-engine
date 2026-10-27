@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-27 10:01 UTC",
- "last_run_iso": "2026-10-27T10:00:23Z",
- "total": 3377,
+ "last_run": "2026-10-27 10:31 UTC",
+ "last_run_iso": "2026-10-27T10:30:17Z",
+ "total": 3378,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
@@ -19,7 +19,7 @@
   "Gothamist": "ok 5",
   "New York Times": "ok 1",
   "New York Times (nyt)": "ok 7",
-  "NY Post Politics": "ok 3",
+  "NY Post Politics": "ok 2",
   "NY Post Metro": "ok 2",
   "The City": "ok 1",
   "Wall Street Journal": "ok 0",
@@ -34,13 +34,13 @@
   "Citizens Budget Commission": "ok 1",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 13",
+  "Governor's Office (gnews)": "ok 14",
   "NY Senate": "ok 54",
   "NY Assembly": "ok 8",
-  "Google News: Hochul": "ok 87",
-  "Google News: Legislature": "ok 6",
-  "Google News: Courts & statewide officials": "ok 16",
-  "Google News: State agencies": "ok 1",
+  "Google News: Hochul": "ok 84",
+  "Google News: Legislature": "ok 7",
+  "Google News: Courts & statewide officials": "ok 13",
+  "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 13"
  },
  "outlets": [
@@ -523,6 +523,7 @@
   "hcr.ny.gov",
   "hpenews.com",
   "https://914inc.com/",
+  "hudsonvalleycountry.com",
   "indiatoday.in",
   "indica News",
   "ktnv.com",
@@ -601,13 +602,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 599,
+  "free": 602,
   "hard": 392,
-  "unknown": 2356,
+  "unknown": 2354,
   "null": 29,
   "metered": 1
  },
- "extracted": 1124,
+ "extracted": 1128,
  "runner": "pi",
  "per_day": {
   "2026-10-14": {
@@ -663,15 +664,15 @@
    "official": 9
   },
   "2026-10-27": {
-   "stories": 20,
+   "stories": 24,
    "official": 1
   }
  },
- "grouped_stories": 301,
+ "grouped_stories": 300,
  "gates": {
   "letitia james": 39,
   "Lawmakers sweep": 26,
-  "suny": 15,
+  "suny": 13,
   "senate district": 9,
   "state grant": 5,
   "second amendment": 5,
@@ -684,7 +685,6 @@
   "state law": 2,
   "department of environmental conservation": 2,
   "unconstitutional": 2,
-  "nyserda": 2,
   "attorney general race": 2,
   "state education department": 1,
   "ballot proposal": 1,
@@ -694,33 +694,34 @@
   "ny attorney general": 1,
   "board of elections": 1,
   "state attorney general": 1,
+  "nyserda": 1,
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 4,
+ "unresolved_links": 1,
  "summaries": {
-  "total": 1169,
-  "og": 611,
-  "none": 2208
+  "total": 1172,
+  "og": 613,
+  "none": 2206
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 101,
-  "items": 989,
-  "cost_usd": 0.0401,
-  "last": "2026-10-27T10:00:23Z",
+  "calls": 102,
+  "items": 992,
+  "cost_usd": 0.0403,
+  "last": "2026-10-27T10:30:17Z",
   "week": {
    "classified": 775,
    "unclassified": 0,
    "types": {
-    "campaign": 288,
+    "campaign": 289,
     "policy": 157,
     "announcement": 136,
-    "other": 78,
+    "other": 76,
     "opinion": 56,
     "national": 27,
     "blotter": 18,
-    "local": 15
+    "local": 16
    },
    "investigative": 17
   },
@@ -740,13 +741,13 @@
     "cost_usd": 0.013068
    },
    "2026-10-27": {
-    "calls": 20,
-    "items": 61,
-    "input_tokens": 30097,
-    "output_tokens": 1920,
-    "cost_usd": 0.004467
+    "calls": 21,
+    "items": 64,
+    "input_tokens": 31707,
+    "output_tokens": 2027,
+    "cost_usd": 0.004714
    }
   }
  },
- "zm_only": 8
+ "zm_only": 9
 }
