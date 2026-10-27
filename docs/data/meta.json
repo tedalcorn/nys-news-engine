@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-27 17:02 UTC",
- "last_run_iso": "2026-10-27T17:00:32Z",
- "total": 3422,
+ "last_run": "2026-10-27 17:31 UTC",
+ "last_run_iso": "2026-10-27T17:30:07Z",
+ "total": 3425,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
@@ -26,22 +26,22 @@
   "Buffalo News": "ok 7",
   "Buffalo News (gnews)": "ok 4",
   "Syracuse.com": "ok 3",
-  "FingerLakes1": "ok 8",
+  "FingerLakes1": "ok 9",
   "Adirondack Explorer": "ok 2",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 1",
   "Citizens Union": "ok 10",
-  "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 13",
-  "NY Senate": "ok 53",
-  "NY Assembly": "ok 7",
-  "Google News: Hochul": "ok 83",
+  "Governor's Office": "ok 16",
+  "Governor's Office (gnews)": "ok 15",
+  "NY Senate": "ok 39",
+  "NY Assembly": "ok 8",
+  "Google News: Hochul": "ok 84",
   "Google News: Legislature": "ok 6",
-  "Google News: Courts & statewide officials": "ok 20",
+  "Google News: Courts & statewide officials": "ok 17",
   "Google News: State agencies": "ok 3",
-  "Google News: Lawmakers": "ok 10"
+  "Google News: Lawmakers": "ok 12"
  },
  "outlets": [
   "- Emerson Polling",
@@ -348,6 +348,7 @@
   "SBU News",
   "SILive.com",
   "SUNY - The State University of New York",
+  "SUNY Cortland",
   "Sambad English",
   "Saratogian",
   "Scripps News",
@@ -609,13 +610,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 631,
+  "free": 634,
   "hard": 393,
   "unknown": 2368,
   "null": 29,
   "metered": 1
  },
- "extracted": 1169,
+ "extracted": 1174,
  "runner": "pi",
  "per_day": {
   "2026-10-14": {
@@ -671,15 +672,15 @@
    "official": 9
   },
   "2026-10-27": {
-   "stories": 56,
-   "official": 5
+   "stories": 59,
+   "official": 7
   }
  },
  "grouped_stories": 304,
  "gates": {
   "letitia james": 43,
-  "Lawmakers sweep": 27,
-  "suny": 16,
+  "Lawmakers sweep": 28,
+  "suny": 14,
   "senate district": 9,
   "medicaid": 6,
   "state grant": 6,
@@ -689,13 +690,13 @@
   "ballot question": 3,
   "state police": 3,
   "state sen.": 3,
+  "dinapoli": 2,
   "state law": 2,
   "department of environmental conservation": 2,
   "unconstitutional": 2,
   "attorney general race": 2,
   "ballot proposal": 1,
   "state education department": 1,
-  "dinapoli": 1,
   "state funding": 1,
   "state senator": 1,
   "struck down": 1,
@@ -707,26 +708,26 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 4,
+ "unresolved_links": 2,
  "summaries": {
-  "total": 1210,
-  "og": 635,
-  "none": 2212
+  "total": 1214,
+  "og": 636,
+  "none": 2211
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 116,
-  "items": 1050,
-  "cost_usd": 0.0437,
-  "last": "2026-10-27T17:00:32Z",
+  "calls": 117,
+  "items": 1055,
+  "cost_usd": 0.044,
+  "last": "2026-10-27T17:30:07Z",
   "week": {
-   "classified": 792,
+   "classified": 793,
    "unclassified": 0,
    "types": {
     "campaign": 300,
     "policy": 153,
-    "announcement": 141,
-    "other": 78,
+    "announcement": 145,
+    "other": 75,
     "opinion": 56,
     "national": 30,
     "blotter": 19,
@@ -750,11 +751,11 @@
     "cost_usd": 0.013068
    },
    "2026-10-27": {
-    "calls": 35,
-    "items": 122,
-    "input_tokens": 55052,
-    "output_tokens": 3788,
-    "cost_usd": 0.008085
+    "calls": 36,
+    "items": 127,
+    "input_tokens": 57047,
+    "output_tokens": 3963,
+    "cost_usd": 0.008404
    }
   }
  },
