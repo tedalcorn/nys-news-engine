@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-27 14:02 UTC",
- "last_run_iso": "2026-10-27T14:00:27Z",
- "total": 3396,
+ "last_run": "2026-10-27 14:31 UTC",
+ "last_run_iso": "2026-10-27T14:30:07Z",
+ "total": 3398,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
   "City & State (gnews)": "ok 8",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 10",
-  "NY State of Politics": "ok 0",
+  "NY State of Politics": "ok 2",
   "Newsday": "ok 4",
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 1",
@@ -37,9 +37,9 @@
   "Governor's Office (gnews)": "ok 13",
   "NY Senate": "ok 54",
   "NY Assembly": "ok 8",
-  "Google News: Hochul": "ok 85",
+  "Google News: Hochul": "ok 84",
   "Google News: Legislature": "ok 6",
-  "Google News: Courts & statewide officials": "ok 15",
+  "Google News: Courts & statewide officials": "ok 19",
   "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 14"
  },
@@ -230,6 +230,7 @@
   "MS NOW",
   "Manhattan Times News",
   "Marist Poll",
+  "Mass Transit",
   "Medical Daily",
   "Menafn",
   "Messenger Papers",
@@ -334,6 +335,7 @@
   "Representative Claudia Tenney | (.gov)",
   "Reuters",
   "River Journal Online",
+  "RiverheadLOCAL",
   "Rochester Beacon",
   "RochesterFirst",
   "Rockland County Business Journal",
@@ -602,13 +604,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 610,
+  "free": 612,
   "hard": 393,
   "unknown": 2363,
   "null": 29,
   "metered": 1
  },
- "extracted": 1142,
+ "extracted": 1145,
  "runner": "pi",
  "per_day": {
   "2026-10-14": {
@@ -664,20 +666,20 @@
    "official": 9
   },
   "2026-10-27": {
-   "stories": 34,
-   "official": 2
+   "stories": 38,
+   "official": 1
   }
  },
- "grouped_stories": 303,
+ "grouped_stories": 301,
  "gates": {
   "letitia james": 41,
   "Lawmakers sweep": 27,
-  "suny": 15,
+  "suny": 13,
   "senate district": 9,
   "medicaid": 6,
   "state grant": 5,
   "second amendment": 5,
-  "Courts & statewide officials sweep": 4,
+  "Courts & statewide officials sweep": 5,
   "new york attorney general": 4,
   "ballot question": 3,
   "state police": 3,
@@ -699,27 +701,27 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 5,
+ "unresolved_links": 4,
  "summaries": {
-  "total": 1185,
-  "og": 620,
+  "total": 1187,
+  "og": 622,
   "none": 2211
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 109,
-  "items": 1017,
-  "cost_usd": 0.0419,
-  "last": "2026-10-27T14:00:27Z",
+  "calls": 110,
+  "items": 1022,
+  "cost_usd": 0.0422,
+  "last": "2026-10-27T14:30:07Z",
   "week": {
    "classified": 779,
    "unclassified": 0,
    "types": {
     "campaign": 296,
-    "policy": 153,
-    "announcement": 136,
-    "other": 77,
-    "opinion": 57,
+    "policy": 154,
+    "announcement": 137,
+    "other": 76,
+    "opinion": 56,
     "national": 26,
     "blotter": 18,
     "local": 16
@@ -742,11 +744,11 @@
     "cost_usd": 0.013068
    },
    "2026-10-27": {
-    "calls": 28,
-    "items": 89,
-    "input_tokens": 42919,
-    "output_tokens": 2788,
-    "cost_usd": 0.006294
+    "calls": 29,
+    "items": 94,
+    "input_tokens": 44591,
+    "output_tokens": 2953,
+    "cost_usd": 0.006576
    }
   }
  },
