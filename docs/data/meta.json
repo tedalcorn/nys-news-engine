@@ -1,24 +1,24 @@
 {
- "last_run": "2026-10-27 20:42 UTC",
- "last_run_iso": "2026-10-27T20:41:52Z",
- "total": 3453,
+ "last_run": "2026-10-27 21:01 UTC",
+ "last_run_iso": "2026-10-27T21:00:19Z",
+ "total": 3458,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
   "City & State (gnews)": "ok 8",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 10",
-  "NY State of Politics": "ok 1",
+  "NY State of Politics": "ok 0",
   "Newsday": "ok 4",
   "Daily News": "ok 1",
-  "Times Union (gnews)": "ok 2",
+  "Times Union (gnews)": "ok 3",
   "Newsday (gnews)": "ok 5",
   "Daily News (gnews)": "ok 0",
-  "Politico": "ok 5",
+  "Politico": "ok 6",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 3",
   "New York Times": "ok 1",
-  "New York Times (nyt)": "ok 7",
+  "New York Times (nyt)": "ok 6",
   "NY Post Politics": "ok 2",
   "NY Post Metro": "ok 4",
   "The City": "ok 1",
@@ -33,14 +33,14 @@
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 2",
   "Citizens Union": "ok 10",
-  "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 19",
+  "Governor's Office": "ok 14",
+  "Governor's Office (gnews)": "ok 20",
   "NY Senate": "ok 55",
   "NY Assembly": "ok 7",
   "Google News: Hochul": "ok 82",
   "Google News: Legislature": "ok 6",
-  "Google News: Courts & statewide officials": "ok 17",
-  "Google News: State agencies": "ok 3",
+  "Google News: Courts & statewide officials": "ok 18",
+  "Google News: State agencies": "ok 1",
   "Google News: Lawmakers": "ok 11"
  },
  "outlets": [
@@ -79,6 +79,7 @@
   "BIN: Black Information Network",
   "BKReader",
   "Balkanweb.com",
+  "Baltimore Jewish Times",
   "Baltimore Sun",
   "Bee Group Newspapers",
   "Beinsure",
@@ -615,12 +616,12 @@
  "paywall": {
   "free": 657,
   "hard": 394,
-  "unknown": 2372,
+  "unknown": 2377,
   "null": 29,
   "metered": 1
  },
  "extracted": 1202,
- "runner": "actions",
+ "runner": "pi",
  "per_day": {
   "2026-10-14": {
    "stories": 79,
@@ -682,13 +683,13 @@
  "grouped_stories": 308,
  "gates": {
   "letitia james": 43,
-  "Lawmakers sweep": 29,
+  "Lawmakers sweep": 30,
   "suny": 16,
   "senate district": 9,
   "medicaid": 6,
   "state grant": 6,
+  "Courts & statewide officials sweep": 6,
   "second amendment": 5,
-  "Courts & statewide officials sweep": 5,
   "state police": 4,
   "new york attorney general": 4,
   "ballot question": 3,
@@ -711,29 +712,29 @@
   "nyserda": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 2,
+ "unresolved_links": 7,
  "summaries": {
   "total": 1237,
   "og": 651,
-  "none": 2216
+  "none": 2221
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 124,
-  "items": 1088,
-  "cost_usd": 0.046,
-  "last": "2026-10-27T20:41:52Z",
+  "calls": 125,
+  "items": 1093,
+  "cost_usd": 0.0462,
+  "last": "2026-10-27T21:00:19Z",
   "week": {
-   "classified": 796,
+   "classified": 798,
    "unclassified": 0,
    "types": {
-    "campaign": 303,
+    "campaign": 304,
     "policy": 148,
-    "announcement": 144,
-    "other": 82,
+    "announcement": 145,
+    "other": 83,
     "opinion": 56,
     "national": 29,
-    "blotter": 19,
+    "blotter": 18,
     "local": 15
    },
    "investigative": 17
@@ -754,11 +755,11 @@
     "cost_usd": 0.013068
    },
    "2026-10-27": {
-    "calls": 43,
-    "items": 160,
-    "input_tokens": 68804,
-    "output_tokens": 5012,
-    "cost_usd": 0.01033
+    "calls": 44,
+    "items": 165,
+    "input_tokens": 70472,
+    "output_tokens": 5177,
+    "cost_usd": 0.010612
    }
   }
  },
