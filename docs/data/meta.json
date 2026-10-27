@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-27 05:05 UTC",
- "last_run_iso": "2026-10-27T05:04:47Z",
- "total": 3364,
+ "last_run": "2026-10-27 05:31 UTC",
+ "last_run_iso": "2026-10-27T05:30:07Z",
+ "total": 3365,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
   "City & State (gnews)": "ok 8",
   "Politico NY Playbook": "ok 25",
   "Times Union": "ok 12",
-  "NY State of Politics": "ok 0",
+  "NY State of Politics": "ok 2",
   "Newsday": "ok 6",
   "Daily News": "ok 2",
   "Times Union (gnews)": "ok 3",
@@ -37,11 +37,11 @@
   "Governor's Office (gnews)": "ok 13",
   "NY Senate": "ok 53",
   "NY Assembly": "ok 9",
-  "Google News: Hochul": "ok 82",
-  "Google News: Legislature": "ok 5",
-  "Google News: Courts & statewide officials": "ok 16",
+  "Google News: Hochul": "ok 84",
+  "Google News: Legislature": "ok 6",
+  "Google News: Courts & statewide officials": "ok 12",
   "Google News: State agencies": "ok 1",
-  "Google News: Lawmakers": "ok 13"
+  "Google News: Lawmakers": "ok 10"
  },
  "outlets": [
   "- Emerson Polling",
@@ -600,12 +600,12 @@
  "paywall": {
   "free": 589,
   "hard": 391,
-  "unknown": 2354,
+  "unknown": 2355,
   "null": 29,
   "metered": 1
  },
  "extracted": 1112,
- "runner": "actions",
+ "runner": "pi",
  "per_day": {
   "2026-10-14": {
    "stories": 79,
@@ -694,23 +694,23 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 3,
+ "unresolved_links": 4,
  "summaries": {
   "total": 1156,
   "og": 601,
-  "none": 2208
+  "none": 2209
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 91,
-  "items": 967,
-  "cost_usd": 0.038,
-  "last": "2026-10-27T05:04:47Z",
+  "calls": 92,
+  "items": 968,
+  "cost_usd": 0.0382,
+  "last": "2026-10-27T05:30:07Z",
   "week": {
-   "classified": 770,
+   "classified": 771,
    "unclassified": 0,
    "types": {
-    "campaign": 286,
+    "campaign": 287,
     "policy": 159,
     "announcement": 135,
     "other": 73,
@@ -737,11 +737,11 @@
     "cost_usd": 0.013068
    },
    "2026-10-27": {
-    "calls": 10,
-    "items": 39,
-    "input_tokens": 15557,
-    "output_tokens": 1251,
-    "cost_usd": 0.002356
+    "calls": 11,
+    "items": 40,
+    "input_tokens": 16930,
+    "output_tokens": 1286,
+    "cost_usd": 0.002543
    }
   }
  },
