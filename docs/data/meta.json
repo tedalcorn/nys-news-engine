@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-27 10:31 UTC",
- "last_run_iso": "2026-10-27T10:30:17Z",
- "total": 3378,
+ "last_run": "2026-10-27 10:35 UTC",
+ "last_run_iso": "2026-10-27T10:34:08Z",
+ "total": 3382,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
@@ -27,7 +27,7 @@
   "Buffalo News (gnews)": "ok 3",
   "Syracuse.com": "ok 6",
   "FingerLakes1": "ok 4",
-  "Adirondack Explorer": "ok 0",
+  "Adirondack Explorer": "ok 1",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
@@ -35,12 +35,12 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 14",
-  "NY Senate": "ok 54",
+  "NY Senate": "ok 37",
   "NY Assembly": "ok 8",
-  "Google News: Hochul": "ok 84",
-  "Google News: Legislature": "ok 7",
+  "Google News: Hochul": "ok 86",
+  "Google News: Legislature": "ok 6",
   "Google News: Courts & statewide officials": "ok 13",
-  "Google News: State agencies": "ok 3",
+  "Google News: State agencies": "ok 1",
   "Google News: Lawmakers": "ok 13"
  },
  "outlets": [
@@ -349,6 +349,7 @@
   "Siena Poll",
   "Slate",
   "Smart Water Magazine",
+  "Social News XYZ",
   "Solar Builder",
   "Solar Power World",
   "South China Morning Post",
@@ -387,7 +388,6 @@
   "The Good Newsroom",
   "The Great New York State Fair (.gov)",
   "The Guardian",
-  "The Hawk",
   "The Hill",
   "The Indian Panorama",
   "The Indypendent",
@@ -602,14 +602,14 @@
   "Transit"
  ],
  "paywall": {
-  "free": 602,
+  "free": 603,
   "hard": 392,
-  "unknown": 2354,
+  "unknown": 2357,
   "null": 29,
   "metered": 1
  },
- "extracted": 1128,
- "runner": "pi",
+ "extracted": 1129,
+ "runner": "actions",
  "per_day": {
   "2026-10-14": {
    "stories": 79,
@@ -656,23 +656,23 @@
    "official": 4
   },
   "2026-10-25": {
-   "stories": 61,
+   "stories": 63,
    "official": 0
   },
   "2026-10-26": {
-   "stories": 110,
+   "stories": 111,
    "official": 9
   },
   "2026-10-27": {
-   "stories": 24,
+   "stories": 22,
    "official": 1
   }
  },
- "grouped_stories": 300,
+ "grouped_stories": 301,
  "gates": {
   "letitia james": 39,
   "Lawmakers sweep": 26,
-  "suny": 13,
+  "suny": 15,
   "senate district": 9,
   "state grant": 5,
   "second amendment": 5,
@@ -688,6 +688,7 @@
   "attorney general race": 2,
   "state education department": 1,
   "ballot proposal": 1,
+  "state funding": 1,
   "state senator": 1,
   "struck down": 1,
   "attorney general debate": 1,
@@ -698,26 +699,26 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 1,
+ "unresolved_links": 4,
  "summaries": {
-  "total": 1172,
+  "total": 1173,
   "og": 613,
-  "none": 2206
+  "none": 2209
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 102,
-  "items": 992,
-  "cost_usd": 0.0403,
-  "last": "2026-10-27T10:30:17Z",
+  "calls": 103,
+  "items": 997,
+  "cost_usd": 0.0405,
+  "last": "2026-10-27T10:34:08Z",
   "week": {
-   "classified": 775,
+   "classified": 779,
    "unclassified": 0,
    "types": {
     "campaign": 289,
     "policy": 157,
-    "announcement": 136,
-    "other": 76,
+    "announcement": 137,
+    "other": 79,
     "opinion": 56,
     "national": 27,
     "blotter": 18,
@@ -741,11 +742,11 @@
     "cost_usd": 0.013068
    },
    "2026-10-27": {
-    "calls": 21,
-    "items": 64,
-    "input_tokens": 31707,
-    "output_tokens": 2027,
-    "cost_usd": 0.004714
+    "calls": 22,
+    "items": 69,
+    "input_tokens": 33320,
+    "output_tokens": 2180,
+    "cost_usd": 0.004836
    }
   }
  },
