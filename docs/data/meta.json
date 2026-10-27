@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-27 15:31 UTC",
- "last_run_iso": "2026-10-27T15:30:30Z",
- "total": 3406,
+ "last_run": "2026-10-27 16:01 UTC",
+ "last_run_iso": "2026-10-27T16:00:07Z",
+ "total": 3411,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
@@ -27,7 +27,7 @@
   "Buffalo News (gnews)": "ok 4",
   "Syracuse.com": "ok 4",
   "FingerLakes1": "ok 6",
-  "Adirondack Explorer": "ok 1",
+  "Adirondack Explorer": "ok 2",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
@@ -38,10 +38,10 @@
   "NY Senate": "ok 52",
   "NY Assembly": "ok 8",
   "Google News: Hochul": "ok 85",
-  "Google News: Legislature": "ok 6",
-  "Google News: Courts & statewide officials": "ok 19",
-  "Google News: State agencies": "ok 1",
-  "Google News: Lawmakers": "ok 13"
+  "Google News: Legislature": "ok 5",
+  "Google News: Courts & statewide officials": "ok 17",
+  "Google News: State agencies": "ok 3",
+  "Google News: Lawmakers": "ok 10"
  },
  "outlets": [
   "- Emerson Polling",
@@ -189,6 +189,7 @@
   "Hudson Valley Post",
   "Hudson Valley Press",
   "Huntington Now",
+  "INDIA New England News",
   "Idaho State Journal",
   "IndiaWest",
   "InformNNY.com",
@@ -478,6 +479,7 @@
   "Washington Examiner",
   "Washington Times",
   "WebWire",
+  "West Side Rag",
   "Westfair Communications",
   "World Israel News",
   "World Socialist Web Site",
@@ -605,13 +607,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 620,
+  "free": 623,
   "hard": 393,
-  "unknown": 2363,
+  "unknown": 2365,
   "null": 29,
   "metered": 1
  },
- "extracted": 1155,
+ "extracted": 1158,
  "runner": "pi",
  "per_day": {
   "2026-10-14": {
@@ -667,15 +669,15 @@
    "official": 9
   },
   "2026-10-27": {
-   "stories": 48,
+   "stories": 51,
    "official": 1
   }
  },
- "grouped_stories": 303,
+ "grouped_stories": 304,
  "gates": {
-  "letitia james": 41,
+  "letitia james": 42,
   "Lawmakers sweep": 27,
-  "suny": 13,
+  "suny": 16,
   "senate district": 9,
   "medicaid": 6,
   "state grant": 6,
@@ -702,30 +704,30 @@
   "court of appeals": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 2,
+ "unresolved_links": 4,
  "summaries": {
-  "total": 1197,
-  "og": 629,
-  "none": 2209
+  "total": 1200,
+  "og": 631,
+  "none": 2211
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 112,
-  "items": 1032,
-  "cost_usd": 0.0428,
-  "last": "2026-10-27T15:30:30Z",
+  "calls": 113,
+  "items": 1037,
+  "cost_usd": 0.043,
+  "last": "2026-10-27T16:00:07Z",
   "week": {
-   "classified": 781,
+   "classified": 785,
    "unclassified": 0,
    "types": {
-    "campaign": 298,
+    "campaign": 300,
     "policy": 152,
-    "announcement": 137,
-    "other": 76,
+    "announcement": 138,
+    "other": 78,
     "opinion": 57,
     "national": 27,
     "blotter": 18,
-    "local": 16
+    "local": 15
    },
    "investigative": 17
   },
@@ -745,11 +747,11 @@
     "cost_usd": 0.013068
    },
    "2026-10-27": {
-    "calls": 31,
-    "items": 104,
-    "input_tokens": 48120,
-    "output_tokens": 3253,
-    "cost_usd": 0.007143
+    "calls": 32,
+    "items": 109,
+    "input_tokens": 49763,
+    "output_tokens": 3399,
+    "cost_usd": 0.007413
    }
   }
  },
