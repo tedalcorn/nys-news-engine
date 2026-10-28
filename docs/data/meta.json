@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-28 17:25 UTC",
- "last_run_iso": "2026-10-28T17:24:37Z",
- "total": 3621,
+ "last_run": "2026-10-28 17:31 UTC",
+ "last_run_iso": "2026-10-28T17:30:06Z",
+ "total": 3623,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
   "City & State (gnews)": "ok 13",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 4",
-  "NY State of Politics": "ok 5",
+  "NY State of Politics": "ok 1",
   "Newsday": "ok 8",
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 5",
@@ -39,9 +39,9 @@
   "NY Assembly": "ok 11",
   "Google News: Hochul": "ok 86",
   "Google News: Legislature": "ok 5",
-  "Google News: Courts & statewide officials": "ok 26",
-  "Google News: State agencies": "ok 2",
-  "Google News: Lawmakers": "ok 17"
+  "Google News: Courts & statewide officials": "ok 25",
+  "Google News: State agencies": "ok 4",
+  "Google News: Lawmakers": "ok 12"
  },
  "outlets": [
   "- Emerson Polling",
@@ -630,13 +630,13 @@
  ],
  "paywall": {
   "hard": 415,
-  "free": 762,
-  "unknown": 2413,
+  "free": 763,
+  "unknown": 2414,
   "metered": 2,
   "null": 29
  },
- "extracted": 1360,
- "runner": "actions",
+ "extracted": 1361,
+ "runner": "pi",
  "per_day": {
   "2026-10-15": {
    "stories": 56,
@@ -691,7 +691,7 @@
    "official": 12
   },
   "2026-10-28": {
-   "stories": 91,
+   "stories": 92,
    "official": 10
   }
  },
@@ -729,25 +729,25 @@
   "ny attorney general": 1,
   "2nd amendment": 1
  },
- "unresolved_links": 14,
+ "unresolved_links": 15,
  "summaries": {
-  "total": 1374,
+  "total": 1375,
   "og": 764,
-  "none": 2247
+  "none": 2248
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 168,
-  "items": 1312,
-  "cost_usd": 0.0584,
-  "last": "2026-10-28T17:24:37Z",
+  "calls": 169,
+  "items": 1314,
+  "cost_usd": 0.0587,
+  "last": "2026-10-28T17:30:06Z",
   "week": {
-   "classified": 884,
+   "classified": 885,
    "unclassified": 0,
    "types": {
-    "campaign": 354,
-    "policy": 166,
-    "announcement": 147,
+    "campaign": 355,
+    "policy": 167,
+    "announcement": 146,
     "other": 87,
     "opinion": 60,
     "national": 34,
@@ -779,11 +779,11 @@
     "cost_usd": 0.01213
    },
    "2026-10-28": {
-    "calls": 38,
-    "items": 187,
-    "input_tokens": 63297,
-    "output_tokens": 6552,
-    "cost_usd": 0.010682
+    "calls": 39,
+    "items": 189,
+    "input_tokens": 64857,
+    "output_tokens": 6623,
+    "cost_usd": 0.010906
    }
   }
  },
