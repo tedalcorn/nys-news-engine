@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-29 01:49 UTC",
- "last_run_iso": "2026-10-29T01:48:22Z",
- "total": 3701,
+ "last_run": "2026-10-29 02:01 UTC",
+ "last_run_iso": "2026-10-29T02:00:16Z",
+ "total": 3702,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
   "City & State (gnews)": "ok 18",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 4",
-  "NY State of Politics": "ok 2",
+  "NY State of Politics": "ok 3",
   "Newsday": "ok 11",
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 4",
@@ -34,11 +34,11 @@
   "Citizens Budget Commission": "ok 1",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 26",
+  "Governor's Office (gnews)": "ok 25",
   "NY Senate": "ok 67",
   "NY Assembly": "ok 13",
-  "Google News: Hochul": "ok 89",
-  "Google News: Legislature": "ok 11",
+  "Google News: Hochul": "ok 90",
+  "Google News: Legislature": "ok 12",
   "Google News: Courts & statewide officials": "ok 21",
   "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 14"
@@ -642,12 +642,12 @@
  "paywall": {
   "hard": 424,
   "free": 821,
-  "unknown": 2425,
+  "unknown": 2426,
   "metered": 2,
   "null": 29
  },
  "extracted": 1445,
- "runner": "actions",
+ "runner": "pi",
  "per_day": {
   "2026-10-16": {
    "stories": 27,
@@ -739,24 +739,24 @@
   "unconstitutional": 1,
   "nyserda": 1
  },
- "unresolved_links": 8,
+ "unresolved_links": 9,
  "summaries": {
   "total": 1452,
   "og": 828,
-  "none": 2249
+  "none": 2250
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 187,
-  "items": 1419,
-  "cost_usd": 0.064,
-  "last": "2026-10-29T01:48:22Z",
+  "calls": 188,
+  "items": 1420,
+  "cost_usd": 0.0642,
+  "last": "2026-10-29T02:00:16Z",
   "week": {
-   "classified": 892,
+   "classified": 893,
    "unclassified": 0,
    "types": {
     "campaign": 361,
-    "policy": 176,
+    "policy": 177,
     "announcement": 154,
     "other": 75,
     "opinion": 56,
@@ -796,11 +796,11 @@
     "cost_usd": 0.014955
    },
    "2026-10-29": {
-    "calls": 5,
-    "items": 21,
-    "input_tokens": 7753,
-    "output_tokens": 652,
-    "cost_usd": 0.001263
+    "calls": 6,
+    "items": 22,
+    "input_tokens": 9102,
+    "output_tokens": 686,
+    "cost_usd": 0.001447
    }
   }
  },
