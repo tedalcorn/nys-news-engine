@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-29 02:01 UTC",
- "last_run_iso": "2026-10-29T02:00:16Z",
- "total": 3702,
+ "last_run": "2026-10-29 02:31 UTC",
+ "last_run_iso": "2026-10-29T02:30:21Z",
+ "total": 3703,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
   "City & State (gnews)": "ok 18",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 4",
-  "NY State of Politics": "ok 3",
+  "NY State of Politics": "ok 8",
   "Newsday": "ok 11",
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 4",
@@ -20,13 +20,13 @@
   "New York Times": "ok 1",
   "New York Times (nyt)": "ok 7",
   "NY Post Politics": "ok 1",
-  "NY Post Metro": "ok 4",
+  "NY Post Metro": "ok 2",
   "The City": "ok 2",
   "Wall Street Journal": "ok 0",
   "Buffalo News": "ok 10",
   "Buffalo News (gnews)": "ok 5",
   "Syracuse.com": "ok 5",
-  "FingerLakes1": "ok 7",
+  "FingerLakes1": "ok 6",
   "Adirondack Explorer": "ok 1",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
@@ -34,14 +34,14 @@
   "Citizens Budget Commission": "ok 1",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
-  "Governor's Office (gnews)": "ok 25",
-  "NY Senate": "ok 67",
+  "Governor's Office (gnews)": "ok 26",
+  "NY Senate": "ok 39",
   "NY Assembly": "ok 13",
-  "Google News: Hochul": "ok 90",
+  "Google News: Hochul": "ok 89",
   "Google News: Legislature": "ok 12",
-  "Google News: Courts & statewide officials": "ok 21",
+  "Google News: Courts & statewide officials": "ok 23",
   "Google News: State agencies": "ok 4",
-  "Google News: Lawmakers": "ok 14"
+  "Google News: Lawmakers": "ok 11"
  },
  "outlets": [
   "- Emerson Polling",
@@ -640,13 +640,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 424,
-  "free": 821,
-  "unknown": 2426,
+  "hard": 426,
+  "free": 826,
+  "unknown": 2420,
   "metered": 2,
   "null": 29
  },
- "extracted": 1445,
+ "extracted": 1452,
  "runner": "pi",
  "per_day": {
   "2026-10-16": {
@@ -694,19 +694,19 @@
    "official": 14
   },
   "2026-10-27": {
-   "stories": 135,
+   "stories": 136,
    "official": 12
   },
   "2026-10-28": {
-   "stories": 158,
-   "official": 18
+   "stories": 163,
+   "official": 19
   },
   "2026-10-29": {
    "stories": 6,
    "official": 1
   }
  },
- "grouped_stories": 337,
+ "grouped_stories": 338,
  "gates": {
   "letitia james": 50,
   "Lawmakers sweep": 34,
@@ -739,27 +739,27 @@
   "unconstitutional": 1,
   "nyserda": 1
  },
- "unresolved_links": 9,
+ "unresolved_links": 3,
  "summaries": {
-  "total": 1452,
-  "og": 828,
-  "none": 2250
+  "total": 1458,
+  "og": 834,
+  "none": 2245
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 188,
-  "items": 1420,
-  "cost_usd": 0.0642,
-  "last": "2026-10-29T02:00:16Z",
+  "calls": 189,
+  "items": 1423,
+  "cost_usd": 0.0644,
+  "last": "2026-10-29T02:30:21Z",
   "week": {
-   "classified": 893,
+   "classified": 892,
    "unclassified": 0,
    "types": {
     "campaign": 361,
     "policy": 177,
-    "announcement": 154,
-    "other": 75,
-    "opinion": 56,
+    "announcement": 155,
+    "other": 74,
+    "opinion": 55,
     "national": 35,
     "blotter": 21,
     "local": 14
@@ -796,11 +796,11 @@
     "cost_usd": 0.014955
    },
    "2026-10-29": {
-    "calls": 6,
-    "items": 22,
-    "input_tokens": 9102,
-    "output_tokens": 686,
-    "cost_usd": 0.001447
+    "calls": 7,
+    "items": 25,
+    "input_tokens": 10570,
+    "output_tokens": 775,
+    "cost_usd": 0.001671
    }
   }
  },
