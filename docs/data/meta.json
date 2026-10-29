@@ -1,6 +1,6 @@
 {
- "last_run": "2026-10-29 07:01 UTC",
- "last_run_iso": "2026-10-29T07:00:07Z",
+ "last_run": "2026-10-29 07:31 UTC",
+ "last_run_iso": "2026-10-29T07:30:17Z",
  "total": 3716,
  "sources": {
   "New York Focus": "ok 49",
@@ -640,9 +640,9 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 427,
+  "hard": 428,
   "free": 831,
-  "unknown": 2426,
+  "unknown": 2425,
   "metered": 3,
   "null": 29
  },
@@ -747,16 +747,16 @@
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 198,
-  "items": 1445,
-  "cost_usd": 0.0663,
-  "last": "2026-10-29T07:00:07Z",
+  "calls": 199,
+  "items": 1446,
+  "cost_usd": 0.0665,
+  "last": "2026-10-29T07:30:17Z",
   "week": {
-   "classified": 896,
+   "classified": 895,
    "unclassified": 0,
    "types": {
     "campaign": 371,
-    "policy": 176,
+    "policy": 175,
     "announcement": 152,
     "other": 72,
     "opinion": 55,
@@ -796,11 +796,11 @@
     "cost_usd": 0.014955
    },
    "2026-10-29": {
-    "calls": 16,
-    "items": 47,
-    "input_tokens": 23726,
-    "output_tokens": 1457,
-    "cost_usd": 0.003618
+    "calls": 17,
+    "items": 48,
+    "input_tokens": 25080,
+    "output_tokens": 1490,
+    "cost_usd": 0.003802
    }
   }
  },
