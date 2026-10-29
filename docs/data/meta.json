@@ -1,15 +1,15 @@
 {
- "last_run": "2026-10-29 13:01 UTC",
- "last_run_iso": "2026-10-29T13:00:17Z",
- "total": 3753,
+ "last_run": "2026-10-29 13:31 UTC",
+ "last_run_iso": "2026-10-29T13:30:07Z",
+ "total": 3755,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
   "City & State (gnews)": "ok 14",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 5",
-  "NY State of Politics": "ok 8",
-  "Newsday": "ok 15",
+  "NY State of Politics": "ok 7",
+  "Newsday": "ok 14",
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 5",
   "Newsday (gnews)": "ok 7",
@@ -35,13 +35,13 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 22",
-  "NY Senate": "ok 68",
+  "NY Senate": "ok 39",
   "NY Assembly": "ok 13",
   "Google News: Hochul": "ok 88",
-  "Google News: Legislature": "ok 10",
-  "Google News: Courts & statewide officials": "ok 23",
+  "Google News: Legislature": "ok 9",
+  "Google News: Courts & statewide officials": "ok 22",
   "Google News: State agencies": "ok 2",
-  "Google News: Lawmakers": "ok 12"
+  "Google News: Lawmakers": "ok 13"
  },
  "outlets": [
   "- Emerson Polling",
@@ -196,6 +196,7 @@
   "Hudson Reporter",
   "Hudson Valley Post",
   "Hudson Valley Press",
+  "HuffPost",
   "Huntington Now",
   "IAPP",
   "INDIA New England News",
@@ -645,13 +646,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 435,
-  "free": 854,
-  "unknown": 2432,
+  "hard": 436,
+  "free": 857,
+  "unknown": 2430,
   "metered": 3,
   "null": 29
  },
- "extracted": 1499,
+ "extracted": 1504,
  "runner": "pi",
  "per_day": {
   "2026-10-16": {
@@ -707,7 +708,7 @@
    "official": 20
   },
   "2026-10-29": {
-   "stories": 38,
+   "stories": 43,
    "official": 1
   }
  },
@@ -734,9 +735,9 @@
   "state senator": 2,
   "state attorney general": 2,
   "attorney general race": 2,
-  "state prison": 1,
   "ballot proposal": 1,
   "state ban": 1,
+  "state prison": 1,
   "state comptroller": 1,
   "state education department": 1,
   "attorney general debate": 1,
@@ -745,26 +746,26 @@
   "unconstitutional": 1,
   "nyserda": 1
  },
- "unresolved_links": 6,
+ "unresolved_links": 3,
  "summaries": {
-  "total": 1500,
-  "og": 864,
-  "none": 2253
+  "total": 1504,
+  "og": 868,
+  "none": 2251
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 210,
-  "items": 1497,
-  "cost_usd": 0.0695,
-  "last": "2026-10-29T13:00:17Z",
+  "calls": 211,
+  "items": 1500,
+  "cost_usd": 0.0697,
+  "last": "2026-10-29T13:30:07Z",
   "week": {
-   "classified": 909,
+   "classified": 905,
    "unclassified": 0,
    "types": {
-    "campaign": 379,
-    "policy": 177,
-    "announcement": 150,
-    "other": 72,
+    "campaign": 376,
+    "policy": 176,
+    "announcement": 149,
+    "other": 73,
     "opinion": 59,
     "national": 33,
     "blotter": 22,
@@ -802,11 +803,11 @@
     "cost_usd": 0.014955
    },
    "2026-10-29": {
-    "calls": 28,
-    "items": 99,
-    "input_tokens": 43300,
-    "output_tokens": 3081,
-    "cost_usd": 0.006774
+    "calls": 29,
+    "items": 102,
+    "input_tokens": 44807,
+    "output_tokens": 3175,
+    "cost_usd": 0.007004
    }
   }
  },
