@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-29 05:01 UTC",
- "last_run_iso": "2026-10-29T05:00:21Z",
- "total": 3709,
+ "last_run": "2026-10-29 05:31 UTC",
+ "last_run_iso": "2026-10-29T05:30:16Z",
+ "total": 3711,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
@@ -9,7 +9,7 @@
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 4",
   "NY State of Politics": "ok 8",
-  "Newsday": "ok 11",
+  "Newsday": "ok 10",
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 4",
   "Newsday (gnews)": "ok 7",
@@ -23,7 +23,7 @@
   "NY Post Metro": "ok 3",
   "The City": "ok 2",
   "Wall Street Journal": "ok 0",
-  "Buffalo News": "ok 10",
+  "Buffalo News": "ok 12",
   "Buffalo News (gnews)": "ok 5",
   "Syracuse.com": "ok 5",
   "FingerLakes1": "ok 6",
@@ -38,9 +38,9 @@
   "NY Senate": "ok 70",
   "NY Assembly": "ok 13",
   "Google News: Hochul": "ok 89",
-  "Google News: Legislature": "ok 11",
+  "Google News: Legislature": "ok 13",
   "Google News: Courts & statewide officials": "ok 22",
-  "Google News: State agencies": "ok 2",
+  "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 11"
  },
  "outlets": [
@@ -640,9 +640,9 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 425,
+  "hard": 426,
   "free": 828,
-  "unknown": 2424,
+  "unknown": 2425,
   "metered": 3,
   "null": 29
  },
@@ -739,23 +739,23 @@
   "unconstitutional": 1,
   "nyserda": 1
  },
- "unresolved_links": 1,
+ "unresolved_links": 3,
  "summaries": {
   "total": 1464,
   "og": 839,
-  "none": 2245
+  "none": 2247
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 194,
-  "items": 1434,
-  "cost_usd": 0.0654,
-  "last": "2026-10-29T05:00:21Z",
+  "calls": 195,
+  "items": 1437,
+  "cost_usd": 0.0656,
+  "last": "2026-10-29T05:30:16Z",
   "week": {
-   "classified": 892,
+   "classified": 894,
    "unclassified": 0,
    "types": {
-    "campaign": 366,
+    "campaign": 368,
     "policy": 175,
     "announcement": 154,
     "other": 72,
@@ -796,11 +796,11 @@
     "cost_usd": 0.014955
    },
    "2026-10-29": {
-    "calls": 12,
-    "items": 36,
-    "input_tokens": 17793,
-    "output_tokens": 1108,
-    "cost_usd": 0.002721
+    "calls": 13,
+    "items": 39,
+    "input_tokens": 19253,
+    "output_tokens": 1193,
+    "cost_usd": 0.002942
    }
   }
  },
