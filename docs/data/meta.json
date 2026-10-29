@@ -1,15 +1,15 @@
 {
- "last_run": "2026-10-29 00:02 UTC",
- "last_run_iso": "2026-10-29T00:00:15Z",
- "total": 3691,
+ "last_run": "2026-10-29 00:31 UTC",
+ "last_run_iso": "2026-10-29T00:30:11Z",
+ "total": 3693,
  "sources": {
-  "New York Focus": "ERROR ReadTimeout: HTTPSConnectionPool(host='nysfocus.com', port=443): Read timed out. (read timeout=25)",
+  "New York Focus": "ok 49",
   "City & State": "ok 7",
   "City & State (gnews)": "ok 18",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 4",
-  "NY State of Politics": "ok 2",
-  "Newsday": "ok 10",
+  "NY State of Politics": "ok 6",
+  "Newsday": "ok 12",
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 4",
   "Newsday (gnews)": "ok 8",
@@ -35,13 +35,13 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 25",
-  "NY Senate": "ok 38",
+  "NY Senate": "ok 64",
   "NY Assembly": "ok 13",
-  "Google News: Hochul": "ok 90",
-  "Google News: Legislature": "ok 10",
+  "Google News: Hochul": "ok 89",
+  "Google News: Legislature": "ok 11",
   "Google News: Courts & statewide officials": "ok 21",
-  "Google News: State agencies": "ok 4",
-  "Google News: Lawmakers": "ok 15"
+  "Google News: State agencies": "ok 2",
+  "Google News: Lawmakers": "ok 11"
  },
  "outlets": [
   "- Emerson Polling",
@@ -640,13 +640,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 424,
-  "free": 820,
-  "unknown": 2416,
+  "hard": 425,
+  "free": 822,
+  "unknown": 2415,
   "metered": 2,
   "null": 29
  },
- "extracted": 1440,
+ "extracted": 1442,
  "runner": "pi",
  "per_day": {
   "2026-10-16": {
@@ -702,7 +702,7 @@
    "official": 14
   },
   "2026-10-29": {
-   "stories": 12,
+   "stories": 14,
    "official": 1
   }
  },
@@ -723,8 +723,8 @@
   "board of elections": 4,
   "state sen.": 4,
   "ballot question": 3,
-  "ny attorney general": 2,
   "state police": 2,
+  "ny attorney general": 2,
   "state senator": 2,
   "department of environmental conservation": 2,
   "state attorney general": 2,
@@ -736,28 +736,28 @@
   "attorney general debate": 1,
   "attorney general james": 1,
   "state funding": 1,
-  "nyserda": 1,
-  "unconstitutional": 1
+  "unconstitutional": 1,
+  "nyserda": 1
  },
  "unresolved_links": 3,
  "summaries": {
-  "total": 1450,
-  "og": 826,
+  "total": 1452,
+  "og": 828,
   "none": 2241
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 183,
-  "items": 1401,
-  "cost_usd": 0.0629,
-  "last": "2026-10-29T00:00:15Z",
+  "calls": 184,
+  "items": 1404,
+  "cost_usd": 0.0632,
+  "last": "2026-10-29T00:30:11Z",
   "week": {
-   "classified": 885,
+   "classified": 887,
    "unclassified": 0,
    "types": {
     "campaign": 358,
-    "policy": 174,
-    "announcement": 151,
+    "policy": 175,
+    "announcement": 152,
     "other": 76,
     "opinion": 56,
     "national": 35,
@@ -796,11 +796,11 @@
     "cost_usd": 0.014955
    },
    "2026-10-29": {
-    "calls": 1,
-    "items": 3,
-    "input_tokens": 1475,
-    "output_tokens": 98,
-    "cost_usd": 0.000229
+    "calls": 2,
+    "items": 6,
+    "input_tokens": 2960,
+    "output_tokens": 198,
+    "cost_usd": 0.00046
    }
   }
  },
