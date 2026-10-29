@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-29 00:31 UTC",
- "last_run_iso": "2026-10-29T00:30:11Z",
- "total": 3693,
+ "last_run": "2026-10-29 01:01 UTC",
+ "last_run_iso": "2026-10-29T01:00:21Z",
+ "total": 3694,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
@@ -24,7 +24,7 @@
   "The City": "ok 2",
   "Wall Street Journal": "ok 0",
   "Buffalo News": "ok 10",
-  "Buffalo News (gnews)": "ok 6",
+  "Buffalo News (gnews)": "ok 5",
   "Syracuse.com": "ok 5",
   "FingerLakes1": "ok 7",
   "Adirondack Explorer": "ok 1",
@@ -37,11 +37,11 @@
   "Governor's Office (gnews)": "ok 25",
   "NY Senate": "ok 64",
   "NY Assembly": "ok 13",
-  "Google News: Hochul": "ok 89",
+  "Google News: Hochul": "ok 90",
   "Google News: Legislature": "ok 11",
-  "Google News: Courts & statewide officials": "ok 21",
+  "Google News: Courts & statewide officials": "ok 23",
   "Google News: State agencies": "ok 2",
-  "Google News: Lawmakers": "ok 11"
+  "Google News: Lawmakers": "ok 14"
  },
  "outlets": [
   "- Emerson Polling",
@@ -640,13 +640,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 425,
-  "free": 822,
+  "hard": 424,
+  "free": 824,
   "unknown": 2415,
   "metered": 2,
   "null": 29
  },
- "extracted": 1442,
+ "extracted": 1444,
  "runner": "pi",
  "per_day": {
   "2026-10-16": {
@@ -702,8 +702,8 @@
    "official": 14
   },
   "2026-10-29": {
-   "stories": 14,
-   "official": 1
+   "stories": 15,
+   "official": 2
   }
  },
  "grouped_stories": 338,
@@ -739,26 +739,26 @@
   "unconstitutional": 1,
   "nyserda": 1
  },
- "unresolved_links": 3,
+ "unresolved_links": 2,
  "summaries": {
-  "total": 1452,
-  "og": 828,
-  "none": 2241
+  "total": 1454,
+  "og": 830,
+  "none": 2240
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 184,
-  "items": 1404,
-  "cost_usd": 0.0632,
-  "last": "2026-10-29T00:30:11Z",
+  "calls": 185,
+  "items": 1406,
+  "cost_usd": 0.0634,
+  "last": "2026-10-29T01:00:21Z",
   "week": {
-   "classified": 887,
+   "classified": 886,
    "unclassified": 0,
    "types": {
     "campaign": 358,
-    "policy": 175,
+    "policy": 176,
     "announcement": 152,
-    "other": 76,
+    "other": 74,
     "opinion": 56,
     "national": 35,
     "blotter": 21,
@@ -796,11 +796,11 @@
     "cost_usd": 0.014955
    },
    "2026-10-29": {
-    "calls": 2,
-    "items": 6,
-    "input_tokens": 2960,
-    "output_tokens": 198,
-    "cost_usd": 0.00046
+    "calls": 3,
+    "items": 8,
+    "input_tokens": 4357,
+    "output_tokens": 261,
+    "cost_usd": 0.000663
    }
   }
  },
