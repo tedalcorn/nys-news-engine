@@ -1,17 +1,17 @@
 {
- "last_run": "2026-10-30 17:31 UTC",
- "last_run_iso": "2026-10-30T17:30:17Z",
- "total": 3949,
+ "last_run": "2026-10-30 18:01 UTC",
+ "last_run_iso": "2026-10-30T18:00:07Z",
+ "total": 3954,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
   "City & State (gnews)": "ok 18",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 7",
-  "NY State of Politics": "ok 10",
+  "NY State of Politics": "ok 3",
   "Newsday": "ok 15",
   "Daily News": "ok 2",
-  "Times Union (gnews)": "ok 6",
+  "Times Union (gnews)": "ok 5",
   "Newsday (gnews)": "ok 7",
   "Daily News (gnews)": "ok 1",
   "Politico": "ok 2",
@@ -26,7 +26,7 @@
   "Buffalo News": "ok 5",
   "Buffalo News (gnews)": "ok 3",
   "Syracuse.com": "ok 9",
-  "FingerLakes1": "ok 6",
+  "FingerLakes1": "ok 5",
   "Adirondack Explorer": "ok 0",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
@@ -35,13 +35,13 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 17",
   "Governor's Office (gnews)": "ok 21",
-  "NY Senate": "ok 39",
+  "NY Senate": "ok 63",
   "NY Assembly": "ok 15",
-  "Google News: Hochul": "ok 89",
+  "Google News: Hochul": "ok 86",
   "Google News: Legislature": "ok 7",
-  "Google News: Courts & statewide officials": "ok 39",
+  "Google News: Courts & statewide officials": "ok 59",
   "Google News: State agencies": "ok 3",
-  "Google News: Lawmakers": "ok 11"
+  "Google News: Lawmakers": "ok 14"
  },
  "outlets": [
   "- Emerson Polling",
@@ -153,7 +153,6 @@
   "DancehallMag",
   "Democrat and Chronicle",
   "Demokratis.co.id",
-  "Detroit Free Press",
   "Documented",
   "E&E News by POLITICO",
   "EEW Magazine",
@@ -444,6 +443,7 @@
   "The East Hampton Star",
   "The Economic Times",
   "The Evening Sun | Chenango County, NY's Hometown Newspaper",
+  "The Examiner News",
   "The Forward",
   "The Globe and Mail",
   "The Good Newsroom",
@@ -451,6 +451,7 @@
   "The Guardian",
   "The Hill",
   "The Imprint",
+  "The Independent",
   "The Indian Panorama",
   "The Indypendent",
   "The Ithaca Journal",
@@ -680,13 +681,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 455,
-  "unknown": 2467,
-  "free": 991,
-  "metered": 7,
+  "hard": 456,
+  "unknown": 2469,
+  "free": 992,
+  "metered": 8,
   "null": 29
  },
- "extracted": 1694,
+ "extracted": 1698,
  "runner": "pi",
  "per_day": {
   "2026-10-17": {
@@ -742,15 +743,15 @@
    "official": 10
   },
   "2026-10-30": {
-   "stories": 69,
+   "stories": 73,
    "official": 4
   }
  },
  "grouped_stories": 364,
  "gates": {
-  "letitia james": 78,
+  "letitia james": 79,
   "Lawmakers sweep": 33,
-  "suny": 20,
+  "suny": 22,
   "medicaid": 8,
   "senate district": 8,
   "dinapoli": 5,
@@ -762,11 +763,11 @@
   "new york attorney general": 4,
   "state comptroller": 3,
   "ny attorney general": 3,
-  "state senator": 3,
   "court of appeals": 3,
   "board of elections": 3,
   "ballot question": 2,
   "state police": 2,
+  "state senator": 2,
   "attorney general james": 2,
   "state attorney general": 2,
   "attorney general race": 2,
@@ -776,28 +777,28 @@
   "state funding": 1,
   "nyserda": 1
  },
- "unresolved_links": 5,
+ "unresolved_links": 6,
  "summaries": {
-  "total": 1681,
-  "og": 994,
-  "none": 2268
+  "total": 1685,
+  "og": 998,
+  "none": 2269
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 271,
-  "items": 1788,
-  "cost_usd": 0.0862,
-  "last": "2026-10-30T17:30:17Z",
+  "calls": 272,
+  "items": 1794,
+  "cost_usd": 0.0865,
+  "last": "2026-10-30T18:00:07Z",
   "week": {
-   "classified": 928,
+   "classified": 931,
    "unclassified": 0,
    "types": {
-    "campaign": 391,
-    "policy": 183,
+    "campaign": 390,
+    "policy": 185,
     "announcement": 146,
-    "other": 80,
+    "other": 81,
     "opinion": 58,
-    "national": 28,
+    "national": 29,
     "blotter": 26,
     "local": 16
    },
@@ -840,11 +841,11 @@
     "cost_usd": 0.01323
    },
    "2026-10-30": {
-    "calls": 38,
-    "items": 165,
-    "input_tokens": 62175,
-    "output_tokens": 5650,
-    "cost_usd": 0.010271
+    "calls": 39,
+    "items": 171,
+    "input_tokens": 63813,
+    "output_tokens": 5828,
+    "cost_usd": 0.010556
    }
   }
  },
