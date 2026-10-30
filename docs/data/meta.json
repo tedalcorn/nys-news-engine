@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-30 19:31 UTC",
- "last_run_iso": "2026-10-30T19:30:07Z",
- "total": 3965,
+ "last_run": "2026-10-30 20:01 UTC",
+ "last_run_iso": "2026-10-30T20:00:11Z",
+ "total": 3974,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
@@ -26,20 +26,20 @@
   "Buffalo News": "ok 4",
   "Buffalo News (gnews)": "ok 3",
   "Syracuse.com": "ok 9",
-  "FingerLakes1": "ok 4",
-  "Adirondack Explorer": "ok 0",
+  "FingerLakes1": "ok 5",
+  "Adirondack Explorer": "ok 1",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 1",
   "Citizens Union": "ok 10",
-  "Governor's Office": "ok 17",
+  "Governor's Office": "ok 16",
   "Governor's Office (gnews)": "ok 21",
-  "NY Senate": "ok 63",
+  "NY Senate": "ok 40",
   "NY Assembly": "ok 13",
-  "Google News: Hochul": "ok 89",
+  "Google News: Hochul": "ok 87",
   "Google News: Legislature": "ok 8",
-  "Google News: Courts & statewide officials": "ok 60",
+  "Google News: Courts & statewide officials": "ok 40",
   "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 12"
  },
@@ -414,6 +414,7 @@
   "Straight Arrow",
   "Streetsblog Empire State",
   "Streetsblog New York City",
+  "Substack",
   "Sun Community News",
   "Syracuse.com",
   "TAPinto",
@@ -684,12 +685,12 @@
  ],
  "paywall": {
   "hard": 462,
-  "unknown": 2467,
-  "free": 999,
+  "unknown": 2470,
+  "free": 1005,
   "metered": 8,
   "null": 29
  },
- "extracted": 1711,
+ "extracted": 1717,
  "runner": "pi",
  "per_day": {
   "2026-10-17": {
@@ -745,15 +746,15 @@
    "official": 9
   },
   "2026-10-30": {
-   "stories": 81,
+   "stories": 87,
    "official": 7
   }
  },
- "grouped_stories": 365,
+ "grouped_stories": 367,
  "gates": {
   "letitia james": 79,
   "Lawmakers sweep": 33,
-  "suny": 20,
+  "suny": 22,
   "medicaid": 8,
   "senate district": 8,
   "dinapoli": 5,
@@ -768,37 +769,38 @@
   "court of appeals": 3,
   "board of elections": 3,
   "ballot question": 2,
+  "state funding": 2,
   "state police": 2,
   "state senator": 2,
   "attorney general james": 2,
   "state attorney general": 2,
   "attorney general race": 2,
+  "public service commission": 1,
   "state prison": 1,
   "state education department": 1,
   "state ban": 1,
-  "state funding": 1,
   "nyserda": 1
  },
- "unresolved_links": 4,
+ "unresolved_links": 7,
  "summaries": {
-  "total": 1697,
-  "og": 1009,
-  "none": 2268
+  "total": 1703,
+  "og": 1013,
+  "none": 2271
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 276,
-  "items": 1813,
-  "cost_usd": 0.0876,
-  "last": "2026-10-30T19:30:07Z",
+  "calls": 277,
+  "items": 1822,
+  "cost_usd": 0.088,
+  "last": "2026-10-30T20:00:11Z",
   "week": {
-   "classified": 929,
+   "classified": 937,
    "unclassified": 0,
    "types": {
-    "campaign": 389,
-    "policy": 185,
-    "announcement": 150,
-    "other": 81,
+    "campaign": 393,
+    "policy": 186,
+    "announcement": 151,
+    "other": 83,
     "opinion": 54,
     "national": 29,
     "blotter": 25,
@@ -843,11 +845,11 @@
     "cost_usd": 0.01323
    },
    "2026-10-30": {
-    "calls": 43,
-    "items": 190,
-    "input_tokens": 70438,
-    "output_tokens": 6445,
-    "cost_usd": 0.011656
+    "calls": 44,
+    "items": 199,
+    "input_tokens": 72429,
+    "output_tokens": 6717,
+    "cost_usd": 0.012023
    }
   }
  },
