@@ -1,7 +1,7 @@
 {
- "last_run": "2026-10-30 04:31 UTC",
- "last_run_iso": "2026-10-30T04:30:21Z",
- "total": 3871,
+ "last_run": "2026-10-30 05:01 UTC",
+ "last_run_iso": "2026-10-30T05:00:21Z",
+ "total": 3873,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
@@ -9,7 +9,7 @@
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 7",
   "NY State of Politics": "ok 3",
-  "Newsday": "ok 14",
+  "Newsday": "ok 15",
   "Daily News": "ok 2",
   "Times Union (gnews)": "ok 5",
   "Newsday (gnews)": "ok 9",
@@ -35,13 +35,13 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 16",
   "Governor's Office (gnews)": "ok 22",
-  "NY Senate": "ok 39",
-  "NY Assembly": "ok 13",
-  "Google News: Hochul": "ok 89",
+  "NY Senate": "ok 66",
+  "NY Assembly": "ok 14",
+  "Google News: Hochul": "ok 90",
   "Google News: Legislature": "ok 8",
-  "Google News: Courts & statewide officials": "ok 33",
+  "Google News: Courts & statewide officials": "ok 49",
   "Google News: State agencies": "ok 4",
-  "Google News: Lawmakers": "ok 18"
+  "Google News: Lawmakers": "ok 13"
  },
  "outlets": [
   "- Emerson Polling",
@@ -99,7 +99,6 @@
   "Bloomberg.com",
   "Bolts",
   "Boston Herald",
-  "Bradenton Herald",
   "Briefs Finance",
   "Bronx Times",
   "Brooklyn Eagle",
@@ -121,6 +120,7 @@
   "Center for Science in the Public Interest",
   "Chabad",
   "Chalkbeat",
+  "Charlotte Observer",
   "Chicago Tribune",
   "Chronicles Magazine",
   "Cirebon Times",
@@ -415,6 +415,7 @@
   "Talk of the Sound",
   "Tech Times",
   "Telangana Today",
+  "That Grape Juice.net",
   "The Atlantic",
   "The Black Chronicle",
   "The Boston Globe",
@@ -669,12 +670,12 @@
  ],
  "paywall": {
   "hard": 449,
-  "free": 939,
+  "free": 941,
   "unknown": 2451,
   "null": 29,
   "metered": 3
  },
- "extracted": 1618,
+ "extracted": 1620,
  "runner": "pi",
  "per_day": {
   "2026-10-17": {
@@ -726,19 +727,19 @@
    "official": 20
   },
   "2026-10-29": {
-   "stories": 132,
+   "stories": 133,
    "official": 10
   },
   "2026-10-30": {
-   "stories": 13,
+   "stories": 14,
    "official": 2
   }
  },
  "grouped_stories": 352,
  "gates": {
   "letitia james": 69,
-  "Lawmakers sweep": 31,
-  "suny": 18,
+  "Lawmakers sweep": 30,
+  "suny": 17,
   "medicaid": 9,
   "senate district": 9,
   "state grant": 6,
@@ -768,24 +769,24 @@
  },
  "unresolved_links": 4,
  "summaries": {
-  "total": 1609,
-  "og": 949,
+  "total": 1611,
+  "og": 951,
   "none": 2262
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 244,
-  "items": 1667,
-  "cost_usd": 0.0787,
-  "last": "2026-10-30T04:30:21Z",
+  "calls": 245,
+  "items": 1671,
+  "cost_usd": 0.079,
+  "last": "2026-10-30T05:00:21Z",
   "week": {
-   "classified": 914,
+   "classified": 915,
    "unclassified": 0,
    "types": {
-    "campaign": 385,
+    "campaign": 387,
     "policy": 175,
     "announcement": 142,
-    "other": 81,
+    "other": 80,
     "opinion": 55,
     "national": 35,
     "blotter": 25,
@@ -830,11 +831,11 @@
     "cost_usd": 0.01323
    },
    "2026-10-30": {
-    "calls": 11,
-    "items": 44,
-    "input_tokens": 17088,
-    "output_tokens": 1413,
-    "cost_usd": 0.00277
+    "calls": 12,
+    "items": 48,
+    "input_tokens": 18643,
+    "output_tokens": 1537,
+    "cost_usd": 0.00302
    }
   }
  },
