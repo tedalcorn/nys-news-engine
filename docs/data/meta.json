@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-31 07:31 UTC",
- "last_run_iso": "2026-10-31T07:30:27Z",
- "total": 4025,
+ "last_run": "2026-10-31 08:01 UTC",
+ "last_run_iso": "2026-10-31T08:00:09Z",
+ "total": 4029,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 6",
   "City & State (gnews)": "ok 17",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 8",
-  "NY State of Politics": "ok 8",
+  "NY State of Politics": "ok 3",
   "Newsday": "ok 14",
   "Daily News": "ok 2",
   "Times Union (gnews)": "ok 6",
@@ -35,7 +35,7 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 16",
   "Governor's Office (gnews)": "ok 18",
-  "NY Senate": "ok 57",
+  "NY Senate": "ok 42",
   "NY Assembly": "ok 12",
   "Google News: Hochul": "ok 90",
   "Google News: Legislature": "ok 11",
@@ -689,7 +689,7 @@
  ],
  "paywall": {
   "hard": 465,
-  "unknown": 2479,
+  "unknown": 2483,
   "free": 1044,
   "metered": 8,
   "null": 29
@@ -758,8 +758,8 @@
  "gates": {
   "letitia james": 83,
   "Lawmakers sweep": 32,
+  "suny": 11,
   "senate district": 8,
-  "suny": 8,
   "medicaid": 7,
   "dinapoli": 5,
   "new york attorney general": 5,
@@ -785,26 +785,26 @@
   "State agencies sweep": 1,
   "nyserda": 1
  },
- "unresolved_links": 1,
+ "unresolved_links": 5,
  "summaries": {
   "total": 1755,
   "og": 1050,
-  "none": 2270
+  "none": 2274
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 300,
-  "items": 1934,
-  "cost_usd": 0.0944,
-  "last": "2026-10-31T07:30:27Z",
+  "calls": 301,
+  "items": 1939,
+  "cost_usd": 0.0946,
+  "last": "2026-10-31T08:00:09Z",
   "week": {
-   "classified": 921,
+   "classified": 925,
    "unclassified": 0,
    "types": {
-    "campaign": 393,
+    "campaign": 394,
     "policy": 189,
     "announcement": 157,
-    "other": 68,
+    "other": 71,
     "opinion": 47,
     "national": 29,
     "blotter": 20,
@@ -856,11 +856,11 @@
     "cost_usd": 0.014338
    },
    "2026-10-31": {
-    "calls": 16,
-    "items": 64,
-    "input_tokens": 25678,
-    "output_tokens": 2019,
-    "cost_usd": 0.004092
+    "calls": 17,
+    "items": 69,
+    "input_tokens": 27279,
+    "output_tokens": 2152,
+    "cost_usd": 0.004351
    }
   }
  },
