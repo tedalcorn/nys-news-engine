@@ -1,22 +1,22 @@
 {
- "last_run": "2026-10-31 14:01 UTC",
- "last_run_iso": "2026-10-31T14:00:07Z",
- "total": 4045,
+ "last_run": "2026-10-31 14:31 UTC",
+ "last_run_iso": "2026-10-31T14:30:07Z",
+ "total": 4044,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
   "City & State (gnews)": "ok 17",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 8",
-  "NY State of Politics": "ok 8",
-  "Newsday": "ok 14",
+  "NY State of Politics": "ok 9",
+  "Newsday": "ok 13",
   "Daily News": "ok 2",
-  "Times Union (gnews)": "ok 6",
+  "Times Union (gnews)": "ok 5",
   "Newsday (gnews)": "ok 6",
   "Daily News (gnews)": "ok 1",
   "Politico": "ok 1",
   "Gotham Gazette": "ok 0",
-  "Gothamist": "ok 4",
+  "Gothamist": "ok 5",
   "New York Times": "ok 1",
   "New York Times (nyt)": "ok 8",
   "NY Post Politics": "ok 0",
@@ -38,8 +38,8 @@
   "NY Senate": "ok 42",
   "NY Assembly": "ok 12",
   "Google News: Hochul": "ok 88",
-  "Google News: Legislature": "ok 10",
-  "Google News: Courts & statewide officials": "ok 60",
+  "Google News: Legislature": "ok 11",
+  "Google News: Courts & statewide officials": "ok 41",
   "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 16"
  },
@@ -691,12 +691,12 @@
  ],
  "paywall": {
   "hard": 465,
-  "free": 1055,
-  "unknown": 2488,
+  "free": 1058,
+  "unknown": 2484,
   "metered": 8,
   "null": 29
  },
- "extracted": 1792,
+ "extracted": 1795,
  "runner": "pi",
  "per_day": {
   "2026-10-18": {
@@ -748,19 +748,19 @@
    "official": 9
   },
   "2026-10-30": {
-   "stories": 131,
+   "stories": 132,
    "official": 12
   },
   "2026-10-31": {
-   "stories": 21,
+   "stories": 23,
    "official": 0
   }
  },
  "grouped_stories": 380,
  "gates": {
-  "letitia james": 82,
+  "letitia james": 83,
   "Lawmakers sweep": 36,
-  "suny": 11,
+  "suny": 8,
   "medicaid": 7,
   "senate district": 6,
   "dinapoli": 5,
@@ -786,28 +786,28 @@
   "State agencies sweep": 1,
   "nyserda": 1
  },
- "unresolved_links": 6,
+ "unresolved_links": 2,
  "summaries": {
-  "total": 1768,
-  "og": 1063,
-  "none": 2277
+  "total": 1771,
+  "og": 1065,
+  "none": 2273
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 313,
-  "items": 1992,
-  "cost_usd": 0.0977,
-  "last": "2026-10-31T14:00:07Z",
+  "calls": 314,
+  "items": 1995,
+  "cost_usd": 0.0979,
+  "last": "2026-10-31T14:30:07Z",
   "week": {
-   "classified": 926,
+   "classified": 925,
    "unclassified": 0,
    "types": {
-    "campaign": 394,
+    "campaign": 395,
     "policy": 188,
     "announcement": 156,
-    "other": 74,
+    "other": 71,
     "opinion": 48,
-    "national": 29,
+    "national": 30,
     "blotter": 20,
     "local": 17
    },
@@ -857,11 +857,11 @@
     "cost_usd": 0.014338
    },
    "2026-10-31": {
-    "calls": 29,
-    "items": 122,
-    "input_tokens": 46205,
-    "output_tokens": 3729,
-    "cost_usd": 0.00742
+    "calls": 30,
+    "items": 125,
+    "input_tokens": 47791,
+    "output_tokens": 3826,
+    "cost_usd": 0.007659
    }
   }
  },
