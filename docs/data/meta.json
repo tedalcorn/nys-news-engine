@@ -1,6 +1,6 @@
 {
- "last_run": "2026-10-31 02:24 UTC",
- "last_run_iso": "2026-10-31T02:23:32Z",
+ "last_run": "2026-10-31 02:31 UTC",
+ "last_run_iso": "2026-10-31T02:30:07Z",
  "total": 4019,
  "sources": {
   "New York Focus": "ok 49",
@@ -9,7 +9,7 @@
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 8",
   "NY State of Politics": "ok 3",
-  "Newsday": "ok 15",
+  "Newsday": "ok 14",
   "Daily News": "ok 2",
   "Times Union (gnews)": "ok 6",
   "Newsday (gnews)": "ok 6",
@@ -34,13 +34,13 @@
   "Citizens Budget Commission": "ok 2",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 16",
-  "Governor's Office (gnews)": "ok 21",
+  "Governor's Office (gnews)": "ok 20",
   "NY Senate": "ok 58",
   "NY Assembly": "ok 13",
   "Google News: Hochul": "ok 88",
-  "Google News: Legislature": "ok 11",
-  "Google News: Courts & statewide officials": "ok 68",
-  "Google News: State agencies": "ok 3",
+  "Google News: Legislature": "ok 10",
+  "Google News: Courts & statewide officials": "ok 43",
+  "Google News: State agencies": "ok 2",
   "Google News: Lawmakers": "ok 14"
  },
  "outlets": [
@@ -695,7 +695,7 @@
   "null": 29
  },
  "extracted": 1763,
- "runner": "actions",
+ "runner": "pi",
  "per_day": {
   "2026-10-18": {
    "stories": 20,
@@ -799,10 +799,10 @@
   "cost_usd": 0.0919,
   "last": "2026-10-31T02:23:32Z",
   "week": {
-   "classified": 929,
+   "classified": 927,
    "unclassified": 0,
    "types": {
-    "campaign": 396,
+    "campaign": 394,
     "policy": 191,
     "announcement": 154,
     "other": 68,
