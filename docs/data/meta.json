@@ -1,14 +1,14 @@
 {
- "last_run": "2026-10-31 12:32 UTC",
- "last_run_iso": "2026-10-31T12:30:31Z",
- "total": 4039,
+ "last_run": "2026-10-31 13:01 UTC",
+ "last_run_iso": "2026-10-31T13:00:07Z",
+ "total": 4042,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
   "City & State (gnews)": "ok 17",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 8",
-  "NY State of Politics": "ok 2",
+  "NY State of Politics": "ok 8",
   "Newsday": "ok 14",
   "Daily News": "ok 2",
   "Times Union (gnews)": "ok 6",
@@ -35,13 +35,13 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 16",
   "Governor's Office (gnews)": "ok 18",
-  "NY Senate": "ok 57",
+  "NY Senate": "ok 42",
   "NY Assembly": "ok 12",
   "Google News: Hochul": "ok 89",
-  "Google News: Legislature": "ok 11",
-  "Google News: Courts & statewide officials": "ok 66",
+  "Google News: Legislature": "ok 10",
+  "Google News: Courts & statewide officials": "ok 39",
   "Google News: State agencies": "ok 3",
-  "Google News: Lawmakers": "ok 15"
+  "Google News: Lawmakers": "ok 16"
  },
  "outlets": [
   "- Emerson Polling",
@@ -691,7 +691,7 @@
  "paywall": {
   "hard": 465,
   "free": 1055,
-  "unknown": 2482,
+  "unknown": 2485,
   "metered": 8,
   "null": 29
  },
@@ -759,7 +759,7 @@
  "gates": {
   "letitia james": 82,
   "Lawmakers sweep": 35,
-  "suny": 8,
+  "suny": 11,
   "medicaid": 7,
   "senate district": 6,
   "dinapoli": 5,
@@ -783,33 +783,32 @@
   "state education department": 1,
   "state ban": 1,
   "State agencies sweep": 1,
-  "ballot question": 1,
   "nyserda": 1
  },
- "unresolved_links": 1,
+ "unresolved_links": 4,
  "summaries": {
   "total": 1767,
   "og": 1062,
-  "none": 2272
+  "none": 2275
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 310,
-  "items": 1979,
-  "cost_usd": 0.0969,
-  "last": "2026-10-31T12:30:31Z",
+  "calls": 311,
+  "items": 1983,
+  "cost_usd": 0.0972,
+  "last": "2026-10-31T13:00:07Z",
   "week": {
-   "classified": 925,
+   "classified": 927,
    "unclassified": 0,
    "types": {
     "campaign": 395,
     "policy": 188,
     "announcement": 158,
-    "other": 70,
+    "other": 73,
     "opinion": 47,
     "national": 29,
     "blotter": 20,
-    "local": 18
+    "local": 17
    },
    "investigative": 10
   },
@@ -857,13 +856,13 @@
     "cost_usd": 0.014338
    },
    "2026-10-31": {
-    "calls": 26,
-    "items": 109,
-    "input_tokens": 41545,
-    "output_tokens": 3354,
-    "cost_usd": 0.006669
+    "calls": 27,
+    "items": 113,
+    "input_tokens": 43078,
+    "output_tokens": 3461,
+    "cost_usd": 0.006908
    }
   }
  },
- "zm_only": 11
+ "zm_only": 10
 }
