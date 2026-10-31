@@ -1,15 +1,15 @@
 {
- "last_run": "2026-10-31 22:31 UTC",
- "last_run_iso": "2026-10-31T22:30:27Z",
- "total": 4068,
+ "last_run": "2026-10-31 22:51 UTC",
+ "last_run_iso": "2026-10-31T22:50:15Z",
+ "total": 4077,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
   "City & State (gnews)": "ok 13",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 5",
-  "NY State of Politics": "ok 0",
-  "Newsday": "ok 13",
+  "NY State of Politics": "ok 5",
+  "Newsday": "ok 14",
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 5",
   "Newsday (gnews)": "ok 5",
@@ -35,12 +35,12 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 16",
   "Governor's Office (gnews)": "ok 15",
-  "NY Senate": "ok 56",
+  "NY Senate": "ok 57",
   "NY Assembly": "ok 11",
   "Google News: Hochul": "ok 87",
   "Google News: Legislature": "ok 8",
   "Google News: Courts & statewide officials": "ok 28",
-  "Google News: State agencies": "ok 2",
+  "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 11"
  },
  "outlets": [
@@ -298,6 +298,7 @@
   "NYSUT.org",
   "National Legal and Policy Center",
   "National News Desk",
+  "National Republican Congressional Committee",
   "National Review",
   "New Haven Register",
   "New York Amsterdam News",
@@ -318,6 +319,7 @@
   "News12 | Connecticut",
   "News12 | Hudson Valley",
   "News12 | Long Island",
+  "News12 | Westchester",
   "News24",
   "NewsBreak: Local News & Alerts",
   "NewsBytes",
@@ -653,6 +655,7 @@
   "silive.com",
   "sites.newpaltz.edu",
   "sportsbusinessjournal.com",
+  "teleSUR English",
   "the free lance news",
   "the wellsville sun",
   "thecentersquare.com",
@@ -696,14 +699,18 @@
  ],
  "paywall": {
   "hard": 468,
-  "free": 1074,
-  "unknown": 2488,
+  "free": 1073,
+  "unknown": 2498,
   "metered": 9,
   "null": 29
  },
  "extracted": 1820,
- "runner": "pi",
+ "runner": "actions",
  "per_day": {
+  "2026-10-18": {
+   "stories": 20,
+   "official": 5
+  },
   "2026-10-19": {
    "stories": 66,
    "official": 14
@@ -749,15 +756,11 @@
    "official": 9
   },
   "2026-10-30": {
-   "stories": 138,
+   "stories": 137,
    "official": 11
   },
   "2026-10-31": {
-   "stories": 34,
-   "official": 0
-  },
-  "2026-11-01": {
-   "stories": 1,
+   "stories": 36,
    "official": 0
   }
  },
@@ -765,7 +768,7 @@
  "gates": {
   "letitia james": 78,
   "Lawmakers sweep": 35,
-  "suny": 8,
+  "suny": 11,
   "medicaid": 7,
   "senate district": 6,
   "dinapoli": 5,
@@ -791,26 +794,26 @@
   "State agencies sweep": 1,
   "nyserda": 1
  },
- "unresolved_links": 1,
+ "unresolved_links": 10,
  "summaries": {
   "total": 1792,
   "og": 1081,
-  "none": 2276
+  "none": 2285
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 332,
-  "items": 2067,
-  "cost_usd": 0.1024,
-  "last": "2026-10-31T22:30:27Z",
+  "calls": 333,
+  "items": 2077,
+  "cost_usd": 0.1028,
+  "last": "2026-10-31T22:50:15Z",
   "week": {
-   "classified": 914,
+   "classified": 923,
    "unclassified": 0,
    "types": {
-    "campaign": 390,
-    "policy": 187,
-    "announcement": 152,
-    "other": 72,
+    "campaign": 394,
+    "policy": 188,
+    "announcement": 153,
+    "other": 75,
     "opinion": 47,
     "national": 30,
     "blotter": 21,
@@ -862,11 +865,11 @@
     "cost_usd": 0.014338
    },
    "2026-10-31": {
-    "calls": 48,
-    "items": 197,
-    "input_tokens": 76290,
-    "output_tokens": 6268,
-    "cost_usd": 0.012164
+    "calls": 49,
+    "items": 207,
+    "input_tokens": 78220,
+    "output_tokens": 6540,
+    "cost_usd": 0.012525
    }
   }
  },
