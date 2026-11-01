@@ -1,15 +1,15 @@
 {
- "last_run": "2026-11-01 04:31 UTC",
- "last_run_iso": "2026-11-01T04:30:07Z",
- "total": 4087,
+ "last_run": "2026-11-01 05:01 UTC",
+ "last_run_iso": "2026-11-01T05:00:27Z",
+ "total": 4094,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
   "City & State (gnews)": "ok 13",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 5",
-  "NY State of Politics": "ok 5",
-  "Newsday": "ok 12",
+  "NY State of Politics": "ok 0",
+  "Newsday": "ok 11",
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 4",
   "Newsday (gnews)": "ok 4",
@@ -23,8 +23,8 @@
   "NY Post Metro": "ok 3",
   "The City": "ok 1",
   "Wall Street Journal": "ok 1",
-  "Buffalo News": "ok 4",
-  "Buffalo News (gnews)": "ok 4",
+  "Buffalo News": "ok 5",
+  "Buffalo News (gnews)": "ok 8",
   "Syracuse.com": "ok 8",
   "FingerLakes1": "ok 4",
   "Adirondack Explorer": "ok 1",
@@ -703,7 +703,7 @@
  "paywall": {
   "hard": 468,
   "free": 1088,
-  "unknown": 2493,
+  "unknown": 2500,
   "metered": 9,
   "null": 29
  },
@@ -767,11 +767,11 @@
    "official": 0
   }
  },
- "grouped_stories": 385,
+ "grouped_stories": 383,
  "gates": {
   "letitia james": 79,
   "Lawmakers sweep": 36,
-  "suny": 8,
+  "suny": 15,
   "senate district": 7,
   "medicaid": 7,
   "dinapoli": 5,
@@ -798,26 +798,26 @@
   "State agencies sweep": 1,
   "nyserda": 1
  },
- "unresolved_links": 1,
+ "unresolved_links": 8,
  "summaries": {
   "total": 1809,
   "og": 1095,
-  "none": 2278
+  "none": 2285
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 345,
-  "items": 2120,
-  "cost_usd": 0.1057,
-  "last": "2026-11-01T04:30:07Z",
+  "calls": 346,
+  "items": 2128,
+  "cost_usd": 0.106,
+  "last": "2026-11-01T05:00:27Z",
   "week": {
-   "classified": 919,
+   "classified": 926,
    "unclassified": 0,
    "types": {
     "campaign": 389,
     "policy": 191,
     "announcement": 151,
-    "other": 73,
+    "other": 80,
     "opinion": 49,
     "national": 30,
     "blotter": 21,
@@ -876,11 +876,11 @@
     "cost_usd": 0.012759
    },
    "2026-11-01": {
-    "calls": 11,
-    "items": 40,
-    "input_tokens": 16931,
-    "output_tokens": 1210,
-    "cost_usd": 0.002653
+    "calls": 12,
+    "items": 48,
+    "input_tokens": 18700,
+    "output_tokens": 1425,
+    "cost_usd": 0.00297
    }
   }
  },
