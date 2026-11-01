@@ -1,13 +1,13 @@
 {
- "last_run": "2026-11-01 12:31 UTC",
- "last_run_iso": "2026-11-01T12:30:07Z",
- "total": 4109,
+ "last_run": "2026-11-01 13:01 UTC",
+ "last_run_iso": "2026-11-01T13:00:23Z",
+ "total": 4114,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
   "City & State (gnews)": "ok 10",
   "Politico NY Playbook": "ok 24",
-  "Times Union": "ok 4",
+  "Times Union": "ok 5",
   "NY State of Politics": "ok 5",
   "Newsday": "ok 9",
   "Daily News": "ok 1",
@@ -35,13 +35,13 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 16",
   "Governor's Office (gnews)": "ok 14",
-  "NY Senate": "ok 42",
+  "NY Senate": "ok 57",
   "NY Assembly": "ok 13",
-  "Google News: Hochul": "ok 92",
-  "Google News: Legislature": "ok 5",
-  "Google News: Courts & statewide officials": "ok 23",
+  "Google News: Hochul": "ok 91",
+  "Google News: Legislature": "ok 6",
+  "Google News: Courts & statewide officials": "ok 22",
   "Google News: State agencies": "ok 2",
-  "Google News: Lawmakers": "ok 17"
+  "Google News: Lawmakers": "ok 12"
  },
  "outlets": [
   "- Emerson Polling",
@@ -81,6 +81,7 @@
   "Ammoland",
   "Anash.org",
   "Apa.az",
+  "Atlanta Black Star",
   "Attack of the Fanboy",
   "Auburn Citizen",
   "Audacy",
@@ -709,12 +710,12 @@
  ],
  "paywall": {
   "hard": 466,
-  "free": 1105,
-  "unknown": 2501,
+  "free": 1108,
+  "unknown": 2503,
   "metered": 8,
   "null": 29
  },
- "extracted": 1862,
+ "extracted": 1866,
  "runner": "pi",
  "per_day": {
   "2026-10-19": {
@@ -766,26 +767,26 @@
    "official": 11
   },
   "2026-10-31": {
-   "stories": 56,
+   "stories": 57,
    "official": 0
   },
   "2026-11-01": {
-   "stories": 8,
-   "official": 1
+   "stories": 10,
+   "official": 2
   }
  },
  "grouped_stories": 387,
  "gates": {
   "letitia james": 81,
   "Lawmakers sweep": 38,
-  "suny": 9,
+  "suny": 14,
   "senate district": 7,
   "medicaid": 7,
   "dinapoli": 5,
   "state law": 5,
   "new york attorney general": 4,
-  "ny attorney general": 4,
   "court of appeals": 4,
+  "ny attorney general": 4,
   "Courts & statewide officials sweep": 4,
   "state sen.": 4,
   "state comptroller": 3,
@@ -805,26 +806,26 @@
   "State agencies sweep": 1,
   "nyserda": 1
  },
- "unresolved_links": 6,
+ "unresolved_links": 7,
  "summaries": {
-  "total": 1830,
-  "og": 1116,
-  "none": 2279
+  "total": 1833,
+  "og": 1119,
+  "none": 2281
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 359,
-  "items": 2205,
-  "cost_usd": 0.1097,
-  "last": "2026-11-01T12:30:07Z",
+  "calls": 360,
+  "items": 2212,
+  "cost_usd": 0.11,
+  "last": "2026-11-01T13:00:23Z",
   "week": {
-   "classified": 929,
+   "classified": 934,
    "unclassified": 0,
    "types": {
     "campaign": 389,
     "policy": 196,
     "announcement": 150,
-    "other": 78,
+    "other": 83,
     "opinion": 48,
     "national": 29,
     "blotter": 22,
@@ -883,11 +884,11 @@
     "cost_usd": 0.012759
    },
    "2026-11-01": {
-    "calls": 25,
-    "items": 125,
-    "input_tokens": 40647,
-    "output_tokens": 3628,
-    "cost_usd": 0.006684
+    "calls": 26,
+    "items": 132,
+    "input_tokens": 42396,
+    "output_tokens": 3807,
+    "cost_usd": 0.006981
    }
   }
  },
