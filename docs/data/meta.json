@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-01 01:01 UTC",
- "last_run_iso": "2026-11-01T01:00:11Z",
- "total": 4085,
+ "last_run": "2026-11-01 01:32 UTC",
+ "last_run_iso": "2026-11-01T01:30:32Z",
+ "total": 4082,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
@@ -9,7 +9,7 @@
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 5",
   "NY State of Politics": "ok 0",
-  "Newsday": "ok 13",
+  "Newsday": "ok 12",
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 5",
   "Newsday (gnews)": "ok 4",
@@ -20,7 +20,7 @@
   "New York Times": "ok 1",
   "New York Times (nyt)": "ok 6",
   "NY Post Politics": "ok 2",
-  "NY Post Metro": "ok 2",
+  "NY Post Metro": "ok 3",
   "The City": "ok 1",
   "Wall Street Journal": "ok 1",
   "Buffalo News": "ok 4",
@@ -35,10 +35,10 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 16",
   "Governor's Office (gnews)": "ok 14",
-  "NY Senate": "ok 41",
+  "NY Senate": "ok 56",
   "NY Assembly": "ok 11",
   "Google News: Hochul": "ok 88",
-  "Google News: Legislature": "ok 7",
+  "Google News: Legislature": "ok 9",
   "Google News: Courts & statewide officials": "ok 27",
   "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 13"
@@ -73,6 +73,7 @@
   "Agriculture and Markets (.gov)",
   "Al Jazeera",
   "Algemeiner.com",
+  "AllHipHop",
   "American Enterprise Institute - AEI",
   "American Legislative Exchange Council",
   "Americans for Tax Reform",
@@ -155,7 +156,6 @@
   "DancehallMag",
   "Democrat and Chronicle",
   "Demokratis.co.id",
-  "Detroit Free Press",
   "Documented",
   "E&E News by POLITICO",
   "EEW Magazine",
@@ -701,12 +701,12 @@
  ],
  "paywall": {
   "hard": 468,
-  "free": 1082,
-  "unknown": 2497,
+  "free": 1084,
+  "unknown": 2492,
   "metered": 9,
   "null": 29
  },
- "extracted": 1832,
+ "extracted": 1834,
  "runner": "pi",
  "per_day": {
   "2026-10-19": {
@@ -762,7 +762,7 @@
    "official": 0
   },
   "2026-11-01": {
-   "stories": 5,
+   "stories": 7,
    "official": 0
   }
  },
@@ -770,7 +770,7 @@
  "gates": {
   "letitia james": 79,
   "Lawmakers sweep": 36,
-  "suny": 11,
+  "suny": 8,
   "senate district": 7,
   "medicaid": 7,
   "dinapoli": 5,
@@ -791,31 +791,32 @@
   "state senator": 2,
   "attorney general james": 2,
   "state attorney general": 2,
+  "state officials": 1,
   "state prison": 1,
   "state education department": 1,
   "State agencies sweep": 1,
   "nyserda": 1
  },
- "unresolved_links": 6,
+ "unresolved_links": 1,
  "summaries": {
-  "total": 1803,
-  "og": 1091,
-  "none": 2282
+  "total": 1805,
+  "og": 1092,
+  "none": 2277
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 337,
-  "items": 2095,
-  "cost_usd": 0.1038,
-  "last": "2026-11-01T01:00:11Z",
+  "calls": 338,
+  "items": 2097,
+  "cost_usd": 0.104,
+  "last": "2026-11-01T01:30:32Z",
   "week": {
-   "classified": 927,
+   "classified": 923,
    "unclassified": 0,
    "types": {
-    "campaign": 394,
-    "policy": 190,
-    "announcement": 153,
-    "other": 75,
+    "campaign": 392,
+    "policy": 191,
+    "announcement": 152,
+    "other": 73,
     "opinion": 49,
     "national": 30,
     "blotter": 21,
@@ -874,11 +875,11 @@
     "cost_usd": 0.012759
    },
    "2026-11-01": {
-    "calls": 3,
-    "items": 15,
-    "input_tokens": 4897,
-    "output_tokens": 430,
-    "cost_usd": 0.000802
+    "calls": 4,
+    "items": 17,
+    "input_tokens": 6360,
+    "output_tokens": 495,
+    "cost_usd": 0.001013
    }
   }
  },
