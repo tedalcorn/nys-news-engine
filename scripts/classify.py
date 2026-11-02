@@ -57,7 +57,10 @@ SYSTEM = (
     "Albany policy coverage. For each item you get an outlet, a headline and sometimes a one-sentence summary. "
     "Return, for each item, up to three topics from the fixed list (fewest that fit; an empty list is fine), "
     "one type from the fixed list, and whether the piece is investigative.\n\n"
-    "Topics: " + "; ".join(TAGS.keys()) + ".\n\n"
+    "Topics: " + "; ".join(TAGS.keys()) + ".\n"
+    "Health covers health care, Medicaid, hospitals, insurance, public health and mental health. Tech & AI covers "
+    "regulating technology companies and AI, children's safety online and social media, school phone rules, "
+    "privacy and cybersecurity, broadband, and AI's effects on jobs and the economy (tag those Economy & labor too).\n\n"
     "Types:\n" + "\n".join(f"- {k}: {v}" for k, v in TYPES.items()) + "\n\n"
     "Rules. A story about a candidate's record or plans on a policy question is 'campaign' if framed by the "
     "race and 'policy' if framed by the policy. A story that names the Governor only in passing is not "
@@ -119,8 +122,13 @@ def _record(u, usage, n_items, now_ts):
     return cost
 
 
+# Bump when the topic list or prompt changes so the last week is judged again (2 = Tech & AI added, 2026-11-02).
+VERSION = 2
+
+def _stale(i): return "llm" not in i or i["llm"].get("v", 1) < VERSION
+
 def candidates(items, now_ts):
-    pool = [i for i in items if "llm" not in i and (now_ts - i.get("published_ts", 0)) <= MAX_AGE_H * 3600]
+    pool = [i for i in items if _stale(i) and (now_ts - i.get("published_ts", 0)) <= MAX_AGE_H * 3600]
     pool.sort(key=lambda x: -x.get("published_ts", 0))     # newest first: the top of the page gets judged first
     return pool[:PER_RUN]
 
@@ -166,10 +174,10 @@ def run(items, now_ts, verbose=True):
         for r in rows:
             k = r.get("n")
             if not isinstance(k, int) or k < 0 or k >= len(batch): continue
-            batch[k]["llm"] = dict(type=r["type"], topics=r["topics"][:3], inv=bool(r["investigative"]), ts=int(now_ts))
+            batch[k]["llm"] = dict(type=r["type"], topics=r["topics"][:3], inv=bool(r["investigative"]), ts=int(now_ts), v=VERSION)
             done += 1
         for i in batch:              # a row the model skipped is not retried every run
-            i.setdefault("llm", dict(type="other", topics=[], inv=False, ts=int(now_ts), miss=True))
+            if _stale(i): i["llm"] = dict(type="other", topics=[], inv=False, ts=int(now_ts), miss=True, v=VERSION)
         if verbose:
             print(f"  {len(batch):3d} items  in {usage.input_tokens:5d} (+{getattr(usage,'cache_read_input_tokens',0) or 0} cached)  "
                   f"out {usage.output_tokens:4d}  ${cost:.4f}")

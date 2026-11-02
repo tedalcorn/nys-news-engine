@@ -46,6 +46,8 @@ TAGS = {
  "Ethics & process": ["ethics","lobbying","corruption","indict","bribery","transparency","reinvent albany","message of necessity","chapter amendment","late budget","process"],
  "Immigration":    ["immigra","ice","287(g)","sanctuary","asylum","migrant","daca","essential plan"],
  "Economy & labor":["minimum wage","labor","union","workforce","economic development","empire state development","business","jobs"],
+ "Tech & AI":      ["artificial intelligence","ai","a.i.","chatbot","social media","online safety","kids online","safe for kids","raise act",
+                    "deepfake","algorithm","data privacy","cyber","broadband","tech","technology","automation","smartphone","cellphone"],
 }
 
 def _rx(term):

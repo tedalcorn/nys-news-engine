@@ -175,7 +175,7 @@ function render(){const f=base();let html="";
  else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Official <span>Governor, Senate, Assembly · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
  $("#main").innerHTML=html;$$(".gates .chip").forEach(el=>el.onclick=()=>{S.gate=S.gate===el.dataset.gate?"":el.dataset.gate;render()});sidebar()}
 function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.published_ts>=cut&&!i.flags.includes("opinion"));
- const tc={};for(const i of stories(wk))for(const t of i.tags)tc[t]=(tc[t]||0)+1;const tt=Object.entries(tc).sort((a,b)=>b[1]-a[1]).slice(0,9);const mx=tt[0]?tt[0][1]:1;
+ const tc={};for(const i of stories(wk))for(const t of i.tags)tc[t]=(tc[t]||0)+1;const tt=Object.entries(tc).sort((a,b)=>b[1]-a[1]);const mx=tt[0]?tt[0][1]:1;
  $("#buzz").innerHTML=tt.map(([t,n])=>`<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}"><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div><div class="bar"><i style="width:${Math.round(100*n/mx)}%"></i></div></li>`).join("");
  const oc={};for(const i of wk)oc[i.outlet]=(oc[i.outlet]||0)+1;const oo=Object.entries(oc).sort((a,b)=>b[1]-a[1]).slice(0,16);
  $("#outlets").innerHTML=oo.map(([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}"><span><i class="dot" style="background:${col(o)}"></i>${esc(o)}</span><span class="n">${n}</span></li>`).join("");
