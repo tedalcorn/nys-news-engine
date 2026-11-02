@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-02 16:02 UTC",
- "last_run_iso": "2026-11-02T16:00:15Z",
- "total": 4218,
+ "last_run": "2026-11-02 16:32 UTC",
+ "last_run_iso": "2026-11-02T16:30:23Z",
+ "total": 4227,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
@@ -37,10 +37,10 @@
   "Governor's Office (gnews)": "ok 7",
   "NY Senate": "ok 57",
   "NY Assembly": "ok 12",
-  "Google News: Hochul": "ok 53",
+  "Google News: Hochul": "ok 77",
   "Google News: Legislature": "ok 7",
-  "Google News: Courts & statewide officials": "ok 6",
-  "Google News: State agencies": "ok 1",
+  "Google News: Courts & statewide officials": "ok 7",
+  "Google News: State agencies": "ok 2",
   "Google News: Lawmakers": "ok 6"
  },
  "outlets": [
@@ -398,6 +398,7 @@
   "Quiver Quantitative",
   "Radio Catskill",
   "RealClearEducation",
+  "Reason Magazine",
   "Reinvent Albany",
   "Renewables Now",
   "Representative Claudia Tenney | (.gov)",
@@ -728,13 +729,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 1162,
+  "free": 1166,
   "hard": 494,
-  "unknown": 2525,
+  "unknown": 2530,
   "metered": 8,
   "null": 29
  },
- "extracted": 1971,
+ "extracted": 1976,
  "runner": "pi",
  "per_day": {
   "2026-10-20": {
@@ -786,25 +787,25 @@
    "official": 0
   },
   "2026-11-01": {
-   "stories": 59,
+   "stories": 60,
    "official": 3
   },
   "2026-11-02": {
-   "stories": 38,
+   "stories": 42,
    "official": 3
   }
  },
  "grouped_stories": 401,
  "gates": {
-  "letitia james": 76,
+  "letitia james": 75,
   "Lawmakers sweep": 36,
-  "suny": 10,
+  "suny": 13,
   "senate district": 7,
   "medicaid": 6,
   "dinapoli": 5,
   "state law": 5,
+  "Courts & statewide officials sweep": 5,
   "court of appeals": 4,
-  "Courts & statewide officials sweep": 4,
   "state sen.": 4,
   "ny attorney general": 4,
   "public service commission": 3,
@@ -825,32 +826,32 @@
   "state attorney general": 1,
   "nyserda": 1
  },
- "unresolved_links": 7,
+ "unresolved_links": 11,
  "summaries": {
-  "total": 1923,
-  "og": 1188,
-  "none": 2295
+  "total": 1927,
+  "og": 1192,
+  "none": 2300
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 437,
-  "items": 3082,
-  "cost_usd": 0.1442,
-  "last": "2026-11-02T16:00:15Z",
+  "calls": 443,
+  "items": 3232,
+  "cost_usd": 0.1504,
+  "last": "2026-11-02T16:30:23Z",
   "week": {
-   "classified": 951,
+   "classified": 955,
    "unclassified": 0,
    "types": {
-    "campaign": 428,
-    "policy": 196,
-    "announcement": 147,
-    "other": 64,
-    "opinion": 44,
-    "national": 32,
-    "local": 21,
-    "blotter": 19
+    "campaign": 430,
+    "policy": 204,
+    "announcement": 139,
+    "other": 68,
+    "opinion": 42,
+    "national": 29,
+    "local": 25,
+    "blotter": 18
    },
-   "investigative": 11
+   "investigative": 14
   },
   "by_day": {
    "2026-10-25": {
@@ -910,11 +911,11 @@
     "cost_usd": 0.012794
    },
    "2026-11-02": {
-    "calls": 55,
-    "items": 762,
-    "input_tokens": 156973,
-    "output_tokens": 28556,
-    "cost_usd": 0.028412
+    "calls": 61,
+    "items": 912,
+    "input_tokens": 183226,
+    "output_tokens": 36818,
+    "cost_usd": 0.03457
    }
   }
  },
