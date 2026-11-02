@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-02 14:31 UTC",
- "last_run_iso": "2026-11-02T14:30:28Z",
- "total": 4210,
+ "last_run": "2026-11-02 14:54 UTC",
+ "last_run_iso": "2026-11-02T14:52:53Z",
+ "total": 4213,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
@@ -37,9 +37,9 @@
   "Governor's Office (gnews)": "ok 7",
   "NY Senate": "ok 36",
   "NY Assembly": "ok 12",
-  "Google News: Hochul": "ok 54",
-  "Google News: Legislature": "ok 4",
-  "Google News: Courts & statewide officials": "ok 6",
+  "Google News: Hochul": "ok 73",
+  "Google News: Legislature": "ok 5",
+  "Google News: Courts & statewide officials": "ok 7",
   "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 5"
  },
@@ -723,16 +723,17 @@
   "Housing",
   "Immigration",
   "Public safety",
+  "Tech & AI",
   "Transit"
  ],
  "paywall": {
-  "free": 1158,
-  "hard": 492,
-  "unknown": 2523,
+  "free": 1162,
+  "hard": 493,
+  "unknown": 2521,
   "metered": 8,
   "null": 29
  },
- "extracted": 1963,
+ "extracted": 1968,
  "runner": "pi",
  "per_day": {
   "2026-10-20": {
@@ -784,19 +785,19 @@
    "official": 0
   },
   "2026-11-01": {
-   "stories": 57,
+   "stories": 58,
    "official": 3
   },
   "2026-11-02": {
-   "stories": 32,
+   "stories": 36,
    "official": 3
   }
  },
- "grouped_stories": 402,
+ "grouped_stories": 401,
  "gates": {
-  "letitia james": 77,
+  "letitia james": 76,
   "Lawmakers sweep": 36,
-  "suny": 10,
+  "suny": 12,
   "senate district": 7,
   "medicaid": 6,
   "dinapoli": 5,
@@ -823,32 +824,32 @@
   "state attorney general": 1,
   "nyserda": 1
  },
- "unresolved_links": 7,
+ "unresolved_links": 5,
  "summaries": {
-  "total": 1915,
-  "og": 1181,
-  "none": 2295
+  "total": 1920,
+  "og": 1186,
+  "none": 2293
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 413,
-  "items": 2482,
-  "cost_usd": 0.1242,
-  "last": "2026-11-02T14:30:28Z",
+  "calls": 419,
+  "items": 2632,
+  "cost_usd": 0.1288,
+  "last": "2026-11-02T14:52:53Z",
   "week": {
-   "classified": 952,
-   "unclassified": 0,
+   "classified": 951,
+   "unclassified": 1,
    "types": {
-    "campaign": 412,
+    "campaign": 408,
     "policy": 196,
-    "announcement": 148,
-    "other": 80,
-    "opinion": 49,
+    "announcement": 152,
+    "other": 82,
+    "opinion": 48,
     "national": 28,
     "blotter": 20,
-    "local": 19
+    "local": 17
    },
-   "investigative": 11
+   "investigative": 10
   },
   "by_day": {
    "2026-10-25": {
@@ -908,11 +909,11 @@
     "cost_usd": 0.012794
    },
    "2026-11-02": {
-    "calls": 31,
-    "items": 162,
-    "input_tokens": 50676,
-    "output_tokens": 4605,
-    "cost_usd": 0.008368
+    "calls": 37,
+    "items": 312,
+    "input_tokens": 77009,
+    "output_tokens": 10082,
+    "cost_usd": 0.012978
    }
   }
  },
