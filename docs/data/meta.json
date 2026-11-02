@@ -1,17 +1,17 @@
 {
- "last_run": "2026-11-02 17:31 UTC",
- "last_run_iso": "2026-11-02T17:30:11Z",
- "total": 4232,
+ "last_run": "2026-11-02 18:02 UTC",
+ "last_run_iso": "2026-11-02T18:00:23Z",
+ "total": 4234,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
   "City & State (gnews)": "ok 7",
   "Politico NY Playbook": "ok 23",
-  "Times Union": "ok 23",
+  "Times Union": "ok 24",
   "NY State of Politics": "ok 2",
   "Newsday": "ok 5",
   "Daily News": "ok 0",
-  "Times Union (gnews)": "ok 3",
+  "Times Union (gnews)": "ok 4",
   "Newsday (gnews)": "ok 1",
   "Daily News (gnews)": "ok 0",
   "Politico": "ok 0",
@@ -23,8 +23,8 @@
   "NY Post Metro": "ok 4",
   "The City": "ok 0",
   "Wall Street Journal": "ok 1",
-  "Buffalo News": "ok 5",
-  "Buffalo News (gnews)": "ok 7",
+  "Buffalo News": "ok 4",
+  "Buffalo News (gnews)": "ok 6",
   "Syracuse.com": "ok 8",
   "FingerLakes1": "ok 3",
   "Adirondack Explorer": "ok 1",
@@ -33,13 +33,13 @@
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 3",
   "Citizens Union": "ok 10",
-  "Governor's Office": "ok 14",
-  "Governor's Office (gnews)": "ok 6",
+  "Governor's Office": "ok 15",
+  "Governor's Office (gnews)": "ok 8",
   "NY Senate": "ok 36",
   "NY Assembly": "ok 12",
-  "Google News: Hochul": "ok 58",
-  "Google News: Legislature": "ok 6",
-  "Google News: Courts & statewide officials": "ok 8",
+  "Google News: Hochul": "ok 62",
+  "Google News: Legislature": "ok 4",
+  "Google News: Courts & statewide officials": "ok 9",
   "Google News: State agencies": "ok 1",
   "Google News: Lawmakers": "ok 6"
  },
@@ -729,13 +729,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 1164,
-  "hard": 495,
-  "unknown": 2536,
+  "free": 1171,
+  "hard": 496,
+  "unknown": 2530,
   "metered": 8,
   "null": 29
  },
- "extracted": 1977,
+ "extracted": 1985,
  "runner": "pi",
  "per_day": {
   "2026-10-20": {
@@ -783,41 +783,42 @@
    "official": 11
   },
   "2026-10-31": {
-   "stories": 63,
+   "stories": 64,
    "official": 0
   },
   "2026-11-01": {
-   "stories": 60,
+   "stories": 61,
    "official": 3
   },
   "2026-11-02": {
-   "stories": 44,
-   "official": 3
+   "stories": 49,
+   "official": 4
   }
  },
  "grouped_stories": 402,
  "gates": {
-  "letitia james": 74,
+  "letitia james": 73,
   "Lawmakers sweep": 36,
-  "suny": 13,
+  "suny": 9,
   "senate district": 7,
   "medicaid": 6,
   "dinapoli": 5,
   "court of appeals": 5,
-  "state law": 5,
   "Courts & statewide officials sweep": 4,
+  "state law": 4,
   "state sen.": 4,
-  "ny attorney general": 4,
   "public service commission": 3,
   "state grant": 3,
   "state funding": 3,
   "new york attorney general": 3,
-  "state comptroller": 3,
+  "ny attorney general": 3,
   "board of elections": 3,
+  "state comptroller": 3,
   "state ban": 2,
   "department of environmental conservation": 2,
   "state senator": 2,
   "attorney general james": 2,
+  "state aid": 1,
   "state prison": 1,
   "state education department": 1,
   "state police": 1,
@@ -826,29 +827,29 @@
   "state attorney general": 1,
   "nyserda": 1
  },
- "unresolved_links": 15,
+ "unresolved_links": 9,
  "summaries": {
-  "total": 1927,
-  "og": 1192,
-  "none": 2305
+  "total": 1935,
+  "og": 1199,
+  "none": 2299
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 453,
-  "items": 3458,
-  "cost_usd": 0.1569,
-  "last": "2026-11-02T17:30:11Z",
+  "calls": 454,
+  "items": 3465,
+  "cost_usd": 0.1572,
+  "last": "2026-11-02T18:00:23Z",
   "week": {
-   "classified": 948,
+   "classified": 945,
    "unclassified": 0,
    "types": {
-    "campaign": 437,
-    "policy": 193,
-    "announcement": 134,
-    "other": 66,
+    "campaign": 438,
+    "policy": 192,
+    "announcement": 135,
+    "other": 63,
     "opinion": 42,
     "national": 29,
-    "local": 28,
+    "local": 27,
     "blotter": 19
    },
    "investigative": 15
@@ -911,11 +912,11 @@
     "cost_usd": 0.012794
    },
    "2026-11-02": {
-    "calls": 71,
-    "items": 1138,
-    "input_tokens": 224067,
-    "output_tokens": 43564,
-    "cost_usd": 0.041083
+    "calls": 72,
+    "items": 1145,
+    "input_tokens": 226007,
+    "output_tokens": 43770,
+    "cost_usd": 0.041415
    }
   }
  },
