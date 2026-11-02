@@ -1,13 +1,13 @@
 {
- "last_run": "2026-11-02 15:02 UTC",
- "last_run_iso": "2026-11-02T15:00:07Z",
- "total": 4211,
+ "last_run": "2026-11-02 15:32 UTC",
+ "last_run_iso": "2026-11-02T15:30:15Z",
+ "total": 4215,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
   "City & State (gnews)": "ok 7",
   "Politico NY Playbook": "ok 23",
-  "Times Union": "ok 22",
+  "Times Union": "ok 23",
   "NY State of Politics": "ok 2",
   "Newsday": "ok 5",
   "Daily News": "ok 0",
@@ -37,10 +37,10 @@
   "Governor's Office (gnews)": "ok 7",
   "NY Senate": "ok 36",
   "NY Assembly": "ok 12",
-  "Google News: Hochul": "ok 53",
+  "Google News: Hochul": "ok 73",
   "Google News: Legislature": "ok 5",
   "Google News: Courts & statewide officials": "ok 6",
-  "Google News: State agencies": "ok 3",
+  "Google News: State agencies": "ok 2",
   "Google News: Lawmakers": "ok 5"
  },
  "outlets": [
@@ -728,12 +728,12 @@
  ],
  "paywall": {
   "free": 1162,
-  "hard": 493,
-  "unknown": 2519,
+  "hard": 494,
+  "unknown": 2522,
   "metered": 8,
   "null": 29
  },
- "extracted": 1969,
+ "extracted": 1970,
  "runner": "pi",
  "per_day": {
   "2026-10-20": {
@@ -789,15 +789,15 @@
    "official": 3
   },
   "2026-11-02": {
-   "stories": 37,
+   "stories": 38,
    "official": 3
   }
  },
  "grouped_stories": 401,
  "gates": {
   "letitia james": 76,
-  "Lawmakers sweep": 36,
-  "suny": 10,
+  "Lawmakers sweep": 35,
+  "suny": 12,
   "senate district": 7,
   "medicaid": 6,
   "dinapoli": 5,
@@ -824,32 +824,32 @@
   "state attorney general": 1,
   "nyserda": 1
  },
- "unresolved_links": 2,
+ "unresolved_links": 5,
  "summaries": {
-  "total": 1921,
+  "total": 1922,
   "og": 1187,
-  "none": 2290
+  "none": 2293
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 425,
-  "items": 2782,
-  "cost_usd": 0.1339,
-  "last": "2026-11-02T15:00:07Z",
+  "calls": 431,
+  "items": 2932,
+  "cost_usd": 0.1388,
+  "last": "2026-11-02T15:30:15Z",
   "week": {
    "classified": 949,
    "unclassified": 0,
    "types": {
-    "campaign": 415,
-    "policy": 197,
-    "announcement": 152,
+    "campaign": 420,
+    "policy": 194,
+    "announcement": 150,
     "other": 72,
-    "opinion": 48,
-    "national": 28,
-    "blotter": 20,
-    "local": 17
+    "opinion": 46,
+    "national": 24,
+    "blotter": 23,
+    "local": 20
    },
-   "investigative": 13
+   "investigative": 12
   },
   "by_day": {
    "2026-10-25": {
@@ -909,11 +909,11 @@
     "cost_usd": 0.012794
    },
    "2026-11-02": {
-    "calls": 43,
-    "items": 462,
-    "input_tokens": 104686,
-    "output_tokens": 15909,
-    "cost_usd": 0.01806
+    "calls": 49,
+    "items": 612,
+    "input_tokens": 130983,
+    "output_tokens": 21622,
+    "cost_usd": 0.022946
    }
   }
  },
