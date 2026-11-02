@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-02 15:32 UTC",
- "last_run_iso": "2026-11-02T15:30:15Z",
- "total": 4215,
+ "last_run": "2026-11-02 16:02 UTC",
+ "last_run_iso": "2026-11-02T16:00:15Z",
+ "total": 4218,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
@@ -35,13 +35,13 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 7",
-  "NY Senate": "ok 36",
+  "NY Senate": "ok 57",
   "NY Assembly": "ok 12",
-  "Google News: Hochul": "ok 73",
-  "Google News: Legislature": "ok 5",
+  "Google News: Hochul": "ok 53",
+  "Google News: Legislature": "ok 7",
   "Google News: Courts & statewide officials": "ok 6",
-  "Google News: State agencies": "ok 2",
-  "Google News: Lawmakers": "ok 5"
+  "Google News: State agencies": "ok 1",
+  "Google News: Lawmakers": "ok 6"
  },
  "outlets": [
   "- Emerson Polling",
@@ -85,6 +85,7 @@
   "Attack of the Fanboy",
   "Auburn Citizen",
   "Audacy",
+  "Aurora News",
   "BBC",
   "BIN: Black Information Network",
   "BKReader",
@@ -729,11 +730,11 @@
  "paywall": {
   "free": 1162,
   "hard": 494,
-  "unknown": 2522,
+  "unknown": 2525,
   "metered": 8,
   "null": 29
  },
- "extracted": 1970,
+ "extracted": 1971,
  "runner": "pi",
  "per_day": {
   "2026-10-20": {
@@ -785,7 +786,7 @@
    "official": 0
   },
   "2026-11-01": {
-   "stories": 58,
+   "stories": 59,
    "official": 3
   },
   "2026-11-02": {
@@ -796,21 +797,21 @@
  "grouped_stories": 401,
  "gates": {
   "letitia james": 76,
-  "Lawmakers sweep": 35,
-  "suny": 12,
+  "Lawmakers sweep": 36,
+  "suny": 10,
   "senate district": 7,
   "medicaid": 6,
   "dinapoli": 5,
   "state law": 5,
   "court of appeals": 4,
   "Courts & statewide officials sweep": 4,
-  "ny attorney general": 4,
   "state sen.": 4,
+  "ny attorney general": 4,
   "public service commission": 3,
-  "state comptroller": 3,
   "state grant": 3,
   "state funding": 3,
   "new york attorney general": 3,
+  "state comptroller": 3,
   "board of elections": 3,
   "state ban": 2,
   "department of environmental conservation": 2,
@@ -824,32 +825,32 @@
   "state attorney general": 1,
   "nyserda": 1
  },
- "unresolved_links": 5,
+ "unresolved_links": 7,
  "summaries": {
-  "total": 1922,
-  "og": 1187,
-  "none": 2293
+  "total": 1923,
+  "og": 1188,
+  "none": 2295
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 431,
-  "items": 2932,
-  "cost_usd": 0.1388,
-  "last": "2026-11-02T15:30:15Z",
+  "calls": 437,
+  "items": 3082,
+  "cost_usd": 0.1442,
+  "last": "2026-11-02T16:00:15Z",
   "week": {
-   "classified": 949,
+   "classified": 951,
    "unclassified": 0,
    "types": {
-    "campaign": 420,
-    "policy": 194,
-    "announcement": 150,
-    "other": 72,
-    "opinion": 46,
-    "national": 24,
-    "blotter": 23,
-    "local": 20
+    "campaign": 428,
+    "policy": 196,
+    "announcement": 147,
+    "other": 64,
+    "opinion": 44,
+    "national": 32,
+    "local": 21,
+    "blotter": 19
    },
-   "investigative": 12
+   "investigative": 11
   },
   "by_day": {
    "2026-10-25": {
@@ -909,11 +910,11 @@
     "cost_usd": 0.012794
    },
    "2026-11-02": {
-    "calls": 49,
-    "items": 612,
-    "input_tokens": 130983,
-    "output_tokens": 21622,
-    "cost_usd": 0.022946
+    "calls": 55,
+    "items": 762,
+    "input_tokens": 156973,
+    "output_tokens": 28556,
+    "cost_usd": 0.028412
    }
   }
  },
