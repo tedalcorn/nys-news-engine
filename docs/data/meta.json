@@ -1,13 +1,13 @@
 {
- "last_run": "2026-11-02 14:01 UTC",
- "last_run_iso": "2026-11-02T14:00:22Z",
- "total": 4207,
+ "last_run": "2026-11-02 14:31 UTC",
+ "last_run_iso": "2026-11-02T14:30:28Z",
+ "total": 4210,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
   "City & State (gnews)": "ok 7",
   "Politico NY Playbook": "ok 23",
-  "Times Union": "ok 21",
+  "Times Union": "ok 22",
   "NY State of Politics": "ok 2",
   "Newsday": "ok 5",
   "Daily News": "ok 0",
@@ -35,13 +35,13 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 7",
-  "NY Senate": "ok 37",
+  "NY Senate": "ok 36",
   "NY Assembly": "ok 12",
-  "Google News: Hochul": "ok 70",
+  "Google News: Hochul": "ok 54",
   "Google News: Legislature": "ok 4",
   "Google News: Courts & statewide officials": "ok 6",
-  "Google News: State agencies": "ok 1",
-  "Google News: Lawmakers": "ok 4"
+  "Google News: State agencies": "ok 3",
+  "Google News: Lawmakers": "ok 5"
  },
  "outlets": [
   "- Emerson Polling",
@@ -350,6 +350,7 @@
   "Newsmax",
   "Newsweek",
   "Niagara Frontier Publications",
+  "North Country Now",
   "North Country Public Radio",
   "North Penn Now",
   "OBSERVER-REVIEW.COM",
@@ -511,6 +512,7 @@
   "The South Shore Press",
   "The Sunday Guardian",
   "The Tablet Catholic Newspaper",
+  "The Ticker",
   "The Times of Israel",
   "The Truth About Guns",
   "The Verge",
@@ -725,8 +727,8 @@
  ],
  "paywall": {
   "free": 1158,
-  "hard": 491,
-  "unknown": 2521,
+  "hard": 492,
+  "unknown": 2523,
   "metered": 8,
   "null": 29
  },
@@ -790,11 +792,11 @@
    "official": 3
   }
  },
- "grouped_stories": 401,
+ "grouped_stories": 402,
  "gates": {
-  "letitia james": 78,
-  "Lawmakers sweep": 35,
-  "suny": 12,
+  "letitia james": 77,
+  "Lawmakers sweep": 36,
+  "suny": 10,
   "senate district": 7,
   "medicaid": 6,
   "dinapoli": 5,
@@ -821,26 +823,26 @@
   "state attorney general": 1,
   "nyserda": 1
  },
- "unresolved_links": 4,
+ "unresolved_links": 7,
  "summaries": {
   "total": 1915,
   "og": 1181,
-  "none": 2292
+  "none": 2295
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 412,
-  "items": 2475,
-  "cost_usd": 0.1239,
-  "last": "2026-11-02T14:00:22Z",
+  "calls": 413,
+  "items": 2482,
+  "cost_usd": 0.1242,
+  "last": "2026-11-02T14:30:28Z",
   "week": {
-   "classified": 953,
+   "classified": 952,
    "unclassified": 0,
    "types": {
-    "campaign": 408,
-    "policy": 197,
+    "campaign": 412,
+    "policy": 196,
     "announcement": 148,
-    "other": 84,
+    "other": 80,
     "opinion": 49,
     "national": 28,
     "blotter": 20,
@@ -906,11 +908,11 @@
     "cost_usd": 0.012794
    },
    "2026-11-02": {
-    "calls": 30,
-    "items": 155,
-    "input_tokens": 48946,
-    "output_tokens": 4371,
-    "cost_usd": 0.008046
+    "calls": 31,
+    "items": 162,
+    "input_tokens": 50676,
+    "output_tokens": 4605,
+    "cost_usd": 0.008368
    }
   }
  },
