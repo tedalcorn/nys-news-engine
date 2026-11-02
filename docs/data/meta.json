@@ -1,14 +1,14 @@
 {
- "last_run": "2026-11-02 07:01 UTC",
- "last_run_iso": "2026-11-02T07:00:11Z",
- "total": 4173,
+ "last_run": "2026-11-02 07:31 UTC",
+ "last_run_iso": "2026-11-02T07:30:11Z",
+ "total": 4172,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
   "City & State (gnews)": "ok 6",
   "Politico NY Playbook": "ok 24",
-  "Times Union": "ok 19",
-  "NY State of Politics": "ok 1",
+  "Times Union": "ok 20",
+  "NY State of Politics": "ok 2",
   "Newsday": "ok 5",
   "Daily News": "ok 0",
   "Times Union (gnews)": "ok 3",
@@ -40,8 +40,8 @@
   "Google News: Hochul": "ok 70",
   "Google News: Legislature": "ok 3",
   "Google News: Courts & statewide officials": "ok 5",
-  "Google News: State agencies": "ok 1",
-  "Google News: Lawmakers": "ok 8"
+  "Google News: State agencies": "ok 2",
+  "Google News: Lawmakers": "ok 9"
  },
  "outlets": [
   "- Emerson Polling",
@@ -721,12 +721,12 @@
  ],
  "paywall": {
   "free": 1137,
-  "hard": 485,
-  "unknown": 2514,
+  "hard": 486,
+  "unknown": 2512,
   "metered": 8,
   "null": 29
  },
- "extracted": 1929,
+ "extracted": 1930,
  "runner": "pi",
  "per_day": {
   "2026-10-20": {
@@ -782,7 +782,7 @@
    "official": 3
   },
   "2026-11-02": {
-   "stories": 4,
+   "stories": 5,
    "official": 0
   }
  },
@@ -790,7 +790,7 @@
  "gates": {
   "letitia james": 81,
   "Lawmakers sweep": 36,
-  "suny": 12,
+  "suny": 10,
   "senate district": 8,
   "medicaid": 6,
   "dinapoli": 5,
@@ -817,26 +817,26 @@
   "state attorney general": 1,
   "nyserda": 1
  },
- "unresolved_links": 5,
+ "unresolved_links": 3,
  "summaries": {
   "total": 1883,
   "og": 1159,
-  "none": 2290
+  "none": 2289
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 398,
-  "items": 2399,
-  "cost_usd": 0.12,
-  "last": "2026-11-02T07:00:11Z",
+  "calls": 399,
+  "items": 2402,
+  "cost_usd": 0.1202,
+  "last": "2026-11-02T07:30:11Z",
   "week": {
-   "classified": 942,
+   "classified": 941,
    "unclassified": 0,
    "types": {
-    "campaign": 402,
+    "campaign": 403,
     "policy": 200,
     "announcement": 146,
-    "other": 82,
+    "other": 80,
     "opinion": 47,
     "national": 28,
     "blotter": 20,
@@ -902,11 +902,11 @@
     "cost_usd": 0.012794
    },
    "2026-11-02": {
-    "calls": 16,
-    "items": 79,
-    "input_tokens": 25533,
-    "output_tokens": 2167,
-    "cost_usd": 0.004152
+    "calls": 17,
+    "items": 82,
+    "input_tokens": 26997,
+    "output_tokens": 2250,
+    "cost_usd": 0.004372
    }
   }
  },
