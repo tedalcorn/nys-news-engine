@@ -1,14 +1,14 @@
 {
- "last_run": "2026-11-02 11:31 UTC",
- "last_run_iso": "2026-11-02T11:30:22Z",
- "total": 4193,
+ "last_run": "2026-11-02 12:02 UTC",
+ "last_run_iso": "2026-11-02T12:00:29Z",
+ "total": 4199,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 5",
   "City & State (gnews)": "ok 7",
   "Politico NY Playbook": "ok 23",
   "Times Union": "ok 21",
-  "NY State of Politics": "ok 3",
+  "NY State of Politics": "ok 2",
   "Newsday": "ok 4",
   "Daily News": "ok 0",
   "Times Union (gnews)": "ok 3",
@@ -16,11 +16,11 @@
   "Daily News (gnews)": "ok 0",
   "Politico": "ok 0",
   "Gotham Gazette": "ok 0",
-  "Gothamist": "ok 6",
+  "Gothamist": "ok 7",
   "New York Times": "ok 1",
   "New York Times (nyt)": "ok 6",
-  "NY Post Politics": "ok 0",
-  "NY Post Metro": "ok 3",
+  "NY Post Politics": "ok 1",
+  "NY Post Metro": "ok 4",
   "The City": "ok 0",
   "Wall Street Journal": "ok 1",
   "Buffalo News": "ok 5",
@@ -35,12 +35,12 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 7",
-  "NY Senate": "ok 34",
+  "NY Senate": "ok 57",
   "NY Assembly": "ok 12",
-  "Google News: Hochul": "ok 76",
+  "Google News: Hochul": "ok 57",
   "Google News: Legislature": "ok 3",
-  "Google News: Courts & statewide officials": "ok 7",
-  "Google News: State agencies": "ok 2",
+  "Google News: Courts & statewide officials": "ok 6",
+  "Google News: State agencies": "ok 1",
   "Google News: Lawmakers": "ok 6"
  },
  "outlets": [
@@ -724,13 +724,13 @@
   "Transit"
  ],
  "paywall": {
-  "free": 1149,
+  "free": 1153,
   "hard": 491,
-  "unknown": 2516,
+  "unknown": 2518,
   "metered": 8,
   "null": 29
  },
- "extracted": 1947,
+ "extracted": 1953,
  "runner": "pi",
  "per_day": {
   "2026-10-20": {
@@ -786,7 +786,7 @@
    "official": 3
   },
   "2026-11-02": {
-   "stories": 20,
+   "stories": 26,
    "official": 0
   }
  },
@@ -794,7 +794,7 @@
  "gates": {
   "letitia james": 80,
   "Lawmakers sweep": 36,
-  "suny": 11,
+  "suny": 12,
   "senate district": 7,
   "medicaid": 6,
   "dinapoli": 5,
@@ -823,28 +823,28 @@
  },
  "unresolved_links": 6,
  "summaries": {
-  "total": 1899,
-  "og": 1171,
-  "none": 2294
+  "total": 1906,
+  "og": 1175,
+  "none": 2293
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 407,
-  "items": 2447,
-  "cost_usd": 0.1225,
-  "last": "2026-11-02T11:30:22Z",
+  "calls": 408,
+  "items": 2455,
+  "cost_usd": 0.1228,
+  "last": "2026-11-02T12:00:29Z",
   "week": {
-   "classified": 948,
+   "classified": 952,
    "unclassified": 0,
    "types": {
-    "campaign": 407,
+    "campaign": 408,
     "policy": 197,
     "announcement": 146,
-    "other": 84,
+    "other": 86,
     "opinion": 48,
     "national": 28,
     "blotter": 20,
-    "local": 18
+    "local": 19
    },
    "investigative": 10
   },
@@ -906,11 +906,11 @@
     "cost_usd": 0.012794
    },
    "2026-11-02": {
-    "calls": 25,
-    "items": 127,
-    "input_tokens": 40486,
-    "output_tokens": 3542,
-    "cost_usd": 0.006625
+    "calls": 26,
+    "items": 135,
+    "input_tokens": 42375,
+    "output_tokens": 3753,
+    "cost_usd": 0.006952
    }
   }
  },
