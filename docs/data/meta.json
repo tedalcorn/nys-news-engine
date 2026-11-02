@@ -1,30 +1,30 @@
 {
- "last_run": "2026-11-01 23:31 UTC",
- "last_run_iso": "2026-11-01T23:30:32Z",
- "total": 4141,
+ "last_run": "2026-11-02 00:01 UTC",
+ "last_run_iso": "2026-11-02T00:00:07Z",
+ "total": 4149,
  "sources": {
-  "New York Focus": "ok 49",
+  "New York Focus": "ERROR ReadTimeout: HTTPSConnectionPool(host='nysfocus.com', port=443): Read timed out. (read timeout=25)",
   "City & State": "ok 5",
   "City & State (gnews)": "ok 5",
   "Politico NY Playbook": "ok 24",
-  "Times Union": "ok 10",
+  "Times Union": "ok 11",
   "NY State of Politics": "ok 4",
-  "Newsday": "ok 7",
+  "Newsday": "ok 8",
   "Daily News": "ok 0",
-  "Times Union (gnews)": "ok 2",
+  "Times Union (gnews)": "ok 3",
   "Newsday (gnews)": "ok 3",
   "Daily News (gnews)": "ok 0",
   "Politico": "ok 0",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 5",
-  "New York Times": "ok 0",
+  "New York Times": "ok 1",
   "New York Times (nyt)": "ok 4",
   "NY Post Politics": "ok 3",
   "NY Post Metro": "ok 3",
   "The City": "ok 1",
   "Wall Street Journal": "ok 1",
-  "Buffalo News": "ok 4",
-  "Buffalo News (gnews)": "ok 6",
+  "Buffalo News": "ok 5",
+  "Buffalo News (gnews)": "ok 7",
   "Syracuse.com": "ok 8",
   "FingerLakes1": "ok 2",
   "Adirondack Explorer": "ok 0",
@@ -37,11 +37,11 @@
   "Governor's Office (gnews)": "ok 11",
   "NY Senate": "ok 33",
   "NY Assembly": "ok 13",
-  "Google News: Hochul": "ok 48",
+  "Google News: Hochul": "ok 49",
   "Google News: Legislature": "ok 4",
   "Google News: Courts & statewide officials": "ok 5",
   "Google News: State agencies": "ok 1",
-  "Google News: Lawmakers": "ok 9"
+  "Google News: Lawmakers": "ok 12"
  },
  "outlets": [
   "- Emerson Polling",
@@ -278,6 +278,7 @@
   "Mashable SEA",
   "Mass Transit",
   "MediaPost",
+  "Mediaite",
   "Medical Daily",
   "Menafn",
   "Messenger Papers",
@@ -517,6 +518,7 @@
   "TheStarTV.com",
   "Them",
   "Thought Catalog",
+  "Times Argus",
   "Times Herald-Record",
   "Times Union",
   "Toowoomba Chronicle",
@@ -715,13 +717,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 474,
-  "free": 1123,
-  "unknown": 2507,
+  "hard": 476,
+  "free": 1125,
+  "unknown": 2511,
   "metered": 8,
   "null": 29
  },
- "extracted": 1897,
+ "extracted": 1900,
  "runner": "pi",
  "per_day": {
   "2026-10-20": {
@@ -773,21 +775,21 @@
    "official": 0
   },
   "2026-11-01": {
-   "stories": 27,
+   "stories": 28,
    "official": 3
   },
   "2026-11-02": {
-   "stories": 2,
+   "stories": 4,
    "official": 0
   }
  },
- "grouped_stories": 390,
+ "grouped_stories": 391,
  "gates": {
   "letitia james": 80,
   "Lawmakers sweep": 36,
-  "suny": 10,
+  "suny": 12,
+  "senate district": 8,
   "medicaid": 7,
-  "senate district": 7,
   "dinapoli": 5,
   "state law": 5,
   "court of appeals": 4,
@@ -812,27 +814,27 @@
   "state attorney general": 1,
   "nyserda": 1
  },
- "unresolved_links": 3,
+ "unresolved_links": 8,
  "summaries": {
-  "total": 1859,
-  "og": 1139,
-  "none": 2282
+  "total": 1862,
+  "og": 1140,
+  "none": 2287
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 382,
-  "items": 2320,
-  "cost_usd": 0.1158,
-  "last": "2026-11-01T23:30:32Z",
+  "calls": 383,
+  "items": 2330,
+  "cost_usd": 0.1162,
+  "last": "2026-11-02T00:00:07Z",
   "week": {
-   "classified": 929,
+   "classified": 935,
    "unclassified": 0,
    "types": {
-    "campaign": 388,
+    "campaign": 391,
     "policy": 201,
     "announcement": 149,
-    "other": 78,
-    "opinion": 47,
+    "other": 82,
+    "opinion": 46,
     "national": 28,
     "blotter": 21,
     "local": 17
@@ -895,8 +897,15 @@
     "input_tokens": 78045,
     "output_tokens": 6887,
     "cost_usd": 0.012794
+   },
+   "2026-11-02": {
+    "calls": 1,
+    "items": 10,
+    "input_tokens": 1972,
+    "output_tokens": 257,
+    "cost_usd": 0.000358
    }
   }
  },
- "zm_only": 9
+ "zm_only": 10
 }
