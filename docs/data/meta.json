@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-03 09:31 UTC",
- "last_run_iso": "2026-11-03T09:30:07Z",
- "total": 4341,
+ "last_run": "2026-11-03 10:01 UTC",
+ "last_run_iso": "2026-11-03T10:00:07Z",
+ "total": 4343,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
@@ -26,7 +26,7 @@
   "Buffalo News": "ok 3",
   "Buffalo News (gnews)": "ok 7",
   "Syracuse.com": "ok 9",
-  "FingerLakes1": "ok 8",
+  "FingerLakes1": "ok 10",
   "Adirondack Explorer": "ok 1",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
@@ -35,11 +35,11 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 17",
   "Governor's Office (gnews)": "ok 6",
-  "NY Senate": "ok 55",
+  "NY Senate": "ok 40",
   "NY Assembly": "ok 11",
-  "Google News: Hochul": "ok 87",
+  "Google News: Hochul": "ok 90",
   "Google News: Legislature": "ok 9",
-  "Google News: Courts & statewide officials": "ok 12",
+  "Google News: Courts & statewide officials": "ok 10",
   "Google News: State agencies": "ok 1",
   "Google News: Lawmakers": "ok 11"
  },
@@ -739,13 +739,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 506,
-  "free": 1230,
-  "unknown": 2566,
+  "hard": 510,
+  "unknown": 2563,
+  "free": 1231,
   "metered": 10,
   "null": 29
  },
- "extracted": 2105,
+ "extracted": 2112,
  "runner": "pi",
  "per_day": {
   "2026-10-21": {
@@ -801,19 +801,20 @@
    "official": 12
   },
   "2026-11-03": {
-   "stories": 17,
+   "stories": 24,
    "official": 0
   }
  },
- "grouped_stories": 419,
+ "grouped_stories": 420,
  "gates": {
   "letitia james": 71,
   "Lawmakers sweep": 39,
-  "suny": 12,
+  "suny": 11,
   "medicaid": 8,
   "dinapoli": 6,
   "senate district": 5,
   "court of appeals": 5,
+  "board of elections": 4,
   "new york attorney general": 4,
   "state comptroller": 4,
   "Courts & statewide officials sweep": 4,
@@ -822,7 +823,6 @@
   "state law": 3,
   "attorney general james": 3,
   "ny attorney general": 3,
-  "board of elections": 3,
   "state ban": 2,
   "department of environmental conservation": 2,
   "state attorney general": 2,
@@ -837,32 +837,32 @@
   "State agencies sweep": 1,
   "nyserda": 1
  },
- "unresolved_links": 9,
+ "unresolved_links": 4,
  "summaries": {
-  "total": 2048,
-  "og": 1286,
-  "none": 2293
+  "total": 2055,
+  "og": 1290,
+  "none": 2288
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 486,
-  "items": 3675,
-  "cost_usd": 0.1677,
-  "last": "2026-11-03T09:30:07Z",
+  "calls": 487,
+  "items": 3682,
+  "cost_usd": 0.1681,
+  "last": "2026-11-03T10:00:07Z",
   "week": {
-   "classified": 981,
+   "classified": 980,
    "unclassified": 0,
    "types": {
-    "campaign": 454,
-    "policy": 200,
+    "campaign": 457,
+    "policy": 199,
     "announcement": 138,
-    "other": 67,
+    "other": 66,
     "opinion": 39,
-    "national": 36,
-    "local": 29,
+    "national": 35,
+    "local": 28,
     "blotter": 18
    },
-   "investigative": 14
+   "investigative": 15
   },
   "by_day": {
    "2026-10-25": {
@@ -929,13 +929,13 @@
     "cost_usd": 0.045747
    },
    "2026-11-03": {
-    "calls": 20,
-    "items": 123,
-    "input_tokens": 36689,
-    "output_tokens": 3598,
-    "cost_usd": 0.006172
+    "calls": 21,
+    "items": 130,
+    "input_tokens": 38863,
+    "output_tokens": 3797,
+    "cost_usd": 0.006524
    }
   }
  },
- "zm_only": 11
+ "zm_only": 10
 }
