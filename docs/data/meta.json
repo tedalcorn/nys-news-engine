@@ -1,17 +1,17 @@
 {
- "last_run": "2026-11-03 18:31 UTC",
- "last_run_iso": "2026-11-03T18:30:24Z",
- "total": 4408,
+ "last_run": "2026-11-03 19:01 UTC",
+ "last_run_iso": "2026-11-03T19:00:07Z",
+ "total": 4409,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
   "City & State (gnews)": "ok 9",
   "Politico NY Playbook": "ok 23",
-  "Times Union": "ok 25",
-  "NY State of Politics": "ok 4",
-  "Newsday": "ok 7",
+  "Times Union": "ok 24",
+  "NY State of Politics": "ok 2",
+  "Newsday": "ok 8",
   "Daily News": "ok 0",
-  "Times Union (gnews)": "ok 4",
+  "Times Union (gnews)": "ok 5",
   "Newsday (gnews)": "ok 3",
   "Daily News (gnews)": "ok 0",
   "Politico": "ok 1",
@@ -23,25 +23,25 @@
   "NY Post Metro": "ok 0",
   "The City": "ok 2",
   "Wall Street Journal": "ok 1",
-  "Buffalo News": "ok 2",
+  "Buffalo News": "ok 1",
   "Buffalo News (gnews)": "ok 6",
   "Syracuse.com": "ok 9",
-  "FingerLakes1": "ok 9",
+  "FingerLakes1": "ok 7",
   "Adirondack Explorer": "ok 1",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 2",
   "Citizens Union": "ok 10",
-  "Governor's Office": "ok 16",
+  "Governor's Office": "ok 17",
   "Governor's Office (gnews)": "ok 7",
-  "NY Senate": "ok 52",
+  "NY Senate": "ok 41",
   "NY Assembly": "ok 9",
   "Google News: Hochul": "ok 89",
-  "Google News: Legislature": "ok 13",
-  "Google News: Courts & statewide officials": "ok 14",
+  "Google News: Legislature": "ok 12",
+  "Google News: Courts & statewide officials": "ok 13",
   "Google News: State agencies": "ok 1",
-  "Google News: Lawmakers": "ok 7"
+  "Google News: Lawmakers": "ok 9"
  },
  "outlets": [
   "- Emerson Polling",
@@ -746,13 +746,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 525,
-  "unknown": 2579,
-  "free": 1264,
+  "hard": 526,
+  "unknown": 2577,
+  "free": 1266,
   "metered": 11,
   "null": 29
  },
- "extracted": 2170,
+ "extracted": 2175,
  "runner": "pi",
  "per_day": {
   "2026-10-21": {
@@ -808,21 +808,21 @@
    "official": 12
   },
   "2026-11-03": {
-   "stories": 78,
-   "official": 2
+   "stories": 82,
+   "official": 3
   }
  },
- "grouped_stories": 430,
+ "grouped_stories": 431,
  "gates": {
   "letitia james": 68,
-  "Lawmakers sweep": 36,
-  "suny": 13,
+  "Lawmakers sweep": 37,
+  "suny": 9,
   "medicaid": 7,
-  "new york attorney general": 5,
   "dinapoli": 5,
   "senate district": 5,
   "court of appeals": 5,
   "board of elections": 4,
+  "new york attorney general": 4,
   "state comptroller": 4,
   "public service commission": 3,
   "state law": 3,
@@ -833,8 +833,8 @@
   "state funding": 2,
   "state ban": 2,
   "department of environmental conservation": 2,
-  "state attorney general": 2,
   "state senator": 2,
+  "state attorney general": 2,
   "state sen.": 2,
   "state aid": 1,
   "state prison": 1,
@@ -844,30 +844,30 @@
   "state grant": 1,
   "nyserda": 1
  },
- "unresolved_links": 9,
+ "unresolved_links": 5,
  "summaries": {
-  "total": 2111,
-  "og": 1336,
-  "none": 2297
+  "total": 2116,
+  "og": 1340,
+  "none": 2293
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 504,
-  "items": 3817,
-  "cost_usd": 0.1739,
-  "last": "2026-11-03T18:30:24Z",
+  "calls": 505,
+  "items": 3823,
+  "cost_usd": 0.1743,
+  "last": "2026-11-03T19:00:07Z",
   "week": {
-   "classified": 987,
+   "classified": 984,
    "unclassified": 0,
    "types": {
-    "campaign": 470,
-    "policy": 197,
-    "announcement": 128,
-    "other": 71,
-    "opinion": 39,
+    "campaign": 469,
+    "policy": 198,
+    "announcement": 129,
+    "other": 67,
+    "opinion": 40,
     "national": 36,
     "local": 29,
-    "blotter": 17
+    "blotter": 16
    },
    "investigative": 15
   },
@@ -936,11 +936,11 @@
     "cost_usd": 0.045747
    },
    "2026-11-03": {
-    "calls": 38,
-    "items": 265,
-    "input_tokens": 71873,
-    "output_tokens": 7676,
-    "cost_usd": 0.012364
+    "calls": 39,
+    "items": 271,
+    "input_tokens": 73759,
+    "output_tokens": 7858,
+    "cost_usd": 0.012679
    }
   }
  },
