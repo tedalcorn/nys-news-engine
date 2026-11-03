@@ -1,15 +1,15 @@
 {
- "last_run": "2026-11-03 06:47 UTC",
- "last_run_iso": "2026-11-03T06:46:34Z",
- "total": 4338,
+ "last_run": "2026-11-03 07:01 UTC",
+ "last_run_iso": "2026-11-03T07:00:07Z",
+ "total": 4324,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 4",
   "City & State (gnews)": "ok 9",
   "Politico NY Playbook": "ok 23",
-  "Times Union": "ok 24",
+  "Times Union": "ok 23",
   "NY State of Politics": "ok 6",
-  "Newsday": "ok 5",
+  "Newsday": "ok 4",
   "Daily News": "ok 0",
   "Times Union (gnews)": "ok 4",
   "Newsday (gnews)": "ok 2",
@@ -39,7 +39,7 @@
   "NY Assembly": "ok 12",
   "Google News: Hochul": "ok 88",
   "Google News: Legislature": "ok 9",
-  "Google News: Courts & statewide officials": "ok 13",
+  "Google News: Courts & statewide officials": "ok 14",
   "Google News: State agencies": "ok 1",
   "Google News: Lawmakers": "ok 12"
  },
@@ -469,7 +469,6 @@
   "The Center Square",
   "The Chief-Leader",
   "The City",
-  "The City Reporter",
   "The City University of New York",
   "The College Fix",
   "The Cool Down",
@@ -740,14 +739,14 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 509,
+  "hard": 506,
   "free": 1223,
-  "unknown": 2567,
+  "unknown": 2556,
   "metered": 10,
   "null": 29
  },
  "extracted": 2090,
- "runner": "actions",
+ "runner": "pi",
  "per_day": {
   "2026-10-21": {
    "stories": 108,
@@ -806,7 +805,7 @@
    "official": 0
   }
  },
- "grouped_stories": 419,
+ "grouped_stories": 416,
  "gates": {
   "letitia james": 72,
   "Lawmakers sweep": 39,
@@ -822,8 +821,8 @@
   "state law": 3,
   "ny attorney general": 3,
   "board of elections": 3,
-  "attorney general james": 3,
   "state comptroller": 3,
+  "attorney general james": 3,
   "state ban": 2,
   "state attorney general": 2,
   "new york attorney general": 2,
@@ -838,24 +837,24 @@
   "State agencies sweep": 1,
   "nyserda": 1
  },
- "unresolved_links": 7,
+ "unresolved_links": 8,
  "summaries": {
   "total": 2033,
   "og": 1278,
-  "none": 2305
+  "none": 2291
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 480,
-  "items": 3640,
-  "cost_usd": 0.1659,
-  "last": "2026-11-03T06:46:34Z",
+  "calls": 481,
+  "items": 3641,
+  "cost_usd": 0.1661,
+  "last": "2026-11-03T07:00:07Z",
   "week": {
    "classified": 978,
    "unclassified": 0,
    "types": {
-    "campaign": 456,
-    "policy": 196,
+    "campaign": 455,
+    "policy": 197,
     "announcement": 136,
     "other": 68,
     "opinion": 40,
@@ -930,11 +929,11 @@
     "cost_usd": 0.045747
    },
    "2026-11-03": {
-    "calls": 14,
-    "items": 88,
-    "input_tokens": 25303,
-    "output_tokens": 2637,
-    "cost_usd": 0.004342
+    "calls": 15,
+    "items": 89,
+    "input_tokens": 26789,
+    "output_tokens": 2674,
+    "cost_usd": 0.004544
    }
   }
  },
