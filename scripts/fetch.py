@@ -11,7 +11,7 @@ except ImportError:
 from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
 from sources import SOURCES, ALBANY_TERMS, STATE_TERMS, BLOTTER, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS, NYT_GENERIC
-from score import score
+from score import score, PORTFOLIOS, OTHER_TOPICS
 import extract, cluster, gnlinks, classify
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -401,6 +401,7 @@ def main():
                 last_run_iso=dt.datetime.utcfromtimestamp(NOW).strftime("%Y-%m-%dT%H:%M:%SZ"), total=len(items),
                 sources=log, outlets=sorted({i["outlet"] for i in items}),
                 tags=sorted({t for i in items for t in i["tags"]}),
+                topics=dict(portfolios=PORTFOLIOS, other=OTHER_TOPICS),   # sidebar order: every portfolio, then the rest
                 paywall=pw, extracted=sum(1 for i in items if "extracted_ts" in i), runner=RUNNER,
                 per_day=_per_day(items), grouped_stories=grouped, gates=_gates(items),
                 unresolved_links=len(gnlinks.unresolved(items, NOW)),

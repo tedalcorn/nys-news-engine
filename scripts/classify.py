@@ -24,12 +24,16 @@ try:
 except ImportError:
     anthropic = None
 
-from score import TAGS
+from score import TAGS, SCOPE, PORTFOLIOS, OTHER_TOPICS
 
 MODEL   = "claude-haiku-5-5"
 BATCH   = 25
 PER_RUN = 150          # 6 calls; a week's backlog drains over a few refreshes
 MAX_AGE_H = 7 * 24
+# After a topic-list change (VERSION bump) the whole archive is rejudged too, oldest last, ARCHIVE_PER_RUN at a
+# time behind the new items, so archive search filters on the new topics. ~3,700 archive items ≈ $0.15, about 8 hours.
+ARCHIVE_PER_RUN = 250
+MAX_TOPICS = 4
 # $ per million tokens, Claude Haiku 5.5 (prompts under 100K): input 0.10, output 0.50, cache read 0.01, cache write 0.125
 PRICE = dict(input=0.10, output=0.50, cache_read=0.01, cache_write=0.125)
 
@@ -55,12 +59,14 @@ TYPES = {
 SYSTEM = (
     "You classify headlines for a reading tool used by staff in the New York Governor's office to follow "
     "Albany policy coverage. For each item you get an outlet, a headline and sometimes a one-sentence summary. "
-    "Return, for each item, up to three topics from the fixed list (fewest that fit; an empty list is fine), "
-    "one type from the fixed list, and whether the piece is investigative.\n\n"
-    "Topics: " + "; ".join(TAGS.keys()) + ".\n"
-    "Health covers health care, Medicaid, hospitals, insurance, public health and mental health. Tech & AI covers "
-    "regulating technology companies and AI, children's safety online and social media, school phone rules, "
-    "privacy and cybersecurity, broadband, and AI's effects on jobs and the economy (tag those Economy & labor too).\n\n"
+    "Return, for each item, its topics from the fixed list, one type from the fixed list, and whether the piece "
+    "is investigative.\n\n"
+    "Topics. The first twelve are the Governor's office's policy portfolios, each run by a deputy secretary; the last "
+    "four are cross-cutting. Give every topic the story is substantially about: usually one, often two when a story "
+    "bridges portfolios (a strike by prison officers is Public Safety and Union Relations; a casino license fight is "
+    "Gaming, Cannabis & Alcohol and Economic Development & Workforce; Medicaid cuts in the budget are Health and Budget), "
+    "at most four. Do not tag a portfolio for a passing mention. An empty list is fine for stories with no policy subject.\n"
+    + "\n".join(f"- {n}: {SCOPE[n]}" for n in PORTFOLIOS + OTHER_TOPICS) + "\n\n"
     "Types:\n" + "\n".join(f"- {k}: {v}" for k, v in TYPES.items()) + "\n\n"
     "Rules. A story about a candidate's record or plans on a policy question is 'campaign' if framed by the "
     "race and 'policy' if framed by the policy. A story that names the Governor only in passing is not "
@@ -122,15 +128,19 @@ def _record(u, usage, n_items, now_ts):
     return cost
 
 
-# Bump when the topic list or prompt changes so the last week is judged again (2 = Tech & AI added, 2026-11-02).
-VERSION = 2
+# Bump when the topic list or prompt changes so items are judged again (2 = Tech & AI added, 2026-11-02;
+# 3 = topics became the deputy-secretary portfolios, 2026-11-04). Keep score.TOPIC_VERSION in step.
+VERSION = 3
 
 def _stale(i): return "llm" not in i or i["llm"].get("v", 1) < VERSION
 
 def candidates(items, now_ts):
     pool = [i for i in items if _stale(i) and (now_ts - i.get("published_ts", 0)) <= MAX_AGE_H * 3600]
     pool.sort(key=lambda x: -x.get("published_ts", 0))     # newest first: the top of the page gets judged first
-    return pool[:PER_RUN]
+    # the archive: items judged under an older topic list, and the pre-10/25 items the model never saw
+    old = [i for i in items if _stale(i) and (now_ts - i.get("published_ts", 0)) > MAX_AGE_H * 3600]
+    old.sort(key=lambda x: -x.get("published_ts", 0))
+    return pool[:PER_RUN] + old[:ARCHIVE_PER_RUN]
 
 
 def _ask(client, batch):
@@ -174,7 +184,7 @@ def run(items, now_ts, verbose=True):
         for r in rows:
             k = r.get("n")
             if not isinstance(k, int) or k < 0 or k >= len(batch): continue
-            batch[k]["llm"] = dict(type=r["type"], topics=r["topics"][:3], inv=bool(r["investigative"]), ts=int(now_ts), v=VERSION)
+            batch[k]["llm"] = dict(type=r["type"], topics=r["topics"][:MAX_TOPICS], inv=bool(r["investigative"]), ts=int(now_ts), v=VERSION)
             done += 1
         for i in batch:              # a row the model skipped is not retried every run
             if _stale(i): i["llm"] = dict(type="other", topics=[], inv=False, ts=int(now_ts), miss=True, v=VERSION)

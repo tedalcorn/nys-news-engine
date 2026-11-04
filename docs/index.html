@@ -67,6 +67,9 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .side li .n{color:var(--muted);font-size:12px}
 .side .bar{height:5px;background:var(--chip);border-radius:3px;overflow:hidden;margin-top:3px}.side .bar i{display:block;height:100%;background:var(--accent2)}
 .side .buzz li{display:block}
+.side .buzz li.grp{cursor:default;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:10px 0 2px;padding:0;border-bottom:0}.side .buzz li.grp:hover{color:var(--muted)}
+.side .buzz li.grp:first-child{margin-top:0}
+.side .buzz li.zero{opacity:.55}
 .side .buzz .lbl{display:flex;justify-content:space-between}
 .side .mini{font-size:13px;line-height:1.35;padding:6px 0;border-bottom:1px dotted var(--line)}
 .side .mini:last-child{border-bottom:0}.side .mini a{text-decoration:none}.side .mini a:hover{text-decoration:underline}
@@ -175,12 +178,16 @@ function render(){const f=base();let html="";
  else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Official <span>Governor, Senate, Assembly · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
  $("#main").innerHTML=html;$$(".gates .chip").forEach(el=>el.onclick=()=>{S.gate=S.gate===el.dataset.gate?"":el.dataset.gate;render()});sidebar()}
 function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.published_ts>=cut&&!i.flags.includes("opinion"));
- const tc={};for(const i of stories(wk))for(const t of i.tags)tc[t]=(tc[t]||0)+1;const tt=Object.entries(tc).sort((a,b)=>b[1]-a[1]);const mx=tt[0]?tt[0][1]:1;
- $("#buzz").innerHTML=tt.map(([t,n])=>`<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}"><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div><div class="bar"><i style="width:${Math.round(100*n/mx)}%"></i></div></li>`).join("");
+ const tc={};for(const i of stories(wk))for(const t of i.tags)tc[t]=(tc[t]||0)+1;
+ // every deputy-secretary portfolio is listed, even at zero, busiest first; the cross-cutting topics follow under their own label
+ const TP=META.topics||{portfolios:Object.keys(tc),other:[]};const byN=l=>l.map(t=>[t,tc[t]||0]).sort((a,b)=>b[1]-a[1]);
+ const pp=byN(TP.portfolios),oo2=byN(TP.other);const mx=Math.max(1,...pp.map(x=>x[1]),...oo2.map(x=>x[1]));
+ const li=([t,n])=>`<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}${n?"":" zero"}"><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div><div class="bar"><i style="width:${Math.round(100*n/mx)}%"></i></div></li>`;
+ $("#buzz").innerHTML=`<li class="grp">Portfolios</li>`+pp.map(li).join("")+(oo2.length?`<li class="grp">Other topics</li>`+oo2.map(li).join(""):"");
  const oc={};for(const i of wk)oc[i.outlet]=(oc[i.outlet]||0)+1;const oo=Object.entries(oc).sort((a,b)=>b[1]-a[1]).slice(0,16);
  $("#outlets").innerHTML=oo.map(([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}"><span><i class="dot" style="background:${col(o)}"></i>${esc(o)}</span><span class="n">${n}</span></li>`).join("");
  $("#n-d1").textContent=stories(wk.filter(i=>i.published_ts>=Date.now()/1000-86400)).length;$("#n-hd").textContent=wk.filter(i=>i.hochul).length;$("#n-zm").textContent=wk.filter(i=>i.mamdani).length;
- $$("#buzz li").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
+ $$("#buzz li[data-tag]").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
  $$("#outlets li").forEach(el=>el.onclick=()=>{S.outlet=S.outlet===el.dataset.outlet?"":el.dataset.outlet;render()})}
 async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json())])}catch(e){$("#meta").textContent="Could not load data.";return}
  // Google News redirect links dead-end for Workspace accounts that block Google News; the resolve-links
