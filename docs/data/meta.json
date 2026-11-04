@@ -1,13 +1,13 @@
 {
- "last_run": "2026-11-04 06:02 UTC",
- "last_run_iso": "2026-11-04T06:00:17Z",
- "total": 4632,
+ "last_run": "2026-11-04 06:31 UTC",
+ "last_run_iso": "2026-11-04T06:30:07Z",
+ "total": 4639,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
-  "City & State (gnews)": "ok 13",
+  "City & State (gnews)": "ok 14",
   "Politico NY Playbook": "ok 23",
-  "Times Union": "ok 28",
+  "Times Union": "ok 27",
   "NY State of Politics": "ok 2",
   "Newsday": "ok 10",
   "Daily News": "ok 2",
@@ -18,14 +18,14 @@
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 7",
   "New York Times": "ok 4",
-  "New York Times (nyt)": "ok 20",
-  "NY Post Politics": "ok 1",
+  "New York Times (nyt)": "ok 21",
+  "NY Post Politics": "ok 0",
   "NY Post Metro": "ok 5",
   "The City": "ok 5",
   "Wall Street Journal": "ok 1",
   "Buffalo News": "ok 6",
   "Buffalo News (gnews)": "ok 8",
-  "Syracuse.com": "ok 11",
+  "Syracuse.com": "ok 9",
   "FingerLakes1": "ok 2",
   "Adirondack Explorer": "ok 1",
   "Reinvent Albany": "ok 10",
@@ -35,13 +35,13 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 16",
   "Governor's Office (gnews)": "ok 9",
-  "NY Senate": "ok 39",
+  "NY Senate": "ok 49",
   "NY Assembly": "ok 9",
   "Google News: Hochul": "ok 91",
   "Google News: Legislature": "ok 14",
-  "Google News: Courts & statewide officials": "ok 55",
+  "Google News: Courts & statewide officials": "ok 56",
   "Google News: State agencies": "ok 2",
-  "Google News: Lawmakers": "ok 5"
+  "Google News: Lawmakers": "ok 6"
  },
  "outlets": [
   "- Emerson Polling",
@@ -135,6 +135,7 @@
   "Catholic Schools in the Archdiocese of New York",
   "Center for Democracy and Technology",
   "Center for Science in the Public Interest",
+  "Central Current",
   "Chabad",
   "Chalkbeat",
   "Charlotte Observer",
@@ -358,6 +359,7 @@
   "News24",
   "NewsBreak: Local News & Alerts",
   "NewsBytes",
+  "NewsChannel20",
   "NewsCord",
   "NewsNation",
   "NewsOne",
@@ -491,6 +493,7 @@
   "The Daily News | Texas' Oldest Newspaper",
   "The Daily Orange",
   "The Daily Signal",
+  "The Derrick",
   "The East Hampton Star",
   "The Economic Times",
   "The Evening Sun | Chenango County, NY's Hometown Newspaper",
@@ -760,13 +763,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 552,
-  "free": 1375,
-  "unknown": 2663,
+  "hard": 553,
+  "free": 1383,
+  "unknown": 2661,
   "metered": 13,
   "null": 29
  },
- "extracted": 2382,
+ "extracted": 2398,
  "runner": "pi",
  "per_day": {
   "2026-10-22": {
@@ -818,26 +821,26 @@
    "official": 12
   },
   "2026-11-03": {
-   "stories": 123,
+   "stories": 125,
    "official": 6
   },
   "2026-11-04": {
-   "stories": 164,
+   "stories": 178,
    "official": 2
   }
  },
  "grouped_stories": 454,
  "gates": {
-  "letitia james": 86,
-  "Lawmakers sweep": 48,
+  "letitia james": 87,
+  "Lawmakers sweep": 49,
   "dinapoli": 19,
   "senate district": 12,
-  "suny": 9,
+  "suny": 10,
+  "Courts & statewide officials sweep": 7,
   "medicaid": 7,
-  "Courts & statewide officials sweep": 6,
   "ny attorney general": 5,
+  "new york attorney general": 5,
   "board of elections": 5,
-  "new york attorney general": 4,
   "state comptroller": 4,
   "court of appeals": 4,
   "ballot proposal": 3,
@@ -856,29 +859,28 @@
   "state attorney general": 1,
   "unconstitutional": 1,
   "state senator": 1,
-  "state grant": 1,
-  "nyserda": 1
+  "state grant": 1
  },
- "unresolved_links": 17,
+ "unresolved_links": 8,
  "summaries": {
-  "total": 2305,
-  "og": 1490,
-  "none": 2327
+  "total": 2316,
+  "og": 1501,
+  "none": 2323
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 533,
-  "items": 4125,
-  "cost_usd": 0.1853,
-  "last": "2026-11-04T06:00:17Z",
+  "calls": 534,
+  "items": 4133,
+  "cost_usd": 0.1857,
+  "last": "2026-11-04T06:30:07Z",
   "week": {
-   "classified": 1140,
+   "classified": 1146,
    "unclassified": 0,
    "types": {
-    "campaign": 624,
+    "campaign": 630,
     "policy": 197,
-    "announcement": 119,
-    "other": 64,
+    "announcement": 118,
+    "other": 65,
     "national": 45,
     "opinion": 40,
     "local": 36,
@@ -958,11 +960,11 @@
     "cost_usd": 0.015655
    },
    "2026-11-04": {
-    "calls": 19,
-    "items": 237,
-    "input_tokens": 42802,
-    "output_tokens": 7881,
-    "cost_usd": 0.008078
+    "calls": 20,
+    "items": 245,
+    "input_tokens": 44689,
+    "output_tokens": 8118,
+    "cost_usd": 0.00842
    }
   }
  },
