@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-04 12:02 UTC",
- "last_run_iso": "2026-11-04T12:00:07Z",
- "total": 4682,
+ "last_run": "2026-11-04 12:31 UTC",
+ "last_run_iso": "2026-11-04T12:30:07Z",
+ "total": 4683,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
@@ -9,9 +9,9 @@
   "Politico NY Playbook": "ok 23",
   "Times Union": "ok 26",
   "NY State of Politics": "ok 9",
-  "Newsday": "ok 15",
+  "Newsday": "ok 14",
   "Daily News": "ok 2",
-  "Times Union (gnews)": "ok 12",
+  "Times Union (gnews)": "ok 10",
   "Newsday (gnews)": "ok 5",
   "Daily News (gnews)": "ok 0",
   "Politico": "ok 2",
@@ -38,9 +38,9 @@
   "NY Senate": "ok 42",
   "NY Assembly": "ok 9",
   "Google News: Hochul": "ok 90",
-  "Google News: Legislature": "ok 16",
+  "Google News: Legislature": "ok 18",
   "Google News: Courts & statewide officials": "ok 61",
-  "Google News: State agencies": "ok 3",
+  "Google News: State agencies": "ok 2",
   "Google News: Lawmakers": "ok 9"
  },
  "outlets": [
@@ -496,11 +496,13 @@
   "The Daily News | Texas' Oldest Newspaper",
   "The Daily Orange",
   "The Daily Signal",
+  "The Derrick",
   "The East Hampton Star",
   "The Economic Times",
   "The Evening Sun | Chenango County, NY's Hometown Newspaper",
   "The Examiner News",
   "The FilAm",
+  "The Fordham Ram",
   "The Forward",
   "The Globe and Mail",
   "The Good Newsroom",
@@ -766,13 +768,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 560,
-  "free": 1410,
+  "hard": 559,
+  "free": 1412,
   "unknown": 2670,
   "metered": 13,
   "null": 29
  },
- "extracted": 2447,
+ "extracted": 2450,
  "runner": "pi",
  "per_day": {
   "2026-10-22": {
@@ -828,17 +830,17 @@
    "official": 8
   },
   "2026-11-04": {
-   "stories": 103,
+   "stories": 106,
    "official": 1
   }
  },
- "grouped_stories": 461,
+ "grouped_stories": 462,
  "gates": {
   "letitia james": 87,
   "Lawmakers sweep": 51,
   "dinapoli": 19,
   "senate district": 13,
-  "suny": 9,
+  "suny": 8,
   "Courts & statewide officials sweep": 7,
   "medicaid": 7,
   "ny attorney general": 5,
@@ -863,28 +865,28 @@
   "state attorney general": 1,
   "unconstitutional": 1
  },
- "unresolved_links": 5,
+ "unresolved_links": 3,
  "summaries": {
-  "total": 2360,
-  "og": 1537,
-  "none": 2322
+  "total": 2363,
+  "og": 1540,
+  "none": 2320
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 544,
-  "items": 4209,
-  "cost_usd": 0.1888,
-  "last": "2026-11-04T12:00:07Z",
+  "calls": 545,
+  "items": 4212,
+  "cost_usd": 0.189,
+  "last": "2026-11-04T12:30:07Z",
   "week": {
-   "classified": 1140,
+   "classified": 1139,
    "unclassified": 0,
    "types": {
-    "campaign": 633,
+    "campaign": 634,
     "policy": 188,
     "announcement": 116,
-    "other": 66,
+    "other": 65,
     "national": 47,
-    "opinion": 38,
+    "opinion": 37,
     "local": 36,
     "blotter": 16
    },
@@ -962,11 +964,11 @@
     "cost_usd": 0.015655
    },
    "2026-11-04": {
-    "calls": 30,
-    "items": 321,
-    "input_tokens": 64037,
-    "output_tokens": 10410,
-    "cost_usd": 0.011531
+    "calls": 31,
+    "items": 324,
+    "input_tokens": 65624,
+    "output_tokens": 10495,
+    "cost_usd": 0.011767
    }
   }
  },
