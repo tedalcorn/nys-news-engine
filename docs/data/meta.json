@@ -1,47 +1,47 @@
 {
- "last_run": "2026-11-04 19:32 UTC",
- "last_run_iso": "2026-11-04T19:30:21Z",
- "total": 4749,
+ "last_run": "2026-11-04 20:02 UTC",
+ "last_run_iso": "2026-11-04T20:00:19Z",
+ "total": 4759,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
   "City & State (gnews)": "ok 17",
   "Politico NY Playbook": "ok 23",
   "Times Union": "ok 28",
-  "NY State of Politics": "ok 3",
+  "NY State of Politics": "ok 4",
   "Newsday": "ok 15",
   "Daily News": "ok 2",
-  "Times Union (gnews)": "ok 12",
+  "Times Union (gnews)": "ok 11",
   "Newsday (gnews)": "ok 6",
   "Daily News (gnews)": "ok 0",
   "Politico": "ok 2",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 7",
   "New York Times": "ok 3",
-  "New York Times (nyt)": "ok 22",
+  "New York Times (nyt)": "ok 23",
   "NY Post Politics": "ok 2",
-  "NY Post Metro": "ok 4",
+  "NY Post Metro": "ok 3",
   "The City": "ok 6",
   "Wall Street Journal": "ok 2",
   "Buffalo News": "ok 11",
   "Buffalo News (gnews)": "ok 10",
   "Syracuse.com": "ok 10",
-  "FingerLakes1": "ok 5",
+  "FingerLakes1": "ok 4",
   "Adirondack Explorer": "ok 1",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 3",
   "Citizens Union": "ok 10",
-  "Governor's Office": "ok 15",
+  "Governor's Office": "ok 14",
   "Governor's Office (gnews)": "ok 10",
   "NY Senate": "ok 42",
   "NY Assembly": "ok 10",
   "Google News: Hochul": "ok 90",
   "Google News: Legislature": "ok 12",
-  "Google News: Courts & statewide officials": "ok 63",
+  "Google News: Courts & statewide officials": "ok 64",
   "Google News: State agencies": "ok 4",
-  "Google News: Lawmakers": "ok 10"
+  "Google News: Lawmakers": "ok 11"
  },
  "outlets": [
   "- Emerson Polling",
@@ -769,13 +769,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 571,
-  "free": 1458,
-  "unknown": 2678,
+  "hard": 576,
+  "free": 1459,
+  "unknown": 2682,
   "metered": 13,
   "null": 29
  },
- "extracted": 2517,
+ "extracted": 2519,
  "runner": "pi",
  "per_day": {
   "2026-10-22": {
@@ -831,7 +831,7 @@
    "official": 8
   },
   "2026-11-04": {
-   "stories": 158,
+   "stories": 161,
    "official": 4
   }
  },
@@ -841,11 +841,11 @@
   "Lawmakers sweep": 49,
   "dinapoli": 20,
   "senate district": 13,
+  "suny": 11,
   "Courts & statewide officials sweep": 7,
-  "suny": 7,
   "board of elections": 6,
   "medicaid": 6,
-  "ny attorney general": 5,
+  "ny attorney general": 6,
   "new york attorney general": 5,
   "attorney general james": 4,
   "ballot proposal": 3,
@@ -865,30 +865,30 @@
   "state attorney general": 1,
   "unconstitutional": 1
  },
- "unresolved_links": 2,
+ "unresolved_links": 9,
  "summaries": {
-  "total": 2429,
-  "og": 1594,
-  "none": 2320
+  "total": 2432,
+  "og": 1596,
+  "none": 2327
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 560,
-  "items": 4308,
-  "cost_usd": 0.194,
-  "last": "2026-11-04T19:30:21Z",
+  "calls": 561,
+  "items": 4318,
+  "cost_usd": 0.1944,
+  "last": "2026-11-04T20:00:19Z",
   "week": {
-   "classified": 1123,
+   "classified": 1130,
    "unclassified": 0,
    "types": {
-    "campaign": 649,
-    "policy": 167,
+    "campaign": 650,
+    "policy": 168,
     "announcement": 113,
-    "other": 63,
-    "national": 45,
+    "other": 67,
+    "national": 44,
     "opinion": 37,
-    "local": 34,
-    "blotter": 15
+    "local": 35,
+    "blotter": 16
    },
    "investigative": 11
   },
@@ -964,13 +964,13 @@
     "cost_usd": 0.015655
    },
    "2026-11-04": {
-    "calls": 46,
-    "items": 420,
-    "input_tokens": 93528,
-    "output_tokens": 13954,
-    "cost_usd": 0.016815
+    "calls": 47,
+    "items": 430,
+    "input_tokens": 95609,
+    "output_tokens": 14236,
+    "cost_usd": 0.017199
    }
   }
  },
- "zm_only": 15
+ "zm_only": 16
 }
