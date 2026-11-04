@@ -140,7 +140,7 @@ def candidates(items, now_ts):
     # the archive: items judged under an older topic list, and the pre-10/25 items the model never saw
     old = [i for i in items if _stale(i) and (now_ts - i.get("published_ts", 0)) > MAX_AGE_H * 3600]
     old.sort(key=lambda x: -x.get("published_ts", 0))
-    return pool[:PER_RUN] + old[:ARCHIVE_PER_RUN]
+    return (pool + old)[:PER_RUN + ARCHIVE_PER_RUN]     # the week first; the archive fills what is left
 
 
 def _ask(client, batch):
