@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-04 15:31 UTC",
- "last_run_iso": "2026-11-04T15:30:07Z",
- "total": 4708,
+ "last_run": "2026-11-04 16:02 UTC",
+ "last_run_iso": "2026-11-04T16:00:20Z",
+ "total": 4713,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
@@ -17,14 +17,14 @@
   "Politico": "ok 2",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 7",
-  "New York Times": "ok 5",
+  "New York Times": "ok 4",
   "New York Times (nyt)": "ok 23",
   "NY Post Politics": "ok 0",
   "NY Post Metro": "ok 5",
-  "The City": "ok 5",
+  "The City": "ok 6",
   "Wall Street Journal": "ok 2",
-  "Buffalo News": "ok 9",
-  "Buffalo News (gnews)": "ok 9",
+  "Buffalo News": "ok 10",
+  "Buffalo News (gnews)": "ok 10",
   "Syracuse.com": "ok 10",
   "FingerLakes1": "ok 6",
   "Adirondack Explorer": "ok 1",
@@ -33,7 +33,7 @@
   "Empire Center": "ok 8",
   "Citizens Budget Commission": "ok 3",
   "Citizens Union": "ok 10",
-  "Governor's Office": "ok 16",
+  "Governor's Office": "ok 15",
   "Governor's Office (gnews)": "ok 9",
   "NY Senate": "ok 42",
   "NY Assembly": "ok 9",
@@ -768,13 +768,13 @@
   "Transit"
  ],
  "paywall": {
-  "hard": 563,
-  "free": 1429,
-  "unknown": 2674,
+  "hard": 564,
+  "free": 1435,
+  "unknown": 2672,
   "metered": 13,
   "null": 29
  },
- "extracted": 2470,
+ "extracted": 2478,
  "runner": "pi",
  "per_day": {
   "2026-10-22": {
@@ -830,32 +830,32 @@
    "official": 8
   },
   "2026-11-04": {
-   "stories": 127,
+   "stories": 135,
    "official": 1
   }
  },
  "grouped_stories": 467,
  "gates": {
-  "letitia james": 87,
-  "Lawmakers sweep": 52,
+  "letitia james": 88,
+  "Lawmakers sweep": 51,
   "dinapoli": 19,
   "senate district": 13,
-  "suny": 8,
-  "medicaid": 7,
+  "suny": 9,
   "Courts & statewide officials sweep": 7,
+  "medicaid": 6,
+  "board of elections": 5,
   "ny attorney general": 5,
   "new york attorney general": 5,
   "attorney general james": 4,
-  "board of elections": 4,
   "state comptroller": 4,
   "ballot proposal": 3,
   "state senator": 3,
   "public service commission": 3,
   "department of environmental conservation": 3,
-  "court of appeals": 3,
   "State agencies sweep": 2,
   "state funding": 2,
   "state ban": 2,
+  "court of appeals": 2,
   "state sen.": 2,
   "state aid": 1,
   "ballot question": 1,
@@ -865,30 +865,30 @@
   "unconstitutional": 1,
   "state law": 1
  },
- "unresolved_links": 7,
+ "unresolved_links": 5,
  "summaries": {
-  "total": 2383,
-  "og": 1555,
-  "none": 2325
+  "total": 2391,
+  "og": 1561,
+  "none": 2322
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 551,
-  "items": 4249,
-  "cost_usd": 0.1912,
-  "last": "2026-11-04T15:30:07Z",
+  "calls": 552,
+  "items": 4256,
+  "cost_usd": 0.1915,
+  "last": "2026-11-04T16:00:20Z",
   "week": {
-   "classified": 1135,
+   "classified": 1133,
    "unclassified": 0,
    "types": {
     "campaign": 639,
-    "policy": 181,
+    "policy": 179,
     "announcement": 116,
-    "other": 64,
+    "other": 65,
     "national": 46,
     "opinion": 39,
     "local": 34,
-    "blotter": 16
+    "blotter": 15
    },
    "investigative": 11
   },
@@ -964,11 +964,11 @@
     "cost_usd": 0.015655
    },
    "2026-11-04": {
-    "calls": 37,
-    "items": 361,
-    "input_tokens": 76724,
-    "output_tokens": 12210,
-    "cost_usd": 0.013945
+    "calls": 38,
+    "items": 368,
+    "input_tokens": 78765,
+    "output_tokens": 12416,
+    "cost_usd": 0.014287
    }
   }
  },
