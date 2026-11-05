@@ -426,6 +426,8 @@ def main():
         try:
             for it in json.load(open(ITEMS)):
                 it["outlet"] = OUTLET_RENAMES.get(it["outlet"], it["outlet"])
+                if it["outlet"] == "NY Assembly" and "/Press/?sec=story" in it["link"]:   # Speaker's releases found via Google
+                    it["outlet"], it["source"], it["domain"] = "Assembly Speaker", "Assembly Speaker", "nyassembly.gov"
                 archive[it["id"]] = it
         except Exception: archive = {}
     KNOWN.update(it["link"] for it in archive.values())
