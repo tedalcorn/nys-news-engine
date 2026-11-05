@@ -152,4 +152,4 @@ NYT_GENERIC = ["legislature","governors (us)","state budget","budgets and budget
 
 # Press-release channels, for the page's "Filter by official" box and the Official tab. "NY Assembly" is the retired
 # site:nyassembly.gov query, kept so its archived items stay official until they age out.
-OFFICIALS = list(dict.fromkeys([s["name"] for s in SOURCES if s.get("official")] + ["NY Assembly"]))
+OFFICIALS = list(dict.fromkeys([s["name"] for s in SOURCES if s.get("official")] + ["State agencies", "NY Assembly"]))

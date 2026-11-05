@@ -118,6 +118,31 @@ def http_get(url, accept="*/*", timeout=25):
     r.raise_for_status()
     return r
 
+# Office by link (2026-11-05, Ted: officials presented by office, not a grab bag of labels). Google labels the same
+# office's pages several ways ("NYC.gov", "New York City Government (.gov)", "hcr.ny.gov"); the link settles it.
+# Executive agency sites (ESD, HCR, DFS...) mostly repost the Governor's releases: one "State agencies" entry.
+# Pages from outside state government (house.gov, dhs.gov, city halls) are not official channels here.
+OFFICE_BY_HOST = [("governor.ny.gov", "Governor's Office"), ("ag.ny.gov", "Attorney General"), ("osc.ny.gov", "Comptroller"),
+                  ("nysenate.gov", "NY Senate"), ("nyc.gov", "NYC Mayor")]
+
+def office_of(link):
+    u = urlparse(link); host = u.netloc.lower().replace("www.", "")
+    if host == "nyc.gov" and not u.path.startswith("/mayors-office"): return None
+    if host == "nyassembly.gov": return "Assembly Speaker" if "sec=story" in link and u.path.startswith("/Press") else "NY Assembly"
+    if "/senators/andrea-stewart-cousins" in u.path or "/andrea-stewart-cousins/" in u.path: return "Senate Majority Leader"
+    for h, o in OFFICE_BY_HOST:
+        if host == h: return o
+    if host.endswith(".ny.gov"): return "State agencies"
+    return None
+
+def file_by_office(it):
+    """Relabel an item whose link is an official channel; demote .gov pages that are not ours to ordinary outlets."""
+    o = office_of(it["link"])
+    if o:
+        it["outlet"], it["tier"] = o, 3
+    elif re.search(r"\(\.gov\)|\.gov$", it["outlet"], re.I) or it["outlet"] == "NYC.gov":
+        it["outlet"] = urlparse(it["link"]).netloc.replace("www.", "")
+
 def make_item(title, link, outlet, domain, summary, ts, src, **extra):
     d = dict(
         id=hashlib.sha1(link.encode()).hexdigest()[:12],
@@ -426,8 +451,6 @@ def main():
         try:
             for it in json.load(open(ITEMS)):
                 it["outlet"] = OUTLET_RENAMES.get(it["outlet"], it["outlet"])
-                if it["outlet"] == "NY Assembly" and "/Press/?sec=story" in it["link"]:   # Speaker's releases found via Google
-                    it["outlet"], it["source"], it["domain"] = "Assembly Speaker", "Assembly Speaker", "nyassembly.gov"
                 archive[it["id"]] = it
         except Exception: archive = {}
     KNOWN.update(it["link"] for it in archive.values())
@@ -472,6 +495,7 @@ def main():
         print(f"\ngnlinks: {gnlinks.apply(items)} links applied from links.json")
     except Exception as e:
         print(f"gnlinks step skipped: {type(e).__name__}: {e}")
+    for it in items: file_by_office(it)   # after links.json: a decoded Google link reveals the office
     # with the real URL in hand, sections are visible: NY State of Politics carries Spectrum's wire sports
     items = [it for it in items if not re.search(r"/(sports|entertainment)/", urlparse(it["link"]).path)]
     # first pass so candidate selection has headline-only scores to sort on

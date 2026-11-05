@@ -134,10 +134,13 @@ const tsSpan=(ts,full)=>`<span class="ts${fresh(ts)?" fresh":""}" data-ts="${ts}
 const tick=()=>$$(".ts").forEach(el=>{const t=+el.dataset.ts;el.textContent=(el.dataset.full?dstamp(t)+", ":"")+ago(t);el.classList.toggle("fresh",fresh(t))});
 const dstamp=ts=>{const d=new Date(ts*1000);return `${d.getMonth()+1}/${d.getDate()}/${String(d.getFullYear()).slice(2)}`};
 const pwBadge=i=>(i.paywall==="hard"||i.paywall==="metered")?`<span class="pw ${i.paywall}">${i.paywall==="hard"?"paywall":"limited"}</span>`:"";
-// Press-release channels (sources.OFFICIALS via meta.json), plus any agency or member .gov page a sweep picked up
+// Press-release channels by office (sources.OFFICIALS via meta.json; fetch.py files every .gov release under its office)
 let official=new Set(["Governor's Office","NY Senate","NY Assembly"]);
-const isGov=o=>/\(\.gov\)$|\.gov$/i.test(o);
-function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${TIERCOL[i.tier]||TIERCOL[2]}" title="${i.tier===1?"Albany specialist":i.tier===3?"Official / advocacy":"General outlet"}"></i><span class="outlet">${esc(i.outlet)}</span></span>${tsSpan(i.published_ts,true)}${pwBadge(i)}</div>`}
+// every office named by its title, the same way
+const OFFNAME={"Governor's Office":"Governor","NY Senate":"State senators","NYC Mayor":"Mayor of New York City","NY Assembly":"Assembly (older notices)"};
+const oname=o=>OFFNAME[o]||o;
+function setView(v){S.view=v;$$(".nav button").forEach(x=>x.classList.toggle("active",x.dataset.view===v))}
+function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${TIERCOL[i.tier]||TIERCOL[2]}" title="${i.tier===1?"Albany specialist":i.tier===3?"Official / advocacy":"General outlet"}"></i><span class="outlet">${esc(oname(i.outlet))}</span></span>${tsSpan(i.published_ts,true)}${pwBadge(i)}</div>`}
 function chips(i){return `<div class="chips">${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}${S.view==="review"&&i.gate?`<span class="chip flag">gate: ${esc(i.gate)}</span>`:""}${S.view==="review"&&i.llm?`<span class="chip flag">${esc(i.llm.type)}${i.llm.inv?" · investigative":""}</span>`:""}</div>`}
 // Other stories on the same subject (scripts/cluster.py, headline similarity): different articles, never copies of this one
 function related(i){if(!i.tid)return "";const r=ITEMS.filter(x=>x.tid===i.tid&&x.id!==i.id).sort((a,b)=>b.score-a.score);if(!r.length)return "";const outs=[...new Set(r.map(x=>x.outlet))];
@@ -188,15 +191,14 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.
  const li=([t,n])=>`<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}${n?"":" zero"}"><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div><div class="bar"><i style="width:${Math.round(100*n/mx)}%"></i></div></li>`;
  $("#buzz").innerHTML=`<li class="grp">Portfolios</li>`+pp.map(li).join("")+(oo2.length?`<li class="grp">Other topics</li>`+oo2.map(li).join(""):"");
  const oc={};for(const i of wk)oc[i.outlet]=(oc[i.outlet]||0)+1;
- const oli=([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}${n?"":" zero"}"><span><i class="dot" style="background:${col(o)}"></i>${esc(o)}</span><span class="n">${n}</span></li>`;
+ const oli=([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}${n?"":" zero"}"><span>${official.has(o)?"":`<i class="dot" style="background:${col(o)}"></i>`}${esc(oname(o))}</span><span class="n">${n}</span></li>`;
  $("#outlets").innerHTML=Object.entries(oc).filter(([o])=>!official.has(o)).sort((a,b)=>b[1]-a[1]).slice(0,16).map(oli).join("");
- // every official channel is listed, even with nothing this week; .gov pages from the sweeps follow if they ran
- const OF=META.officials||[];
- const offs=[...OF.filter(o=>o!=="NY Assembly"||oc[o]),...Object.keys(oc).filter(o=>official.has(o)&&!OF.includes(o))];
- $("#officials").innerHTML=offs.map(o=>[o,oc[o]||0]).sort((a,b)=>b[1]-a[1]).map(oli).join("");
+ // every office is listed, in a fixed order, even with nothing this week
+ $("#officials").innerHTML=(META.officials||[]).filter(o=>o!=="NY Assembly"||oc[o]).map(o=>[o,oc[o]||0]).map(oli).join("");
  $("#n-d1").textContent=stories(wk.filter(i=>i.published_ts>=Date.now()/1000-86400)).length;$("#n-hd").textContent=wk.filter(i=>i.hochul).length;$("#n-zm").textContent=wk.filter(i=>i.mamdani).length;
  $$("#buzz li[data-tag]").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
- $$("#outlets li,#officials li").forEach(el=>el.onclick=()=>{S.outlet=S.outlet===el.dataset.outlet?"":el.dataset.outlet;render()})}
+ $$("#outlets li,#officials li").forEach(el=>el.onclick=()=>{const o=el.dataset.outlet;S.outlet=S.outlet===o?"":o;
+  if(S.outlet&&official.has(o))setView("official");else if(S.outlet&&S.view==="official")setView("latest");render()})}
 async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json())])}catch(e){$("#meta").textContent="Could not load data.";return}
  // Google News redirect links dead-end for Workspace accounts that block Google News; the resolve-links
  // workflow swaps in publisher URLs within the hour, and a story stays hidden until that has happened.
@@ -205,7 +207,7 @@ async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json
  let when=META.last_run;
  try{const d=new Date(iso);if(!isNaN(d))when=d.toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET"}catch(e){}
  OT={};for(const i of ITEMS){if(!(i.outlet in OT)||i.tier<OT[i.outlet])OT[i.outlet]=i.tier}
- official=new Set([...(META.officials||official),...ITEMS.map(i=>i.outlet).filter(isGov)]);
+ official=new Set(META.officials||official);
  const ageMin=(Date.now()-new Date(iso).getTime())/60000;
  const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"});const pd=(META.per_day||{})[today];
  $("#meta").innerHTML=`${pd?`${pd.stories} stories today · `:""}${META.total} in archive · ${META.outlets.length} outlets<br>refreshed ${esc(when)}${ageMin>120?` <span class="stale" title="Normally every 30 minutes">refresh overdue</span>`:""}`;render()}
