@@ -75,7 +75,6 @@ SOURCES = [
  #     'page' = the office's release list, each new link opened once for its og:title/og:description;
  #     'nycmayor' = nyc.gov's sitemap (the Mayor's news page draws its list by script, the sitemap lists every release).
  dict(name="Governor's Office",   domain="governor.ny.gov",     kind="gov",   url="https://www.governor.ny.gov/news",                tier=3, albany_filter=False, official=True),
- dict(name="Governor's Office",   domain="governor.ny.gov",     kind="gnews", url=GN.format(q="site:governor.ny.gov+when:3d"),               tier=3, albany_filter=False, official=True),
  dict(name="Attorney General",    domain="ag.ny.gov",           kind="page",  url="https://ag.ny.gov/press-releases", base="https://ag.ny.gov",
       link_rx=r'href="(/press-release/20\d\d/[^"#?]+)"', tier=3, albany_filter=False, official=True),
  dict(name="Comptroller",         domain="osc.ny.gov",          kind="page",  url="https://www.osc.ny.gov/press", base="https://www.osc.ny.gov",

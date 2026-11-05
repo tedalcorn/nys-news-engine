@@ -81,7 +81,7 @@ GitHub Pages serves `docs/`. Retention is 180 days. The repo is the off-device b
 | Reinvent Albany, Fiscal Policy Institute, Empire Center | native RSS | 3 |
 | Citizens Budget Commission | Google News RSS | 3 |
 | NY Senate (members' releases) | Google News `site:nysenate.gov/newsroom/press-releases` | 3 |
-| Governor's Office | **governor.ny.gov/news scraped directly** (two pages, exact timestamps, Spanish duplicates dropped; needs `curl_cffi` for a browser TLS fingerprint past Cloudflare), with Google News as fallback | 3 |
+| Governor's Office | **governor.ny.gov/news scraped directly** (two pages, exact timestamps, Spanish duplicates dropped; needs `curl_cffi` for a browser TLS fingerprint past Cloudflare); the Google News fallback was dropped 11/5 | 3 |
 | Attorney General, Comptroller, Assembly Speaker, Senate Majority Leader | **each office's own release list scraped directly** (`kind="page"`): new links opened once for og:title/og:description, date printed next to the link, 20 new pages per source per run, nothing older than 14 days | 3 |
 | NYC Mayor | **nyc.gov sitemap** (`kind="nycmayor"`; the news page draws its list by script): entries edited in the last 3 days, transcripts and emergency-order renewals skipped, first paragraph as the summary | 3 |
 | Politico (news articles beyond Playbook), Wall Street Journal | Google News RSS `site:`, Albany-filtered | 1 / 2 |
