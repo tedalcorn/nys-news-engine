@@ -193,8 +193,8 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.
  const oc={};for(const i of wk)oc[i.outlet]=(oc[i.outlet]||0)+1;
  const oli=([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}${n?"":" zero"}"><span>${official.has(o)?"":`<i class="dot" style="background:${col(o)}"></i>`}${esc(oname(o))}</span><span class="n">${n}</span></li>`;
  $("#outlets").innerHTML=Object.entries(oc).filter(([o])=>!official.has(o)).sort((a,b)=>b[1]-a[1]).slice(0,16).map(oli).join("");
- // every office is listed, in a fixed order, even with nothing this week
- $("#officials").innerHTML=(META.officials||[]).filter(o=>o!=="NY Assembly"||oc[o]).map(o=>[o,oc[o]||0]).map(oli).join("");
+ // every office is listed, even with nothing this week, busiest first like the outlets
+ $("#officials").innerHTML=(META.officials||[]).filter(o=>o!=="NY Assembly"||oc[o]).map(o=>[o,oc[o]||0]).sort((a,b)=>b[1]-a[1]).map(oli).join("");
  $("#n-d1").textContent=stories(wk.filter(i=>i.published_ts>=Date.now()/1000-86400)).length;$("#n-hd").textContent=wk.filter(i=>i.hochul).length;$("#n-zm").textContent=wk.filter(i=>i.mamdani).length;
  $$("#buzz li[data-tag]").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
  $$("#outlets li,#officials li").forEach(el=>el.onclick=()=>{const o=el.dataset.outlet;S.outlet=S.outlet===o?"":o;
