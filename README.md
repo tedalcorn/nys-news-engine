@@ -12,7 +12,7 @@ from general outlets that doesn't pass the keyword gate (below), dedupes by URL 
 groups different outlets' coverage of the same story (`scripts/cluster.py`), merges with the archive,
 and writes `docs/data/items.json` and `docs/data/meta.json`.
 `docs/index.html` renders that client-side: Picks (ranked, 72h), Latest (chronological),
-Official (Governor, Senate, Assembly), Paywalled; search, outlet and topic filters, a date window,
+Official (every `official=True` source in sources.py: Governor, AG, Comptroller, Speaker, Majority Leader, Senate members, Mayor), Paywalled; search, outlet, official and topic filters (counts = last week), a date window,
 and toggles for the last 24 hours, stories centered on the Governor, stories centered on Mayor Mamdani, and hiding opinion.
 
 ### Summaries and the model pass (`scripts/extract.py`, `scripts/classify.py`)
@@ -79,8 +79,11 @@ GitHub Pages serves `docs/`. Retention is 180 days. The repo is the off-device b
 | New York Times | NY Region RSS, Albany-filtered, plus the NYT developer API (Top Stories for the NY Region front + Article Search) filtered on the Times' own person/place/subject tags when `NYT_API_KEY` is set | 2 |
 | Newsday, Daily News, Gotham Gazette | Google News RSS, Albany-filtered | 2 |
 | Reinvent Albany, Fiscal Policy Institute, Empire Center | native RSS | 3 |
-| Citizens Budget Commission, NY Senate, NY Assembly | Google News RSS | 3 |
+| Citizens Budget Commission | Google News RSS | 3 |
+| NY Senate (members' releases) | Google News `site:nysenate.gov/newsroom/press-releases` | 3 |
 | Governor's Office | **governor.ny.gov/news scraped directly** (two pages, exact timestamps, Spanish duplicates dropped; needs `curl_cffi` for a browser TLS fingerprint past Cloudflare), with Google News as fallback | 3 |
+| Attorney General, Comptroller, Assembly Speaker, Senate Majority Leader | **each office's own release list scraped directly** (`kind="page"`): new links opened once for og:title/og:description, date printed next to the link, 20 new pages per source per run, nothing older than 14 days | 3 |
+| NYC Mayor | **nyc.gov sitemap** (`kind="nycmayor"`; the news page draws its list by script): entries edited in the last 3 days, transcripts and emergency-order renewals skipped, first paragraph as the summary | 3 |
 | Politico (news articles beyond Playbook), Wall Street Journal | Google News RSS `site:`, Albany-filtered | 1 / 2 |
 | Buffalo News, Syracuse.com (politics), FingerLakes1, Adirondack Explorer | Google News `site:` (Buffalo) or native RSS, filtered | 2 |
 | Citizens Union (Searchlight essays) | native RSS | 3 |

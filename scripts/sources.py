@@ -1,6 +1,7 @@
 """Source list for the NYS News Engine.
 kind: 'rss' = native feed; 'gnews' = Google News RSS (site: or keyword query) for sites that block scrapers;
       'gov' = governor.ny.gov/news scraped directly (Cloudflare needs a browser TLS fingerprint: curl_cffi);
+      'page' / 'nycmayor' = other officials' release lists, scraped directly (fetch.py: fetch_page, fetch_nycmayor);
       'nyt' = NYT developer API (Top Stories for the NY Region front + Article Search); silently skipped unless NYT_API_KEY is set.
 Google News queries carry a `when:Nd` operator: without it Google returns its 100 most *relevant* hits,
 many of them months old, and recent releases never surface (that is why Official went stale).
@@ -69,11 +70,26 @@ SOURCES = [
  dict(name="Empire Center",       domain="empirecenter.org",    kind="rss",   url="https://www.empirecenter.org/feed/",              tier=3, albany_filter=False),
  dict(name="Citizens Budget Commission", domain="cbcny.org",    kind="gnews", url=GN.format(q="site:cbcny.org+when:7d"),                     tier=3, albany_filter=False),
  dict(name="Citizens Union",      domain="citizensunion.org",   kind="rss",   url="https://searchlight.citizensunion.org/feed",      tier=3, albany_filter=False),
- # --- Official ---
- dict(name="Governor's Office",   domain="governor.ny.gov",     kind="gov",   url="https://www.governor.ny.gov/news",                tier=3, albany_filter=False),
- dict(name="Governor's Office",   domain="governor.ny.gov",     kind="gnews", url=GN.format(q="site:governor.ny.gov+when:3d"),               tier=3, albany_filter=False),
- dict(name="NY Senate",           domain="nysenate.gov",        kind="gnews", url=GN.format(q="site:nysenate.gov+when:7d"),                  tier=3, albany_filter=False),
- dict(name="NY Assembly",         domain="nyassembly.gov",      kind="gnews", url=GN.format(q="site:nyassembly.gov+when:7d"),                tier=3, albany_filter=False),
+ # --- Official: every press-release channel is official=True, which puts it under "Filter by official" on the page,
+ #     in the Official tab, and out of Picks. Direct scrapes where the office's own list is reachable (added 2026-11-05):
+ #     'page' = the office's release list, each new link opened once for its og:title/og:description;
+ #     'nycmayor' = nyc.gov's sitemap (the Mayor's news page draws its list by script, the sitemap lists every release).
+ dict(name="Governor's Office",   domain="governor.ny.gov",     kind="gov",   url="https://www.governor.ny.gov/news",                tier=3, albany_filter=False, official=True),
+ dict(name="Governor's Office",   domain="governor.ny.gov",     kind="gnews", url=GN.format(q="site:governor.ny.gov+when:3d"),               tier=3, albany_filter=False, official=True),
+ dict(name="Attorney General",    domain="ag.ny.gov",           kind="page",  url="https://ag.ny.gov/press-releases", base="https://ag.ny.gov",
+      link_rx=r'href="(/press-release/20\d\d/[^"#?]+)"', tier=3, albany_filter=False, official=True),
+ dict(name="Comptroller",         domain="osc.ny.gov",          kind="page",  url="https://www.osc.ny.gov/press", base="https://www.osc.ny.gov",
+      link_rx=r'href="(/press/releases/20\d\d/\d\d/[^"#?]+)"', tier=3, albany_filter=False, official=True),
+ dict(name="Assembly Speaker",    domain="nyassembly.gov",      kind="page",  url="https://nyassembly.gov/Press/?sec=press-list", base="https://nyassembly.gov",
+      link_rx=r'href="(/Press/\?sec=story&(?:amp;)?story=\d+)"', blurb_rx=r'post-blurb">(.*?)</div>', bad_desc="View Speaker Press Releases",
+      tier=3, albany_filter=False, official=True),
+ # The Majority Leader's nysenate.gov newsroom: she posts few releases there (latest Jan 2026 as of 11/5), but it is her channel.
+ dict(name="Senate Majority Leader", domain="nysenate.gov",     kind="page",  url="https://www.nysenate.gov/senators/andrea-stewart-cousins/newsroom?page=1", base="https://www.nysenate.gov",
+      link_rx=r'href="(/newsroom/(?:press-releases|articles)/20\d\d/andrea-stewart-cousins/[^"#?]+)"', skip_rx=r"boletin",
+      tier=3, albany_filter=False, official=True),
+ # Members' releases. The bare site: query also returned bill pages, law PDFs and community office hours.
+ dict(name="NY Senate",           domain="nysenate.gov",        kind="gnews", url=gn("site:nysenate.gov/newsroom/press-releases when:7d"),   tier=3, albany_filter=False, official=True),
+ dict(name="NYC Mayor",           domain="nyc.gov",             kind="nycmayor", url="https://www.nyc.gov/sitemap.xml",              tier=3, albany_filter=False, official=True),
  # --- Cross-outlet keyword sweeps (catch what the feeds miss) ---
  dict(name="Google News: Hochul", domain="",                    kind="gnews", url=GN.format(q="%22Hochul%22+when:2d"),                       tier=2, albany_filter=False, sweep=True),
  dict(name="Google News: Legislature", domain="",               kind="gnews", url=GN.format(q="%22New+York%22+(Heastie+OR+%22Stewart-Cousins%22+OR+%22state+budget%22+OR+%22Executive+Chamber%22)+when:2d"), tier=2, albany_filter=False, sweep=True, loose_anchor=True),
@@ -133,3 +149,7 @@ OUT_OF_STATE = ["newsom","california","texas","florida","desantis","abbott","ill
 NYT_FACETS = ["hochul","heastie","stewart-cousins","blakeman","dinapoli","new york state","albany (ny)",
  "executive chamber","metropolitan transportation authority","new york state legislature"]
 NYT_GENERIC = ["legislature","governors (us)","state budget","budgets and budgeting","medicaid","elections, governors"]
+
+# Press-release channels, for the page's "Filter by official" box and the Official tab. "NY Assembly" is the retired
+# site:nyassembly.gov query, kept so its archived items stay official until they age out.
+OFFICIALS = list(dict.fromkeys([s["name"] for s in SOURCES if s.get("official")] + ["NY Assembly"]))

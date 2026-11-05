@@ -10,7 +10,7 @@ except ImportError:
     crequests = None
 from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
-from sources import SOURCES, ALBANY_TERMS, STATE_TERMS, BLOTTER, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS, NYT_GENERIC
+from sources import SOURCES, OFFICIALS, ALBANY_TERMS, STATE_TERMS, BLOTTER, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS, NYT_GENERIC
 from score import score, PORTFOLIOS, OTHER_TOPICS
 import extract, cluster, gnlinks, classify
 
@@ -181,6 +181,106 @@ def fetch_gov(src):
             out.append(make_item(title, link, src["name"], src["domain"], dedupe_summary(title, desc, src["name"]), ts, src))
     return out, (f"ok {len(out)}" if out else "ERROR parsed 0 rows (markup changed?)")
 
+# ---------- other officials' release lists, scraped directly (2026-11-05) ----------
+KNOWN = set()          # links already in the archive (main fills it): each release page is opened once, not every run
+NEW_PER_SOURCE = 20    # cap on release pages opened per source per run; a backlog drains over later runs
+DATE_RX = re.compile(r"((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.? \d{1,2}, 20\d\d)")
+
+def _date_ts(d):
+    """'November 4, 2026' / 'Nov 4, 2026' -> noon ET that day, never later than now."""
+    d = d.replace(".", "")
+    for fmt in ("%B %d, %Y", "%b %d, %Y"):
+        try:
+            return min(NOW, dt.datetime.strptime(d, fmt).replace(hour=12, tzinfo=ET).timestamp())
+        except ValueError: continue
+    return None
+
+def _meta(page, prop):
+    m = re.search(r'<meta[^>]+(?:property|name)="%s"[^>]+content="([^"]*)"' % re.escape(prop), page)
+    return html.unescape(m.group(1)).strip() if m else ""
+
+def _open(url):
+    r = crequests.get(url, impersonate="chrome", timeout=25); r.raise_for_status(); return r.text
+
+def fetch_page(src):
+    """An office's own release list: links in page order, date = first date printed after the link."""
+    if crequests is None: return [], "skipped (curl_cffi not installed)"
+    try: listing = _open(src["url"])
+    except Exception as e: return [], f"ERROR {type(e).__name__}: {e}"
+    rows, seen = [], set()
+    for m in re.finditer(src["link_rx"], listing):
+        link = src["base"] + html.unescape(m.group(1))
+        if link in seen or (src.get("skip_rx") and re.search(src["skip_rx"], link)): continue
+        seen.add(link)
+        tail = listing[m.end():m.end() + 2500]
+        d = DATE_RX.search(tail)
+        b = re.search(src["blurb_rx"], tail, re.S) if src.get("blurb_rx") else None
+        rows.append((link, _date_ts(d.group(1)) if d else None, _strip(b.group(1)) if b else ""))
+    if not rows: return [], "ERROR parsed 0 links (markup changed?)"
+    out, opened = [], 0
+    for link, ts, blurb in rows:
+        if link in KNOWN or (ts and NOW - ts > 14 * 86400): continue    # older than two weeks: not news by the time we see it
+        if opened >= NEW_PER_SOURCE: break
+        opened += 1
+        try: page = _open(link)
+        except Exception: continue
+        title = _meta(page, "og:title") or _strip((re.search(r"<title>(.*?)</title>", page, re.S) or [None, ""])[1])
+        desc = _meta(page, "og:description")
+        if src.get("bad_desc") and src["bad_desc"] in desc: desc = ""
+        desc = desc or blurb
+        if ts is None:
+            d = DATE_RX.search(page)
+            ts = (_date_ts(d.group(1)) if d else None) or NOW
+            if NOW - ts > 14 * 86400: continue          # undated in the list, old on the page (sticky items)
+        if not title: continue
+        out.append(make_item(title, link, src["name"], src["domain"], dedupe_summary(title, desc[:400], src["name"]), ts, src))
+    return out, f"ok {len(out)} new of {len(rows)} listed"
+
+NYC_SKIP = re.compile(r"/(?:transcript|emergency-executive-order)")   # transcripts run daily; emergency orders renew every 5 days
+
+def _first_para(page):
+    """The release's opening paragraph: nyc.gov leaves og:description empty."""
+    for p in re.findall(r"<p[^>]*>(.*?)</p>", page, re.S):
+        p = _strip(p)
+        if len(p) > 120 and "{" not in p and not p.startswith("A lock"): return p
+    return ""
+
+def fetch_nycmayor(src):
+    """The Mayor's Office releases from nyc.gov's sitemap: the newest mayors-office sitemap file, entries edited in the
+    last 3 days that we have not seen, each opened once for its title and dek."""
+    if crequests is None: return [], "skipped (curl_cffi not installed)"
+    try:
+        idx = _open(src["url"])
+        maps = re.findall(r"<loc>(https://www\.nyc\.gov/content/nycgov\.sitemap\.mayors-office-nycgov-sitemap[^<]*)</loc>", idx)
+        if not maps: return [], "ERROR no mayors-office sitemap in index"
+        ents = []
+        for sm in maps[-2:][::-1]:                      # the newest file first; the one before it covers a rollover
+            ents += re.findall(r"<loc>([^<]+/mayors-office/news/20\d\d/\d\d/[^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>", _open(sm))
+            if len(ents) > 200: break
+    except Exception as e:
+        return [], f"ERROR {type(e).__name__}: {e}"
+    fresh = []
+    for link, lm in ents:
+        try: ts = dt.datetime.fromisoformat(lm.replace("Z", "+00:00")).timestamp()
+        except ValueError: continue
+        if NOW - ts > 3 * 86400 or link in KNOWN or NYC_SKIP.search(link): continue
+        fresh.append((ts, link))
+    out = []
+    for ts, link in sorted(fresh)[-NEW_PER_SOURCE:]:
+        try: page = _open(link)
+        except Exception: continue
+        title = _meta(page, "og:title")
+        if not title: continue
+        # og:article:published_time is date-only ("Wed Nov 04 00:00:00 EST 2026"); the sitemap's edit time is
+        # the publish time for a new page, so keep it unless the page says an earlier day
+        pd = re.search(r"\w{3} (\w{3}) (\d\d) [\d:]+ \w+ (\d{4})", _meta(page, "og:article:published_time"))
+        if pd:
+            p_ts = _date_ts(f"{pd.group(1)} {int(pd.group(2))}, {pd.group(3)}")
+            if p_ts and p_ts < ts - 86400: ts = p_ts
+        out.append(make_item(title, link, src["name"], src["domain"],
+                             dedupe_summary(title, (_meta(page, "og:description") or _first_para(page))[:400], src["name"]), ts, src))
+    return out, f"ok {len(out)} new"
+
 # ---------- NYT developer API: Top Stories (NY Region front) + Article Search (keyword) ----------
 def _nyt_keep(title, abstract, facets):
     """Article Search matches the query anywhere in the body, so a Texas or Australian story that mentions
@@ -248,6 +348,8 @@ def _redact(msg):
 
 def fetch_source(src):
     if src["kind"] == "gov": return fetch_gov(src)
+    if src["kind"] == "page": return fetch_page(src)
+    if src["kind"] == "nycmayor": return fetch_nycmayor(src)
     if src["kind"] == "nyt":
         items, status = fetch_nyt(src)
         return items, _redact(status)
@@ -300,7 +402,7 @@ def _per_day(items, days=14):
     """Unique stories per publication day (ET), last N days, official releases counted separately.
     A story covered by twelve outlets counts once, on the day its lead item ran."""
     out = {}
-    off = {"Governor's Office", "NY Senate", "NY Assembly"}
+    off = set(OFFICIALS)
     for it in items:
         if it.get("cid", it["id"]) != it["id"] or gnlinks.is_google(it["link"]): continue   # hidden until resolved
         d = dt.datetime.fromtimestamp(it["published_ts"], ET).strftime("%Y-%m-%d")
@@ -326,6 +428,7 @@ def main():
                 it["outlet"] = OUTLET_RENAMES.get(it["outlet"], it["outlet"])
                 archive[it["id"]] = it
         except Exception: archive = {}
+    KNOWN.update(it["link"] for it in archive.values())
     log = {}
     fresh = []
     for src in SOURCES:
@@ -401,7 +504,7 @@ def main():
                 last_run_iso=dt.datetime.utcfromtimestamp(NOW).strftime("%Y-%m-%dT%H:%M:%SZ"), total=len(items),
                 sources=log, outlets=sorted({i["outlet"] for i in items}),
                 tags=sorted({t for i in items for t in i["tags"]}),
-                topics=dict(portfolios=PORTFOLIOS, other=OTHER_TOPICS),   # sidebar order: every portfolio, then the rest
+                topics=dict(portfolios=PORTFOLIOS, other=OTHER_TOPICS), officials=OFFICIALS,   # sidebar order: every portfolio, then the rest
                 paywall=pw, extracted=sum(1 for i in items if "extracted_ts" in i), runner=RUNNER,
                 per_day=_per_day(items), grouped_stories=grouped, gates=_gates(items),
                 unresolved_links=len(gnlinks.unresolved(items, NOW)),
