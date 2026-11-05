@@ -1,11 +1,11 @@
 {
- "last_run": "2026-11-05 09:52 UTC",
- "last_run_iso": "2026-11-05T09:51:22Z",
+ "last_run": "2026-11-05 10:01 UTC",
+ "last_run_iso": "2026-11-05T10:00:20Z",
  "total": 4819,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
-  "City & State (gnews)": "ok 18",
+  "City & State (gnews)": "ok 15",
   "Politico NY Playbook": "ok 23",
   "Times Union": "ok 12",
   "NY State of Politics": "ok 1",
@@ -36,9 +36,9 @@
   "Governor's Office": "ok 14",
   "Governor's Office (gnews)": "ok 12",
   "NY Senate": "ok 41",
-  "NY Assembly": "ok 12",
+  "NY Assembly": "ok 11",
   "Google News: Hochul": "ok 89",
-  "Google News: Legislature": "ok 14",
+  "Google News: Legislature": "ok 15",
   "Google News: Courts & statewide officials": "ok 63",
   "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 12"
@@ -807,7 +807,7 @@
   "metered": 13
  },
  "extracted": 2582,
- "runner": "actions",
+ "runner": "pi",
  "per_day": {
   "2026-10-23": {
    "stories": 131,
@@ -868,7 +868,7 @@
  },
  "grouped_stories": 478,
  "gates": {
-  "letitia james": 101,
+  "letitia james": 100,
   "Lawmakers sweep": 52,
   "dinapoli": 20,
   "senate district": 13,
@@ -911,11 +911,11 @@
   "cost_usd": 0.3689,
   "last": "2026-11-05T09:51:22Z",
   "week": {
-   "classified": 1116,
+   "classified": 1113,
    "unclassified": 0,
    "types": {
-    "campaign": 640,
-    "policy": 176,
+    "campaign": 638,
+    "policy": 175,
     "announcement": 109,
     "other": 84,
     "opinion": 39,
