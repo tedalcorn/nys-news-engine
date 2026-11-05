@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-05 13:37 UTC",
- "last_run_iso": "2026-11-05T13:35:27Z",
- "total": 4857,
+ "last_run": "2026-11-05 13:41 UTC",
+ "last_run_iso": "2026-11-05T13:39:52Z",
+ "total": 4860,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
@@ -35,13 +35,13 @@
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 14",
   "Governor's Office (gnews)": "ok 12",
-  "Attorney General": "ok 20 new of 25 listed",
-  "Comptroller": "ok 9 new of 18 listed",
+  "Attorney General": "ok 6 new of 25 listed",
+  "Comptroller": "ok 0 new of 18 listed",
   "Assembly Speaker": "ok 1 new of 299 listed",
   "Senate Majority Leader": "ok 0 new of 5 listed",
   "NY Senate": "ok 9",
-  "NYC Mayor": "ok 4 new",
-  "Google News: Hochul": "ok 89",
+  "NYC Mayor": "ok 0 new",
+  "Google News: Hochul": "ok 88",
   "Google News: Legislature": "ok 14",
   "Google News: Courts & statewide officials": "ok 59",
   "Google News: State agencies": "ok 4",
@@ -87,6 +87,7 @@
   "Anadolu Ajans\u0131",
   "Anash.org",
   "Apa.az",
+  "Assembly Speaker",
   "Atlanta Black Star",
   "Attack of the Fanboy",
   "Attorney General",
@@ -818,9 +819,9 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 593,
+  "hard": 592,
   "free": 1508,
-  "unknown": 2714,
+  "unknown": 2718,
   "null": 29,
   "metered": 13
  },
@@ -918,21 +919,21 @@
  },
  "unresolved_links": 2,
  "summaries": {
-  "total": 2529,
+  "total": 2532,
   "og": 1648,
   "none": 2328
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 782,
-  "items": 9271,
-  "cost_usd": 0.3736,
-  "last": "2026-11-05T13:35:27Z",
+  "calls": 783,
+  "items": 9276,
+  "cost_usd": 0.3738,
+  "last": "2026-11-05T13:39:52Z",
   "week": {
-   "classified": 1108,
+   "classified": 1107,
    "unclassified": 0,
    "types": {
-    "campaign": 630,
+    "campaign": 629,
     "policy": 175,
     "announcement": 114,
     "other": 83,
@@ -1022,11 +1023,11 @@
     "cost_usd": 0.090046
    },
    "2026-11-05": {
-    "calls": 136,
-    "items": 2928,
-    "input_tokens": 667586,
-    "output_tokens": 136984,
-    "cost_usd": 0.106315
+    "calls": 137,
+    "items": 2933,
+    "input_tokens": 671317,
+    "output_tokens": 137137,
+    "cost_usd": 0.106476
    }
   }
  },
