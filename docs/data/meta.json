@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-05 14:31 UTC",
- "last_run_iso": "2026-11-05T14:30:22Z",
- "total": 4862,
+ "last_run": "2026-11-05 15:01 UTC",
+ "last_run_iso": "2026-11-05T15:00:07Z",
+ "total": 4864,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
@@ -24,7 +24,7 @@
   "The City": "ok 6",
   "Wall Street Journal": "ok 2",
   "Buffalo News": "ok 12",
-  "Buffalo News (gnews)": "ok 10",
+  "Buffalo News (gnews)": "ok 11",
   "Syracuse.com": "ok 11",
   "FingerLakes1": "ok 4",
   "Adirondack Explorer": "ok 1",
@@ -40,11 +40,11 @@
   "Senate Majority Leader": "ok 0 new of 5 listed",
   "NY Senate": "ok 9",
   "NYC Mayor": "ok 0 new",
-  "Google News: Hochul": "ok 88",
+  "Google News: Hochul": "ok 87",
   "Google News: Legislature": "ok 13",
-  "Google News: Courts & statewide officials": "ok 60",
+  "Google News: Courts & statewide officials": "ok 59",
   "Google News: State agencies": "ok 4",
-  "Google News: Lawmakers": "ok 9"
+  "Google News: Lawmakers": "ok 10"
  },
  "outlets": [
   "- Emerson Polling",
@@ -704,6 +704,7 @@
   "nbcnewyork.com",
   "nbcsandiego.com",
   "nepyork.com",
+  "news.google.com",
   "news3lv.com",
   "niagara-gazette.com",
   "nny360.com",
@@ -809,11 +810,11 @@
  "paywall": {
   "hard": 593,
   "free": 1510,
-  "unknown": 2717,
+  "unknown": 2719,
   "null": 29,
   "metered": 13
  },
- "extracted": 2606,
+ "extracted": 2607,
  "runner": "pi",
  "per_day": {
   "2026-10-23": {
@@ -869,22 +870,22 @@
    "official": 12
   },
   "2026-11-05": {
-   "stories": 17,
+   "stories": 18,
    "official": 1
   }
  },
  "grouped_stories": 481,
  "gates": {
   "letitia james": 95,
-  "Lawmakers sweep": 51,
+  "Lawmakers sweep": 50,
   "dinapoli": 20,
   "senate district": 11,
   "suny": 10,
   "Courts & statewide officials sweep": 6,
   "medicaid": 6,
-  "attorney general james": 5,
   "ny attorney general": 5,
   "new york attorney general": 5,
+  "attorney general james": 4,
   "board of elections": 4,
   "ballot proposal": 3,
   "state senator": 3,
@@ -905,26 +906,26 @@
   "state prison": 1,
   "unconstitutional": 1
  },
- "unresolved_links": 3,
+ "unresolved_links": 4,
  "summaries": {
-  "total": 2534,
-  "og": 1649,
-  "none": 2328
+  "total": 2535,
+  "og": 1650,
+  "none": 2329
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 786,
-  "items": 9286,
-  "cost_usd": 0.3752,
-  "last": "2026-11-05T14:30:22Z",
+  "calls": 787,
+  "items": 9290,
+  "cost_usd": 0.3757,
+  "last": "2026-11-05T15:00:07Z",
   "week": {
-   "classified": 1100,
+   "classified": 1098,
    "unclassified": 0,
    "types": {
     "campaign": 628,
     "policy": 173,
     "announcement": 112,
-    "other": 83,
+    "other": 81,
     "opinion": 37,
     "local": 30,
     "national": 24,
@@ -1011,11 +1012,11 @@
     "cost_usd": 0.090046
    },
    "2026-11-05": {
-    "calls": 140,
-    "items": 2943,
-    "input_tokens": 681695,
-    "output_tokens": 137428,
-    "cost_usd": 0.1079
+    "calls": 141,
+    "items": 2947,
+    "input_tokens": 685192,
+    "output_tokens": 137552,
+    "cost_usd": 0.108392
    }
   }
  },
