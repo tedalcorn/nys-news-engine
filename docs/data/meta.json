@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-05 15:01 UTC",
- "last_run_iso": "2026-11-05T15:00:07Z",
- "total": 4864,
+ "last_run": "2026-11-05 15:31 UTC",
+ "last_run_iso": "2026-11-05T15:30:16Z",
+ "total": 4868,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
@@ -17,7 +17,7 @@
   "Politico": "ok 2",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 8",
-  "New York Times": "ok 5",
+  "New York Times": "ok 4",
   "New York Times (nyt)": "ok 26",
   "NY Post Politics": "ok 2",
   "NY Post Metro": "ok 0",
@@ -26,7 +26,7 @@
   "Buffalo News": "ok 12",
   "Buffalo News (gnews)": "ok 11",
   "Syracuse.com": "ok 11",
-  "FingerLakes1": "ok 4",
+  "FingerLakes1": "ok 5",
   "Adirondack Explorer": "ok 1",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
@@ -41,10 +41,10 @@
   "NY Senate": "ok 9",
   "NYC Mayor": "ok 0 new",
   "Google News: Hochul": "ok 87",
-  "Google News: Legislature": "ok 13",
+  "Google News: Legislature": "ok 14",
   "Google News: Courts & statewide officials": "ok 59",
   "Google News: State agencies": "ok 4",
-  "Google News: Lawmakers": "ok 10"
+  "Google News: Lawmakers": "ok 9"
  },
  "outlets": [
   "- Emerson Polling",
@@ -704,7 +704,6 @@
   "nbcnewyork.com",
   "nbcsandiego.com",
   "nepyork.com",
-  "news.google.com",
   "news3lv.com",
   "niagara-gazette.com",
   "nny360.com",
@@ -808,13 +807,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 593,
-  "free": 1510,
-  "unknown": 2719,
+  "hard": 594,
+  "free": 1514,
+  "unknown": 2718,
   "null": 29,
   "metered": 13
  },
- "extracted": 2607,
+ "extracted": 2612,
  "runner": "pi",
  "per_day": {
   "2026-10-23": {
@@ -866,18 +865,18 @@
    "official": 9
   },
   "2026-11-04": {
-   "stories": 209,
-   "official": 12
+   "stories": 210,
+   "official": 13
   },
   "2026-11-05": {
-   "stories": 18,
-   "official": 1
+   "stories": 20,
+   "official": 2
   }
  },
- "grouped_stories": 481,
+ "grouped_stories": 482,
  "gates": {
-  "letitia james": 95,
-  "Lawmakers sweep": 50,
+  "letitia james": 93,
+  "Lawmakers sweep": 48,
   "dinapoli": 20,
   "senate district": 11,
   "suny": 10,
@@ -906,32 +905,32 @@
   "state prison": 1,
   "unconstitutional": 1
  },
- "unresolved_links": 4,
+ "unresolved_links": 3,
  "summaries": {
-  "total": 2535,
-  "og": 1650,
+  "total": 2539,
+  "og": 1651,
   "none": 2329
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 787,
-  "items": 9290,
-  "cost_usd": 0.3757,
-  "last": "2026-11-05T15:00:07Z",
+  "calls": 788,
+  "items": 9296,
+  "cost_usd": 0.3762,
+  "last": "2026-11-05T15:30:16Z",
   "week": {
-   "classified": 1098,
+   "classified": 1093,
    "unclassified": 0,
    "types": {
-    "campaign": 628,
-    "policy": 173,
-    "announcement": 112,
-    "other": 81,
-    "opinion": 37,
-    "local": 30,
+    "campaign": 624,
+    "policy": 171,
+    "announcement": 113,
+    "other": 79,
+    "opinion": 38,
+    "local": 31,
     "national": 24,
     "blotter": 13
    },
-   "investigative": 15
+   "investigative": 16
   },
   "by_day": {
    "2026-10-25": {
@@ -1012,11 +1011,11 @@
     "cost_usd": 0.090046
    },
    "2026-11-05": {
-    "calls": 141,
-    "items": 2947,
-    "input_tokens": 685192,
-    "output_tokens": 137552,
-    "cost_usd": 0.108392
+    "calls": 142,
+    "items": 2953,
+    "input_tokens": 689047,
+    "output_tokens": 137725,
+    "cost_usd": 0.108944
    }
   }
  },
