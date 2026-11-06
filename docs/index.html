@@ -27,7 +27,7 @@ a{color:inherit}
 .nav input[type=search]{padding:7px 11px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--fg);font-size:13.5px;min-width:240px}
 .nav select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--fg);font-size:13px}
 /* grid */
-.grid{display:grid;grid-template-columns:1fr 360px;gap:36px;padding:22px 0 60px}
+.grid{display:grid;grid-template-columns:1fr 360px;gap:36px;padding:22px 0 60px}.grid>*{min-width:0}
 @media (max-width:900px){.grid{grid-template-columns:1fr}.mast .right{text-align:left}}
 h2.sec{font:700 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
 h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:none}
@@ -59,22 +59,28 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .snip{color:var(--muted);font-size:13.5px;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .day{font:700 13px var(--serif);margin:22px 0 4px;color:var(--fg)}
 /* sidebar */
-.side .box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:18px}
-.side h3{font:700 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.side .box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:18px}
+@media (min-width:901px){.side{position:sticky;top:12px;align-self:start;max-height:calc(100vh - 24px);overflow-y:auto}}
+.side h3{font:700 11.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:14px 0 4px;padding-top:10px;border-top:1px solid var(--line)}
+.side h3:first-child{margin-top:0;padding-top:0;border-top:0}
+.side ul.two{display:grid;grid-template-columns:1fr 1fr;column-gap:14px}.side ul.two li:nth-last-child(2):nth-child(odd){border-bottom:0}
+.moreo{font-size:12px;color:var(--muted);cursor:pointer;padding:3px 0}.moreo:hover{color:var(--accent)}
+.nav .tog{padding:6px 10px;border:1px solid var(--line);border-radius:14px;font:600 12px var(--sans);color:var(--muted);cursor:pointer;margin-right:4px;user-select:none}
+.nav .tog.on{color:var(--fg);background:var(--chip)}.nav .tog .n{font-weight:400;color:var(--muted);margin-left:2px}
 .side ul{list-style:none;margin:0;padding:0}
-.side li{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px dotted var(--line);font-size:13.5px;cursor:pointer}
+.side li{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px dotted var(--line);font-size:13.5px;cursor:pointer}
 .side li:last-child{border-bottom:0}.side li:hover{color:var(--accent)}.side li.on{color:var(--accent);font-weight:700}
 .side li .n{color:var(--muted);font-size:12px}
 .side .bar{height:5px;background:var(--chip);border-radius:3px;overflow:hidden;margin-top:3px}.side .bar i{display:block;height:100%;background:var(--accent2)}
-.side .buzz li{display:block}
+.side .buzz li{display:flex;padding:3px 4px;border-radius:3px}
 .side .buzz li.grp{cursor:default;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:10px 0 2px;padding:0;border-bottom:0}.side .buzz li.grp:hover{color:var(--muted)}
 .side .buzz li.grp:first-child{margin-top:0}
 .side .buzz li.zero{opacity:.55}#officials li.zero,#regions li.zero{opacity:.55}.side h3 .per{font-weight:400;letter-spacing:.04em;text-transform:none;color:var(--muted,#777);margin-left:4px}
-.side .buzz .lbl{display:flex;justify-content:space-between}
+.side .buzz .lbl{display:flex;justify-content:space-between;width:100%}
 .side .mini{font-size:13px;line-height:1.35;padding:6px 0;border-bottom:1px dotted var(--line)}
 .side .mini:last-child{border-bottom:0}.side .mini a{text-decoration:none}.side .mini a:hover{text-decoration:underline}
 .side .mini small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
-.legend{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted);margin:-4px 0 10px}.legend span{white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:2px 12px;font-size:11px;color:var(--muted);margin:6px 0 0}.legend span{white-space:nowrap}
 .stale{color:#fff;background:#b3411f;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
 .empty{color:var(--muted);padding:30px 0}
 .more{margin-top:6px;font-size:12.5px;color:var(--muted)}.more summary{cursor:pointer}
@@ -97,24 +103,25 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <button data-view="official">Official</button>
     <button data-view="missing">Paywalled</button>
     <span class="sp"></span>
+    <span class="tog on" data-k="op" title="Opinion pieces, columns and editorials">Hide opinion</span>
+    <span class="tog on" data-k="lc" title="Local outlets' stories that aren't about the state: town and county government, local crime, schools, business. Choosing a region or an outlet shows them anyway.">Hide local news <span class="n" id="n-lc"></span></span>
     <input type="search" id="q" placeholder="Search the archive…">
   </nav>
   <div class="grid">
     <main id="main"></main>
     <aside class="side">
-      <div class="box"><h3>Filters</h3><ul id="flags">
-        <li data-k="hd" title="The Governor is named in the headline or the summary">Centered on GKH <span class="n" id="n-hd"></span></li>
-        <li data-k="zm" title="Mayor Mamdani is named in the headline or the summary">Centered on ZM <span class="n" id="n-zm"></span></li>
-        <li data-k="d1" title="Only stories published in the last 24 hours">Last 24 hours <span class="n" id="n-d1"></span></li>
-        <li data-k="op" class="on">Hide opinion</li>
-        <li data-k="lc" class="on" title="Local outlets' stories that aren't about the state: town and county government, local crime, schools, business. Choosing a region or an outlet shows them anyway.">Hide local news <span class="n" id="n-lc"></span></li>
-      </ul></div>
-      <div class="box"><h3>Filter by topic <span class="per">last week</span></h3><ul id="buzz" class="buzz"></ul></div>
-      <div class="box"><h3>Filter by region <span class="per">last week</span></h3><ul id="regions" title="The ten economic development regions. A local outlet's stories go to its home region; a statewide or big regional outlet's story goes to the regions whose places it names. Choosing a region includes its local news."></ul></div>
-      <div class="box"><h3>Filter by outlet <span class="per">last week</span></h3>
+      <div class="box">
+        <h3>Filters <span class="per">counts: last week</span></h3><ul id="flags">
+          <li data-k="hd" title="The Governor is named in the headline or the summary">Centered on GKH <span class="n" id="n-hd"></span></li>
+          <li data-k="zm" title="Mayor Mamdani is named in the headline or the summary">Centered on ZM <span class="n" id="n-zm"></span></li>
+          <li data-k="d1" title="Only stories published in the last 24 hours">Last 24 hours <span class="n" id="n-d1"></span></li>
+        </ul>
+        <h3>By portfolio</h3><ul id="buzz" class="buzz"></ul>
+        <h3>By region</h3><ul id="regions" class="two" title="The ten economic development regions. A local outlet's stories go to its home region; a statewide or big regional outlet's story goes to the regions whose places it names. Choosing a region includes its local news."></ul>
+        <h3>By outlet</h3><ul id="outlets"></ul><div id="more-outlets" class="moreo"></div>
         <div class="legend"><span><i class="dot" style="background:#b3411f"></i>Albany specialist</span><span><i class="dot" style="background:#1c4587"></i>General outlet</span><span><i class="dot" style="background:#a07a3c"></i>Local outlet</span><span><i class="dot" style="background:#5b7f3a"></i>Official / advocacy</span></div>
-        <ul id="outlets"></ul></div>
-      <div class="box"><h3>Filter by official <span class="per">last week</span></h3><ul id="officials"></ul></div>
+        <h3>By official</h3><ul id="officials"></ul>
+      </div>
     </aside>
   </div>
   <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; official releases come straight from each office's own site (the Governor, Attorney General, Comptroller, Assembly Speaker, Senate Majority Leader and Mayor); Senate members' releases come through Google News. Refreshes every 30 minutes. Local outlets across the state (their own dot color) come in through their own feeds; their stories that aren't about the state are hidden unless you choose a region or the outlet. Regions are the state's ten economic development regions: a local outlet's stories go to its home region, a larger outlet's to the regions whose places the story names. Every article is its own row; "+N related stories" under a row lists other outlets' articles on the same subject, matched by headline, not copies of it. Dot color is the source tier; scores are heuristic.</div>
@@ -200,12 +207,17 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i
  const tc={};for(const i of stories(wk))for(const t of i.tags)tc[t]=(tc[t]||0)+1;
  // every deputy-secretary portfolio is listed, even at zero, busiest first; the cross-cutting topics follow under their own label
  const TP=META.topics||{portfolios:Object.keys(tc),other:[]};const byN=l=>l.map(t=>[t,tc[t]||0]).sort((a,b)=>b[1]-a[1]);
- const pp=byN(TP.portfolios),oo2=byN(TP.other);const mx=Math.max(1,...pp.map(x=>x[1]),...oo2.map(x=>x[1]));
- const li=([t,n])=>`<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}${n?"":" zero"}"><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div><div class="bar"><i style="width:${Math.round(100*n/mx)}%"></i></div></li>`;
- $("#buzz").innerHTML=`<li class="grp">Portfolios</li>`+pp.map(li).join("")+(oo2.length?`<li class="grp">Other topics</li>`+oo2.map(li).join(""):"");
+ const pp=byN(TP.portfolios),oo2=byN(TP.other);
+ const li=mx=>([t,n])=>{const w=Math.round(100*n/mx);return `<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}${n?"":" zero"}" style="background:linear-gradient(to right,var(--chip) ${w}%,transparent ${w}%)"><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div></li>`};
+ // portfolios and other topics each scaled to their own busiest, so Elections does not flatten the portfolio bars
+ $("#buzz").innerHTML=pp.map(li(Math.max(1,...pp.map(x=>x[1])))).join("")+(oo2.length?`<li class="grp">Other topics</li>`+oo2.map(li(Math.max(1,...oo2.map(x=>x[1])))).join(""):"");
  const oc={};for(const i of wk)oc[i.outlet]=(oc[i.outlet]||0)+1;
  const oli=([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}${n?"":" zero"}"><span>${official.has(o)?"":`<i class="dot" style="background:${col(o)}"></i>`}${esc(oname(o))}</span><span class="n">${n}</span></li>`;
- $("#outlets").innerHTML=Object.entries(oc).filter(([o])=>!official.has(o)).sort((a,b)=>b[1]-a[1]).slice(0,16).map(oli).join("");
+ const ol=Object.entries(oc).filter(([o])=>!official.has(o)).sort((a,b)=>b[1]-a[1]);
+ const shown=S.allOutlets?ol:ol.filter(([o],k)=>k<10||o===S.outlet);
+ $("#outlets").innerHTML=shown.map(oli).join("");
+ $("#more-outlets").textContent=ol.length>10?(S.allOutlets?"Show fewer":`All ${ol.length} outlets`):"";
+ $("#more-outlets").onclick=()=>{S.allOutlets=!S.allOutlets;sidebar()};
  // every office is listed, even with nothing this week, busiest first like the outlets
  $("#officials").innerHTML=(META.officials||[]).filter(o=>o!=="NY Assembly"||oc[o]).map(o=>[o,oc[o]||0]).sort((a,b)=>b[1]-a[1]).map(oli).join("");
  $("#n-d1").textContent=stories(wk.filter(i=>i.published_ts>=Date.now()/1000-86400)).length;$("#n-hd").textContent=wk.filter(i=>i.hochul).length;$("#n-zm").textContent=wk.filter(i=>i.mamdani).length;
@@ -229,7 +241,7 @@ $$(".nav button").forEach(b=>b.onclick=()=>{S.view=b.dataset.view;if(location.ha
 window.addEventListener("hashchange",()=>{if(location.hash==="#review"){S.view="review";$$(".nav button").forEach(x=>x.classList.remove("active"));render()}});
 if(S.view==="review")$$(".nav button").forEach(x=>x.classList.remove("active"));
 $("#q").oninput=e=>{S.q=e.target.value;render()};
-$$("#flags li").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});
+$$("[data-k]").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});
 load();setInterval(tick,60000);
 </script>
 </body>
