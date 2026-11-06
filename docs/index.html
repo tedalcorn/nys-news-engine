@@ -78,7 +78,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .side li:last-child{border-bottom:0}.side li:hover{color:var(--accent)}.side li.on{color:var(--accent);font-weight:700}
 .side li .n{color:var(--muted);font-size:12px}
 .side .bar{height:5px;background:var(--chip);border-radius:3px;overflow:hidden;margin-top:3px}.side .bar i{display:block;height:100%;background:var(--accent2)}
-.side .buzz li{display:flex;padding:3px 4px;border-radius:3px}
+.side .buzz li,#flags li,#regions li,#outlets li,#officials li{padding:3px 4px;border-radius:3px}.side .buzz li{display:flex}
 .side .buzz li.grp{cursor:default;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:10px 0 2px;padding:0;border-bottom:0}.side .buzz li.grp:hover{color:var(--muted)}
 .side .buzz li.grp:first-child{margin-top:0}
 .side .buzz li.zero{opacity:.55}#officials li.zero,#regions li.zero{opacity:.55}.side h3 .per{font-weight:400;letter-spacing:.04em;text-transform:none;color:var(--muted,#777);margin-left:4px}
@@ -204,11 +204,17 @@ function render(){if(needLocal())loadLocal();const f=base();let html="";
   html+=g.length?g.map(row).join(""):'<div class="empty">Nothing admitted by the wider gate yet.</div>'}
  else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Official <span>press releases · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
  $("#main").innerHTML=html;$$(".gates .chip").forEach(el=>el.onclick=()=>{S.gate=S.gate===el.dataset.gate?"":el.dataset.gate;render()});sidebar()}
-function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i.published_ts>=cut&&!i.flags.includes("opinion"));
+// a count bar drawn behind a sidebar row, scaled to the busiest row of its list
+const bk=(n,mx)=>{const w=Math.round(100*n/Math.max(1,mx));return ` style="background:linear-gradient(to right,var(--chip) ${w}%,transparent ${w}%)"`};
+function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i.published_ts>=cut&&(!S.op||!i.flags.includes("opinion")));
  const wk=all.filter(i=>!S.lc||!i.local||S.region||S.outlet);
- // regions in fixed order, west to east then downstate (geo.REGIONS), local news included: it is what a region view is for
- const rc=META.region_counts||{};
- $("#regions").innerHTML=(META.regions||[]).map(g=>`<li data-region="${esc(g)}" class="${S.region===g?"on":""}${rc[g]?"":" zero"}"><span>${esc(g)}</span><span class="n">${rc[g]||0}</span></li>`).join("");
+ // regions in fixed order, west to east then downstate (geo.REGIONS), local news included: it is what a region view is for.
+ // Until local.json has loaded, its stories' counts are meta's region_counts (non-opinion, local included) less what items.json holds.
+ const rc={},nl={};for(const i of all)for(const g of (i.regions||[]))rc[g]=(rc[g]||0)+1;
+ if(LOCALSTATE!=="done"){for(const i of ITEMS)if(i.published_ts>=cut&&!i.local&&!i.flags.includes("opinion"))for(const g of (i.regions||[]))nl[g]=(nl[g]||0)+1;
+  for(const [g,n] of Object.entries(META.region_counts||{}))rc[g]=(rc[g]||0)+Math.max(0,n-(nl[g]||0))}
+ const rmx=Math.max(...Object.values(rc),1);
+ $("#regions").innerHTML=(META.regions||[]).map(g=>`<li data-region="${esc(g)}" class="${S.region===g?"on":""}${rc[g]?"":" zero"}"${bk(rc[g]||0,rmx)}><span>${esc(g)}</span><span class="n">${rc[g]||0}</span></li>`).join("");
  $$("#regions li").forEach(el=>el.onclick=()=>{S.region=S.region===el.dataset.region?"":el.dataset.region;render()});
  $("#n-lc").textContent=(META.local||{}).local_story||0;
  $("#n-op").textContent=ITEMS.filter(i=>i.published_ts>=cut&&i.flags.includes("opinion")).length;
@@ -221,19 +227,22 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i
  // every deputy-secretary portfolio is listed, even at zero, busiest first; the cross-cutting topics follow under their own label
  const TP=META.topics||{portfolios:Object.keys(tc),other:[]};const byN=l=>l.map(t=>[t,tc[t]||0]).sort((a,b)=>b[1]-a[1]);
  const pp=byN(TP.portfolios),oo2=byN(TP.other);
- const li=mx=>([t,n])=>{const w=Math.round(100*n/mx);return `<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}${n?"":" zero"}" style="background:linear-gradient(to right,var(--chip) ${w}%,transparent ${w}%)"><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div></li>`};
+ const li=mx=>([t,n])=>`<li data-tag="${esc(t)}" class="${S.tag===t?"on":""}${n?"":" zero"}"${bk(n,mx)}><div class="lbl"><span>${esc(t)}</span><span class="n">${n}</span></div></li>`;
  // portfolios and other topics each scaled to their own busiest, so Elections does not flatten the portfolio bars
  $("#buzz").innerHTML=pp.map(li(Math.max(1,...pp.map(x=>x[1])))).join("")+(oo2.length?`<li class="grp">Other topics</li>`+oo2.map(li(Math.max(1,...oo2.map(x=>x[1])))).join(""):"");
  const oc={};for(const i of wk)oc[i.outlet]=(oc[i.outlet]||0)+1;
- const oli=([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}${n?"":" zero"}"><span>${official.has(o)?"":`<i class="dot" style="background:${col(o)}"></i>`}${esc(oname(o))}</span><span class="n">${n}</span></li>`;
+ const oli=mx=>([o,n])=>`<li data-outlet="${esc(o)}" class="${S.outlet===o?"on":""}${n?"":" zero"}"${bk(n,mx)}><span>${official.has(o)?"":`<i class="dot" style="background:${col(o)}"></i>`}${esc(oname(o))}</span><span class="n">${n}</span></li>`;
  const ol=Object.entries(oc).filter(([o])=>!official.has(o)).sort((a,b)=>b[1]-a[1]);
  const shown=S.allOutlets?ol:ol.filter(([o],k)=>k<10||o===S.outlet);
- $("#outlets").innerHTML=shown.map(oli).join("");
+ $("#outlets").innerHTML=shown.map(oli(ol.length?ol[0][1]:1)).join("");
  $("#more-outlets").textContent=ol.length>10?(S.allOutlets?"Show fewer":`All ${ol.length} outlets`):"";
  $("#more-outlets").onclick=()=>{S.allOutlets=!S.allOutlets;sidebar()};
  // every office is listed, even with nothing this week, busiest first like the outlets
- $("#officials").innerHTML=(META.officials||[]).filter(o=>o!=="NY Assembly"||oc[o]).map(o=>[o,oc[o]||0]).sort((a,b)=>b[1]-a[1]).map(oli).join("");
- $("#n-d1").textContent=stories(wk.filter(i=>i.published_ts>=Date.now()/1000-86400)).length;$("#n-hd").textContent=wk.filter(i=>i.hochul).length;$("#n-zm").textContent=wk.filter(i=>i.mamdani).length;
+ const fl=(META.officials||[]).filter(o=>o!=="NY Assembly"||oc[o]).map(o=>[o,oc[o]||0]).sort((a,b)=>b[1]-a[1]);
+ $("#officials").innerHTML=fl.map(oli(fl.length?fl[0][1]:1)).join("");
+ const fc={d1:stories(wk.filter(i=>i.published_ts>=Date.now()/1000-86400)).length,hd:wk.filter(i=>i.hochul).length,zm:wk.filter(i=>i.mamdani).length};
+ const fmx=Math.max(...Object.values(fc));
+ for(const [k,n] of Object.entries(fc)){$("#n-"+k).textContent=n;const el=$(`#flags li[data-k="${k}"]`);el.setAttribute("style",bk(n,fmx).slice(8,-1))}
  $$("#buzz li[data-tag]").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
  $$("#outlets li,#officials li").forEach(el=>el.onclick=()=>{const o=el.dataset.outlet;S.outlet=S.outlet===o?"":o;
   if(S.outlet&&official.has(o))setView("official");else if(S.outlet&&S.view==="official")setView("latest");render()})}
