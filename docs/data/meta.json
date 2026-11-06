@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-06 05:31 UTC",
- "last_run_iso": "2026-11-06T05:30:17Z",
- "total": 4931,
+ "last_run": "2026-11-06 06:01 UTC",
+ "last_run_iso": "2026-11-06T06:00:17Z",
+ "total": 4933,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
@@ -11,8 +11,8 @@
   "NY State of Politics": "ok 2",
   "Newsday": "ok 17",
   "Daily News": "ok 2",
-  "Times Union (gnews)": "ok 9",
-  "Newsday (gnews)": "ok 13",
+  "Times Union (gnews)": "ok 8",
+  "Newsday (gnews)": "ok 12",
   "Daily News (gnews)": "ok 0",
   "Politico": "ok 1",
   "Gotham Gazette": "ok 0",
@@ -40,7 +40,7 @@
   "Senate Majority Leader": "ok 0 new of 5 listed",
   "NY Senate": "ok 9",
   "NYC Mayor": "ok 0 new",
-  "Google News: Hochul": "ok 88",
+  "Google News: Hochul": "ok 89",
   "Google News: Legislature": "ok 13",
   "Google News: Courts & statewide officials": "ok 20",
   "Google News: State agencies": "ok 4",
@@ -284,6 +284,7 @@
   "Law.com",
   "Law360",
   "Le Monde.fr",
+  "Left Voice",
   "Letters from Leo",
   "LiveNOW from FOX",
   "Local 3 News",
@@ -809,13 +810,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 605,
-  "free": 1557,
-  "unknown": 2725,
+  "hard": 603,
+  "free": 1558,
+  "unknown": 2728,
   "metered": 15,
   "null": 29
  },
- "extracted": 2672,
+ "extracted": 2674,
  "runner": "pi",
  "per_day": {
   "2026-10-24": {
@@ -863,7 +864,7 @@
    "official": 9
   },
   "2026-11-04": {
-   "stories": 214,
+   "stories": 216,
    "official": 14
   },
   "2026-11-05": {
@@ -875,7 +876,7 @@
    "official": 0
   }
  },
- "grouped_stories": 489,
+ "grouped_stories": 490,
  "gates": {
   "letitia james": 81,
   "Lawmakers sweep": 46,
@@ -911,25 +912,25 @@
  },
  "unresolved_links": 4,
  "summaries": {
-  "total": 2597,
-  "og": 1686,
+  "total": 2599,
+  "og": 1688,
   "none": 2334
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 818,
-  "items": 9414,
-  "cost_usd": 0.3913,
-  "last": "2026-11-06T05:30:17Z",
+  "calls": 819,
+  "items": 9418,
+  "cost_usd": 0.3917,
+  "last": "2026-11-06T06:00:17Z",
   "week": {
-   "classified": 1044,
+   "classified": 1043,
    "unclassified": 0,
    "types": {
-    "campaign": 607,
+    "campaign": 605,
     "policy": 147,
     "announcement": 106,
     "other": 72,
-    "opinion": 42,
+    "opinion": 43,
     "local": 33,
     "national": 23,
     "blotter": 14
@@ -1022,11 +1023,11 @@
     "cost_usd": 0.11788
    },
    "2026-11-06": {
-    "calls": 13,
-    "items": 40,
-    "input_tokens": 44582,
-    "output_tokens": 1217,
-    "cost_usd": 0.006109
+    "calls": 14,
+    "items": 44,
+    "input_tokens": 48053,
+    "output_tokens": 1326,
+    "cost_usd": 0.006591
    }
   }
  },
