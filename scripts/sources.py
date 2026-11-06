@@ -106,7 +106,6 @@ SOURCES = [
  #     sponsored "press release" pages (fetch.py LOCAL_SKIP); a story that clears the state filter is an ordinary
  #     item, one that doesn't is kept with `local: True` (hidden unless a region or that outlet is chosen, never in
  #     Picks, kept 30 days). Region = the outlet's home (geo.LOCAL_HOME). Feeds checked 11/6.
- dict(name='WGRZ'                        , domain='wgrz.com'                  , kind="rss", url='https://www.wgrz.com/feeds/syndication/rss/news/local', tier=4, albany_filter=True, local=True),
  dict(name='WIVB'                        , domain='wivb.com'                  , kind="rss", url='https://www.wivb.com/feed/', tier=4, albany_filter=True, local=True),
  dict(name='WKBW'                        , domain='wkbw.com'                  , kind="rss", url='https://www.wkbw.com/news/local-news.rss', tier=4, albany_filter=True, local=True),
  dict(name='Investigative Post'          , domain='investigativepost.org'     , kind="rss", url='https://www.investigativepost.org/feed/', tier=4, albany_filter=True, local=True),
@@ -163,11 +162,11 @@ SOURCES = [
  dict(name='Long Island Business News'   , domain='libn.com'                  , kind="rss", url='https://www.libn.com/feed/', tier=4, albany_filter=True, local=True),
  dict(name='RiverheadLOCAL'              , domain='riverheadlocal.com'        , kind="rss", url='https://www.riverheadlocal.com/feed/', tier=4, albany_filter=True, local=True),
  dict(name='27east'                      , domain='27east.com'                , kind="rss", url='https://www.27east.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc', tier=4, albany_filter=True, local=True),
- # Local outlets with no working feed (403, 404, or stale: Mid-Hudson News's feed stopped 10/28). Through Google, several
+ # Local outlets with no working feed (403, 404, timeouts (WGRZ), or stale: Mid-Hudson News's feed stopped 10/28). Through Google, several
  # sites per query (Google takes OR'd site: terms). local=True: what fails the state filter is kept as a local story, as
  # for the feeds; the links are decoded by the resolve-links workflow like every Google link. The Hudson Valley has its
  # own query because none of its main outlets has a usable feed (the 11/6 check caught almost nothing there).
- dict(name="Google News: local outlets 1", domain="", kind="gnews", url=gn("(site:13wham.com OR site:cbs6albany.com OR site:cnycentral.com OR site:wskg.org OR site:northcountrypublicradio.org OR site:wrvo.org) when:2d"), tier=4, albany_filter=True, sweep=True, local=True),
+ dict(name="Google News: local outlets 1", domain="", kind="gnews", url=gn("(site:wgrz.com OR site:13wham.com OR site:cbs6albany.com OR site:cnycentral.com OR site:wskg.org OR site:northcountrypublicradio.org OR site:wrvo.org) when:2d"), tier=4, albany_filter=True, sweep=True, local=True),
  dict(name="Google News: local outlets 2", domain="", kind="gnews", url=gn("(site:midhudsonnews.com OR site:dailyfreeman.com OR site:recordonline.com OR site:poughkeepsiejournal.com OR site:rocklanddaily.com OR site:timesunion.com/hudsonvalley) when:2d"), tier=4, albany_filter=True, sweep=True, local=True),
  dict(name="Google News: local outlets 3", domain="", kind="gnews", url=gn("(site:democratandchronicle.com OR site:lohud.com OR site:pressconnects.com OR site:stargazette.com OR site:uticaod.com OR site:ithacajournal.com) when:2d"), tier=4, albany_filter=True, sweep=True, local=True),
  dict(name="Google News: local outlets 4", domain="", kind="gnews", url=gn("(site:liherald.com OR site:hellgatenyc.com OR site:brooklyneagle.com OR site:riverdalepress.com OR site:adirondackdailyenterprise.com OR site:suncommunitynews.com OR site:saratogian.com OR site:oneidadispatch.com) when:2d"), tier=4, albany_filter=True, sweep=True, local=True),
