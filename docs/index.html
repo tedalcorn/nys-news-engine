@@ -62,11 +62,17 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .side .box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:18px}
 @media (min-width:901px){.side{position:sticky;top:12px;align-self:start;max-height:calc(100vh - 24px);overflow-y:auto}}
 .side h3{font:700 11.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:14px 0 4px;padding-top:10px;border-top:1px solid var(--line)}
-.side h3:first-child{margin-top:0;padding-top:0;border-top:0}
 .side ul.two{display:grid;grid-template-columns:1fr 1fr;column-gap:14px}.side ul.two li:nth-last-child(2):nth-child(odd){border-bottom:0}
 .moreo{font-size:12px;color:var(--muted);cursor:pointer;padding:3px 0}.moreo:hover{color:var(--accent)}
-.nav .tog{padding:6px 10px;border:1px solid var(--line);border-radius:14px;font:600 12px var(--sans);color:var(--muted);cursor:pointer;margin-right:4px;user-select:none}
-.nav .tog.on{color:var(--fg);background:var(--chip)}.nav .tog .n{font-weight:400;color:var(--muted);margin-left:2px}
+.nav .tog{display:inline-flex;align-items:center;gap:6px;padding:5px 6px 5px 11px;border:1.5px solid #1c4587;border-radius:16px;font:600 12px var(--sans);color:#1c4587;background:transparent;cursor:pointer;margin-right:4px;user-select:none}
+.nav .tog b{font-weight:600}.nav .tog .n{font-weight:700;font-size:11.5px;min-width:22px;text-align:center;padding:1px 7px;border-radius:10px;background:#1c4587;color:#fff}
+.nav .tog.on{border-color:var(--accent);background:var(--accent);color:#fff}.nav .tog.on .n{background:#fff;color:var(--accent)}
+.nav .tog.on b::before{content:"\2715\00a0"}.nav .tog:not(.on) b::before{content:"\2713\00a0"}
+.side .sec h3{cursor:pointer;user-select:none;display:flex;align-items:baseline;gap:4px}
+.side .sec h3::after{content:"\25BE";margin-left:auto;color:var(--accent);font-size:15px;line-height:1}.side .sec.shut h3::after{content:"\25B8"}
+.side .sec.shut .body{display:none}.side .sec .pick{display:none}
+.side .sec.shut .pick:not(:empty){display:inline;font-weight:700;letter-spacing:.02em;text-transform:none;color:var(--fg);margin-left:6px}
+.side .sec:first-child h3{margin-top:0;padding-top:0;border-top:0}
 .side ul{list-style:none;margin:0;padding:0}
 .side li{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px dotted var(--line);font-size:13.5px;cursor:pointer}
 .side li:last-child{border-bottom:0}.side li:hover{color:var(--accent)}.side li.on{color:var(--accent);font-weight:700}
@@ -103,24 +109,24 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <button data-view="official">Official</button>
     <button data-view="missing">Paywalled</button>
     <span class="sp"></span>
-    <span class="tog on" data-k="op" title="Opinion pieces, columns and editorials">Hide opinion</span>
-    <span class="tog on" data-k="lc" title="Local outlets' stories that aren't about the state: town and county government, local crime, schools, business. Choosing a region or an outlet shows them anyway.">Hide local news <span class="n" id="n-lc"></span></span>
+    <span class="tog on" data-k="op" data-what="opinion" title="Opinion pieces, columns and editorials, last week. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-op"></span></span>
+    <span class="tog on" data-k="lc" data-what="local news" title="Local outlets' stories that aren't about the state, last week: town and county government, local crime, schools, business. Choosing a region or an outlet shows them anyway. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-lc"></span></span>
     <input type="search" id="q" placeholder="Search the archive…">
   </nav>
   <div class="grid">
     <main id="main"></main>
     <aside class="side">
       <div class="box">
-        <h3>Filters <span class="per">counts: last week</span></h3><ul id="flags">
+        <section class="sec" data-sec="flags"><h3>Filters <span class="per">counts: last week</span><span class="pick"></span></h3><div class="body"><ul id="flags">
           <li data-k="hd" title="The Governor is named in the headline or the summary">Centered on GKH <span class="n" id="n-hd"></span></li>
           <li data-k="zm" title="Mayor Mamdani is named in the headline or the summary">Centered on ZM <span class="n" id="n-zm"></span></li>
           <li data-k="d1" title="Only stories published in the last 24 hours">Last 24 hours <span class="n" id="n-d1"></span></li>
-        </ul>
-        <h3>By portfolio</h3><ul id="buzz" class="buzz"></ul>
-        <h3>By region</h3><ul id="regions" class="two" title="The ten economic development regions. A local outlet's stories go to its home region; a statewide or big regional outlet's story goes to the regions whose places it names. Choosing a region includes its local news."></ul>
-        <h3>By outlet</h3><ul id="outlets"></ul><div id="more-outlets" class="moreo"></div>
-        <div class="legend"><span><i class="dot" style="background:#b3411f"></i>Albany specialist</span><span><i class="dot" style="background:#1c4587"></i>General outlet</span><span><i class="dot" style="background:#a07a3c"></i>Local outlet</span><span><i class="dot" style="background:#5b7f3a"></i>Official / advocacy</span></div>
-        <h3>By official</h3><ul id="officials"></ul>
+        </ul></div></section>
+        <section class="sec" data-sec="portfolio"><h3>By portfolio<span class="pick"></span></h3><div class="body"><ul id="buzz" class="buzz"></ul></div></section>
+        <section class="sec" data-sec="region"><h3>By region<span class="pick"></span></h3><div class="body"><ul id="regions" class="two" title="The ten economic development regions. A local outlet's stories go to its home region; a statewide or big regional outlet's story goes to the regions whose places it names. Choosing a region includes its local news."></ul></div></section>
+        <section class="sec" data-sec="outlet"><h3>By outlet<span class="pick"></span></h3><div class="body"><ul id="outlets"></ul><div id="more-outlets" class="moreo"></div>
+        <div class="legend"><span><i class="dot" style="background:#b3411f"></i>Albany specialist</span><span><i class="dot" style="background:#1c4587"></i>General outlet</span><span><i class="dot" style="background:#a07a3c"></i>Local outlet</span><span><i class="dot" style="background:#5b7f3a"></i>Official / advocacy</span></div></div></section>
+        <section class="sec" data-sec="official"><h3>By official<span class="pick"></span></h3><div class="body"><ul id="officials"></ul></div></section>
       </div>
     </aside>
   </div>
@@ -128,6 +134,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 </div>
 <script>
 const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",region:"",d1:false,hd:false,zm:false,op:true,lc:true,gate:""};
+let SHUT={outlet:1,official:1};try{const v=JSON.parse(localStorage.getItem("nysne-shut"));if(v&&typeof v==="object")SHUT=v}catch(e){}
 let ITEMS=[],META={},LOCALSTATE="";   // local.json (local stories): "", "loading", "done"
 // Local stories are a separate file (fetch.py, 11/6) fetched the first time a region, an outlet or "show local news" needs them
 const needLocal=()=>S.region||S.outlet||!S.lc;
@@ -203,7 +210,13 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i
  const rc=META.region_counts||{};
  $("#regions").innerHTML=(META.regions||[]).map(g=>`<li data-region="${esc(g)}" class="${S.region===g?"on":""}${rc[g]?"":" zero"}"><span>${esc(g)}</span><span class="n">${rc[g]||0}</span></li>`).join("");
  $$("#regions li").forEach(el=>el.onclick=()=>{S.region=S.region===el.dataset.region?"":el.dataset.region;render()});
- $("#n-lc").textContent=(META.local||{}).local_story||"";
+ $("#n-lc").textContent=(META.local||{}).local_story||0;
+ $("#n-op").textContent=ITEMS.filter(i=>i.published_ts>=cut&&i.flags.includes("opinion")).length;
+ $$(".nav .tog").forEach(el=>{const on=S[el.dataset.k];el.classList.toggle("on",on);el.querySelector(".lbl").textContent=(on?"Hiding ":"Showing ")+el.dataset.what});
+ // a shut section names what is chosen in it, so a filter is never hidden
+ const pk={flags:[S.hd&&"GKH",S.zm&&"ZM",S.d1&&"24 hours"].filter(Boolean).join(", "),portfolio:S.tag,region:S.region,
+  outlet:S.outlet&&!official.has(S.outlet)?oname(S.outlet):"",official:S.outlet&&official.has(S.outlet)?S.outlet:""};
+ $$(".side .sec").forEach(el=>{el.classList.toggle("shut",!!SHUT[el.dataset.sec]);el.querySelector(".pick").textContent=pk[el.dataset.sec]||""});
  const tc={};for(const i of stories(wk))for(const t of i.tags)tc[t]=(tc[t]||0)+1;
  // every deputy-secretary portfolio is listed, even at zero, busiest first; the cross-cutting topics follow under their own label
  const TP=META.topics||{portfolios:Object.keys(tc),other:[]};const byN=l=>l.map(t=>[t,tc[t]||0]).sort((a,b)=>b[1]-a[1]);
@@ -241,6 +254,7 @@ $$(".nav button").forEach(b=>b.onclick=()=>{S.view=b.dataset.view;if(location.ha
 window.addEventListener("hashchange",()=>{if(location.hash==="#review"){S.view="review";$$(".nav button").forEach(x=>x.classList.remove("active"));render()}});
 if(S.view==="review")$$(".nav button").forEach(x=>x.classList.remove("active"));
 $("#q").oninput=e=>{S.q=e.target.value;render()};
+$$(".side .sec h3").forEach(h=>h.onclick=()=>{const k=h.parentNode.dataset.sec;SHUT[k]=SHUT[k]?0:1;try{localStorage.setItem("nysne-shut",JSON.stringify(SHUT))}catch(e){}sidebar()});
 $$("[data-k]").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});
 load();setInterval(tick,60000);
 </script>
