@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-06 07:01 UTC",
- "last_run_iso": "2026-11-06T07:00:07Z",
- "total": 4942,
+ "last_run": "2026-11-06 07:32 UTC",
+ "last_run_iso": "2026-11-06T07:30:22Z",
+ "total": 4943,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 7",
@@ -810,13 +810,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 603,
-  "free": 1559,
-  "unknown": 2736,
+  "hard": 605,
+  "free": 1565,
+  "unknown": 2729,
   "metered": 15,
   "null": 29
  },
- "extracted": 2677,
+ "extracted": 2686,
  "runner": "pi",
  "per_day": {
   "2026-10-24": {
@@ -864,11 +864,11 @@
    "official": 9
   },
   "2026-11-04": {
-   "stories": 216,
+   "stories": 223,
    "official": 14
   },
   "2026-11-05": {
-   "stories": 65,
+   "stories": 67,
    "official": 10
   },
   "2026-11-06": {
@@ -876,13 +876,13 @@
    "official": 0
   }
  },
- "grouped_stories": 492,
+ "grouped_stories": 491,
  "gates": {
   "letitia james": 80,
   "Lawmakers sweep": 51,
   "dinapoli": 20,
   "senate district": 12,
-  "suny": 11,
+  "suny": 10,
   "Courts & statewide officials sweep": 6,
   "attorney general james": 6,
   "medicaid": 5,
@@ -910,28 +910,28 @@
   "unconstitutional": 1,
   "state ban": 1
  },
- "unresolved_links": 11,
+ "unresolved_links": 3,
  "summaries": {
-  "total": 2602,
-  "og": 1691,
-  "none": 2340
+  "total": 2611,
+  "og": 1700,
+  "none": 2332
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 821,
-  "items": 9431,
-  "cost_usd": 0.3928,
-  "last": "2026-11-06T07:00:07Z",
+  "calls": 822,
+  "items": 9434,
+  "cost_usd": 0.3933,
+  "last": "2026-11-06T07:30:22Z",
   "week": {
-   "classified": 1049,
+   "classified": 1050,
    "unclassified": 0,
    "types": {
-    "campaign": 614,
+    "campaign": 615,
     "policy": 146,
     "announcement": 104,
-    "other": 72,
+    "other": 71,
     "opinion": 43,
-    "local": 33,
+    "local": 34,
     "national": 23,
     "blotter": 14
    },
@@ -1023,11 +1023,11 @@
     "cost_usd": 0.11788
    },
    "2026-11-06": {
-    "calls": 16,
-    "items": 57,
-    "input_tokens": 55295,
-    "output_tokens": 1708,
-    "cost_usd": 0.007667
+    "calls": 17,
+    "items": 60,
+    "input_tokens": 58676,
+    "output_tokens": 1795,
+    "cost_usd": 0.008129
    }
   }
  },
