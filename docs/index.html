@@ -69,7 +69,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .side .buzz li{display:block}
 .side .buzz li.grp{cursor:default;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:10px 0 2px;padding:0;border-bottom:0}.side .buzz li.grp:hover{color:var(--muted)}
 .side .buzz li.grp:first-child{margin-top:0}
-.side .buzz li.zero{opacity:.55}#officials li.zero{opacity:.55}.side h3 .per{font-weight:400;letter-spacing:.04em;text-transform:none;color:var(--muted,#777);margin-left:4px}
+.side .buzz li.zero{opacity:.55}#officials li.zero,#regions li.zero{opacity:.55}.side h3 .per{font-weight:400;letter-spacing:.04em;text-transform:none;color:var(--muted,#777);margin-left:4px}
 .side .buzz .lbl{display:flex;justify-content:space-between}
 .side .mini{font-size:13px;line-height:1.35;padding:6px 0;border-bottom:1px dotted var(--line)}
 .side .mini:last-child{border-bottom:0}.side .mini a{text-decoration:none}.side .mini a:hover{text-decoration:underline}
@@ -107,23 +107,30 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
         <li data-k="zm" title="Mayor Mamdani is named in the headline or the summary">Centered on ZM <span class="n" id="n-zm"></span></li>
         <li data-k="d1" title="Only stories published in the last 24 hours">Last 24 hours <span class="n" id="n-d1"></span></li>
         <li data-k="op" class="on">Hide opinion</li>
+        <li data-k="lc" class="on" title="Local outlets' stories that aren't about the state: town and county government, local crime, schools, business. Choosing a region or an outlet shows them anyway.">Hide local news <span class="n" id="n-lc"></span></li>
       </ul></div>
       <div class="box"><h3>Filter by topic <span class="per">last week</span></h3><ul id="buzz" class="buzz"></ul></div>
+      <div class="box"><h3>Filter by region <span class="per">last week</span></h3><ul id="regions" title="The ten economic development regions. A local outlet's stories go to its home region; a statewide or big regional outlet's story goes to the regions whose places it names. Choosing a region includes its local news."></ul></div>
       <div class="box"><h3>Filter by outlet <span class="per">last week</span></h3>
-        <div class="legend"><span><i class="dot" style="background:#b3411f"></i>Albany specialist</span><span><i class="dot" style="background:#1c4587"></i>General outlet</span><span><i class="dot" style="background:#5b7f3a"></i>Official / advocacy</span></div>
+        <div class="legend"><span><i class="dot" style="background:#b3411f"></i>Albany specialist</span><span><i class="dot" style="background:#1c4587"></i>General outlet</span><span><i class="dot" style="background:#a07a3c"></i>Local outlet</span><span><i class="dot" style="background:#5b7f3a"></i>Official / advocacy</span></div>
         <ul id="outlets"></ul></div>
       <div class="box"><h3>Filter by official <span class="per">last week</span></h3><ul id="officials"></ul></div>
     </aside>
   </div>
-  <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; official releases come straight from each office's own site (the Governor, Attorney General, Comptroller, Assembly Speaker, Senate Majority Leader and Mayor); Senate members' releases come through Google News. Refreshes every 30 minutes. Every article is its own row; "+N related stories" under a row lists other outlets' articles on the same subject, matched by headline, not copies of it. Dot color is the source tier; scores are heuristic.</div>
+  <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; official releases come straight from each office's own site (the Governor, Attorney General, Comptroller, Assembly Speaker, Senate Majority Leader and Mayor); Senate members' releases come through Google News. Refreshes every 30 minutes. Local outlets across the state (their own dot color) come in through their own feeds; their stories that aren't about the state are hidden unless you choose a region or the outlet. Regions are the state's ten economic development regions: a local outlet's stories go to its home region, a larger outlet's to the regions whose places the story names. Every article is its own row; "+N related stories" under a row lists other outlets' articles on the same subject, matched by headline, not copies of it. Dot color is the source tier; scores are heuristic.</div>
 </div>
 <script>
-const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",d1:false,hd:false,zm:false,op:true,gate:""};
-let ITEMS=[],META={};
+const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",region:"",d1:false,hd:false,zm:false,op:true,lc:true,gate:""};
+let ITEMS=[],META={},LOCALSTATE="";   // local.json (local stories): "", "loading", "done"
+// Local stories are a separate file (fetch.py, 11/6) fetched the first time a region, an outlet or "show local news" needs them
+const needLocal=()=>S.region||S.outlet||!S.lc;
+function loadLocal(){if(LOCALSTATE)return;LOCALSTATE="loading";
+ fetch("data/local.json").then(r=>r.json()).then(l=>{ITEMS=ITEMS.concat(l.filter(i=>!i.link.includes("news.google.")));LOCALSTATE="done";render()}).catch(()=>{LOCALSTATE="done"})}
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-// Dot color = source tier (what the ranking leans on): 1 Albany specialist, 2 general outlet, 3 official / advocacy
-const TIERCOL={1:"#b3411f",2:"#1c4587",3:"#5b7f3a"};
+// Dot color = source tier (what the ranking leans on): 1 Albany specialist, 2 general outlet, 3 official / advocacy, 4 local outlet (11/6)
+const TIERCOL={1:"#b3411f",2:"#1c4587",3:"#5b7f3a",4:"#a07a3c"};
+const TIERNAME={1:"Albany specialist",2:"General outlet",3:"Official / advocacy",4:"Local outlet"};
 let OT={};   // outlet -> best tier seen, for the sidebar
 const col=o=>TIERCOL[OT[o]||2];
 const ago=ts=>{const m=Math.max(1,Math.round((Date.now()/1000-ts)/60));if(m<60)return "within the last hour";const h=Math.round(m/60);if(h<24)return h+"h ago";const d=Math.round(h/24);return d<14?d+"d ago":new Date(ts*1000).toLocaleDateString(undefined,{month:"short",day:"numeric"})};
@@ -140,12 +147,12 @@ let official=new Set(["Governor's Office","NY Senate","NY Assembly"]);
 const OFFNAME={"Governor's Office":"Governor","NY Senate":"State senators","NYC Mayor":"Mayor of New York City","NY Assembly":"Assembly (older notices)"};
 const oname=o=>OFFNAME[o]||o;
 function setView(v){S.view=v;$$(".nav button").forEach(x=>x.classList.toggle("active",x.dataset.view===v))}
-function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${TIERCOL[i.tier]||TIERCOL[2]}" title="${i.tier===1?"Albany specialist":i.tier===3?"Official / advocacy":"General outlet"}"></i><span class="outlet">${esc(oname(i.outlet))}</span></span>${tsSpan(i.published_ts,true)}${pwBadge(i)}</div>`}
+function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${TIERCOL[i.tier]||TIERCOL[2]}" title="${TIERNAME[i.tier]||TIERNAME[2]}"></i><span class="outlet">${esc(oname(i.outlet))}</span></span>${tsSpan(i.published_ts,true)}${(i.regions||[]).length&&i.regions.length<3?`<span>${esc(i.regions.join(" · "))}</span>`:""}${pwBadge(i)}</div>`}
 function chips(i){return `<div class="chips">${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}${S.view==="review"&&i.gate?`<span class="chip flag">gate: ${esc(i.gate)}</span>`:""}${S.view==="review"&&i.llm?`<span class="chip flag">${esc(i.llm.type)}${i.llm.inv?" · investigative":""}</span>`:""}</div>`}
 // Other stories on the same subject (scripts/cluster.py, headline similarity): different articles, never copies of this one
 function related(i){if(!i.tid)return "";const r=ITEMS.filter(x=>x.tid===i.tid&&x.id!==i.id).sort((a,b)=>b.score-a.score);if(!r.length)return "";const outs=[...new Set(r.map(x=>x.outlet))];
  return `<details class="more" title="Other articles on the same subject within 72 hours, matched by headline similarity. Separate stories by other outlets, not copies of this one."><summary>+${r.length} related ${r.length===1?"story":"stories"} · ${esc(outs.slice(0,4).join(", "))}${outs.length>4?` and ${outs.length-4} others`:""}</summary>${r.map(x=>`<div><span class="outlet">${esc(x.outlet)}</span> · <a href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.title)}</a> · ${tsSpan(x.published_ts)}</div>`).join("")}</details>`}
-const SCORE_HELP="A rough guide to relevance, not a judgment. The score elevates stories from outlets that focus on state policy, stories whose language suggests policy substance, stories centered on the Governor and other key state officials, subjects several outlets are reporting at once, and longer pieces. It diminishes opinion, live or breaking formats, sports and entertainment, and loosely matched stories swept in from across the web. When a model has classified a story, its kind adjusts the score: policy reporting up a little; press-release rewrites, crime stories, purely City or national stories down. Freshness adds a bonus that halves about every 21 hours. Roughly: under 30 is routine, 40 to 60 worth a look, above 60 a must-read.";
+const SCORE_HELP="A rough guide to relevance, not a judgment. The score elevates stories from outlets that focus on state policy, stories whose language suggests policy substance, stories centered on the Governor and other key state officials, subjects several outlets are reporting at once, and longer pieces. It diminishes opinion, live or breaking formats, sports and entertainment, and loosely matched stories swept in from across the web. When a model has classified a story, its kind adjusts the score: policy reporting up a little; press-release rewrites, crime stories, purely City or national stories down. Local outlets start lower, and their stories that aren't about the state lower still. Freshness adds a bonus that halves about every 21 hours. Roughly: under 30 is routine, 40 to 60 worth a look, above 60 a must-read.";
 function row(i){return `<div class="row"><div>${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${related(i)}</div><div class="rcol" data-tip="${esc(SCORE_HELP)}"><b>${i.score.toFixed(0)}</b>score</div></div>`}
 function lead(i){return `<div class="lead">${metaLine(i)}<div class="ttl"><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>${i.summary?`<div class="snip">${esc(i.summary)}</div>`:""}${chips(i)}${related(i)}</div>`}
 // One entry per story. Since 10/25 every item is its own story (cid = id); the fold kept for when a certain match exists
@@ -154,8 +161,8 @@ function stories(list){const m=new Map();for(const i of list){const k=i.cid||i.i
   return {...lead,score:Math.max(...g.map(x=>x.score)),more}})}   // lead = best outlet (cluster.py); score = the group's best
 // Browsing views show the last week; a search covers the whole archive (180 days). Every word must match.
 function base(){const q=S.q.toLowerCase().split(/\s+/).filter(Boolean),cut=S.d1?Date.now()/1000-86400:q.length?0:Date.now()/1000-S.range*86400;
- return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.hd||i.hochul)&&(!S.zm||i.mamdani)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
-function render(){const f=base();let html="";
+ return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.region||(i.regions||[]).includes(S.region))&&(!S.lc||!i.local||S.region||S.outlet)&&(!S.hd||i.hochul)&&(!S.zm||i.mamdani)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
+function render(){if(needLocal())loadLocal();const f=base();let html="";
  if(S.q.trim()){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Search <span>${l.length} ${l.length===1?"story":"stories"} in the archive, newest first</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="picks"){const now=Date.now()/1000;const p=stories(f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet))).sort((a,b)=>b.score-a.score);
   // lead cards: at most two per outlet, so one strong outlet cannot fill the top of the page; the rest flow into More
@@ -178,12 +185,18 @@ function render(){const f=base();let html="";
   if(zm.length)html+=`<h2 class="sec">Mamdani, not Hochul <span>${zm.length} · is this a clean City-story signal?</span></h2>`+zm.slice(0,25).map(row).join("");
   const g=ITEMS.filter(i=>i.gate&&i.published_ts>=cut&&(!S.gate||i.gate===S.gate)).sort((a,b)=>b.published_ts-a.published_ts);
   const tally=Object.entries(META.gates||{});
-  html+=`<h2 class="sec">Gate review <span>last 7 days · ${g.length} items</span></h2><p class="note">Stories let in only by the wider state-government gate: courts, the AG and Comptroller, agencies, individual lawmakers. Each shows the term that admitted it. A term that mostly admits noise should be cut from STATE_TERMS or the sweeps in scripts/sources.py.</p>`;
+  html+=`<h2 class="sec">Gate review <span>last 7 days · ${g.length} items</span></h2><p class="note">Stories let in only by the wider gates: state government (courts, the AG and Comptroller, agencies, individual lawmakers) and, since 11/6, New York politics that never names Albany ("politics: ...", which needs a New York place or name). Each shows the term that admitted it. A term that mostly admits noise should be cut from STATE_TERMS, POLITICS_TERMS or the sweeps in scripts/sources.py. Local outlets, last 7 days: ${(META.local||{}).local_outlet||0} items, of which ${(META.local||{}).local_story||0} are local stories (hidden unless a region or outlet is chosen); ${(META.local||{}).with_region||0} items carry a region.</p>`;
   html+=`<div class="gates">${tally.map(([t,n])=>`<span class="chip ${S.gate===t?"on":""}" data-gate="${esc(t)}">${esc(t)} ${n}</span>`).join("")}</div>`;
   html+=g.length?g.map(row).join(""):'<div class="empty">Nothing admitted by the wider gate yet.</div>'}
  else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Official <span>press releases · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
  $("#main").innerHTML=html;$$(".gates .chip").forEach(el=>el.onclick=()=>{S.gate=S.gate===el.dataset.gate?"":el.dataset.gate;render()});sidebar()}
-function sidebar(){const cut=Date.now()/1000-7*86400;const wk=ITEMS.filter(i=>i.published_ts>=cut&&!i.flags.includes("opinion"));
+function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i.published_ts>=cut&&!i.flags.includes("opinion"));
+ const wk=all.filter(i=>!S.lc||!i.local||S.region||S.outlet);
+ // regions in fixed order, west to east then downstate (geo.REGIONS), local news included: it is what a region view is for
+ const rc=META.region_counts||{};
+ $("#regions").innerHTML=(META.regions||[]).map(g=>`<li data-region="${esc(g)}" class="${S.region===g?"on":""}${rc[g]?"":" zero"}"><span>${esc(g)}</span><span class="n">${rc[g]||0}</span></li>`).join("");
+ $$("#regions li").forEach(el=>el.onclick=()=>{S.region=S.region===el.dataset.region?"":el.dataset.region;render()});
+ $("#n-lc").textContent=(META.local||{}).local_story||"";
  const tc={};for(const i of stories(wk))for(const t of i.tags)tc[t]=(tc[t]||0)+1;
  // every deputy-secretary portfolio is listed, even at zero, busiest first; the cross-cutting topics follow under their own label
  const TP=META.topics||{portfolios:Object.keys(tc),other:[]};const byN=l=>l.map(t=>[t,tc[t]||0]).sort((a,b)=>b[1]-a[1]);

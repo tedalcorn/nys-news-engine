@@ -8,7 +8,7 @@ name: Resolve Google News links
 # the way cron schedules are. The merge commit touches only links.json, so it does not retrigger this.
 on:
   push:
-    paths: ["docs/data/items.json"]
+    paths: ["docs/data/items.json", "docs/data/local.json"]
   workflow_dispatch:
 
 permissions:

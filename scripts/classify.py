@@ -136,7 +136,7 @@ def _stale(i): return "llm" not in i or i["llm"].get("v", 1) < VERSION
 
 def candidates(items, now_ts):
     pool = [i for i in items if _stale(i) and (now_ts - i.get("published_ts", 0)) <= MAX_AGE_H * 3600]
-    pool.sort(key=lambda x: -x.get("published_ts", 0))     # newest first: the top of the page gets judged first
+    pool.sort(key=lambda x: (bool(x.get("local")), -x.get("published_ts", 0)))   # newest first, local stories after the rest (11/6)
     # the archive: items judged under an older topic list, and the pre-10/25 items the model never saw
     old = [i for i in items if _stale(i) and (now_ts - i.get("published_ts", 0)) > MAX_AGE_H * 3600]
     old.sort(key=lambda x: -x.get("published_ts", 0))

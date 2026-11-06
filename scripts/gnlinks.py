@@ -18,7 +18,14 @@ import requests
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ITEMS = os.path.join(ROOT, "docs", "data", "items.json")
+LOCAL = os.path.join(ROOT, "docs", "data", "local.json")   # local stories (11/6), split out of items.json
 LINKS = os.path.join(ROOT, "docs", "data", "links.json")
+
+def load_items():
+    out = []
+    for p in (ITEMS, LOCAL):
+        if os.path.exists(p): out += json.load(open(p))
+    return out
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
 PER_SHARD = 45     # ~90 requests: under the 429 threshold for a fresh IP
@@ -79,7 +86,7 @@ def apply(items, links=None):
 
 
 def shard(k, n, out):
-    items = json.load(open(ITEMS)); now = time.time()
+    items = load_items(); now = time.time()
     known = load_links()
     todo = [i for i in unresolved(items, now)
             if i["link"] not in known["links"] and known["failed"].get(i["link"], 0) < MAX_TRIES
@@ -101,7 +108,7 @@ def shard(k, n, out):
 
 
 def merge(paths):
-    items = json.load(open(ITEMS)); now = time.time()
+    items = load_items(); now = time.time()
     d = load_links()
     for p in paths:
         for gn, real in json.load(open(p)).items():

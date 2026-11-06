@@ -110,6 +110,29 @@ Items whose resolved URL is a `/sports/` or
 `/entertainment/` path are dropped. Albany terms match at word starts (short ones as whole words): as bare
 substrings, "ed ra" (Assemblyman Ed Ra) matched "heated race".
 
+## Local outlets, regions and the politics gate (2026-11-06)
+
+- **Local outlets (tier 4, ochre dot).** About 60 local papers, TV stations and public radio stations statewide, read
+  through their own feeds (`LOCAL` block in `scripts/sources.py`), plus four Google queries for local outlets with no
+  usable feed. Wire copy, sports, obituaries, advice columns and sponsored pages are dropped by path, byline and headline
+  (`LOCAL_SKIP_PATH`, `LOCAL_SKIP_BYLINE`, `LOCAL_NOISE` in `fetch.py`). A local outlet's story that clears the state
+  filter is an ordinary item (scored from a lower base: tier 4 = 10). One that doesn't, or clears only the politics
+  gate (a mayor's race), is a **local story** (`local: true`, a further -5): it lives in `docs/data/local.json`, is kept
+  30 days, never appears in Picks or the default feeds, and is loaded by the page only when a region, an outlet, or
+  "Hide local news" off asks for it. Syracuse.com's full feed works the same way (`local_overflow`).
+- **Regions (`scripts/geo.py`).** The ten Regional Economic Development Council regions. Small local outlets tag
+  by their home region (`LOCAL_HOME`, `PATH_HOME` for regional editions such as Spectrum and News 12); statewide, NYC
+  and big regional outlets by the places the headline and summary name (counties as "X County", and a list of
+  unambiguous cities and landmarks; bare "Albany" never counts). A big daily's local story that names no place falls back
+  to the paper's home (`BIG_HOME`). Sidebar counts come from `meta.region_counts`.
+- **Politics gate.** A third gate in `passes_albany_filter`: New York politics that never says "Albany" (parties, races,
+  offices, courts, `POLITICS_TERMS`) is admitted when the text has a New York anchor and names no other state.
+  Admissions carry `gate: "politics: <term>"` and show on `#review`. The big papers' Google queries gained a matching
+  `POL_Q` query.
+- **Timestamp fix.** `parse_ts` used `time.mktime` on feedparser's UTC tuples, which stamped every native-feed item 7
+  hours in the future on the Pi (America/Denver). Now `calendar.timegm`; archive items dated after their first fetch
+  are clamped to the fetch time.
+
 ## Scoring (`scripts/score.py`)
 
 Outlet tier (30/20/12; the Times +6, national Fox brands −8, `OUTLET_WEIGHT`)

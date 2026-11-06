@@ -63,6 +63,7 @@ def eligible(it):
     """News items only. Official releases, opinion, and native think-tank posts (tier 3, not a sweep)
     are distinct documents even when they share a topic: CBC on Prop 5 is not Reinvent Albany on Prop 3."""
     if it.get("outlet") in OFFICIAL or it.get("opinion") or "opinion" in (it.get("flags") or []): return False
+    if it.get("local"): return False   # local stories (11/6) are not about the state; they neither count as nor get coverage
     return not (it.get("tier") == 3 and not it.get("sweep"))
 
 def _cluster(items, idf, threshold):

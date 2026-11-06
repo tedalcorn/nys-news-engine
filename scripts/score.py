@@ -206,7 +206,10 @@ def is_opinion(item, text):
 def score(item, now_ts):
     text = (item.get("title","") + " " + item.get("summary","")).lower()
     tier = item.get("tier", 2)
-    s = {1:30, 2:20, 3:12}.get(tier, 15)
+    # tier 4 = local outlet (Ted, 11/6: "down-score them because they won't likely be breaking news that is as
+    # important"); a local outlet's story that isn't about the state (`local`) loses 5 more
+    s = {1:30, 2:20, 3:12, 4:10}.get(tier, 15)
+    if item.get("local"): s -= 5
     pol = min(_rhits(text, POLICY_RE), 5); s += pol*3
     if _rhits(text, CAMPAIGN_RE): s += 3
     hoch = hochul_where(item)
@@ -222,7 +225,7 @@ def score(item, now_ts):
     age_h = max(0.0, (now_ts - item.get("published_ts", now_ts)) / 3600.0)
     s += 20 * math.exp(-age_h / 30.0)   # 20/9/4/2 at 0/24/48/72 h: a tiebreak among substantive stories, not a score of its own
     s += 4 * min(item.get("n_cov", 1) - 1, 3)   # several outlets on the same subject: the story matters (cluster.topics)
-    if item.get("kind") == "gnews" and item.get("sweep"): s -= 12   # sweeps are noisier (tier 2 base, so net = old tier 3 - 4)
+    if item.get("kind") == "gnews" and item.get("sweep") and tier != 4: s -= 12   # sweeps are noisier (tier 2 base, so net = old tier 3 - 4)
     w = item.get("words", 0)
     if w >= 2000: s += 12           # magazine-length feature
     elif w >= 1200: s += 6          # long-form

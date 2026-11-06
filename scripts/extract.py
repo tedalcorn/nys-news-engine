@@ -145,7 +145,7 @@ def candidates(items, now_ts):
             and (now_ts - i.get("published_ts", 0)) <= FRESH_H * 3600
             and ("extracted_ts" not in i
                  or (not i.get("summary") and "summary_src" not in i))]
-    pool.sort(key=lambda x: -x.get("published_ts", 0))
+    pool.sort(key=lambda x: (bool(x.get("local")), -x.get("published_ts", 0)))   # local stories last: most carry a feed summary
     return pool[:PER_RUN]
 
 
