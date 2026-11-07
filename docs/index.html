@@ -125,7 +125,6 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <button data-view="picks" class="active">Picks</button>
     <button data-view="latest">Latest</button>
     <button data-view="official" title="Press releases straight from the Governor, Attorney General, Comptroller, legislative leaders, senators, the Mayor and state agencies">Releases</button>
-    <button data-view="missing">Paywalled</button>
     <span class="sp"></span>
     <span class="togs" id="togs"><span class="tog on" data-k="op" data-what="opinion" title="Opinion pieces, columns and editorials, last week. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-op"></span></span>
     <span class="tog on" data-k="lc" data-what="local news" title="Local outlets' stories that aren't about the state, last week: town and county government, local crime, schools, business. Choosing a region or an outlet shows them anyway. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-lc"></span></span></span>
@@ -205,11 +204,6 @@ function render(){if(needLocal())loadLocal();const f=base();let html="";
   html+=`<h2 class="sec">Today's picks <span>${S.d1?"last 24h":"last 72h"}, by score</span></h2>`;html+=top.length?`<div class="picks">${top.map(lead).join("")}</div>`:'<div class="empty">Nothing yet.</div>';
   html+=`<h2 class="sec">More <span>${rest.length}</span></h2>`+rest.slice(0,55).map(row).join("")}
  else if(S.view==="latest"){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Latest <span>${l.length} stories</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
- else if(S.view==="missing"){const cut=Date.now()/1000-30*86400;
-  const locked=ITEMS.filter(i=>i.published_ts>=cut&&(i.paywall==="hard"||i.paywall==="metered")&&!i.flags.includes("opinion"));
-  const med=(()=>{const a=ITEMS.filter(i=>i.published_ts>=cut).map(i=>i.score).sort((x,y)=>x-y);return a.length?a[Math.floor(a.length/2)]:0})();
-  const worth=locked.filter(i=>i.score>=med);
-  html+=`<h2 class="sec">Paywalled <span>last 30 days, above the median score · ${worth.length}</span></h2>`+(worth.length?worth.sort((a,b)=>b.score-a.score).slice(0,60).map(row).join(""):'<div class="empty">Nothing paywalled above the median yet.</div>')}
  else if(S.view==="review"){const cut=Date.now()/1000-7*86400;
   const L=META.llm||{},W=L.week||{},SM=META.summaries||{};
   const lastAge=L.last?(Date.now()-Date.parse(L.last))/3600000:null,stale=(W.unclassified||0)>0&&(lastAge===null||lastAge>6);
