@@ -1,17 +1,17 @@
 {
- "last_run": "2026-11-07 21:03 UTC",
- "last_run_iso": "2026-11-07T21:00:09Z",
- "total": 7789,
+ "last_run": "2026-11-07 21:33 UTC",
+ "last_run_iso": "2026-11-07T21:30:27Z",
+ "total": 7795,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 15",
   "City & State (gnews)": "ok 11",
   "Politico NY Playbook": "ok 22",
-  "Times Union": "ok 9",
+  "Times Union": "ok 8",
   "NY State of Politics": "ok 3",
   "Newsday": "ok 24",
   "Daily News": "ok 6",
-  "Times Union (gnews)": "ok 9",
+  "Times Union (gnews)": "ok 8",
   "Newsday (gnews)": "ok 16",
   "Daily News (gnews)": "ok 5",
   "Politico": "ok 2",
@@ -25,7 +25,7 @@
   "Wall Street Journal": "ok 3",
   "Buffalo News": "ok 5",
   "Buffalo News (gnews)": "ok 0",
-  "Syracuse.com": "ok 19",
+  "Syracuse.com": "ok 16",
   "Politico (gnews)": "ok 2",
   "amNY": "ok 1",
   "Documented": "ok 1",
@@ -41,9 +41,9 @@
   "Comptroller": "ok 1 new of 18 listed",
   "Assembly Speaker": "ok 1 new of 299 listed",
   "Senate Majority Leader": "ok 0 new of 5 listed",
-  "NY Senate": "ok 7",
+  "NY Senate": "ok 6",
   "NYC Mayor": "ok 0 new",
-  "WIVB": "ok 8",
+  "WIVB": "ok 9",
   "WKBW": "ok 28",
   "Investigative Post": "ok 10",
   "Niagara Gazette": "ok 21",
@@ -69,10 +69,10 @@
   "The Citizen (Auburn)": "ok 28",
   "Cortland Standard": "ok 4",
   "WKTV": "ok 24",
-  "Rome Sentinel": "ok 37",
+  "Rome Sentinel": "ok 38",
   "The Daily Star (Oneonta)": "ok 12",
   "WIBX": "ok 34",
-  "WWNY": "ok 10",
+  "WWNY": "ok 9",
   "Watertown Daily Times": "ok 8",
   "Press-Republican": "ok 27",
   "NBC5 Plattsburgh": "ok 8",
@@ -86,7 +86,7 @@
   "Hudson Valley One": "ok 19",
   "Yonkers Times": "ok 48",
   "The Examiner News": "ok 9",
-  "Staten Island Advance": "ok 24",
+  "Staten Island Advance": "ok 25",
   "QNS": "ok 18",
   "BK Reader": "ok 18",
   "Bronx Times": "ok 10",
@@ -99,13 +99,13 @@
   "Long Island Business News": "ok 10",
   "RiverheadLOCAL": "ok 8",
   "27east": "ok 40",
-  "Google News: local outlets 1": "ok 81",
+  "Google News: local outlets 1": "ok 83",
   "Google News: local outlets 2": "ok 70",
-  "Google News: local outlets 3": "ok 70",
+  "Google News: local outlets 3": "ok 69",
   "Google News: local outlets 4": "ok 50",
-  "Google News: Hochul": "ok 69",
+  "Google News: Hochul": "ok 67",
   "Google News: Legislature": "ok 8",
-  "Google News: Courts & statewide officials": "ok 15",
+  "Google News: Courts & statewide officials": "ok 14",
   "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 4"
  },
@@ -287,7 +287,6 @@
   "Franklin Observer",
   "GV Wire",
   "Gay City News",
-  "Giants Wire",
   "Globe Opinion | Substack",
   "Go Long | Tyler Dunne",
   "Gothamist",
@@ -574,7 +573,6 @@
   "The Chief-Leader",
   "The Citizen (Auburn)",
   "The City",
-  "The City Reporter",
   "The City University of New York",
   "The College Fix",
   "The Columbus Dispatch",
@@ -901,13 +899,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 787,
-  "free": 3243,
+  "hard": 791,
+  "free": 3245,
   "unknown": 3715,
   "metered": 15,
   "null": 29
  },
- "extracted": 5449,
+ "extracted": 5458,
  "runner": "pi",
  "per_day": {
   "2026-10-25": {
@@ -959,15 +957,15 @@
    "official": 13
   },
   "2026-11-06": {
-   "stories": 150,
-   "official": 9
+   "stories": 149,
+   "official": 7
   },
   "2026-11-07": {
    "stories": 32,
    "official": 0
   }
  },
- "grouped_stories": 536,
+ "grouped_stories": 538,
  "gates": {
   "letitia james": 66,
   "politics: democrat": 51,
@@ -1037,32 +1035,32 @@
   "state prison": 1,
   "thruway": 1
  },
- "unresolved_links": 30,
+ "unresolved_links": 27,
  "summaries": {
-  "total": 5243,
-  "og": 2295,
-  "none": 2546
+  "total": 5251,
+  "og": 2296,
+  "none": 2544
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 1065,
-  "items": 14471,
-  "cost_usd": 0.5718,
-  "last": "2026-11-07T21:00:09Z",
+  "calls": 1067,
+  "items": 14510,
+  "cost_usd": 0.5731,
+  "last": "2026-11-07T21:30:27Z",
   "week": {
-   "classified": 3632,
+   "classified": 3638,
    "unclassified": 0,
    "types": {
-    "other": 1194,
+    "other": 1195,
     "campaign": 786,
     "local": 485,
-    "blotter": 380,
+    "blotter": 384,
     "national": 263,
-    "policy": 231,
+    "policy": 232,
     "announcement": 164,
     "opinion": 129
    },
-   "investigative": 30
+   "investigative": 29
   },
   "by_day": {
    "2026-10-25": {
@@ -1157,11 +1155,11 @@
     "cost_usd": 0.105767
    },
    "2026-11-07": {
-    "calls": 109,
-    "items": 2221,
-    "input_tokens": 563975,
-    "output_tokens": 77978,
-    "cost_usd": 0.080886
+    "calls": 111,
+    "items": 2260,
+    "input_tokens": 573838,
+    "output_tokens": 79032,
+    "cost_usd": 0.082191
    }
   }
  },
@@ -1178,21 +1176,21 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 2594,
-  "local_story": 2421,
-  "with_region": 3140
+  "local_outlet": 2604,
+  "local_story": 2425,
+  "with_region": 3146
  },
  "region_counts": {
-  "New York City": 476,
-  "North Country": 179,
+  "New York City": 477,
+  "North Country": 180,
   "Long Island": 201,
-  "Western New York": 327,
-  "Capital Region": 296,
+  "Capital Region": 297,
+  "Western New York": 328,
   "Southern Tier": 261,
-  "Central New York": 250,
-  "Mid-Hudson": 287,
-  "Finger Lakes": 515,
-  "Mohawk Valley": 215
+  "Central New York": 251,
+  "Mid-Hudson": 288,
+  "Finger Lakes": 518,
+  "Mohawk Valley": 217
  },
  "zm_only": 50
 }
