@@ -70,7 +70,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .tog.on b::before{content:"\2715\00a0"}.tog:not(.on) b::before{content:"\2713\00a0"}
 .side .sec h3{cursor:pointer;user-select:none;display:flex;align-items:baseline;gap:4px}
 .side .sec h3::after{content:"\25BE";margin-left:auto;color:var(--accent);font-size:15px;line-height:1}.side .sec.shut h3::after{content:"\25B8"}
-.side .sec.shut .body{display:none}.side .sec .pick{display:none}
+.side .sec.shut .body,.side .sec.shut .per{display:none}.side .sec .pick{display:none}
 .side .sec.shut .pick:not(:empty){display:inline;font-weight:700;letter-spacing:.02em;text-transform:none;color:var(--fg);margin-left:6px}
 .side .box>.sec:first-of-type h3{margin-top:0;padding-top:0;border-top:0}
 .side ul{list-style:none;margin:0;padding:0}
@@ -153,7 +153,9 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 </div>
 <script>
 const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",region:"",d1:false,hd:false,zm:false,op:true,lc:true,gate:""};
-let SHUT={outlet:1,official:1};try{const v=JSON.parse(localStorage.getItem("nysne-shut"));if(v&&typeof v==="object")SHUT=v}catch(e){}
+// Desktop opens with every sidebar section shut, headings only (Ted 11/7); a shut section names its active choice.
+// On a phone the drawer opens with portfolio and region showing. Not remembered between visits.
+let SHUT=matchMedia("(max-width:900px)").matches?{outlet:1,official:1}:{flags:1,portfolio:1,region:1,outlet:1,official:1};
 let ITEMS=[],META={},LOCALSTATE="";   // local.json (local stories): "", "loading", "done"
 // Local stories are a separate file (fetch.py, 11/6) fetched the first time a region, an outlet or "show local news" needs them
 const needLocal=()=>S.region||S.outlet||!S.lc;
@@ -299,7 +301,7 @@ $(".ftog").onclick=e=>{const c=e.target.closest("[data-clear]");if(!c){$(".side"
 const MQ=matchMedia("(max-width:900px)");const placeTogs=()=>{const t=$("#togs");if(MQ.matches)$(".side .box").after(t);else $(".nav .sp").after(t)};
 MQ.addEventListener("change",placeTogs);placeTogs();
 $(".side .box").addEventListener("click",e=>{if(MQ.matches&&e.target.closest("li[data-region],li[data-tag],li[data-outlet],li[data-k]"))$(".side").classList.remove("open")});
-$$(".side .sec h3").forEach(h=>h.onclick=()=>{const k=h.parentNode.dataset.sec;SHUT[k]=SHUT[k]?0:1;try{localStorage.setItem("nysne-shut",JSON.stringify(SHUT))}catch(e){}sidebar()});
+$$(".side .sec h3").forEach(h=>h.onclick=()=>{const k=h.parentNode.dataset.sec;SHUT[k]=SHUT[k]?0:1;sidebar()});
 $$("[data-k]").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});
 load();setInterval(tick,60000);
 </script>
