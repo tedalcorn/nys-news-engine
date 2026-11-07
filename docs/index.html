@@ -105,7 +105,8 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
  .nav{flex-wrap:nowrap;gap:2px;padding:6px 0;overflow-x:auto}.nav button{padding:7px clamp(5px,2.2vw,9px);font-size:clamp(11px,3.3vw,12.5px);letter-spacing:.05em;white-space:nowrap}.nav .sp,.nav #q{display:none}
  .grid{padding-top:10px;gap:20px}.side{order:-1}
  .ftog{display:flex;align-items:baseline;gap:6px;width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--fg);font:700 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-align:left}
- .ftog .act{font-weight:600;letter-spacing:0;text-transform:none;color:var(--accent);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+ .ftog{align-items:center}.ftog .act{display:flex;flex-wrap:wrap;gap:5px;min-width:0;letter-spacing:0;text-transform:none}
+ .ftog .fx{font:600 12px var(--sans);color:#fff;background:var(--accent);border-radius:12px;padding:3px 9px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
  .ftog::after{content:"\25B8";margin-left:auto;color:var(--accent);font-size:14px}.side.open .ftog::after{content:"\25BE"}
  .side .box{display:none;margin:8px 0 0}.side.open .box{display:block}
  .qbox{display:block;margin:0 0 12px}.qbox input{width:100%;padding:8px 11px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);font-size:16px}
@@ -243,7 +244,9 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i
   outlet:S.outlet&&!official.has(S.outlet)?oname(S.outlet):"",official:S.outlet&&official.has(S.outlet)?S.outlet:""};
  $$(".side .sec").forEach(el=>{el.classList.toggle("shut",!!SHUT[el.dataset.sec]);el.querySelector(".pick").textContent=pk[el.dataset.sec]||""});
  // phone drawer button names whatever is chosen inside it, so a filter is never hidden behind it
- const act=[...Object.values(pk).filter(Boolean),S.q.trim()&&`“${S.q.trim()}”`].filter(Boolean).join(" · ");$(".ftog .act").textContent=act?"· "+act:"";
+ // each one is a chip: tapping it removes that filter (Ted 11/7); tapping elsewhere on the bar opens the drawer
+ const act=[S.hd&&["hd","GKH"],S.zm&&["zm","ZM"],S.d1&&["d1","24 hours"],S.tag&&["tag",S.tag],S.region&&["region",S.region],S.outlet&&["outlet",oname(S.outlet)],S.q.trim()&&["q",`“${S.q.trim()}”`]].filter(Boolean);
+ $(".ftog .act").innerHTML=act.map(([k,l])=>`<span class="fx" data-clear="${k}" title="Remove this filter">${esc(l)} ✕</span>`).join("");
  const tc={};for(const i of stories(wk))for(const t of i.tags)tc[t]=(tc[t]||0)+1;
  // every deputy-secretary portfolio is listed, even at zero, busiest first; the cross-cutting topics follow under their own label
  const TP=META.topics||{portfolios:Object.keys(tc),other:[]};const byN=l=>l.map(t=>[t,tc[t]||0]).sort((a,b)=>b[1]-a[1]);
@@ -285,7 +288,9 @@ window.addEventListener("hashchange",()=>{if(location.hash==="#review"){S.view="
 if(S.view==="review")$$(".nav button").forEach(x=>x.classList.remove("active"));
 // one search box in the nav (desktop), one in the filter drawer (phone); they stay in step
 $$("#q,.q2").forEach(el=>el.oninput=e=>{S.q=e.target.value;$$("#q,.q2").forEach(x=>{if(x!==el)x.value=S.q});render()});
-$(".ftog").onclick=()=>$(".side").classList.toggle("open");
+$(".ftog").onclick=e=>{const c=e.target.closest("[data-clear]");if(!c){$(".side").classList.toggle("open");return}
+ const k=c.dataset.clear;if(k==="q"){S.q="";$$("#q,.q2").forEach(x=>x.value="")}else if(k==="hd"||k==="zm"||k==="d1")S[k]=false;else S[k]="";
+ if(k==="outlet"&&S.view==="official")setView("latest");render()};
 // the opinion/local toggles sit in the nav on desktop and under the filter drawer on a phone
 const MQ=matchMedia("(max-width:900px)");const placeTogs=()=>{const t=$("#togs");if(MQ.matches)$(".side .box").after(t);else $(".nav .sp").after(t)};
 MQ.addEventListener("change",placeTogs);placeTogs();
