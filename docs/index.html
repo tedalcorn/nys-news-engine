@@ -64,15 +64,15 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .side h3{font:700 11.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:14px 0 4px;padding-top:10px;border-top:1px solid var(--line)}
 .side ul.two{display:grid;grid-template-columns:1fr 1fr;column-gap:14px}.side ul.two li:nth-last-child(2):nth-child(odd){border-bottom:0}
 .moreo{font-size:12px;color:var(--muted);cursor:pointer;padding:3px 0}.moreo:hover{color:var(--accent)}
-.nav .tog{display:inline-flex;align-items:center;gap:6px;padding:5px 6px 5px 11px;border:1.5px solid #1c4587;border-radius:16px;font:600 12px var(--sans);color:#1c4587;background:transparent;cursor:pointer;margin-right:4px;user-select:none}
-.nav .tog b{font-weight:600}.nav .tog .n{font-weight:700;font-size:11.5px;min-width:22px;text-align:center;padding:1px 7px;border-radius:10px;background:#1c4587;color:#fff}
-.nav .tog.on{border-color:var(--accent);background:var(--accent);color:#fff}.nav .tog.on .n{background:#fff;color:var(--accent)}
-.nav .tog.on b::before{content:"\2715\00a0"}.nav .tog:not(.on) b::before{content:"\2713\00a0"}
+.tog{display:inline-flex;align-items:center;gap:6px;padding:5px 6px 5px 11px;border:1.5px solid #1c4587;border-radius:16px;font:600 12px var(--sans);color:#1c4587;background:transparent;cursor:pointer;margin-right:4px;user-select:none}
+.tog b{font-weight:600}.tog .n{font-weight:700;font-size:11.5px;min-width:22px;text-align:center;padding:1px 7px;border-radius:10px;background:#1c4587;color:#fff}
+.tog.on{border-color:var(--accent);background:var(--accent);color:#fff}.tog.on .n{background:#fff;color:var(--accent)}
+.tog.on b::before{content:"\2715\00a0"}.tog:not(.on) b::before{content:"\2713\00a0"}
 .side .sec h3{cursor:pointer;user-select:none;display:flex;align-items:baseline;gap:4px}
 .side .sec h3::after{content:"\25BE";margin-left:auto;color:var(--accent);font-size:15px;line-height:1}.side .sec.shut h3::after{content:"\25B8"}
 .side .sec.shut .body{display:none}.side .sec .pick{display:none}
 .side .sec.shut .pick:not(:empty){display:inline;font-weight:700;letter-spacing:.02em;text-transform:none;color:var(--fg);margin-left:6px}
-.side .sec:first-child h3{margin-top:0;padding-top:0;border-top:0}
+.side .box>.sec:first-of-type h3{margin-top:0;padding-top:0;border-top:0}
 .side ul{list-style:none;margin:0;padding:0}
 .side li{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px dotted var(--line);font-size:13.5px;cursor:pointer}
 .side li:last-child{border-bottom:0}.side li:hover{color:var(--accent)}.side li.on{color:var(--accent);font-weight:700}
@@ -95,28 +95,47 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .gates{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}.gates .chip{cursor:pointer}.gates .chip.on{background:var(--accent);color:#fff}
 .note{color:var(--muted);font-size:13.5px;margin:0 0 12px}
 .foot{color:var(--muted);font-size:12px;padding:18px 0 40px;border-top:1px solid var(--line)}
+.mast .right{white-space:nowrap}
+.togs{display:inline-flex;gap:6px;align-items:center}.ftog,.qbox{display:none}
+/* phone and narrow windows (Ted 11/7): two-line masthead, filters right under the tabs in a drawer, search inside the drawer */
+@media (max-width:900px){
+ .wrap{padding:0 16px}
+ .mast{padding:14px 0 9px;gap:3px}.brand{font-size:29px}.tag{font-size:11.5px;margin-top:5px}
+ .mast .right{font-size:clamp(9.5px,3vw,12.5px)}
+ .nav{flex-wrap:nowrap;gap:2px;padding:6px 0;overflow-x:auto}.nav button{padding:7px clamp(5px,2.2vw,9px);font-size:clamp(11px,3.3vw,12.5px);letter-spacing:.05em;white-space:nowrap}.nav .sp,.nav #q{display:none}
+ .grid{padding-top:10px;gap:20px}.side{order:-1}
+ .ftog{display:flex;align-items:baseline;gap:6px;width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--fg);font:700 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-align:left}
+ .ftog .act{font-weight:600;letter-spacing:0;text-transform:none;color:var(--accent);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+ .ftog::after{content:"\25B8";margin-left:auto;color:var(--accent);font-size:14px}.side.open .ftog::after{content:"\25BE"}
+ .side .box{display:none;margin:8px 0 0}.side.open .box{display:block}
+ .qbox{display:block;margin:0 0 12px}.qbox input{width:100%;padding:8px 11px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);font-size:16px}
+ .togs{display:flex;flex-wrap:nowrap;gap:6px;margin-top:8px}
+ .togs .tog{margin:0;white-space:nowrap;font-size:clamp(9px,2.9vw,12px);padding:4px 5px 4px 9px;gap:5px}.togs .tog .n{font-size:.95em;padding:1px 6px;min-width:0}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="mast">
-    <div><a class="brand" href="./" title="Back to Picks, freshly loaded">NYS <em>News</em> Engine</a><div class="tag">Albany · the Governor · the Legislature · ranked for reporting depth</div></div>
+    <div><a class="brand" href="./" title="Back to Picks, freshly loaded">NYS <em>News</em> Engine</a><div class="tag">Ranked for reporting depth</div></div>
     <div class="right"><span id="meta">loading…</span></div>
   </header>
   <nav class="nav">
     <button data-view="picks" class="active">Picks</button>
     <button data-view="latest">Latest</button>
-    <button data-view="official">Official</button>
+    <button data-view="official" title="Press releases straight from the Governor, Attorney General, Comptroller, legislative leaders, senators, the Mayor and state agencies">Releases</button>
     <button data-view="missing">Paywalled</button>
     <span class="sp"></span>
-    <span class="tog on" data-k="op" data-what="opinion" title="Opinion pieces, columns and editorials, last week. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-op"></span></span>
-    <span class="tog on" data-k="lc" data-what="local news" title="Local outlets' stories that aren't about the state, last week: town and county government, local crime, schools, business. Choosing a region or an outlet shows them anyway. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-lc"></span></span>
+    <span class="togs" id="togs"><span class="tog on" data-k="op" data-what="opinion" title="Opinion pieces, columns and editorials, last week. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-op"></span></span>
+    <span class="tog on" data-k="lc" data-what="local news" title="Local outlets' stories that aren't about the state, last week: town and county government, local crime, schools, business. Choosing a region or an outlet shows them anyway. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-lc"></span></span></span>
     <input type="search" id="q" placeholder="Search the archive…">
   </nav>
   <div class="grid">
     <main id="main"></main>
     <aside class="side">
+      <button class="ftog" type="button">Filters<span class="act"></span></button>
       <div class="box">
+        <div class="qbox"><input type="search" class="q2" placeholder="Search the archive…"></div>
         <section class="sec" data-sec="flags"><h3>Filters <span class="per">counts: last week</span><span class="pick"></span></h3><div class="body"><ul id="flags">
           <li data-k="hd" title="The Governor is named in the headline or the summary">Centered on GKH <span class="n" id="n-hd"></span></li>
           <li data-k="zm" title="Mayor Mamdani is named in the headline or the summary">Centered on ZM <span class="n" id="n-zm"></span></li>
@@ -202,7 +221,7 @@ function render(){if(needLocal())loadLocal();const f=base();let html="";
   html+=`<h2 class="sec">Gate review <span>last 7 days · ${g.length} items</span></h2><p class="note">Stories let in only by the wider gates: state government (courts, the AG and Comptroller, agencies, individual lawmakers) and, since 11/6, New York politics that never names Albany ("politics: ...", which needs a New York place or name). Each shows the term that admitted it. A term that mostly admits noise should be cut from STATE_TERMS, POLITICS_TERMS or the sweeps in scripts/sources.py. Local outlets, last 7 days: ${(META.local||{}).local_outlet||0} items, of which ${(META.local||{}).local_story||0} are local stories (hidden unless a region or outlet is chosen); ${(META.local||{}).with_region||0} items carry a region.</p>`;
   html+=`<div class="gates">${tally.map(([t,n])=>`<span class="chip ${S.gate===t?"on":""}" data-gate="${esc(t)}">${esc(t)} ${n}</span>`).join("")}</div>`;
   html+=g.length?g.map(row).join(""):'<div class="empty">Nothing admitted by the wider gate yet.</div>'}
- else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Official <span>press releases · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
+ else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Releases <span>press releases · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
  $("#main").innerHTML=html;$$(".gates .chip").forEach(el=>el.onclick=()=>{S.gate=S.gate===el.dataset.gate?"":el.dataset.gate;render()});sidebar()}
 // a count bar drawn behind a sidebar row, scaled to the busiest row of its list
 const bk=(n,mx)=>{const w=Math.round(100*n/Math.max(1,mx));return ` style="background:linear-gradient(to right,var(--chip) ${w}%,transparent ${w}%)"`};
@@ -218,11 +237,13 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i
  $$("#regions li").forEach(el=>el.onclick=()=>{S.region=S.region===el.dataset.region?"":el.dataset.region;render()});
  $("#n-lc").textContent=(META.local||{}).local_story||0;
  $("#n-op").textContent=ITEMS.filter(i=>i.published_ts>=cut&&i.flags.includes("opinion")).length;
- $$(".nav .tog").forEach(el=>{const on=S[el.dataset.k];el.classList.toggle("on",on);el.querySelector(".lbl").textContent=(on?"Hiding ":"Showing ")+el.dataset.what});
+ $$(".tog").forEach(el=>{const on=S[el.dataset.k];el.classList.toggle("on",on);el.querySelector(".lbl").textContent=(on?"Hiding ":"Showing ")+el.dataset.what});
  // a shut section names what is chosen in it, so a filter is never hidden
  const pk={flags:[S.hd&&"GKH",S.zm&&"ZM",S.d1&&"24 hours"].filter(Boolean).join(", "),portfolio:S.tag,region:S.region,
   outlet:S.outlet&&!official.has(S.outlet)?oname(S.outlet):"",official:S.outlet&&official.has(S.outlet)?S.outlet:""};
  $$(".side .sec").forEach(el=>{el.classList.toggle("shut",!!SHUT[el.dataset.sec]);el.querySelector(".pick").textContent=pk[el.dataset.sec]||""});
+ // phone drawer button names whatever is chosen inside it, so a filter is never hidden behind it
+ const act=[...Object.values(pk).filter(Boolean),S.q.trim()&&`“${S.q.trim()}”`].filter(Boolean).join(" · ");$(".ftog .act").textContent=act?"· "+act:"";
  const tc={};for(const i of stories(wk))for(const t of i.tags)tc[t]=(tc[t]||0)+1;
  // every deputy-secretary portfolio is listed, even at zero, busiest first; the cross-cutting topics follow under their own label
  const TP=META.topics||{portfolios:Object.keys(tc),other:[]};const byN=l=>l.map(t=>[t,tc[t]||0]).sort((a,b)=>b[1]-a[1]);
@@ -252,17 +273,22 @@ async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json
  ITEMS=ITEMS.filter(i=>!i.link.includes("news.google."));
  const iso=META.last_run_iso||(META.last_run||"").replace(" UTC","Z").replace(" ","T");
  let when=META.last_run;
- try{const d=new Date(iso);if(!isNaN(d))when=d.toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET"}catch(e){}
+ try{const d=new Date(iso);if(!isNaN(d))when=d.toLocaleString("en-US",{timeZone:"America/New_York",month:"numeric",day:"numeric",year:"2-digit",hour:"numeric",minute:"2-digit"}).replace(",","").replace(":00 "," ")}catch(e){}
  OT={};for(const i of ITEMS){if(!(i.outlet in OT)||i.tier<OT[i.outlet])OT[i.outlet]=i.tier}
  official=new Set(META.officials||official);
  const ageMin=(Date.now()-new Date(iso).getTime())/60000;
  const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"});const pd=(META.per_day||{})[today];
- $("#meta").innerHTML=`${pd?`${pd.stories} stories today · `:""}${META.total} in archive · ${META.outlets.length} outlets<br>refreshed ${esc(when)}${ageMin>120?` <span class="stale" title="Normally every 30 minutes">refresh overdue</span>`:""}`;render()}
+ $("#meta").innerHTML=`${pd?`${pd.stories} stories today · `:""}${META.outlets.length} outlets · refreshed ${esc(when)}${ageMin>120?` <span class="stale" title="Normally every 30 minutes">refresh overdue</span>`:""}`;render()}
 $$(".nav button").forEach(b=>b.onclick=()=>{S.view=b.dataset.view;if(location.hash)history.replaceState(null,"",location.pathname);$$(".nav button").forEach(x=>x.classList.toggle("active",x===b));render()});
 // #review (not in the nav): what the wider keyword gate let in
 window.addEventListener("hashchange",()=>{if(location.hash==="#review"){S.view="review";$$(".nav button").forEach(x=>x.classList.remove("active"));render()}});
 if(S.view==="review")$$(".nav button").forEach(x=>x.classList.remove("active"));
-$("#q").oninput=e=>{S.q=e.target.value;render()};
+// one search box in the nav (desktop), one in the filter drawer (phone); they stay in step
+$$("#q,.q2").forEach(el=>el.oninput=e=>{S.q=e.target.value;$$("#q,.q2").forEach(x=>{if(x!==el)x.value=S.q});render()});
+$(".ftog").onclick=()=>$(".side").classList.toggle("open");
+// the opinion/local toggles sit in the nav on desktop and under the filter drawer on a phone
+const MQ=matchMedia("(max-width:900px)");const placeTogs=()=>{const t=$("#togs");if(MQ.matches)$(".side .box").after(t);else $(".nav .sp").after(t)};
+MQ.addEventListener("change",placeTogs);placeTogs();
 $$(".side .sec h3").forEach(h=>h.onclick=()=>{const k=h.parentNode.dataset.sec;SHUT[k]=SHUT[k]?0:1;try{localStorage.setItem("nysne-shut",JSON.stringify(SHUT))}catch(e){}sidebar()});
 $$("[data-k]").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});
 load();setInterval(tick,60000);
