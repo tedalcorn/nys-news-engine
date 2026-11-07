@@ -1,18 +1,18 @@
 {
- "last_run": "2026-11-07 06:04 UTC",
- "last_run_iso": "2026-11-07T06:00:30Z",
- "total": 7314,
+ "last_run": "2026-11-07 06:34 UTC",
+ "last_run_iso": "2026-11-07T06:30:07Z",
+ "total": 7331,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 15",
   "City & State (gnews)": "ok 15",
   "Politico NY Playbook": "ok 22",
   "Times Union": "ok 13",
-  "NY State of Politics": "ok 2",
-  "Newsday": "ok 28",
+  "NY State of Politics": "ok 3",
+  "Newsday": "ok 27",
   "Daily News": "ok 6",
   "Times Union (gnews)": "ok 8",
-  "Newsday (gnews)": "ok 14",
+  "Newsday (gnews)": "ok 13",
   "Daily News (gnews)": "ok 5",
   "Politico": "ok 3",
   "Gotham Gazette": "ok 0",
@@ -41,7 +41,7 @@
   "Comptroller": "ok 1 new of 18 listed",
   "Assembly Speaker": "ok 1 new of 299 listed",
   "Senate Majority Leader": "ok 0 new of 5 listed",
-  "NY Senate": "ok 6",
+  "NY Senate": "ok 5",
   "NYC Mayor": "ok 0 new",
   "WIVB": "ok 8",
   "WKBW": "ok 28",
@@ -50,7 +50,7 @@
   "Post-Journal": "ok 5",
   "Olean Times Herald": "ok 30",
   "WHEC": "ok 20",
-  "Rochester First": "ok 23",
+  "Rochester First": "ok 22",
   "WXXI News": "ok 10",
   "FingerLakes1": "ok 29",
   "Finger Lakes Daily News": "ok 10",
@@ -61,7 +61,7 @@
   "WICZ": "ok 9",
   "WENY": "ok 5",
   "WETM": "ok 7",
-  "Ithaca Voice": "ok 8",
+  "Ithaca Voice": "ok 10",
   "Ithaca Times": "ok 32",
   "WSYR": "ok 20",
   "Oswego County News Now": "ok 17",
@@ -79,7 +79,7 @@
   "Adirondack Explorer": "ok 8",
   "WTEN News10": "ok 44",
   "WNYT": "ok 24",
-  "Daily Gazette": "ok 2",
+  "Daily Gazette": "ok 3",
   "Troy Record": "ok 1",
   "Post-Star": "ok 10",
   "WAMC": "ok 7",
@@ -99,12 +99,12 @@
   "Long Island Business News": "ok 10",
   "RiverheadLOCAL": "ok 8",
   "27east": "ok 40",
-  "Google News: local outlets 1": "ok 80",
+  "Google News: local outlets 1": "ok 81",
   "Google News: local outlets 2": "ok 71",
   "Google News: local outlets 3": "ok 78",
   "Google News: local outlets 4": "ok 49",
-  "Google News: Hochul": "ok 74",
-  "Google News: Legislature": "ok 11",
+  "Google News: Hochul": "ok 71",
+  "Google News: Legislature": "ok 10",
   "Google News: Courts & statewide officials": "ok 14",
   "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 2"
@@ -339,6 +339,7 @@
   "K-12 Dive",
   "K1025",
   "KBAK",
+  "KFOX",
   "KING5.com",
   "KLTV.com",
   "KOKH",
@@ -398,7 +399,6 @@
   "NBC News",
   "NBC5 Plattsburgh",
   "NCPR: North Country Public Radio",
-  "NEWS10 ABC",
   "NPR",
   "NTD News",
   "NY Assembly",
@@ -571,6 +571,7 @@
   "The Chief-Leader",
   "The Citizen (Auburn)",
   "The City",
+  "The City Reporter",
   "The City University of New York",
   "The College Fix",
   "The Columbus Dispatch",
@@ -689,7 +690,6 @@
   "WICZ",
   "WIRED",
   "WIVB",
-  "WIVT - News 34",
   "WIVT Binghamton",
   "WJAC",
   "WJAR",
@@ -897,13 +897,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 724,
-  "free": 2594,
-  "unknown": 3953,
+  "hard": 731,
+  "free": 2632,
+  "unknown": 3925,
   "null": 29,
   "metered": 14
  },
- "extracted": 4395,
+ "extracted": 4450,
  "runner": "pi",
  "per_day": {
   "2026-10-25": {
@@ -952,31 +952,31 @@
   },
   "2026-11-05": {
    "stories": 117,
-   "official": 11
+   "official": 13
   },
   "2026-11-06": {
-   "stories": 140,
-   "official": 5
+   "stories": 142,
+   "official": 8
   },
   "2026-11-07": {
    "stories": 1,
    "official": 0
   }
  },
- "grouped_stories": 534,
+ "grouped_stories": 535,
  "gates": {
   "letitia james": 67,
   "politics: democrat": 50,
-  "Lawmakers sweep": 50,
+  "Lawmakers sweep": 49,
   "politics: republican": 40,
   "politics: election": 38,
-  "suny": 23,
+  "suny": 22,
   "dinapoli": 20,
   "politics: law": 15,
   "politics: mayor": 15,
   "politics: mamdani": 12,
-  "senate district": 12,
   "politics: congress": 11,
+  "senate district": 11,
   "politics: midterm": 10,
   "board of elections": 10,
   "politics: politic": 9,
@@ -999,8 +999,8 @@
   "ballot proposal": 3,
   "state attorney general": 3,
   "politics: gop": 3,
-  "politics: blue wave": 3,
   "politics: county executive": 3,
+  "politics: blue wave": 3,
   "politics: statewide": 3,
   "politics: campaign": 3,
   "politics: lawmaker": 3,
@@ -1031,30 +1031,30 @@
   "state ban": 1,
   "thruway": 1
  },
- "unresolved_links": 30,
+ "unresolved_links": 35,
  "summaries": {
-  "total": 4635,
-  "og": 2023,
-  "none": 2679
+  "total": 4657,
+  "og": 2038,
+  "none": 2674
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 991,
-  "items": 12962,
-  "cost_usd": 0.5166,
-  "last": "2026-11-07T06:00:30Z",
+  "calls": 993,
+  "items": 13010,
+  "cost_usd": 0.5181,
+  "last": "2026-11-07T06:30:07Z",
   "week": {
-   "classified": 3203,
+   "classified": 3219,
    "unclassified": 0,
    "types": {
-    "other": 976,
-    "campaign": 793,
-    "local": 403,
+    "other": 987,
+    "campaign": 794,
+    "local": 405,
     "blotter": 325,
-    "policy": 220,
-    "national": 209,
+    "policy": 221,
+    "national": 211,
     "announcement": 164,
-    "opinion": 113
+    "opinion": 112
    },
    "investigative": 28
   },
@@ -1151,11 +1151,11 @@
     "cost_usd": 0.105767
    },
    "2026-11-07": {
-    "calls": 35,
-    "items": 712,
-    "input_tokens": 184512,
-    "output_tokens": 24293,
-    "cost_usd": 0.025657
+    "calls": 37,
+    "items": 760,
+    "input_tokens": 195027,
+    "output_tokens": 25601,
+    "cost_usd": 0.027154
    }
   }
  },
@@ -1172,20 +1172,20 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 2238,
-  "local_story": 1985,
-  "with_region": 2709
+  "local_outlet": 2232,
+  "local_story": 2001,
+  "with_region": 2717
  },
  "region_counts": {
-  "New York City": 431,
+  "New York City": 429,
+  "Western New York": 289,
   "North Country": 152,
-  "Long Island": 190,
+  "Long Island": 191,
   "Capital Region": 242,
-  "Western New York": 288,
-  "Southern Tier": 239,
-  "Finger Lakes": 442,
-  "Central New York": 180,
-  "Mid-Hudson": 256,
+  "Southern Tier": 241,
+  "Finger Lakes": 443,
+  "Central New York": 181,
+  "Mid-Hudson": 257,
   "Mohawk Valley": 182
  },
  "zm_only": 46
