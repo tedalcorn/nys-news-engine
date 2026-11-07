@@ -108,8 +108,8 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
  .ftog{align-items:center}.ftog .act{display:flex;flex-wrap:wrap;gap:5px;min-width:0;letter-spacing:0;text-transform:none}
  .ftog .fx{font:600 12px var(--sans);color:#fff;background:var(--accent);border-radius:12px;padding:3px 9px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
  .ftog::after{content:"\25B8";margin-left:auto;color:var(--accent);font-size:14px}.side.open .ftog::after{content:"\25BE"}
- .side .box{display:none;margin:8px 0 0}.side.open .box{display:block}
- .qbox{display:block;margin:0 0 12px}.qbox input{width:100%;padding:8px 11px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);font-size:16px}
+ .side .box{display:none;margin:8px 0 0}.side .box>.sec:first-of-type h3{display:none}.side .box>.sec:first-of-type.shut .body{display:block}.side.open .box{display:block}
+ .qbox{display:block;margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line)}.qbox input{width:100%;padding:8px 11px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);font-size:16px}
  .togs{display:flex;flex-wrap:nowrap;gap:6px;margin-top:8px}
  .togs .tog{margin:0;white-space:nowrap;font-size:clamp(9px,2.9vw,12px);padding:4px 5px 4px 9px;gap:5px}.togs .tog .n{font-size:.95em;padding:1px 6px;min-width:0}
 }
@@ -135,7 +135,6 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <aside class="side">
       <button class="ftog" type="button">Filters<span class="act"></span></button>
       <div class="box">
-        <div class="qbox"><input type="search" class="q2" placeholder="Search the archive…"></div>
         <section class="sec" data-sec="flags"><h3>Filters <span class="per">counts: last week</span><span class="pick"></span></h3><div class="body"><ul id="flags">
           <li data-k="hd" title="The Governor is named in the headline or the summary">Centered on GKH <span class="n" id="n-hd"></span></li>
           <li data-k="zm" title="Mayor Mamdani is named in the headline or the summary">Centered on ZM <span class="n" id="n-zm"></span></li>
@@ -146,6 +145,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
         <section class="sec" data-sec="outlet"><h3>By outlet<span class="pick"></span></h3><div class="body"><ul id="outlets"></ul><div id="more-outlets" class="moreo"></div>
         <div class="legend"><span><i class="dot" style="background:#b3411f"></i>Albany specialist</span><span><i class="dot" style="background:#1c4587"></i>General outlet</span><span><i class="dot" style="background:#a07a3c"></i>Local outlet</span><span><i class="dot" style="background:#5b7f3a"></i>Official / advocacy</span></div></div></section>
         <section class="sec" data-sec="official"><h3>By official<span class="pick"></span></h3><div class="body"><ul id="officials"></ul></div></section>
+        <div class="qbox"><input type="search" class="q2" placeholder="Search the archive…"></div>
       </div>
     </aside>
   </div>
@@ -217,7 +217,16 @@ function render(){if(needLocal())loadLocal();const f=base();let html="";
   html+=`<div class="gates">${tally.map(([t,n])=>`<span class="chip ${S.gate===t?"on":""}" data-gate="${esc(t)}">${esc(t)} ${n}</span>`).join("")}</div>`;
   html+=g.length?g.map(row).join(""):'<div class="empty">Nothing admitted by the wider gate yet.</div>'}
  else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Releases <span>press releases · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
- $("#main").innerHTML=html;$$(".gates .chip").forEach(el=>el.onclick=()=>{S.gate=S.gate===el.dataset.gate?"":el.dataset.gate;render()});sidebar()}
+ toHash();$("#main").innerHTML=html;$$(".gates .chip").forEach(el=>el.onclick=()=>{S.gate=S.gate===el.dataset.gate?"":el.dataset.gate;render()});sidebar()}
+// The settings live in the URL hash (Ted 11/7), so a view can be bookmarked or sent: #view=latest&region=Western+New+York&hd=1
+// Only what differs from the default is written; opinion=1 / local=1 mean "showing" them. #review stays its own page.
+const HK=["tag","region","outlet","q"],HB=["hd","zm","d1"];
+function toHash(){if(S.view==="review")return;const u=new URLSearchParams();if(S.view!=="picks")u.set("view",S.view==="official"?"releases":S.view);
+ for(const k of HK)if(S[k].trim())u.set(k,S[k].trim());for(const k of HB)if(S[k])u.set(k,1);if(!S.op)u.set("opinion",1);if(!S.lc)u.set("local",1);
+ const h=u.toString();if(h!==location.hash.slice(1))history.replaceState(null,"",h?"#"+h:location.pathname+location.search)}
+function fromHash(){const h=location.hash.slice(1);if(!h||h==="review")return;const u=new URLSearchParams(h);const v=u.get("view")||"picks";
+ setView(v==="releases"?"official":v);for(const k of HK)S[k]=u.get(k)||"";for(const k of HB)S[k]=u.has(k);S.op=!u.has("opinion");S.lc=!u.has("local");
+ $$("#q,.q2").forEach(x=>x.value=S.q)}
 // a count bar drawn behind a sidebar row, scaled to the busiest row of its list
 const bk=(n,mx)=>{const w=Math.round(100*n/Math.max(1,mx));return ` style="background:linear-gradient(to right,var(--chip) ${w}%,transparent ${w}%)"`};
 function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i.published_ts>=cut&&(!S.op||!i.flags.includes("opinion")));
@@ -278,7 +287,8 @@ async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json
  $("#meta").innerHTML=`${pd?`${pd.stories} stories today · `:""}${META.outlets.length} outlets · refreshed ${esc(when)}${ageMin>120?` <span class="stale" title="Normally every 30 minutes">refresh overdue</span>`:""}`;render()}
 $$(".nav button").forEach(b=>b.onclick=()=>{S.view=b.dataset.view;if(location.hash)history.replaceState(null,"",location.pathname);$$(".nav button").forEach(x=>x.classList.toggle("active",x===b));render()});
 // #review (not in the nav): what the wider keyword gate let in
-window.addEventListener("hashchange",()=>{if(location.hash==="#review"){S.view="review";$$(".nav button").forEach(x=>x.classList.remove("active"));render()}});
+window.addEventListener("hashchange",()=>{if(location.hash==="#review"){S.view="review";$$(".nav button").forEach(x=>x.classList.remove("active"))}else fromHash();if(ITEMS.length)render()});
+fromHash();
 if(S.view==="review")$$(".nav button").forEach(x=>x.classList.remove("active"));
 // one search box in the nav (desktop), one in the filter drawer (phone); they stay in step
 $$("#q,.q2").forEach(el=>el.oninput=e=>{S.q=e.target.value;$$("#q,.q2").forEach(x=>{if(x!==el)x.value=S.q});render()});
@@ -288,6 +298,7 @@ $(".ftog").onclick=e=>{const c=e.target.closest("[data-clear]");if(!c){$(".side"
 // the opinion/local toggles sit in the nav on desktop and under the filter drawer on a phone
 const MQ=matchMedia("(max-width:900px)");const placeTogs=()=>{const t=$("#togs");if(MQ.matches)$(".side .box").after(t);else $(".nav .sp").after(t)};
 MQ.addEventListener("change",placeTogs);placeTogs();
+$(".side .box").addEventListener("click",e=>{if(MQ.matches&&e.target.closest("li[data-region],li[data-tag],li[data-outlet],li[data-k]"))$(".side").classList.remove("open")});
 $$(".side .sec h3").forEach(h=>h.onclick=()=>{const k=h.parentNode.dataset.sec;SHUT[k]=SHUT[k]?0:1;try{localStorage.setItem("nysne-shut",JSON.stringify(SHUT))}catch(e){}sidebar()});
 $$("[data-k]").forEach(el=>el.onclick=()=>{const k=el.dataset.k;S[k]=!S[k];el.classList.toggle("on",S[k]);render()});
 load();setInterval(tick,60000);
