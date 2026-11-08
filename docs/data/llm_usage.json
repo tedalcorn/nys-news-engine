@@ -1,12 +1,12 @@
 {
  "model": "claude-haiku-5-5",
- "calls": 1111,
- "items": 15430,
- "input_tokens": 3963286,
- "output_tokens": 593945,
- "cache_read_tokens": 1309408,
- "cache_write_tokens": 1186796,
- "cost_usd": 0.605126,
+ "calls": 1113,
+ "items": 15466,
+ "input_tokens": 3972558,
+ "output_tokens": 594935,
+ "cache_read_tokens": 1312616,
+ "cache_write_tokens": 1190004,
+ "cost_usd": 0.60634,
  "by_day": {
   "2026-10-25": {
    "calls": 29,
@@ -107,12 +107,12 @@
    "cost_usd": 0.090029
   },
   "2026-11-08": {
-   "calls": 34,
-   "items": 696,
-   "input_tokens": 168871,
-   "output_tokens": 22410,
-   "cost_usd": 0.024177
+   "calls": 36,
+   "items": 732,
+   "input_tokens": 178143,
+   "output_tokens": 23400,
+   "cost_usd": 0.025391
   }
  },
- "last": "2026-11-08T08:00:06Z"
+ "last": "2026-11-08T08:30:27Z"
 }
