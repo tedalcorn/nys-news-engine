@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-08 18:32 UTC",
- "last_run_iso": "2026-11-08T18:30:26Z",
- "total": 8188,
+ "last_run": "2026-11-08 18:36 UTC",
+ "last_run_iso": "2026-11-08T18:33:46Z",
+ "total": 8191,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 15",
@@ -40,7 +40,7 @@
   "Attorney General": "ok 1 new of 25 listed",
   "Comptroller": "ok 1 new of 18 listed",
   "Assembly Speaker": "ok 1 new of 299 listed",
-  "Senate Majority Leader": "ERROR HTTPError: HTTP Error 403: ",
+  "Senate Majority Leader": "ok 0 new of 5 listed",
   "NY Senate": "ok 7",
   "NYC Mayor": "ok 0 new",
   "WIVB": "ok 10",
@@ -54,7 +54,7 @@
   "WXXI News": "ok 10",
   "FingerLakes1": "ok 26",
   "Finger Lakes Daily News": "ok 7",
-  "The Daily News (Batavia)": "ERROR HTTPError: HTTP Error 429: ",
+  "The Daily News (Batavia)": "ok 5",
   "Rochester Beacon": "ok 10",
   "WBNG": "ok 14",
   "WIVT Binghamton": "ok 48",
@@ -64,17 +64,17 @@
   "Ithaca Voice": "ok 8",
   "Ithaca Times": "ok 32",
   "WSYR": "ok 25",
-  "Oswego County News Now": "ERROR HTTPError: HTTP Error 429: ",
+  "Oswego County News Now": "ok 2",
   "Central Current": "ok 10",
   "The Citizen (Auburn)": "ok 8",
-  "Cortland Standard": "ERROR HTTPError: HTTP Error 429: ",
+  "Cortland Standard": "ok 4",
   "WKTV": "ok 25",
   "Rome Sentinel": "ok 35",
-  "The Daily Star (Oneonta)": "ERROR HTTPError: HTTP Error 429: ",
+  "The Daily Star (Oneonta)": "ok 3",
   "WIBX": "ok 34",
   "WWNY": "ok 14",
   "Watertown Daily Times": "ok 14",
-  "Press-Republican": "ERROR HTTPError: HTTP Error 429: ",
+  "Press-Republican": "ok 27",
   "NBC5 Plattsburgh": "ok 14",
   "Adirondack Explorer": "ok 8",
   "WTEN News10": "ok 42",
@@ -98,12 +98,12 @@
   "LI Life & Politics": "ok 10",
   "Long Island Business News": "ok 10",
   "RiverheadLOCAL": "ok 8",
-  "27east": "ERROR HTTPError: HTTP Error 429: ",
+  "27east": "ok 37",
   "Google News: local outlets 1": "ok 89",
   "Google News: local outlets 2": "ok 74",
-  "Google News: local outlets 3": "ok 70",
+  "Google News: local outlets 3": "ok 71",
   "Google News: local outlets 4": "ok 49",
-  "Google News: Hochul": "ok 54",
+  "Google News: Hochul": "ok 52",
   "Google News: Legislature": "ok 5",
   "Google News: Courts & statewide officials": "ok 7",
   "Google News: State agencies": "ok 6",
@@ -271,7 +271,6 @@
   "Facebook",
   "Finger Lakes Daily News",
   "FingerLakes1",
-  "Fingerlakes1.com",
   "Fiscal Policy Institute",
   "Flack Broadcasting",
   "Focus Gaming News",
@@ -903,13 +902,13 @@
  ],
  "paywall": {
   "hard": 825,
-  "free": 3459,
-  "unknown": 3860,
+  "free": 3464,
+  "unknown": 3858,
   "null": 29,
   "metered": 15
  },
- "extracted": 5863,
- "runner": "actions",
+ "extracted": 5870,
+ "runner": "pi",
  "per_day": {
   "2026-10-26": {
    "stories": 119,
@@ -953,10 +952,10 @@
   },
   "2026-11-05": {
    "stories": 119,
-   "official": 12
+   "official": 13
   },
   "2026-11-06": {
-   "stories": 158,
+   "stories": 160,
    "official": 9
   },
   "2026-11-07": {
@@ -964,7 +963,7 @@
    "official": 0
   },
   "2026-11-08": {
-   "stories": 22,
+   "stories": 24,
    "official": 0
   }
  },
@@ -1007,12 +1006,12 @@
   "ballot proposal": 3,
   "state attorney general": 3,
   "state police": 3,
-  "State agencies sweep": 3,
   "politics: blue wave": 3,
   "ny attorney general": 3,
   "politics: poll": 3,
   "politics: campaign": 3,
   "politics: elected": 3,
+  "State agencies sweep": 2,
   "politics: siena": 2,
   "politics: federal judge": 2,
   "politics: candidate": 2,
@@ -1039,32 +1038,32 @@
   "state prison": 1,
   "thruway": 1
  },
- "unresolved_links": 18,
+ "unresolved_links": 14,
  "summaries": {
-  "total": 5619,
-  "og": 2400,
-  "none": 2569
+  "total": 5626,
+  "og": 2404,
+  "none": 2565
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 1158,
-  "items": 16364,
-  "cost_usd": 0.6368,
-  "last": "2026-11-08T18:30:26Z",
+  "calls": 1159,
+  "items": 16376,
+  "cost_usd": 0.6372,
+  "last": "2026-11-08T18:33:46Z",
   "week": {
-   "classified": 3991,
+   "classified": 3994,
    "unclassified": 0,
    "types": {
-    "other": 1365,
-    "campaign": 783,
+    "other": 1366,
+    "campaign": 786,
     "local": 542,
-    "blotter": 436,
+    "blotter": 437,
     "national": 311,
-    "policy": 237,
+    "policy": 235,
     "announcement": 167,
     "opinion": 150
    },
-   "investigative": 28
+   "investigative": 29
   },
   "by_day": {
    "2026-10-26": {
@@ -1159,11 +1158,11 @@
     "cost_usd": 0.090029
    },
    "2026-11-08": {
-    "calls": 81,
-    "items": 1630,
-    "input_tokens": 398261,
-    "output_tokens": 51594,
-    "cost_usd": 0.055882
+    "calls": 82,
+    "items": 1642,
+    "input_tokens": 403142,
+    "output_tokens": 51959,
+    "cost_usd": 0.056264
    }
   }
  },
@@ -1180,20 +1179,20 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 2918,
-  "local_story": 2780,
-  "with_region": 3500
+  "local_outlet": 2919,
+  "local_story": 2784,
+  "with_region": 3502
  },
  "region_counts": {
-  "New York City": 509,
+  "New York City": 510,
   "North Country": 214,
   "Long Island": 209,
   "Capital Region": 335,
-  "Western New York": 370,
+  "Western New York": 371,
   "Southern Tier": 279,
-  "Mid-Hudson": 329,
+  "Mid-Hudson": 331,
   "Central New York": 287,
-  "Finger Lakes": 592,
+  "Finger Lakes": 594,
   "Mohawk Valley": 236
  },
  "zm_only": 53
