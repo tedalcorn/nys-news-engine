@@ -170,6 +170,7 @@ TAG_RE      = {k: [_rx(t) for t in terms] for k, terms in TAGS.items()}
 # JUDGMENT, not measured audience: no source gives subscribers by NYC/Albany, and audited figures omit most of these papers.
 OUTLET_WEIGHT = {"New York Times": 10,
     "NY Post Metro": 5, "NY Post Politics": 5, "Daily News": 4, "Times Union": 4, "Politico": 4, "Politico NY Playbook": 4, "Newsday": 4,
+    "City & State": 4, "The City": 4, "New York Focus": 4,
     "Fox News": -8, "Fox Business": -8, "FOX One": -8}
 # A couple of points above the general run of outlets (Ted, 11/9). By domain, because Google labels these several ways
 # (amNY / amNewYork, WSJ / Wall Street Journal). They are also spared the sweep penalty below: most reach us through sweeps.

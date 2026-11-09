@@ -101,7 +101,7 @@ for _r, _ds in {
                   "hudsonvalleyone.com theexaminernews.com",
     "New York City": "silive.com bushwickdaily.com brooklyneagle.com bkreader.com qns.com bxtimes.com riverdalepress.com "
                      "queenseagle.com ourtownny.com hellgatenyc.com qchron.com westsiderag.com amsterdamnews.com "
-                     "manhattantimesnews.com chelseanewsny.com thecityreporter.nyc pix11.com abc7ny.com nbcnewyork.com",
+                     "manhattantimesnews.com chelseanewsny.com pix11.com abc7ny.com nbcnewyork.com",
     "Long Island": "liherald.com southshorepress.com longisland.com lilifepolitics.com huntingtonnow.com riverheadlocal.com "
                    "easthamptonstar.com longislandpress.com libn.com 27east.com",
 }.items():

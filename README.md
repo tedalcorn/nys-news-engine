@@ -137,7 +137,7 @@ substrings, "ed ra" (Assemblyman Ed Ra) matched "heated race".
 
 ## Scoring (`scripts/score.py`)
 
-Outlet tier (30/20/12/10; `OUTLET_WEIGHT`: the Times +10, NY Post +5, Daily News, Times Union, Politico and Newsday +4, national Fox brands −8; `DOMAIN_BOOST`: Gothamist, Crain's, Bloomberg, amNY, NPR, WSJ, Chalkbeat and CNN +2 and no sweep penalty; the boosts are editorial judgment, not measured audience)
+Outlet tier (30/20/12/10; `OUTLET_WEIGHT`: the Times +10, NY Post +5, Daily News, Times Union, Politico, Newsday, City & State, The City and New York Focus +4, national Fox brands −8; `DOMAIN_BOOST`: Gothamist, Crain's, Bloomberg, amNY, NPR, WSJ, Chalkbeat and CNN +2 and no sweep penalty; the boosts are editorial judgment, not measured audience)
 + governance vocabulary (`POLICY`, word-start matches, up to 15) + 3 if campaign vocabulary appears (one slot, however
 many words: a race story is not policy substance) − 15 opinion (publisher signals only: `/opinion/`-style URL path, the NYT API's own article type, or the literal word
 "editorial" in the headline; never the model) − 8 breaking/live − 30 sports/entertainment (only when no
