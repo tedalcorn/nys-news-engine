@@ -5,7 +5,8 @@ kind: 'rss' = native feed; 'gnews' = Google News RSS (site: or keyword query) fo
       'nyt' = NYT developer API (Top Stories for the NY Region front + Article Search); silently skipped unless NYT_API_KEY is set.
 Google News queries carry a `when:Nd` operator: without it Google returns its 100 most *relevant* hits,
 many of them months old, and recent releases never surface (that is why Official went stale).
-tier: 1 = Albany-specialist / accountability; 2 = strong general outlet; 3 = official / advocacy / watchdog release.
+tier (sets the base score): 1 = Albany-specialist / accountability; 2 = strong general outlet; 3 = official / advocacy / watchdog release.
+      The group shown on the page is separate: scripts/categories.py.
       Cross-outlet sweeps are tier 2: they return whatever outlet Google finds (Fox, local TV), which the page
       must not color as official. score.py docks sweeps instead, so they still rank below the outlet feeds.
 albany_filter: True = general feed, keep only items that match Albany keywords, or STATE_TERMS (see fetch.py).

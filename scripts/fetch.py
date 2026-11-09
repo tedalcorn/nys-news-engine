@@ -12,7 +12,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
 from sources import SOURCES, OFFICIALS, ALBANY_TERMS, STATE_TERMS, POLITICS_TERMS, BLOTTER, SWEEP_EXCLUDE_DOMAINS, NY_ANCHORS, OUT_OF_STATE, GENERIC_ALBANY, NYT_FACETS, NYT_GENERIC
 from score import score, PORTFOLIOS, OTHER_TOPICS
-import extract, cluster, gnlinks, classify, geo
+import extract, cluster, gnlinks, classify, geo, categories
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "docs", "data")
@@ -555,7 +555,9 @@ def main():
         print(f"\ngnlinks: {gnlinks.apply(items)} links applied from links.json")
     except Exception as e:
         print(f"gnlinks step skipped: {type(e).__name__}: {e}")
-    for it in items: file_by_office(it)   # after links.json: a decoded Google link reveals the office
+    for it in items:
+        file_by_office(it)   # after links.json: a decoded Google link reveals the office
+        categories.relabel(it)
     for it in items:   # local outlets (tier 4) wherever they came from; one label per outlet; region tags (geo.py)
         if it["tier"] != 3 and geo.is_local_outlet(it.get("domain"), it["link"]):
             it["tier"] = 4
@@ -564,6 +566,7 @@ def main():
         elif it["tier"] == 4:   # a big daily found by a local-outlet query (Democrat and Chronicle, lohud): general outlet
             it["tier"] = 2
         it["regions"] = geo.regions(it)
+    categories.assign(items, OFFICIALS)   # the outlet group the page shows; tier still sets the score
     # with the real URL in hand, sections are visible: NY State of Politics carries Spectrum's wire sports
     items = [it for it in items if not re.search(r"/(sports|entertainment)/", urlparse(it["link"]).path)]
     # first pass so candidate selection has headline-only scores to sort on

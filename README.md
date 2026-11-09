@@ -25,13 +25,13 @@ section blurbs, sign-up pitches) are dropped.
 
 `classify.py` then sends every item without an `llm` field (7-day window, 150 a run in batches of 25) to
 Claude Haiku with its outlet, headline and summary, asking for up to three topics from the fixed `TAGS` list,
-one story type (`policy`, `campaign`, `announcement`, `blotter`, `local`, `national`, `other`; older verdicts may still say `opinion`, which no longer does anything)
+one story type (`policy`, `campaign`, `announcement`, `blotter`, `local`, `national`, `other`)
 and an investigative yes/no. The answer is cached on the item; `score.py` uses the topics in place of its
 keyword tags and the type as a score adjustment (`TYPE_ADJ`). Each call's token usage and cost go to
 `docs/data/llm_usage.json` (totals and by day) and the `#review` page shows spend to date. The step runs
 only when `ANTHROPIC_API_KEY` is set (the Pi's env file and the Actions secret); without it the page runs
 on keywords alone.
-Dot color is the source tier: red = Albany specialist, blue = general outlet, green = official or advocacy.
+Dot color is the outlet category (`scripts/categories.py` assigns it; `docs/labels.js` holds the names and colors both pages show). It is a label only: `tier` sets the base score.
 
 ### Related stories (`scripts/cluster.py`)
 

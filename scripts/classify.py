@@ -131,7 +131,8 @@ def _record(u, usage, n_items, now_ts):
 # 3 = topics became the deputy-secretary portfolios, 2026-11-04). Keep score.TOPIC_VERSION in step.
 VERSION = 3
 
-def _stale(i): return "llm" not in i or i["llm"].get("v", 1) < VERSION
+# "opinion" left the type list on 11/9 (opinion now comes only from the publisher): stories still carrying it are judged again.
+def _stale(i): return "llm" not in i or i["llm"].get("v", 1) < VERSION or i["llm"].get("type") == "opinion"
 
 def candidates(items, now_ts):
     pool = [i for i in items if _stale(i) and (now_ts - i.get("published_ts", 0)) <= MAX_AGE_H * 3600]
