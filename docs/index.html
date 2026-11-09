@@ -143,7 +143,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
         <section class="sec" data-sec="portfolio"><h3>By portfolio<span class="pick"></span></h3><div class="body"><ul id="buzz" class="buzz"></ul></div></section>
         <section class="sec" data-sec="region"><h3>By region<span class="pick"></span></h3><div class="body"><ul id="regions" class="two" title="The ten economic development regions. A local outlet's stories go to its home region; a statewide or big regional outlet's story goes to the regions whose places it names. Choosing a region includes its local news."></ul></div></section>
         <section class="sec" data-sec="outlet"><h3>By outlet<span class="pick"></span></h3><div class="body"><ul id="outlets"></ul><div id="more-outlets" class="moreo"></div>
-        <div class="legend"><span><i class="dot" style="background:#b3411f"></i>Albany specialist</span><span><i class="dot" style="background:#1c4587"></i>General outlet</span><span><i class="dot" style="background:#a07a3c"></i>Local outlet</span><span><i class="dot" style="background:#5b7f3a"></i>Official / advocacy</span></div></div></section>
+        <div class="legend" id="catlegend"></div></div></section>
         <section class="sec" data-sec="official"><h3>By official<span class="pick"></span></h3><div class="body"><ul id="officials"></ul></div></section>
         <div class="qbox"><input type="search" class="q2" placeholder="Search the archive…"></div>
       </div>
@@ -151,9 +151,10 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
   </div>
   <div class="foot">Personal reading tool. Native RSS where available, Google News RSS where not; official releases come straight from each office's own site (the Governor, Attorney General, Comptroller, Assembly Speaker, Senate Majority Leader and Mayor); Senate members' releases come through Google News. Refreshes every 30 minutes. Local outlets across the state (their own dot color) come in through their own feeds; the Latest tab hides them unless you turn that off or choose a region or outlet. Regions are the state's ten economic development regions: a local outlet's stories go to its home region, a larger outlet's to the regions whose places the story names. Every article is its own row; "+N related stories" under a row lists other outlets' articles on the same subject, matched by headline, not copies of it. Dot color is the source tier; scores are heuristic. <a href="scoring.html" style="color:inherit">Scoring check</a></div>
 </div>
+<script src="labels.js"></script>
 <script>
 const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",region:"",d1:false,hd:false,zm:false,op:true,lc:true,gate:""};
-// "Hide local outlets" (Ted, 11/9): by outlet (tier 4), never by story, and on the Latest tab only; Picks shows everything, ranked
+// "Hide local outlets" (Ted, 11/9): by outlet (category "local"), never by story, and on the Latest tab only; Picks shows everything, ranked
 const hideLocal=()=>S.view==="latest"&&S.lc&&!S.region&&!S.outlet&&!S.q.trim();
 // Desktop opens with every sidebar section shut, headings only (Ted 11/7); a shut section names its active choice.
 // On a phone the drawer opens with portfolio and region showing. Not remembered between visits.
@@ -161,11 +162,11 @@ let SHUT=matchMedia("(max-width:900px)").matches?{outlet:1,official:1}:{flags:1,
 let ITEMS=[],META={};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-// Dot color = source tier (what the ranking leans on): 1 Albany specialist, 2 general outlet, 3 official / advocacy, 4 local outlet (11/6)
-const TIERCOL={1:"#b3411f",2:"#1c4587",3:"#5b7f3a",4:"#a07a3c"};
-const TIERNAME={1:"Albany specialist",2:"General outlet",3:"Official / advocacy",4:"Local outlet"};
-let OT={};   // outlet -> best tier seen, for the sidebar
-const col=o=>TIERCOL[OT[o]||2];
+// Dot color = outlet category; names and colors come from labels.js, shared with the Scoring check page (Ted, 11/9)
+const catOf=c=>CAT[c]||CAT.other;
+let OT={};   // outlet -> category, for the sidebar
+const col=o=>catOf(OT[o]).color;
+$("#catlegend").innerHTML=OUTLET_CATS.map(c=>`<span><i class="dot" style="background:${c.color}"></i>${esc(c.name)}</span>`).join("");
 const ago=ts=>{const m=Math.max(1,Math.round((Date.now()/1000-ts)/60));if(m<60)return "within the last hour";const h=Math.round(m/60);if(h<24)return h+"h ago";const d=Math.round(h/24);return d<14?d+"d ago":new Date(ts*1000).toLocaleDateString(undefined,{month:"short",day:"numeric"})};
 // publish times come from the feeds; the labels are relative, so they are recomputed every minute (tick) rather than frozen at load
 // "within the last hour" is red (Ted, 10/25: that in place of a NEW tag, which was unclear and clutter)
@@ -180,7 +181,7 @@ let official=new Set(["Governor's Office","NY Senate","NY Assembly"]);
 const OFFNAME={"Governor's Office":"Governor","NY Senate":"State senators","NYC Mayor":"Mayor of New York City","NY Assembly":"Assembly (older notices)"};
 const oname=o=>OFFNAME[o]||o;
 function setView(v){S.view=v;$$(".nav button").forEach(x=>x.classList.toggle("active",x.dataset.view===v))}
-function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${TIERCOL[i.tier]||TIERCOL[2]}" title="${TIERNAME[i.tier]||TIERNAME[2]}"></i><span class="outlet">${esc(oname(i.outlet))}</span></span>${tsSpan(i.published_ts,true)}${(i.regions||[]).length&&i.regions.length<3?`<span>${esc(i.regions.join(" · "))}</span>`:""}${pwBadge(i)}</div>`}
+function metaLine(i){return `<div class="meta"><span><i class="dot" style="background:${catOf(i.cat).color}" title="${esc(catOf(i.cat).name)}"></i><span class="outlet">${esc(oname(i.outlet))}</span></span>${tsSpan(i.published_ts,true)}${(i.regions||[]).length&&i.regions.length<3?`<span>${esc(i.regions.join(" · "))}</span>`:""}${pwBadge(i)}</div>`}
 function chips(i){return `<div class="chips">${i.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${i.flags.filter(f=>f!=="opinion").map(f=>`<span class="chip flag">${esc(f)}</span>`).join("")}${S.view==="review"&&i.gate?`<span class="chip flag">gate: ${esc(i.gate)}</span>`:""}${S.view==="review"&&i.llm?`<span class="chip flag">${esc(i.llm.type)}${i.llm.inv?" · investigative":""}</span>`:""}</div>`}
 // Other stories on the same subject (scripts/cluster.py, headline similarity): different articles, never copies of this one
 function related(i){if(!i.tid)return "";const r=ITEMS.filter(x=>x.tid===i.tid&&x.id!==i.id).sort((a,b)=>b.score-a.score);if(!r.length)return "";const outs=[...new Set(r.map(x=>x.outlet))];
@@ -194,7 +195,7 @@ function stories(list){const m=new Map();for(const i of list){const k=i.cid||i.i
   return {...lead,score:Math.max(...g.map(x=>x.score)),more}})}   // lead = best outlet (cluster.py); score = the group's best
 // Browsing views show the last week; a search covers the whole archive (180 days). Every word must match.
 function base(){const q=S.q.toLowerCase().split(/\s+/).filter(Boolean),cut=S.d1?Date.now()/1000-86400:q.length?0:Date.now()/1000-S.range*86400;
- return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.region||(i.regions||[]).includes(S.region))&&(!hideLocal()||i.tier!==4)&&(!S.hd||i.hochul)&&(!S.zm||i.mamdani)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
+ return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.region||(i.regions||[]).includes(S.region))&&(!hideLocal()||i.cat!=="local")&&(!S.hd||i.hochul)&&(!S.zm||i.mamdani)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
 function render(){const f=base();let html="";
  if(S.q.trim()){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Search <span>${l.length} ${l.length===1?"story":"stories"} in the archive, newest first</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="picks"){const now=Date.now()/1000;const p=stories(f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet))).sort((a,b)=>b.score-a.score);
@@ -208,7 +209,7 @@ function render(){const f=base();let html="";
   const L=META.llm||{},W=L.week||{},SM=META.summaries||{};
   const lastAge=L.last?(Date.now()-Date.parse(L.last))/3600000:null,stale=(W.unclassified||0)>0&&(lastAge===null||lastAge>6);
   html+=`<h2 class="sec">Model classification <span>Claude Haiku · spend to date $${(L.cost_usd||0).toFixed(2)} over ${L.calls||0} calls, ${L.items||0} items${lastAge!==null?` · last judged ${lastAge<1?"within the hour":Math.round(lastAge)+"h ago"}`:""}</span>${stale?`<span class="chip flag" style="color:var(--new)">classifier not running: check the API key (set to expire 2026-11-24)</span>`:""}</h2>`;
-  html+=`<p class="note">Each new story goes to a small model once, with its headline, outlet and summary, and comes back with topics and a story type that the score uses in place of keyword guesses. Last 7 days: ${W.classified||0} classified, ${W.unclassified||0} waiting. Types: ${Object.entries(W.types||{}).map(([t,n])=>`${t} ${n}`).join(" · ")||"none yet"}. Judged investigative: ${W.investigative||0}. Summaries: ${SM.total||0} of ${META.total||0} items have one (${SM.og||0} recovered from the article page). Mamdani named without the Governor, last 7 days: ${META.zm_only||0}.</p>`;
+  html+=`<p class="note">Each new story goes to a small model once, with its headline, outlet and summary, and comes back with topics and a story type that the score uses in place of keyword guesses. Last 7 days: ${W.classified||0} classified, ${W.unclassified||0} waiting. Types: ${Object.entries(W.types||{}).map(([t,n])=>`${COVERAGE_NAME[t]||t} ${n}`).join(" · ")||"none yet"}. Judged investigative: ${W.investigative||0}. Summaries: ${SM.total||0} of ${META.total||0} items have one (${SM.og||0} recovered from the article page). Mamdani named without the Governor, last 7 days: ${META.zm_only||0}.</p>`;
   const zm=ITEMS.filter(i=>i.mamdani&&!i.hochul&&i.published_ts>=cut).sort((a,b)=>b.score-a.score);
   if(zm.length)html+=`<h2 class="sec">Mamdani, not Hochul <span>${zm.length} · is this a clean City-story signal?</span></h2>`+zm.slice(0,25).map(row).join("");
   const g=ITEMS.filter(i=>i.gate&&i.published_ts>=cut&&(!S.gate||i.gate===S.gate)).sort((a,b)=>b.published_ts-a.published_ts);
@@ -230,13 +231,13 @@ function fromHash(){const h=location.hash.slice(1);if(!h||h==="review")return;co
 // a count bar drawn behind a sidebar row, scaled to the busiest row of its list
 const bk=(n,mx)=>{const w=Math.round(100*n/Math.max(1,mx));return ` style="background:linear-gradient(to right,var(--chip) ${w}%,transparent ${w}%)"`};
 function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i.published_ts>=cut&&(!S.op||!i.flags.includes("opinion")));
- const wk=hideLocal()?all.filter(i=>i.tier!==4):all;
+ const wk=hideLocal()?all.filter(i=>i.cat!=="local"):all;
  // regions in fixed order, west to east then downstate (geo.REGIONS)
  const rc={};for(const i of all)for(const g of (i.regions||[]))rc[g]=(rc[g]||0)+1;
  const rmx=Math.max(...Object.values(rc),1);
  $("#regions").innerHTML=(META.regions||[]).map(g=>`<li data-region="${esc(g)}" class="${S.region===g?"on":""}${rc[g]?"":" zero"}"${bk(rc[g]||0,rmx)}><span>${esc(g)}</span><span class="n">${rc[g]||0}</span></li>`).join("");
  $$("#regions li").forEach(el=>el.onclick=()=>{S.region=S.region===el.dataset.region?"":el.dataset.region;render()});
- $("#n-lc").textContent=all.filter(i=>i.tier===4).length;$('.tog[data-k="lc"]').style.display=S.view==="latest"?"":"none";
+ $("#n-lc").textContent=all.filter(i=>i.cat==="local").length;$('.tog[data-k="lc"]').style.display=S.view==="latest"?"":"none";
  $("#n-op").textContent=ITEMS.filter(i=>i.published_ts>=cut&&i.flags.includes("opinion")).length;
  $$(".tog").forEach(el=>{const on=S[el.dataset.k];el.classList.toggle("on",on);el.querySelector(".lbl").textContent=(on?"Hiding ":"Showing ")+el.dataset.what});
  // a shut section names what is chosen in it, so a filter is never hidden
@@ -277,7 +278,7 @@ async function load(){try{let lc;[ITEMS,META,lc]=await Promise.all([fetch("data/
  const iso=META.last_run_iso||(META.last_run||"").replace(" UTC","Z").replace(" ","T");
  let when=META.last_run;
  try{const d=new Date(iso);if(!isNaN(d))when=d.toLocaleString("en-US",{timeZone:"America/New_York",month:"numeric",day:"numeric",year:"2-digit",hour:"numeric",minute:"2-digit"}).replace(",","").replace(":00 "," ")}catch(e){}
- OT={};for(const i of ITEMS){if(!(i.outlet in OT)||i.tier<OT[i.outlet])OT[i.outlet]=i.tier}
+ OT={};for(const i of ITEMS)OT[i.outlet]=i.cat
  official=new Set(META.officials||official);
  const ageMin=(Date.now()-new Date(iso).getTime())/60000;
  const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"});const pd=(META.per_day||{})[today];

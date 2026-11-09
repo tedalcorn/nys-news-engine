@@ -12,7 +12,7 @@ from general outlets that doesn't pass the keyword gate (below), dedupes by URL 
 groups different outlets' coverage of the same story (`scripts/cluster.py`), merges with the archive,
 and writes `docs/data/items.json` and `docs/data/meta.json`.
 `docs/index.html` renders that client-side: Picks (ranked, 72h), Latest (chronological),
-Official (every `official=True` source in sources.py: Governor, AG, Comptroller, Speaker, Majority Leader, Senate members, Mayor), Paywalled; search, outlet, official and topic filters (counts = last week), a date window,
+Releases (every `official=True` source in sources.py: Governor, AG, Comptroller, Speaker, Majority Leader, Senate members, Mayor); search, outlet, official and topic filters (counts = last week), a date window,
 and toggles for the last 24 hours, stories centered on the Governor, stories centered on Mayor Mamdani, and hiding opinion.
 
 ### Summaries and the model pass (`scripts/extract.py`, `scripts/classify.py`)

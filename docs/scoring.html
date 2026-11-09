@@ -37,7 +37,9 @@ th{text-align:right;font-weight:600;color:var(--fg2);font-size:12.5px;padding:5p
 td{text-align:right;padding:6px 8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:13px;vertical-align:top}
 th:first-child,td:first-child{text-align:left;font-family:var(--sans);font-size:14px;padding-left:0;white-space:nowrap}
 th.d,td.d{text-align:left;font-family:var(--sans);font-size:13px;color:var(--fg2);min-width:240px}
-.outs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:1px}
+.sub{color:var(--fg2);font-size:13.5px;margin:-4px 0 10px;max-width:76ch}
+.outs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .ot{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:10px 12px}
 .ot h3{font-size:14px;font-weight:800;margin:0}.ot p{font-size:12px;color:var(--fg2);margin:2px 0 8px}
 .ot ul{list-style:none;margin:0;padding:0;max-height:340px;overflow-y:auto}
@@ -70,26 +72,18 @@ th.d,td.d{text-align:left;font-family:var(--sans);font-size:13px;color:var(--fg2
 <header><div class="back"><a href="./">NYS News Engine</a></div><h1>Scoring Check</h1><p class="lede" id="lede">Loading…</p></header>
 <section><div class="bands" id="bands"></div></section>
 <section><h2>How the week's stories are distributed</h2><div class="chartbox" id="cb"><svg id="chart" viewBox="0 0 900 270" role="img" aria-label="Histogram of stories by policy signal"></svg><div class="tip" id="tip" hidden></div></div></section>
-<section class="tw"><h2>By coverage type</h2><table id="t1"></table></section>
-<section class="tw"><h2>By outlet category</h2><table id="t2"></table></section>
+<section class="tw"><h2>By coverage type</h2><p class="sub">What a story is about, judged story by story by a small model. Who published it is the outlet category, below.</p><table id="t1"></table></section>
+<section class="tw"><h2>By outlet category</h2><p class="sub">Who published a story. Each outlet belongs to one category, the same one that sets its dot color on the main page.</p><table id="t2"></table></section>
 <section><h2>Outlets in each category</h2><div class="outs" id="outs"></div></section>
 <section><h2>Scan the headlines</h2>
-<div class="ctl"><button data-s="all" class="on">All outlets</button><button data-s="local">Local outlets</button><button data-s="other">Larger outlets</button>
+<div class="ctl"><select id="cat" aria-label="Filter by outlet category"></select>
 <select id="typ" aria-label="Filter by coverage type"></select><span class="sp"></span><button id="new">New random sample</button></div>
 <div class="cols" id="cols"></div></section>
 </div>
+<script src="labels.js"></script>
 <script>
-// Coverage types: the model's ids (classify.py TYPES) with the names and meanings shown here. Points are score.py TYPE_ADJ, plus the page-only local −10.
-const TYPES=[["policy","Policy","State government action or its effects: legislation, the budget, agencies, courts, programs",4],
-["campaign","Campaign","Election horse race: polls, endorsements, ads, fundraising, debates, race previews",0],
-["announcement","Press releases","A press release, or a story that only restates one: grants, ribbon cuttings, appointments",-6],
-["opinion","Opinion (older stories)","No longer assigned; left on stories judged before 11/9",0],
-["other","Other (mostly non-policy)","Whatever fits no other type: sports, business, culture, human interest. A few state-related stories land here too",-8],
-["local","Local government","New York City, county, town or school-district news with no state role",-10],
-["blotter","Crime blotter","A crime, arrest, court case, accident or fire with no state policy dimension",-12],
-["national","National","Federal, other-state or foreign news where New York State is not a party",-15]];
-const NAME=Object.fromEntries(TYPES.map(t=>[t[0],t[1]]));
-const CATS=[[1,"Albany specialists","Outlets built around state government"],[2,"General outlets","Every other news outlet, including anything Google search finds"],[3,"Advocacy and think tanks","Budget and policy groups"],[4,"Local outlets","Hidden from Latest by default"],["off","Official offices","Releases tab only; not scored here"]];
+// Names, meanings and colors live in labels.js, shared with the main page.
+const TYPES=COVERAGE_TYPES,NAME=COVERAGE_NAME,CATS=OUTLET_CATS,dot=c=>`<i class="dot" style="background:${c.color}"></i>`;
 const band=s=>s>=6?"High":s>=0?"Medium":"Low",B=["High","Medium","Low"],C={High:"var(--high)",Medium:"var(--med)",Low:"var(--low)"},RANGE={High:"6 or more",Medium:"0 to 5",Low:"below 0"};
 const $=s=>document.querySelector(s),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const pct=(a,b)=>b?Math.round(100*a/b)+"%":"0%",fmt=n=>n.toLocaleString("en-US"),pts=n=>n>0?"+"+n:n<0?"−"+(-n):"0";
@@ -104,26 +98,25 @@ function hist(){const h={};R.forEach(r=>h[r.s]=(h[r.s]||0)+1);const xs=Object.ke
  s+=`<text x="${L+pw/2}" y="${H-3}" text-anchor="middle">policy signal</text>`;$("#chart").innerHTML=s;
  const tip=$("#tip"),cb=$("#cb");$("#chart").addEventListener("mousemove",e=>{const v=e.target.dataset&&e.target.dataset.v;if(v===undefined){tip.hidden=true;return}tip.textContent=`Signal ${v}: ${fmt(+e.target.dataset.c)} stories (${band(+v)})`;tip.hidden=false;const b=cb.getBoundingClientRect();tip.style.left=Math.min(e.clientX-b.left+cb.scrollLeft+10,b.width-190)+"px";tip.style.top=(e.clientY-b.top-34)+"px"});$("#chart").addEventListener("mouseleave",()=>tip.hidden=true)}
 const shares=x=>{const c={High:0,Medium:0,Low:0};x.forEach(r=>c[band(r.s)]++);return B.map(b=>`<td>${pct(c[b],x.length)}</td>`).join("")};
-let seed=20261109,src="all";function rng(){seed=(seed+0x6D2B79F5)|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}
-const PER=30;function draw(){const ty=$("#typ").value,pool=R.filter(r=>(src==="all"||(src==="local")===(r.k===4))&&(!ty||r.l===ty));
+let seed=20261109;function rng(){seed=(seed+0x6D2B79F5)|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}
+const PER=30;function draw(){const ty=$("#typ").value,ca=$("#cat").value,pool=R.filter(r=>(!ca||r.k===ca)&&(!ty||r.l===ty));
  $("#cols").innerHTML=B.map(b=>{const x=pool.filter(r=>band(r.s)===b),a=x.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
  return `<div class="col"><h3><span class="sw" style="background:${C[b]}"></span>${b}<small>${Math.min(PER,x.length)} of ${fmt(x.length)}</small></h3>`+(a.length?a.slice(0,PER).map(r=>`<div class="it"><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a><div class="m">${esc(r.o)} · ${esc(NAME[r.l]||r.l)} · ${r.s}</div></div>`).join(""):'<div class="none">No stories match.</div>')+"</div>"}).join("")}
 async function load(){let A,L,M;try{[A,L,M]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/local.json").then(r=>r.json()).catch(()=>[]),fetch("data/meta.json").then(r=>r.json())])}catch(e){$("#lede").textContent="Could not load the data.";return}
- const all=A.concat(L).filter(i=>!i.link.includes("news.google.")),off=new Set(M.officials||[]),cut=Date.now()/1000-7*86400;
- R=all.filter(i=>i.published_ts>=cut&&!off.has(i.outlet)&&i.llm&&i.llm.type&&typeof i.signal==="number").map(i=>({t:i.title,o:i.outlet,u:i.link,l:i.llm.type,s:i.signal,k:i.tier}));
- $("#lede").textContent=`${fmt(R.length)} stories from the last seven days, press releases from official offices excluded (updated ${M.last_run}). Policy signal scores a story on its content alone: 3 points for each governance word in the headline or summary (up to 15), 3 for campaign words, plus the points for its coverage type. A story that names another state and nothing in New York takes −15. Outlet, recency and Hochul don't count here. The −10 for local government applies only on this page; the live ranking dropped it on 11/9.`;
+ const all=A.concat(L).filter(i=>!i.link.includes("news.google.")),cut=Date.now()/1000-7*86400;
+ R=all.filter(i=>i.published_ts>=cut&&i.cat!=="official"&&i.llm&&NAME[i.llm.type]&&typeof i.signal==="number").map(i=>({t:i.title,o:i.outlet,u:i.link,l:i.llm.type,s:i.signal,k:i.cat}));
+ $("#lede").textContent=`${fmt(R.length)} stories from the last seven days, press releases from official offices excluded (updated ${M.last_run}). Policy signal scores a story on its content alone: 3 points for each governance word in the headline or summary (up to 15), 3 for election words, plus the points for its coverage type. A story that names another state and nothing in New York takes −15. Outlet, recency and Hochul don't count here. The −10 for city and county government applies only on this page; the live ranking dropped it on 11/9.`;
  const cnt={High:0,Medium:0,Low:0};R.forEach(r=>cnt[band(r.s)]++);
  $("#bands").innerHTML=B.map(b=>`<div class="band"><div class="h"><span class="sw" style="background:${C[b]}"></span>${b}</div><div class="n">${fmt(cnt[b])}</div><div class="r">${pct(cnt[b],R.length)} of stories · signal ${RANGE[b]}</div></div>`).join("");
  hist();
  $("#t1").innerHTML=`<tr><th>Coverage type</th><th class="d">What it means</th><th>Points</th><th>Stories</th><th>High</th><th>Medium</th><th>Low</th></tr>`+TYPES.map(t=>{const x=R.filter(r=>r.l===t[0]);return x.length?`<tr><td>${esc(t[1])}</td><td class="d">${esc(t[2])}</td><td>${pts(t[3])}</td><td>${fmt(x.length)}</td>${shares(x)}</tr>`:""}).join("");
- $("#t2").innerHTML=`<tr><th>Outlet category</th><th>Stories</th><th>High</th><th>Medium</th><th>Low</th></tr>`+CATS.filter(c=>c[0]!=="off").map(c=>{const x=R.filter(r=>r.k===c[0]);return x.length?`<tr><td>${esc(c[1])}</td><td>${fmt(x.length)}</td>${shares(x)}</tr>`:""}).join("");
- // outlet lists: an outlet belongs to the category most of its stories carry; counts are stories in the last seven days
- const o={};for(const i of all){const e=o[i.outlet]||(o[i.outlet]={t:{},w:0,n:0});e.n++;e.t[i.tier]=(e.t[i.tier]||0)+1;if(i.published_ts>=cut)e.w++}
- const cat=(n,e)=>off.has(n)?"off":+Object.entries(e.t).sort((a,b)=>b[1]-a[1])[0][0];
- $("#outs").innerHTML=CATS.map(c=>{const x=Object.entries(o).filter(([n,e])=>cat(n,e)===c[0]).sort((a,b)=>b[1].w-a[1].w||b[1].n-a[1].n);
-  return `<div class="ot"><h3>${esc(c[1])}</h3><p>${esc(c[2])}. ${fmt(x.length)} outlets; count is last 7 days.</p><ul>${x.map(([n,e])=>`<li${e.w?"":' class="z"'}><span>${esc(n)}</span><span class="c">${fmt(e.w)}</span></li>`).join("")}</ul></div>`}).join("");
- $("#typ").innerHTML='<option value="">All coverage types</option>'+TYPES.map(t=>`<option value="${t[0]}">${esc(t[1])}</option>`).join("");
- document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{src=b.dataset.s;document.querySelectorAll("[data-s]").forEach(x=>x.classList.toggle("on",x===b));draw()});$("#typ").onchange=draw;$("#new").onclick=draw;draw()}
+ $("#t2").innerHTML=`<tr><th>Outlet category</th><th>Stories</th><th>High</th><th>Medium</th><th>Low</th></tr>`+CATS.filter(c=>c.id!=="official").map(c=>{const x=R.filter(r=>r.k===c.id);return x.length?`<tr><td>${dot(c)}${esc(c.name)}</td><td>${fmt(x.length)}</td>${shares(x)}</tr>`:""}).join("");
+ // outlet lists: each outlet has one category (scripts/categories.py); counts are stories in the last seven days
+ const o={};for(const i of all){const e=o[i.outlet]||(o[i.outlet]={c:i.cat,w:0,n:0});e.n++;if(i.published_ts>=cut)e.w++}
+ $("#outs").innerHTML=CATS.map(c=>{const x=Object.entries(o).filter(([n,e])=>e.c===c.id).sort((a,b)=>b[1].w-a[1].w||b[1].n-a[1].n);
+  return `<div class="ot"><h3>${dot(c)}${esc(c.name)}</h3><p>${esc(c.desc)}. ${fmt(x.length)} outlets; count is last 7 days.</p><ul>${x.map(([n,e])=>`<li${e.w?"":' class="z"'}><span>${esc(n)}</span><span class="c">${fmt(e.w)}</span></li>`).join("")}</ul></div>`}).join("");
+ $("#cat").innerHTML='<option value="">All outlet categories</option>'+CATS.filter(c=>c.id!=="official").map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join("");$("#typ").innerHTML='<option value="">All coverage types</option>'+TYPES.map(t=>`<option value="${t[0]}">${esc(t[1])}</option>`).join("");
+ $("#cat").onchange=draw;$("#typ").onchange=draw;$("#new").onclick=draw;draw()}
 load();
 </script>
 </body>
