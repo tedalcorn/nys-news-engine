@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-09 09:03 UTC",
- "last_run_iso": "2026-11-09T09:00:27Z",
- "total": 8521,
+ "last_run": "2026-11-09 09:33 UTC",
+ "last_run_iso": "2026-11-09T09:30:18Z",
+ "total": 8513,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 15",
@@ -9,14 +9,14 @@
   "Politico NY Playbook": "ok 22",
   "Times Union": "ok 6",
   "NY State of Politics": "ok 2",
-  "Newsday": "ok 10",
+  "Newsday": "ok 9",
   "Daily News": "ok 7",
   "Times Union (gnews)": "ok 3",
   "Newsday (gnews)": "ok 2",
   "Daily News (gnews)": "ok 3",
   "Politico": "ok 1",
   "Gotham Gazette": "ok 0",
-  "Gothamist": "ok 11",
+  "Gothamist": "ok 12",
   "New York Times": "ok 5",
   "New York Times (nyt)": "ok 9",
   "NY Post Politics": "ok 2",
@@ -71,7 +71,7 @@
   "WKTV": "ok 25",
   "Rome Sentinel": "ok 30",
   "The Daily Star (Oneonta)": "ok 0",
-  "WIBX": "ok 34",
+  "WIBX": "ok 35",
   "WWNY": "ok 17",
   "Watertown Daily Times": "ok 4",
   "Press-Republican": "ok 28",
@@ -79,7 +79,7 @@
   "Adirondack Explorer": "ok 8",
   "WTEN News10": "ok 42",
   "WNYT": "ok 22",
-  "Daily Gazette": "ok 7",
+  "Daily Gazette": "ok 5",
   "Troy Record": "ok 7",
   "Post-Star": "ok 12",
   "WAMC": "ok 7",
@@ -101,9 +101,9 @@
   "27east": "ok 38",
   "Google News: local outlets 1": "ok 84",
   "Google News: local outlets 2": "ok 76",
-  "Google News: local outlets 3": "ok 70",
-  "Google News: local outlets 4": "ok 47",
-  "Google News: Hochul": "ok 34",
+  "Google News: local outlets 3": "ok 71",
+  "Google News: local outlets 4": "ok 48",
+  "Google News: Hochul": "ok 33",
   "Google News: Legislature": "ok 6",
   "Google News: Courts & statewide officials": "ok 7",
   "Google News: State agencies": "ok 9",
@@ -272,7 +272,6 @@
   "Facebook",
   "Finger Lakes Daily News",
   "FingerLakes1",
-  "Fingerlakes1.com",
   "Fiscal Policy Institute",
   "Flack Broadcasting",
   "Focus Gaming News",
@@ -289,7 +288,6 @@
   "Franklin Observer",
   "GV Wire",
   "Gay City News",
-  "Giants Wire",
   "Globe Opinion | Substack",
   "Go Long | Tyler Dunne",
   "Gothamist",
@@ -914,13 +912,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 846,
-  "free": 3639,
-  "unknown": 3992,
+  "hard": 847,
+  "free": 3642,
+  "unknown": 3980,
   "null": 29,
   "metered": 15
  },
- "extracted": 6174,
+ "extracted": 6181,
  "runner": "pi",
  "per_day": {
   "2026-10-27": {
@@ -961,14 +959,14 @@
   },
   "2026-11-05": {
    "stories": 119,
-   "official": 12
+   "official": 13
   },
   "2026-11-06": {
    "stories": 162,
    "official": 8
   },
   "2026-11-07": {
-   "stories": 47,
+   "stories": 46,
    "official": 0
   },
   "2026-11-08": {
@@ -976,23 +974,23 @@
    "official": 0
   },
   "2026-11-09": {
-   "stories": 6,
+   "stories": 7,
    "official": 0
   }
  },
- "grouped_stories": 539,
+ "grouped_stories": 540,
  "gates": {
   "letitia james": 72,
   "politics: democrat": 56,
   "politics: election": 50,
   "politics: republican": 47,
-  "Lawmakers sweep": 42,
-  "suny": 28,
+  "Lawmakers sweep": 43,
+  "suny": 27,
   "dinapoli": 20,
-  "politics: mayor": 19,
+  "politics: mayor": 20,
+  "politics: mamdani": 17,
   "politics: law": 16,
-  "politics: mamdani": 16,
-  "politics: congress": 14,
+  "politics: congress": 15,
   "board of elections": 13,
   "politics: midterm": 12,
   "senate district": 11,
@@ -1009,6 +1007,7 @@
   "politics: judge": 6,
   "department of health": 5,
   "politics: lawmaker": 5,
+  "politics: siena": 4,
   "politics: county executive": 4,
   "politics: gop": 4,
   "politics: rep.": 4,
@@ -1020,12 +1019,11 @@
   "ballot proposal": 3,
   "state attorney general": 3,
   "state police": 3,
-  "State agencies sweep": 3,
   "politics: blue wave": 3,
   "ny attorney general": 3,
   "politics: poll": 3,
-  "politics: siena": 3,
   "politics: elected": 3,
+  "State agencies sweep": 2,
   "politics: federal judge": 2,
   "politics: candidate": 2,
   "ballot question": 2,
@@ -1052,30 +1050,30 @@
   "politics: working families party": 1,
   "thruway": 1
  },
- "unresolved_links": 41,
+ "unresolved_links": 26,
  "summaries": {
-  "total": 5895,
+  "total": 5900,
   "og": 2489,
-  "none": 2626
+  "none": 2613
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 1225,
-  "items": 17649,
-  "cost_usd": 0.6783,
-  "last": "2026-11-09T09:00:27Z",
+  "calls": 1227,
+  "items": 17682,
+  "cost_usd": 0.6796,
+  "last": "2026-11-09T09:30:18Z",
   "week": {
-   "classified": 4269,
+   "classified": 4255,
    "unclassified": 0,
    "types": {
-    "other": 1540,
-    "campaign": 762,
-    "local": 580,
-    "blotter": 479,
+    "other": 1524,
+    "campaign": 760,
+    "local": 583,
+    "blotter": 480,
     "national": 339,
-    "policy": 241,
+    "policy": 240,
     "announcement": 167,
-    "opinion": 161
+    "opinion": 162
    },
    "investigative": 29
   },
@@ -1172,11 +1170,11 @@
     "cost_usd": 0.07192
    },
    "2026-11-09": {
-    "calls": 42,
-    "items": 784,
-    "input_tokens": 196026,
-    "output_tokens": 21933,
-    "cost_usd": 0.025452
+    "calls": 44,
+    "items": 817,
+    "input_tokens": 204894,
+    "output_tokens": 23123,
+    "cost_usd": 0.026725
    }
   }
  },
@@ -1193,21 +1191,21 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 3169,
-  "local_story": 3077,
-  "with_region": 3787
+  "local_outlet": 3166,
+  "local_story": 3068,
+  "with_region": 3775
  },
  "region_counts": {
   "North Country": 237,
-  "New York City": 526,
+  "New York City": 527,
   "Long Island": 215,
   "Capital Region": 373,
   "Western New York": 404,
-  "Southern Tier": 293,
+  "Southern Tier": 294,
   "Mid-Hudson": 356,
-  "Central New York": 300,
+  "Central New York": 299,
   "Finger Lakes": 664,
   "Mohawk Valley": 244
  },
- "zm_only": 58
+ "zm_only": 60
 }
