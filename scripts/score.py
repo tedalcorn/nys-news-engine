@@ -186,6 +186,7 @@ OUTLET_RANK = {"New York Times": 3, "Wall Street Journal": 2, "Newsday": 2, "Tim
     "AOL.com": -2, "Yahoo": -2, "Yahoo News": -2, "MSN": -2, "Mirage News": -2, "Hoodline": -2, "NYC.gov": -1, "Daily Kos": -1}
 NYT_HOCHUL = 6          # on top of the outlet weight: the Times on the Governor is always worth reading
 HOCHUL_RE  = re.compile(r"\bhochul\b|\bgovernor\b|\bgov\.")
+HOCHUL_NAME = re.compile(r"\bhochul\b")   # the name itself: HOCHUL_RE also matches other states' governors
 MAMDANI_RE = re.compile(r"\bmamdani\b")
 # What the model's story type is worth (classify.py). Policy reporting is the point of the tool; a press-release
 # rewrite, a crime story, a City Hall story or a Washington story is not, however good the outlet.
@@ -219,7 +220,10 @@ def score(item, now_ts):
     if _rhits(text, CAMPAIGN_RE): s += 3
     hoch = hochul_where(item)
     is_op = is_opinion(item)
-    if hoch == "headline" and not is_op: s += 5   # she is the subject
+    # Hochul by name in the headline or dek, any outlet (Ted, 11/9: a stronger signal than the Times's own +10)
+    if not is_op:
+        if HOCHUL_NAME.search(text): s += 12
+        elif hoch == "headline": s += 5   # "governor" in the headline without her name
     s += OUTLET_WEIGHT.get(item.get("outlet", ""), 0) + DOMAIN_BOOST.get(item.get("domain"), 0)
     if hoch and item.get("outlet") == "New York Times": s += NYT_HOCHUL
     if is_op:  s -= 15

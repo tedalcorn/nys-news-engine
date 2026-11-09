@@ -145,7 +145,7 @@ governance word is present; "Knicks" was sinking James Dolan donor stories) + th
 (`TYPE_ADJ`: policy +4, announcement −6, blotter −12, national −15) + a recency term, 20·e^(−h/30),
 so 9 at a day old, 4 at two, 2 at three
 + a long-form bonus (+3 at 700 words, +6 at 1,200, +12 at 2,000; the NYT API word count is kept over the
-paywall stub the extractor sees) + 5 when the headline names Hochul or the governor (+6 more if the outlet is the Times; the Picks lead cards also allow at most two per outlet). Each item carries
+paywall stub the extractor sees) + 12 when the headline or dek names Hochul, at any outlet, or + 5 when the headline says "governor" without her name (+6 more if the outlet is the Times; the Picks lead cards also allow at most two per outlet). Each item carries
 `hochul` and `mamdani` = `headline` / `dek` / null, which drive the sidebar's "Centered on" filters. The page shows the full
 recipe as a rollover on any score. Paywall status falls back
 to the outlet's known policy (`HARD_PAYWALL` / `METERED` in `extract.py`) for items never fetched. Topic tags are the model's when an item has been classified, else word-start keyword matches (`TAGS`).
