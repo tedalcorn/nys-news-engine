@@ -1,15 +1,15 @@
 {
- "last_run": "2026-11-09 06:03 UTC",
- "last_run_iso": "2026-11-09T06:00:26Z",
- "total": 8485,
+ "last_run": "2026-11-09 06:33 UTC",
+ "last_run_iso": "2026-11-09T06:30:07Z",
+ "total": 8465,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 15",
   "City & State (gnews)": "ok 5",
   "Politico NY Playbook": "ok 22",
-  "Times Union": "ok 5",
+  "Times Union": "ok 6",
   "NY State of Politics": "ok 2",
-  "Newsday": "ok 13",
+  "Newsday": "ok 12",
   "Daily News": "ok 7",
   "Times Union (gnews)": "ok 3",
   "Newsday (gnews)": "ok 3",
@@ -100,8 +100,8 @@
   "RiverheadLOCAL": "ok 8",
   "27east": "ok 38",
   "Google News: local outlets 1": "ok 81",
-  "Google News: local outlets 2": "ok 75",
-  "Google News: local outlets 3": "ok 69",
+  "Google News: local outlets 2": "ok 74",
+  "Google News: local outlets 3": "ok 68",
   "Google News: local outlets 4": "ok 50",
   "Google News: Hochul": "ok 39",
   "Google News: Legislature": "ok 6",
@@ -272,7 +272,6 @@
   "Facebook",
   "Finger Lakes Daily News",
   "FingerLakes1",
-  "Fingerlakes1.com",
   "Fiscal Policy Institute",
   "Flack Broadcasting",
   "Focus Gaming News",
@@ -289,7 +288,6 @@
   "Franklin Observer",
   "GV Wire",
   "Gay City News",
-  "Giants Wire",
   "Globe Opinion | Substack",
   "Go Long | Tyler Dunne",
   "Gothamist",
@@ -914,13 +912,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 842,
-  "free": 3610,
-  "unknown": 3989,
+  "hard": 843,
+  "free": 3611,
+  "unknown": 3967,
   "null": 29,
   "metered": 15
  },
- "extracted": 6133,
+ "extracted": 6138,
  "runner": "pi",
  "per_day": {
   "2026-10-27": {
@@ -961,7 +959,7 @@
   },
   "2026-11-05": {
    "stories": 119,
-   "official": 12
+   "official": 13
   },
   "2026-11-06": {
    "stories": 162,
@@ -972,7 +970,7 @@
    "official": 0
   },
   "2026-11-08": {
-   "stories": 40,
+   "stories": 41,
    "official": 0
   },
   "2026-11-09": {
@@ -980,14 +978,14 @@
    "official": 0
   }
  },
- "grouped_stories": 541,
+ "grouped_stories": 539,
  "gates": {
   "letitia james": 71,
   "politics: democrat": 56,
   "politics: election": 50,
   "politics: republican": 47,
-  "Lawmakers sweep": 42,
-  "suny": 28,
+  "Lawmakers sweep": 43,
+  "suny": 27,
   "dinapoli": 20,
   "politics: mayor": 18,
   "politics: law": 16,
@@ -1009,6 +1007,7 @@
   "politics: judge": 6,
   "department of health": 5,
   "politics: lawmaker": 5,
+  "politics: siena": 4,
   "politics: county executive": 4,
   "politics: gop": 4,
   "politics: rep.": 4,
@@ -1020,12 +1019,11 @@
   "ballot proposal": 3,
   "state attorney general": 3,
   "state police": 3,
-  "State agencies sweep": 3,
   "politics: blue wave": 3,
   "ny attorney general": 3,
-  "politics: siena": 3,
   "politics: poll": 3,
   "politics: elected": 3,
+  "State agencies sweep": 2,
   "politics: federal judge": 2,
   "politics: candidate": 2,
   "ballot question": 2,
@@ -1052,30 +1050,30 @@
   "politics: working families party": 1,
   "thruway": 1
  },
- "unresolved_links": 43,
+ "unresolved_links": 18,
  "summaries": {
-  "total": 5859,
-  "og": 2476,
-  "none": 2626
+  "total": 5861,
+  "og": 2479,
+  "none": 2604
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 1214,
-  "items": 17429,
-  "cost_usd": 0.6712,
-  "last": "2026-11-09T06:00:26Z",
+  "calls": 1215,
+  "items": 17449,
+  "cost_usd": 0.672,
+  "last": "2026-11-09T06:30:07Z",
   "week": {
-   "classified": 4235,
+   "classified": 4215,
    "unclassified": 0,
    "types": {
-    "other": 1520,
-    "campaign": 760,
+    "other": 1501,
+    "campaign": 759,
     "local": 574,
     "blotter": 475,
     "national": 336,
     "policy": 241,
-    "announcement": 168,
-    "opinion": 161
+    "announcement": 167,
+    "opinion": 162
    },
    "investigative": 29
   },
@@ -1172,11 +1170,11 @@
     "cost_usd": 0.07192
    },
    "2026-11-09": {
-    "calls": 31,
-    "items": 564,
-    "input_tokens": 143708,
-    "output_tokens": 16294,
-    "cost_usd": 0.018363
+    "calls": 32,
+    "items": 584,
+    "input_tokens": 148343,
+    "output_tokens": 16818,
+    "cost_usd": 0.019169
    }
   }
  },
@@ -1193,16 +1191,16 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 3140,
-  "local_story": 3046,
-  "with_region": 3757
+  "local_outlet": 3133,
+  "local_story": 3026,
+  "with_region": 3736
  },
  "region_counts": {
   "North Country": 236,
   "New York City": 525,
-  "Long Island": 215,
+  "Long Island": 216,
   "Capital Region": 359,
-  "Western New York": 400,
+  "Western New York": 402,
   "Southern Tier": 292,
   "Mid-Hudson": 352,
   "Central New York": 299,
