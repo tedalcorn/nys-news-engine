@@ -48,7 +48,6 @@ TYPES = {
                     "attacks between candidates, race previews",
     "announcement": "a press release, or a story that only restates one: grants awarded, ribbon cuttings, "
                     "appointments, 'Governor announces', 'Senator X announces'",
-    "opinion":      "editorial, op-ed, column, letter, endorsement, analysis clearly labeled as opinion",
     "blotter":      "a crime, arrest, court case, accident or fire story with no state policy dimension",
     "local":        "New York City or county/town/school-district government news with no state role, "
                     "including the Mayor's own actions and NYC Council business",
@@ -70,7 +69,7 @@ SYSTEM = (
     "Types:\n" + "\n".join(f"- {k}: {v}" for k, v in TYPES.items()) + "\n\n"
     "Rules. A story about a candidate's record or plans on a policy question is 'campaign' if framed by the "
     "race and 'policy' if framed by the policy. A story that names the Governor only in passing is not "
-    "automatically 'policy'. A newspaper endorsement ('Jane Doe for Assembly District 12') is 'opinion'. "
+    "automatically 'policy'. "
     "Mayor Mamdani acting as mayor, with no state role, is 'local'. A crime, misconduct or court story involving a "
     "state agency, state official or state employee (the State Police, DOCCS, a legislator, a commissioner) is "
     "'policy', not 'blotter': the office reads those. 'investigative' is true only when the "

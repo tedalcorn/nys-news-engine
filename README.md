@@ -25,7 +25,7 @@ section blurbs, sign-up pitches) are dropped.
 
 `classify.py` then sends every item without an `llm` field (7-day window, 150 a run in batches of 25) to
 Claude Haiku with its outlet, headline and summary, asking for up to three topics from the fixed `TAGS` list,
-one story type (`policy`, `campaign`, `announcement`, `opinion`, `blotter`, `local`, `national`, `other`)
+one story type (`policy`, `campaign`, `announcement`, `blotter`, `local`, `national`, `other`; older verdicts may still say `opinion`, which no longer does anything)
 and an investigative yes/no. The answer is cached on the item; `score.py` uses the topics in place of its
 keyword tags and the type as a score adjustment (`TYPE_ADJ`). Each call's token usage and cost go to
 `docs/data/llm_usage.json` (totals and by day) and the `#review` page shows spend to date. The step runs
@@ -116,10 +116,12 @@ substrings, "ed ra" (Assemblyman Ed Ra) matched "heated race".
   through their own feeds (`LOCAL` block in `scripts/sources.py`), plus four Google queries for local outlets with no
   usable feed. Wire copy, sports, obituaries, advice columns and sponsored pages are dropped by path, byline and headline
   (`LOCAL_SKIP_PATH`, `LOCAL_SKIP_BYLINE`, `LOCAL_NOISE` in `fetch.py`). A local outlet's story that clears the state
-  filter is an ordinary item (scored from a lower base: tier 4 = 10). One that doesn't, or clears only the politics
-  gate (a mayor's race), is a **local story** (`local: true`, a further -5): it lives in `docs/data/local.json`, is kept
-  30 days, never appears in Picks or the default feeds, and is loaded by the page only when a region, an outlet, or
-  "Hide local news" off asks for it. Syracuse.com's full feed works the same way (`local_overflow`).
+  filter is an ordinary item (scored from a lower base: tier 4 = 10). Since 11/9 everything these outlets publish is
+  shown, ranked by the outlet's tier; no story is hidden or docked for being "local". The one exception is by outlet:
+  the Latest tab hides all tier 4 outlets by default ("Hide local outlets"; a region, outlet or search overrides it). A story that fails the state
+  filter or clears only the politics gate still carries `local: true`, but that now only means it lives in
+  `docs/data/local.json` (always loaded by the page) and is kept 30 days instead of 180. Syracuse.com's full feed works
+  the same way (`local_overflow`).
 - **Regions (`scripts/geo.py`).** The ten Regional Economic Development Council regions. Small local outlets tag
   by their home region (`LOCAL_HOME`, `PATH_HOME` for regional editions such as Spectrum and News 12); statewide, NYC
   and big regional outlets by the places the headline and summary name (counties as "X County", and a list of
@@ -135,12 +137,12 @@ substrings, "ed ra" (Assemblyman Ed Ra) matched "heated race".
 
 ## Scoring (`scripts/score.py`)
 
-Outlet tier (30/20/12; the Times +6, national Fox brands −8, `OUTLET_WEIGHT`)
+Outlet tier (30/20/12/10; `OUTLET_WEIGHT`: the Times +10, NY Post +5, Daily News, Times Union, Politico and Newsday +4, national Fox brands −8; `DOMAIN_BOOST`: Gothamist, Crain's, Bloomberg, amNY, NPR, WSJ, Chalkbeat and CNN +2 and no sweep penalty; the boosts are editorial judgment, not measured audience)
 + governance vocabulary (`POLICY`, word-start matches, up to 15) + 3 if campaign vocabulary appears (one slot, however
-many words: a race story is not policy substance) − 15 opinion (headline label, `/opinion/`-style URL path, an
-endorsement-shaped headline, or the model's verdict) − 8 breaking/live − 30 sports/entertainment (only when no
+many words: a race story is not policy substance) − 15 opinion (publisher signals only: `/opinion/`-style URL path, the NYT API's own article type, or the literal word
+"editorial" in the headline; never the model) − 8 breaking/live − 30 sports/entertainment (only when no
 governance word is present; "Knicks" was sinking James Dolan donor stories) + the model's story-type adjustment
-(`TYPE_ADJ`: policy +4, announcement −6, blotter −12, local −10, national −15) + a recency term, 20·e^(−h/30),
+(`TYPE_ADJ`: policy +4, announcement −6, blotter −12, national −15) + a recency term, 20·e^(−h/30),
 so 9 at a day old, 4 at two, 2 at three
 + a long-form bonus (+3 at 700 words, +6 at 1,200, +12 at 2,000; the NYT API word count is kept over the
 paywall stub the extractor sees) + 5 when the headline names Hochul or the governor (+6 more if the outlet is the Times; the Picks lead cards also allow at most two per outlet). Each item carries

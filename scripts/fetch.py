@@ -468,7 +468,7 @@ def _per_day(items, days=14):
     out = {}
     off = set(OFFICIALS)
     for it in items:
-        if it.get("cid", it["id"]) != it["id"] or gnlinks.is_google(it["link"]) or it.get("local"): continue   # hidden until resolved; local news hidden by default
+        if it.get("cid", it["id"]) != it["id"] or gnlinks.is_google(it["link"]): continue   # hidden until resolved
         d = dt.datetime.fromtimestamp(it["published_ts"], ET).strftime("%Y-%m-%d")
         o = out.setdefault(d, {"stories": 0, "official": 0})
         o["official" if it["outlet"] in off else "stories"] += 1

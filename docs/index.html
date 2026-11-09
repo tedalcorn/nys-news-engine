@@ -127,7 +127,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <button data-view="official" title="Press releases straight from the Governor, Attorney General, Comptroller, legislative leaders, senators, the Mayor and state agencies">Releases</button>
     <span class="sp"></span>
     <span class="togs" id="togs"><span class="tog on" data-k="op" data-what="opinion" title="Opinion pieces, columns and editorials, last week. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-op"></span></span>
-    <span class="tog on" data-k="lc" data-what="local news" title="Local outlets' stories that aren't about the state, last week: town and county government, local crime, schools, business. Choosing a region or an outlet shows them anyway. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-lc"></span></span></span>
+    <span class="tog on" data-k="lc" data-what="local outlets" title="Everything from local papers, TV and radio stations, last week, whatever the story is about. Applies to the Latest tab only; choosing a region or an outlet, or searching, shows them anyway. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-lc"></span></span></span>
     <input type="search" id="q" placeholder="Search the archive…">
   </nav>
   <div class="grid">
@@ -153,14 +153,12 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 </div>
 <script>
 const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",region:"",d1:false,hd:false,zm:false,op:true,lc:true,gate:""};
+// "Hide local outlets" (Ted, 11/9): by outlet (tier 4), never by story, and on the Latest tab only; Picks shows everything, ranked
+const hideLocal=()=>S.view==="latest"&&S.lc&&!S.region&&!S.outlet&&!S.q.trim();
 // Desktop opens with every sidebar section shut, headings only (Ted 11/7); a shut section names its active choice.
 // On a phone the drawer opens with portfolio and region showing. Not remembered between visits.
 let SHUT=matchMedia("(max-width:900px)").matches?{outlet:1,official:1}:{flags:1,portfolio:1,region:1,outlet:1,official:1};
-let ITEMS=[],META={},LOCALSTATE="";   // local.json (local stories): "", "loading", "done"
-// Local stories are a separate file (fetch.py, 11/6) fetched the first time a region, an outlet or "show local news" needs them
-const needLocal=()=>S.region||S.outlet||!S.lc;
-function loadLocal(){if(LOCALSTATE)return;LOCALSTATE="loading";
- fetch("data/local.json").then(r=>r.json()).then(l=>{ITEMS=ITEMS.concat(l.filter(i=>!i.link.includes("news.google.")));LOCALSTATE="done";render()}).catch(()=>{LOCALSTATE="done"})}
+let ITEMS=[],META={};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 // Dot color = source tier (what the ranking leans on): 1 Albany specialist, 2 general outlet, 3 official / advocacy, 4 local outlet (11/6)
@@ -196,8 +194,8 @@ function stories(list){const m=new Map();for(const i of list){const k=i.cid||i.i
   return {...lead,score:Math.max(...g.map(x=>x.score)),more}})}   // lead = best outlet (cluster.py); score = the group's best
 // Browsing views show the last week; a search covers the whole archive (180 days). Every word must match.
 function base(){const q=S.q.toLowerCase().split(/\s+/).filter(Boolean),cut=S.d1?Date.now()/1000-86400:q.length?0:Date.now()/1000-S.range*86400;
- return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.region||(i.regions||[]).includes(S.region))&&(!S.lc||!i.local||S.region||S.outlet)&&(!S.hd||i.hochul)&&(!S.zm||i.mamdani)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
-function render(){if(needLocal())loadLocal();const f=base();let html="";
+ return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.region||(i.regions||[]).includes(S.region))&&(!hideLocal()||i.tier!==4)&&(!S.hd||i.hochul)&&(!S.zm||i.mamdani)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
+function render(){const f=base();let html="";
  if(S.q.trim()){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Search <span>${l.length} ${l.length===1?"story":"stories"} in the archive, newest first</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="picks"){const now=Date.now()/1000;const p=stories(f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet))).sort((a,b)=>b.score-a.score);
   // lead cards: at most two per outlet, so one strong outlet cannot fill the top of the page; the rest flow into More
@@ -232,16 +230,13 @@ function fromHash(){const h=location.hash.slice(1);if(!h||h==="review")return;co
 // a count bar drawn behind a sidebar row, scaled to the busiest row of its list
 const bk=(n,mx)=>{const w=Math.round(100*n/Math.max(1,mx));return ` style="background:linear-gradient(to right,var(--chip) ${w}%,transparent ${w}%)"`};
 function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i.published_ts>=cut&&(!S.op||!i.flags.includes("opinion")));
- const wk=all.filter(i=>!S.lc||!i.local||S.region||S.outlet);
- // regions in fixed order, west to east then downstate (geo.REGIONS), local news included: it is what a region view is for.
- // Until local.json has loaded, its stories' counts are meta's region_counts (non-opinion, local included) less what items.json holds.
- const rc={},nl={};for(const i of all)for(const g of (i.regions||[]))rc[g]=(rc[g]||0)+1;
- if(LOCALSTATE!=="done"){for(const i of ITEMS)if(i.published_ts>=cut&&!i.local&&!i.flags.includes("opinion"))for(const g of (i.regions||[]))nl[g]=(nl[g]||0)+1;
-  for(const [g,n] of Object.entries(META.region_counts||{}))rc[g]=(rc[g]||0)+Math.max(0,n-(nl[g]||0))}
+ const wk=hideLocal()?all.filter(i=>i.tier!==4):all;
+ // regions in fixed order, west to east then downstate (geo.REGIONS)
+ const rc={};for(const i of all)for(const g of (i.regions||[]))rc[g]=(rc[g]||0)+1;
  const rmx=Math.max(...Object.values(rc),1);
  $("#regions").innerHTML=(META.regions||[]).map(g=>`<li data-region="${esc(g)}" class="${S.region===g?"on":""}${rc[g]?"":" zero"}"${bk(rc[g]||0,rmx)}><span>${esc(g)}</span><span class="n">${rc[g]||0}</span></li>`).join("");
  $$("#regions li").forEach(el=>el.onclick=()=>{S.region=S.region===el.dataset.region?"":el.dataset.region;render()});
- $("#n-lc").textContent=(META.local||{}).local_story||0;
+ $("#n-lc").textContent=all.filter(i=>i.tier===4).length;$('.tog[data-k="lc"]').style.display=S.view==="latest"?"":"none";
  $("#n-op").textContent=ITEMS.filter(i=>i.published_ts>=cut&&i.flags.includes("opinion")).length;
  $$(".tog").forEach(el=>{const on=S[el.dataset.k];el.classList.toggle("on",on);el.querySelector(".lbl").textContent=(on?"Hiding ":"Showing ")+el.dataset.what});
  // a shut section names what is chosen in it, so a filter is never hidden
@@ -275,7 +270,7 @@ function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i
  $$("#buzz li[data-tag]").forEach(el=>el.onclick=()=>{S.tag=S.tag===el.dataset.tag?"":el.dataset.tag;render()});
  $$("#outlets li,#officials li").forEach(el=>el.onclick=()=>{const o=el.dataset.outlet;S.outlet=S.outlet===o?"":o;
   if(S.outlet&&official.has(o))setView("official");else if(S.outlet&&S.view==="official")setView("latest");render()})}
-async function load(){try{[ITEMS,META]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json())])}catch(e){$("#meta").textContent="Could not load data.";return}
+async function load(){try{let lc;[ITEMS,META,lc]=await Promise.all([fetch("data/items.json").then(r=>r.json()),fetch("data/meta.json").then(r=>r.json()),fetch("data/local.json").then(r=>r.json()).catch(()=>[])]);ITEMS=ITEMS.concat(lc.filter(i=>!i.link.includes("news.google.")))}catch(e){$("#meta").textContent="Could not load data.";return}
  // Google News redirect links dead-end for Workspace accounts that block Google News; the resolve-links
  // workflow swaps in publisher URLs within the hour, and a story stays hidden until that has happened.
  ITEMS=ITEMS.filter(i=>!i.link.includes("news.google."));

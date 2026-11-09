@@ -24,12 +24,12 @@ POLICY = ["budget","article vii","bill","veto","sign","chapter amendment","legis
     "casino","gun","3d-printed","insurance","transit","subway"]
 CAMPAIGN = ["election","primary","campaign","blakeman","poll","endorse","ballot","voters","debate"]
 GOV_TERMS = ["hochul","governor","gov.","executive chamber"]
-OPINION  = ["opinion:","op-ed","editorial:","editorial board","letters:","commentary","column:","perspective:",
-    "editor's note","editor’s note","our view"]
-# The URL is the reliable opinion signal: 27 of 34 /opinion/ items were unflagged on 10/25, all of Newsday's
-# endorsements among them ("Josh Slaughter for Assembly District 3").
-OPINION_URL = re.compile(r"/(opinion|opinions|editorial|editorials|letters|op-ed|oped|commentary|columnists?|viewpoints?)/")
-ENDORSE_RE  = re.compile(r"^[A-Z][\w.'’\- ]{3,60} for (the )?(state )?(assembly|senate|congress|governor|attorney general|comptroller)\b", re.I)
+# Opinion is the publisher's call, never ours (Ted, 11/9): the URL section, or the NYT API's own type_of_material
+# (item["opinion"], set in fetch.py). No headline wording and no model verdict: Haiku hid an NYT news story on Hochul
+# as opinion, and an "X for governor" endorsement pattern caught "Hochul wins reelection for governor".
+# City & State files op-eds under /nyn-media/ with the label only in the slug; Churchill is the Times Union's columnist.
+OPINION_URL = re.compile(r"/(opinion|opinions|editorial|editorials|letters|op-ed|op-eds|oped|commentary|columnists?|viewpoints?|churchill)/"
+                         r"|cityandstateny\.com/.*/opinion-(?!poll)")
 BREAKING = [re.compile(p) for p in (r"live updates", r"\blive:", r"\bbreaking\b", r"\bwatch:", r"\bvideo:", r"\bphotos?:", r"b-roll")]
 NOISE    = ["knicks","yankees","mets","giants","jets","rangers","nets","islanders","celebrity","recipe","horoscope",
     "concert","podcast","restaurant review","weather","lottery","obituary","real estate listing","dear abby"]
@@ -166,7 +166,15 @@ TAG_RE      = {k: [_rx(t) for t in terms] for k, terms in TAGS.items()}
 
 # Outlet adjustments on top of tier (Chamber colleagues, 2026-10-24): the Times matters most, Fox a little less.
 # A Fox 5 New York local-news segment is not docked; the national Fox brands are.
-OUTLET_WEIGHT = {"New York Times": 6, "Fox News": -8, "Fox Business": -8, "FOX One": -8}   # Times trimmed 10 -> 6 (10/24): it was crowding Picks
+# Prominence boosts (Ted, 11/9: show everything, boost the outlets that matter most to NYC and Albany readers). These are
+# JUDGMENT, not measured audience: no source gives subscribers by NYC/Albany, and audited figures omit most of these papers.
+OUTLET_WEIGHT = {"New York Times": 10,
+    "NY Post Metro": 5, "NY Post Politics": 5, "Daily News": 4, "Times Union": 4, "Politico": 4, "Politico NY Playbook": 4, "Newsday": 4,
+    "Fox News": -8, "Fox Business": -8, "FOX One": -8}
+# A couple of points above the general run of outlets (Ted, 11/9). By domain, because Google labels these several ways
+# (amNY / amNewYork, WSJ / Wall Street Journal). They are also spared the sweep penalty below: most reach us through sweeps.
+DOMAIN_BOOST = {d: 2 for d in ("gothamist.com", "crainsnewyork.com", "bloomberg.com", "amny.com", "npr.org", "wsj.com",
+    "chalkbeat.org", "cnn.com", "edition.cnn.com")}
 # Which outlet led a grouped story when cluster.py ran (grouping off since 10/25; kept for cluster.py's import). Without it the lead
 # was whichever copy scored highest, which favored free outlets with deks and readable bodies (FingerLakes1's
 # rewrite of an AG release) over paywalled ones that arrive via Google with neither (Newsday's own report).
@@ -180,7 +188,7 @@ HOCHUL_RE  = re.compile(r"\bhochul\b|\bgovernor\b|\bgov\.")
 MAMDANI_RE = re.compile(r"\bmamdani\b")
 # What the model's story type is worth (classify.py). Policy reporting is the point of the tool; a press-release
 # rewrite, a crime story, a City Hall story or a Washington story is not, however good the outlet.
-TYPE_ADJ = {"policy": 4, "campaign": 0, "announcement": -6, "opinion": 0, "blotter": -12, "local": -10, "national": -15, "other": -8}
+TYPE_ADJ = {"policy": 4, "campaign": 0, "announcement": -6, "opinion": 0, "blotter": -12, "local": 0, "national": -15, "other": -8}
 
 def _where(rx, item):
     """'headline' if the name is in the headline, 'dek' if only in the summary, else None."""
@@ -190,33 +198,29 @@ def _where(rx, item):
 
 def hochul_where(item): return _where(HOCHUL_RE, item)
 
-def is_op_head(text): return bool(_hits(text, OPINION))
-
 def _hits(text, terms): return sum(1 for t in terms if t in text)
 
 def _rhits(text, rxs): return sum(1 for r in rxs if r.search(text))
 
-def is_opinion(item, text):
-    if _hits(text, OPINION) or item.get("opinion"): return True
-    if OPINION_URL.search((item.get("link") or "").lower()): return True
-    if ENDORSE_RE.match(item.get("title", "")): return True
-    llm = item.get("llm")
-    return bool(llm and llm.get("type") == "opinion")
+EDITORIAL_WORD = re.compile(r"\beditorial\b", re.I)   # the one headline word that counts (Ted, 11/9): the publisher saying so
+
+def is_opinion(item):
+    return bool(item.get("opinion") or OPINION_URL.search((item.get("link") or "").lower())
+                or EDITORIAL_WORD.search(item.get("title") or ""))
 
 def score(item, now_ts):
     text = (item.get("title","") + " " + item.get("summary","")).lower()
     tier = item.get("tier", 2)
     # tier 4 = local outlet (Ted, 11/6: "down-score them because they won't likely be breaking news that is as
-    # important"); a local outlet's story that isn't about the state (`local`) loses 5 more
+    # important"). That is judged by the outlet alone: no story-level "local" penalty (Ted, 11/9).
     s = {1:30, 2:20, 3:12, 4:10}.get(tier, 15)
-    if item.get("local"): s -= 5
     pol = min(_rhits(text, POLICY_RE), 5); s += pol*3
     if _rhits(text, CAMPAIGN_RE): s += 3
     hoch = hochul_where(item)
-    if hoch == "headline" and not is_op_head(text): s += 5   # she is the subject
-    s += OUTLET_WEIGHT.get(item.get("outlet", ""), 0)
+    is_op = is_opinion(item)
+    if hoch == "headline" and not is_op: s += 5   # she is the subject
+    s += OUTLET_WEIGHT.get(item.get("outlet", ""), 0) + DOMAIN_BOOST.get(item.get("domain"), 0)
     if hoch and item.get("outlet") == "New York Times": s += NYT_HOCHUL
-    is_op = is_opinion(item, text)
     if is_op:  s -= 15
     if any(r.search(text) for r in BREAKING): s -= 8
     if not pol and _hits(text, NOISE): s -= 30            # "knicks" was sinking James Dolan donor stories
@@ -225,7 +229,7 @@ def score(item, now_ts):
     age_h = max(0.0, (now_ts - item.get("published_ts", now_ts)) / 3600.0)
     s += 20 * math.exp(-age_h / 30.0)   # 20/9/4/2 at 0/24/48/72 h: a tiebreak among substantive stories, not a score of its own
     s += 4 * min(item.get("n_cov", 1) - 1, 3)   # several outlets on the same subject: the story matters (cluster.topics)
-    if item.get("kind") == "gnews" and item.get("sweep") and tier != 4: s -= 12   # sweeps are noisier (tier 2 base, so net = old tier 3 - 4)
+    if item.get("kind") == "gnews" and item.get("sweep") and tier != 4 and item.get("domain") not in DOMAIN_BOOST: s -= 12  # sweeps are noisier (tier 2 base, so net = old tier 3 - 4)
     w = item.get("words", 0)
     if w >= 2000: s += 12           # magazine-length feature
     elif w >= 1200: s += 6          # long-form
