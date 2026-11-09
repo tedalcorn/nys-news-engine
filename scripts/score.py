@@ -5,6 +5,7 @@ breaking/opinion/entertainment. Since 2026-10-25 a model's verdict on what kind 
 preferred to the keyword guesses here whenever the item carries them; the keywords remain the fallback for
 items not yet judged and for runs without an API key."""
 import math, re
+from sources import OUT_OF_STATE, NY_ANCHORS
 
 # The language of investigative reporting: records obtained and analyzed. Kept narrow on purpose. Earlier
 # versions included "investigation", "internal", "memo", "exclusive", "review of", "found that" and
@@ -206,6 +207,12 @@ def _rhits(text, rxs): return sum(1 for r in rxs if r.search(text))
 
 EDITORIAL_WORD = re.compile(r"\beditorial\b", re.I)   # the one headline word that counts (Ted, 11/9): the publisher saying so
 
+# Names another state and nothing in New York: scored like a national story whatever the model called it (Ted, 11/9:
+# Talarico's Texas Senate win ranked high on the words "legislator" and "Senate"). Whole words: "maine" is inside "remained".
+_OUT_RE = re.compile(r"\b(" + "|".join(re.escape(t) for t in OUT_OF_STATE) + r")\b")
+_NY_RE  = re.compile(r"\bny\b|" + "|".join(re.escape(t) for t in NY_ANCHORS))
+def out_of_state(text): return bool(_OUT_RE.search(text)) and not _NY_RE.search(text)
+
 def is_opinion(item):
     return bool(item.get("opinion") or OPINION_URL.search((item.get("link") or "").lower())
                 or EDITORIAL_WORD.search(item.get("title") or ""))
@@ -217,7 +224,7 @@ def score(item, now_ts):
     # important"). That is judged by the outlet alone: no story-level "local" penalty (Ted, 11/9).
     s = {1:30, 2:20, 3:12, 4:10}.get(tier, 15)
     pol = min(_rhits(text, POLICY_RE), 5); s += pol*3
-    if _rhits(text, CAMPAIGN_RE): s += 3
+    camp = 3 if _rhits(text, CAMPAIGN_RE) else 0; s += camp
     hoch = hochul_where(item)
     is_op = is_opinion(item)
     # Hochul by name in the headline or dek, any outlet (Ted, 11/9: a stronger signal than the Times's own +10)
@@ -230,7 +237,10 @@ def score(item, now_ts):
     if any(r.search(text) for r in BREAKING): s -= 8
     if not pol and _hits(text, NOISE): s -= 30            # "knicks" was sinking James Dolan donor stories
     llm = item.get("llm")
-    if llm and not llm.get("miss"): s += TYPE_ADJ.get(llm.get("type"), 0)
+    ltype = llm.get("type") if llm and not llm.get("miss") else None
+    adj = TYPE_ADJ.get(ltype, 0)
+    if out_of_state(text): adj = min(adj, TYPE_ADJ["national"])
+    s += adj
     age_h = max(0.0, (now_ts - item.get("published_ts", now_ts)) / 3600.0)
     s += 20 * math.exp(-age_h / 30.0)   # 20/9/4/2 at 0/24/48/72 h: a tiebreak among substantive stories, not a score of its own
     s += 4 * min(item.get("n_cov", 1) - 1, 3)   # several outlets on the same subject: the story matters (cluster.topics)
@@ -247,5 +257,8 @@ def score(item, now_ts):
         tags = [k for k, rxs in TAG_RE.items() if _rhits(text, rxs)]
     flags = ["opinion"] if is_op else []
     item["hochul"] = hoch
+    # content alone, for docs/scoring.html: no outlet, recency or Hochul. Keeps the −10 for the "local" label, which the live
+    # ranking dropped on 11/9, so the page can show what that label would do.
+    item["signal"] = pol*3 + camp + (min(adj, -10) if ltype == "local" else adj)
     item["mamdani"] = _where(MAMDANI_RE, item)
     return round(s, 1), tags, flags

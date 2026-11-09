@@ -142,7 +142,7 @@ Outlet tier (30/20/12/10; `OUTLET_WEIGHT`: the Times +10, NY Post +5, Daily News
 many words: a race story is not policy substance) − 15 opinion (publisher signals only: `/opinion/`-style URL path, the NYT API's own article type, or the literal word
 "editorial" in the headline; never the model) − 8 breaking/live − 30 sports/entertainment (only when no
 governance word is present; "Knicks" was sinking James Dolan donor stories) + the model's story-type adjustment
-(`TYPE_ADJ`: policy +4, announcement −6, blotter −12, national −15) + a recency term, 20·e^(−h/30),
+(`TYPE_ADJ`: policy +4, announcement −6, blotter −12, national −15; a story naming another state and nothing in New York takes the −15 whatever its label) + a recency term, 20·e^(−h/30),
 so 9 at a day old, 4 at two, 2 at three
 + a long-form bonus (+3 at 700 words, +6 at 1,200, +12 at 2,000; the NYT API word count is kept over the
 paywall stub the extractor sees) + 12 when the headline or dek names Hochul, at any outlet, or + 5 when the headline says "governor" without her name (+6 more if the outlet is the Times; the Picks lead cards also allow at most two per outlet). Each item carries
