@@ -122,6 +122,7 @@ substrings, "ed ra" (Assemblyman Ed Ra) matched "heated race".
   filter or clears only the politics gate still carries `local: true`, but that now only means it lives in
   `docs/data/local.json` (always loaded by the page) and is kept 30 days instead of 180. Syracuse.com's full feed works
   the same way (`local_overflow`).
+- **Scoring check (`docs/scoring.html`, linked at the foot of the main page).** Live page for reviewing the ranking: the week's stories by content-only `signal` (set in `score.py`), by coverage type and outlet category, the outlets in each category, and random headlines at each level.
 - **Regions (`scripts/geo.py`).** The ten Regional Economic Development Council regions. Small local outlets tag
   by their home region (`LOCAL_HOME`, `PATH_HOME` for regional editions such as Spectrum and News 12); statewide, NYC
   and big regional outlets by the places the headline and summary name (counties as "X County", and a list of
