@@ -97,6 +97,20 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 .foot{color:var(--muted);font-size:12px;padding:18px 0 40px;border-top:1px solid var(--line)}
 .mast .right{white-space:nowrap}
 .togs{display:inline-flex;gap:6px;align-items:center}.ftog,.qbox{display:none}
+/* wide desktop (Ted 11/9): one row for title, tabs, toggles and search; a thin row under it for tagline and status. The first section heading's detail moves up to that thin row. */
+.scope{text-transform:none;letter-spacing:0}
+@media (max-width:1119px){.scope{display:none}}
+@media (min-width:1120px){
+ .top{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:30px;align-items:center;border-bottom:3px double var(--fg);padding:14px 0 8px}
+ .top .mast,.top .mast>div:first-child{display:contents}
+ .brand{grid-area:1/1;font-size:30px}
+ .top .nav{grid-area:1/2;border:0;padding:0;flex-wrap:nowrap}
+ .top .tog{white-space:nowrap;flex:none}.top .togs{display:flex;flex:none;gap:6px}.top .nav #q{min-width:130px;flex:0 1 240px;margin-left:6px}
+ .tag{grid-row:2;grid-column:1/-1;margin-top:7px}
+ .mast .right{grid-row:2;grid-column:1/-1;justify-self:end;margin-top:7px}
+ .grid{padding-top:14px}
+ #main.lift>h2.sec:first-child{display:none}
+}
 /* phone and narrow windows (Ted 11/7): two-line masthead, filters right under the tabs in a drawer, search inside the drawer */
 @media (max-width:900px){
  .wrap{padding:0 16px}
@@ -117,8 +131,9 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 </head>
 <body>
 <div class="wrap">
+  <div class="top">
   <header class="mast">
-    <div><a class="brand" href="./" title="Back to Picks, freshly loaded">NYS <em>News</em> Engine</a><div class="tag">Ranked for reporting depth</div></div>
+    <div><a class="brand" href="./" title="Back to Picks, freshly loaded">NYS <em>News</em> Engine</a><div class="tag">Ranked for reporting depth<span class="scope" id="scope"></span></div></div>
     <div class="right"><span id="meta">loading…</span></div>
   </header>
   <nav class="nav">
@@ -130,6 +145,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <span class="tog on" data-k="lc" data-what="local outlets" title="Everything from local papers, TV and radio stations, last week, whatever the story is about. Applies to the Latest tab only; choosing a region or an outlet, or searching, shows them anyway. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-lc"></span></span></span>
     <input type="search" id="q" placeholder="Search the archive…">
   </nav>
+  </div>
   <div class="grid">
     <main id="main"></main>
     <aside class="side">
@@ -218,7 +234,7 @@ function render(){const f=base();let html="";
   html+=`<div class="gates">${tally.map(([t,n])=>`<span class="chip ${S.gate===t?"on":""}" data-gate="${esc(t)}">${esc(t)} ${n}</span>`).join("")}</div>`;
   html+=g.length?g.map(row).join(""):'<div class="empty">Nothing admitted by the wider gate yet.</div>'}
  else if(S.view==="official"){const l=f.filter(i=>official.has(i.outlet)).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Releases <span>press releases · ${l.length}</span></h2>`+(l.length?l.map(row).join(""):'<div class="empty">Nothing in range.</div>')}
- toHash();$("#main").innerHTML=html;$$(".gates .chip").forEach(el=>el.onclick=()=>{S.gate=S.gate===el.dataset.gate?"":el.dataset.gate;render()});sidebar()}
+ toHash();$("#main").innerHTML=html;{const h=S.view!=="review"&&$("#main>h2.sec:first-child span");$("#scope").textContent=h?" · "+h.textContent:"";$("#main").classList.toggle("lift",!!h)}$$(".gates .chip").forEach(el=>el.onclick=()=>{S.gate=S.gate===el.dataset.gate?"":el.dataset.gate;render()});sidebar()}
 // The settings live in the URL hash (Ted 11/7), so a view can be bookmarked or sent: #view=latest&region=Western+New+York&hd=1
 // Only what differs from the default is written; opinion=1 / local=1 mean "showing" them. #review stays its own page.
 const HK=["tag","region","outlet","q"],HB=["hd","zm","d1"];
