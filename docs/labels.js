@@ -14,7 +14,7 @@ const CAT=Object.fromEntries(OUTLET_CATS.map(c=>[c.id,c]));
 const COVERAGE_TYPES=[["policy","Policy","State government action or its effects: legislation, the budget, agencies, courts, programs",4],
 ["campaign","Election coverage","Races and candidates: polls, endorsements, ads, fundraising, debates, race previews",0],
 ["announcement","Press releases","A press release, or a story that only restates one: grants, ribbon cuttings, appointments",-6],
-["other","Other (mostly non-policy)","Whatever fits no other type: sports, business, culture, human interest. A few state-related stories land here too",-8],
+["other","Other (mostly non-policy)","Whatever fits no other type: sports, business, culture, human interest. A few state-related stories land here too",-15],
 ["local","City and county government","New York City, county, town or school-district news with no state role",-10],
 ["blotter","Crime blotter","A crime, arrest, court case, accident or fire with no state policy dimension",-12],
 ["national","Federal and out-of-state","Federal, other-state or foreign news where New York State is not a party",-15]];

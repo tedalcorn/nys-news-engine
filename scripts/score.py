@@ -191,7 +191,7 @@ HOCHUL_NAME = re.compile(r"\bhochul\b")   # the name itself: HOCHUL_RE also matc
 MAMDANI_RE = re.compile(r"\bmamdani\b")
 # What the model's story type is worth (classify.py). Policy reporting is the point of the tool; a press-release
 # rewrite, a crime story, a City Hall story or a Washington story is not, however good the outlet.
-TYPE_ADJ = {"policy": 4, "campaign": 0, "announcement": -6, "blotter": -12, "local": 0, "national": -15, "other": -8}
+TYPE_ADJ = {"policy": 4, "campaign": 0, "announcement": -6, "blotter": -12, "local": 0, "national": -15, "other": -15}   # other: -8 until 11/10, when a fresh Other story scored the same as the median policy story
 
 def _where(rx, item):
     """'headline' if the name is in the headline, 'dek' if only in the summary, else None."""

@@ -142,7 +142,7 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
     <button data-view="official" title="Press releases straight from the Governor, Attorney General, Comptroller, legislative leaders, senators, the Mayor and state agencies">Releases<small class="tabd"></small></button>
     <span class="sp"></span>
     <span class="togs" id="togs"><span class="tog on" data-k="op" data-what="opinion" title="Opinion pieces, columns and editorials, last week. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-op"></span></span>
-    <span class="tog on" data-k="lc" data-what="local outlets" title="Everything from local papers, TV and radio stations, last week, whatever the story is about. Applies to the Latest tab only; choosing a region or an outlet, or searching, shows them anyway. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-lc"></span></span></span>
+    <span class="tog on" data-k="lc" data-what="local outlets" title="Everything from local papers, TV and radio stations, last week, whatever the story is about, plus the regional dailies' stories that are not about state government. Applies to the Latest tab only; choosing a region or an outlet, or searching, shows them anyway. Click to show or hide them."><b class="lbl"></b> <span class="n" id="n-lc"></span></span></span>
     <input type="search" id="q" placeholder="Search the archive…">
   </nav>
   </div>
@@ -171,6 +171,9 @@ h2.sec span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:n
 <script>
 const S={view:location.hash==="#review"?"review":"picks",q:"",range:7,outlet:"",tag:"",region:"",d1:false,hd:false,zm:false,op:true,lc:true,gate:""};
 // "Hide local outlets" (Ted, 11/9): by outlet (category "local"), never by story, and on the Latest tab only; Picks shows everything, ranked
+// 11/10 (Ted): the toggle also hides a regional daily's stories that did not clear the state filter (Syracuse.com crime,
+// Gannett trending items); Newsday and the Buffalo News only reach us through that filter, so the category is held to one standard.
+const isLocal=i=>i.cat==="local"||(i.cat==="regional"&&i.local);
 const hideLocal=()=>S.view==="latest"&&S.lc&&!S.region&&!S.outlet&&!S.q.trim();
 // Desktop opens with every sidebar section shut, headings only (Ted 11/7); a shut section names its active choice.
 // On a phone the drawer opens with portfolio and region showing. Not remembered between visits.
@@ -211,7 +214,7 @@ function stories(list){const m=new Map();for(const i of list){const k=i.cid||i.i
   return {...lead,score:Math.max(...g.map(x=>x.score)),more}})}   // lead = best outlet (cluster.py); score = the group's best
 // Browsing views show the last week; a search covers the whole archive (180 days). Every word must match.
 function base(){const q=S.q.toLowerCase().split(/\s+/).filter(Boolean),cut=S.d1?Date.now()/1000-86400:q.length?0:Date.now()/1000-S.range*86400;
- return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.region||(i.regions||[]).includes(S.region))&&(!hideLocal()||i.cat!=="local")&&(!S.hd||i.hochul)&&(!S.zm||i.mamdani)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
+ return ITEMS.filter(i=>i.published_ts>=cut&&(!S.outlet||i.outlet===S.outlet)&&(!S.tag||i.tags.includes(S.tag))&&(!S.region||(i.regions||[]).includes(S.region))&&(!hideLocal()||!isLocal(i))&&(!S.hd||i.hochul)&&(!S.zm||i.mamdani)&&(!S.op||!i.flags.includes("opinion"))&&(!q.length||(t=>q.every(w=>t.includes(w)))((i.title+" "+i.summary+" "+i.outlet).toLowerCase())))}
 function render(){const f=base();let html="";
  if(S.q.trim()){const l=stories(f).sort((a,b)=>b.published_ts-a.published_ts);html+=`<h2 class="sec">Search <span>${l.length} ${l.length===1?"story":"stories"} in the archive, newest first</span></h2>`+(l.length?l.slice(0,400).map(row).join(""):'<div class="empty">No matches.</div>')}
  else if(S.view==="picks"){const now=Date.now()/1000;const p=stories(f.filter(i=>i.published_ts>=now-3*86400&&!official.has(i.outlet))).sort((a,b)=>b.score-a.score);
@@ -247,13 +250,13 @@ function fromHash(){const h=location.hash.slice(1);if(!h||h==="review")return;co
 // a count bar drawn behind a sidebar row, scaled to the busiest row of its list
 const bk=(n,mx)=>{const w=Math.round(100*n/Math.max(1,mx));return ` style="background:linear-gradient(to right,var(--chip) ${w}%,transparent ${w}%)"`};
 function sidebar(){const cut=Date.now()/1000-7*86400;const all=ITEMS.filter(i=>i.published_ts>=cut&&(!S.op||!i.flags.includes("opinion")));
- const wk=hideLocal()?all.filter(i=>i.cat!=="local"):all;
+ const wk=hideLocal()?all.filter(i=>!isLocal(i)):all;
  // regions in fixed order, west to east then downstate (geo.REGIONS)
  const rc={};for(const i of all)for(const g of (i.regions||[]))rc[g]=(rc[g]||0)+1;
  const rmx=Math.max(...Object.values(rc),1);
  $("#regions").innerHTML=(META.regions||[]).map(g=>`<li data-region="${esc(g)}" class="${S.region===g?"on":""}${rc[g]?"":" zero"}"${bk(rc[g]||0,rmx)}><span>${esc(g)}</span><span class="n">${rc[g]||0}</span></li>`).join("");
  $$("#regions li").forEach(el=>el.onclick=()=>{S.region=S.region===el.dataset.region?"":el.dataset.region;render()});
- $("#n-lc").textContent=all.filter(i=>i.cat==="local").length;$('.tog[data-k="lc"]').style.display=S.view==="latest"?"":"none";
+ $("#n-lc").textContent=all.filter(isLocal).length;$('.tog[data-k="lc"]').style.display=S.view==="latest"?"":"none";
  $("#n-op").textContent=ITEMS.filter(i=>i.published_ts>=cut&&i.flags.includes("opinion")).length;
  $$(".tog").forEach(el=>{const on=S[el.dataset.k];el.classList.toggle("on",on);el.querySelector(".lbl").textContent=(on?"Hiding ":"Showing ")+el.dataset.what});
  // a shut section names what is chosen in it, so a filter is never hidden

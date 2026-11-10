@@ -31,11 +31,12 @@ NYT_KEY = os.environ.get("NYT_API_KEY", "").strip()                       # Arti
 NYT_TOP_KEY = os.environ.get("NYT_TOPSTORIES_KEY", "").strip() or NYT_KEY  # Top Stories app (NYT issues one key per app)
 ET = ZoneInfo("America/New_York")
 # Outlet labels that were renamed; applied to the archive on load so old and new items share a label.
-OUTLET_RENAMES = {"NYT New York": "New York Times"}
+OUTLET_RENAMES = {"NYT New York": "New York Times", "Chalkbeat": "Chalkbeat New York"}
 OUTLET_MAP = {"newsday.com":"Newsday","spectrumlocalnews.com":"Spectrum News","nystateofpolitics.com":"NY State of Politics",
  "spectrum news ny1":"Spectrum News","governor kathy hochul (.gov)":"Governor's Office","the new york state senate (.gov)":"NY Senate",
  "new york state assembly (.gov)":"NY Assembly","cbcny":"Citizens Budget Commission","timesunion.com":"Times Union",
- "nydailynews.com":"Daily News","new york daily news":"Daily News","cityandstateny.com":"City & State","nysfocus.com":"New York Focus"}
+ "nydailynews.com":"Daily News","new york daily news":"Daily News","cityandstateny.com":"City & State","nysfocus.com":"New York Focus",
+ "chalkbeat":"Chalkbeat New York"}   # one label whether the feed or a sweep found it (11/10)
 
 # one label per local outlet, whichever way an item arrived (its own feed, or a sweep under Google's label)
 LOCAL_NAMES = {s["domain"]: s["name"] for s in SOURCES if s.get("local")}
@@ -560,6 +561,18 @@ def main():
         print(f"\ngnlinks: {gnlinks.apply(items)} links applied from links.json")
     except Exception as e:
         print(f"gnlinks step skipped: {type(e).__name__}: {e}")
+    # One row per article (11/10): the same page found twice under different headlines (Chalkbeat's own feed and Google's
+    # copy of it held two of the top ten Picks) passes the title dedupe above. Keep the better-sourced copy.
+    by_link = {}
+    for it in items:
+        key = it["link"].split("#")[0].rstrip("/")
+        cur = by_link.get(key)
+        rank = (it["tier"], it.get("kind") == "gnews", it["published_ts"])
+        if cur is None or rank < (cur["tier"], cur.get("kind") == "gnews", cur["published_ts"]): by_link[key] = it
+    items = list(by_link.values())
+    # The Times Union's election-guide pages ("Candidate Q&A: State Senate District 15"): Google re-dates them as new for
+    # weeks, and a week after the election they still held 8 of the top 40 Picks (11/10).
+    items = [it for it in items if not re.search(r"timesunion\.com/projects/20\d\d/[a-z-]*election-ballot", it["link"])]
     for it in items:
         file_by_office(it)   # after links.json: a decoded Google link reveals the office
         categories.relabel(it)
