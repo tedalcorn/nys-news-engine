@@ -100,7 +100,12 @@ POLITICS_RE = [re.compile(r"(?<![a-z])" + re.escape(t.strip()) + (r"(?![a-z])" i
 LOCAL_SKIP_PATH = re.compile(r"/(ap|wires?|tribune|nyt-feed|news/(national|world|nation-world)|nation-world|national|world|sports?|"
     r"obituaries|obits?|lifestyles?|life-entertainment|entertainment|online_features|community/restaurant|restaurant|weather|"
     r"high-school-sports|highschoolsports|orange\w*|advice|5-things-to-know|contests?|sponsored|brandavenue|lottery|horoscopes?|"
-    r"puzzles|games|betting|events|things-to-do|food|dining|recipes?|crosswords?|celebrity|tv|movies|music|arts)(/|$)", re.I)
+    r"puzzles|games|betting|events|things-to-do|food|dining|recipes?|crosswords?|celebrity|tv|movies|music|arts|"
+    # 11/10 (Ted: Syracuse.com's airline, recipe and archaeology stories are irrelevant, leave them out): the publisher's own
+    # sections for national wire, shopping deals, recipes, ticket sales, home-sale lists, team pages and paid releases.
+    # Last week these held 108 + 68 + 8 + 7 + 8 of Syracuse.com's 324 stories; 1 of the 108 /us-news/ items touched New York.
+    r"us-news|ap-top-news|national-news|nation|shopping|deals|nytcooking|live-entertainment|entertainment-life|arts-living|"
+    r"realestate-news|homes|restaurants|restaurant-rundown|grocery|forecast|press-release|buffalo-bills|crunch|living|life|dam)(/|$)", re.I)
 # ...and by headline: what a local feed carries that is not local news (11/6 dry run: horoscopes, Dear Abby, scoreboards)
 LOCAL_NOISE = re.compile(r"horoscope|dear (abby|annie)|ask amy|carolyn hax|scoreboard|high school (football|basketball|soccer|hockey|volleyball)|"
     r"\bsectional|\bplayoffs?\b|prediction|betting|odds|\bnfl\b|\bnba\b|\bnhl\b|\bmlb\b|bills'|sabres|recipe|things to do|"
@@ -569,6 +574,9 @@ def main():
     categories.assign(items, OFFICIALS)   # the outlet group the page shows; tier still sets the score
     # with the real URL in hand, sections are visible: NY State of Politics carries Spectrum's wire sports
     items = [it for it in items if not re.search(r"/(sports|entertainment)/", urlparse(it["link"]).path)]
+    # ...and so are the sections of local stories that came through Google or were archived before a section was listed
+    # above (the feed-time check sees only Google's redirect link). Only stories that did not clear the state filter.
+    items = [it for it in items if not (it.get("local") and LOCAL_SKIP_PATH.search(urlparse(it["link"]).path))]
     # first pass so candidate selection has headline-only scores to sort on
     for it in items:
         it["score"], it["tags"], it["flags"] = score(it, NOW)
