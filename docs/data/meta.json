@@ -1,15 +1,15 @@
 {
- "last_run": "2026-11-10 02:04 UTC",
- "last_run_iso": "2026-11-10T02:00:16Z",
- "total": 9721,
+ "last_run": "2026-11-10 02:33 UTC",
+ "last_run_iso": "2026-11-10T02:30:07Z",
+ "total": 9736,
  "sources": {
   "New York Focus": "ok 49",
   "City & State": "ok 15",
   "City & State (gnews)": "ok 4",
   "Politico NY Playbook": "ok 22",
-  "Times Union": "ok 0",
-  "NY State of Politics": "ok 3",
-  "Newsday": "ok 9",
+  "Times Union": "ok 12",
+  "NY State of Politics": "ok 5",
+  "Newsday": "ok 8",
   "Daily News": "ok 4",
   "Times Union (gnews)": "ok 2",
   "Newsday (gnews)": "ok 3",
@@ -25,7 +25,7 @@
   "Wall Street Journal": "ok 3",
   "Buffalo News": "ok 4",
   "Buffalo News (gnews)": "ok 3",
-  "Syracuse.com": "ok 24",
+  "Syracuse.com": "ok 22",
   "Politico (gnews)": "ok 3",
   "amNY": "ok 5",
   "Documented": "ok 0",
@@ -37,7 +37,7 @@
   "Citizens Budget Commission": "ok 0",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 13",
-  "Attorney General": "ok 3 new of 25 listed",
+  "Attorney General": "ok 2 new of 25 listed",
   "Comptroller": "ok 1 new of 18 listed",
   "Assembly Speaker": "ok 1 new of 300 listed",
   "Senate Majority Leader": "ok 0 new of 5 listed",
@@ -46,7 +46,7 @@
   "WIVB": "ok 9",
   "WKBW": "ok 28",
   "Investigative Post": "ok 10",
-  "Niagara Gazette": "ok 22",
+  "Niagara Gazette": "ok 21",
   "Post-Journal": "ok 6",
   "Olean Times Herald": "ok 27",
   "WHEC": "ok 22",
@@ -79,14 +79,14 @@
   "Adirondack Explorer": "ok 8",
   "WTEN News10": "ok 36",
   "WNYT": "ok 22",
-  "Daily Gazette": "ok 12",
+  "Daily Gazette": "ok 8",
   "Troy Record": "ok 4",
   "Post-Star": "ok 9",
   "WAMC": "ok 10",
   "Hudson Valley One": "ok 19",
-  "Yonkers Times": "ok 44",
+  "Yonkers Times": "ok 45",
   "The Examiner News": "ok 10",
-  "Staten Island Advance": "ok 26",
+  "Staten Island Advance": "ok 24",
   "QNS": "ok 18",
   "BK Reader": "ok 18",
   "Bronx Times": "ok 10",
@@ -98,16 +98,16 @@
   "LI Life & Politics": "ok 10",
   "Long Island Business News": "ok 10",
   "RiverheadLOCAL": "ok 10",
-  "27east": "ok 25",
+  "27east": "ok 24",
   "Google News: local outlets 1": "ok 81",
   "Google News: local outlets 2": "ok 72",
-  "Google News: local outlets 3": "ok 68",
+  "Google News: local outlets 3": "ok 67",
   "Google News: local outlets 4": "ok 44",
-  "Google News: Hochul": "ok 41",
+  "Google News: Hochul": "ok 42",
   "Google News: Legislature": "ok 7",
   "Google News: Courts & statewide officials": "ok 14",
   "Google News: State agencies": "ok 6",
-  "Google News: Lawmakers": "ok 7"
+  "Google News: Lawmakers": "ok 6"
  },
  "outlets": [
   "- Emerson Polling",
@@ -407,6 +407,7 @@
   "NBC News",
   "NBC5 Plattsburgh",
   "NCPR: North Country Public Radio",
+  "NEWS10 ABC",
   "NPR",
   "NPR Visuals",
   "NTD News",
@@ -641,7 +642,6 @@
   "The News Pakistan",
   "The Next Web",
   "The North State Journal",
-  "The Post Star",
   "The Poughkeepsie Journal",
   "The Quantum Insider",
   "The Real Deal",
@@ -924,13 +924,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "free": 4359,
+  "free": 4367,
   "hard": 909,
-  "unknown": 4409,
+  "unknown": 4416,
   "metered": 15,
   "null": 29
  },
- "extracted": 7378,
+ "extracted": 7391,
  "runner": "pi",
  "per_day": {
   "2026-10-27": {
@@ -971,7 +971,7 @@
   },
   "2026-11-05": {
    "stories": 600,
-   "official": 12
+   "official": 11
   },
   "2026-11-06": {
    "stories": 1407,
@@ -982,23 +982,23 @@
    "official": 0
   },
   "2026-11-08": {
-   "stories": 455,
+   "stories": 456,
    "official": 0
   },
   "2026-11-09": {
-   "stories": 1189,
-   "official": 17
+   "stories": 1204,
+   "official": 15
   }
  },
- "grouped_stories": 574,
+ "grouped_stories": 576,
  "gates": {
   "letitia james": 78,
   "politics: democrat": 61,
-  "politics: election": 54,
   "politics: republican": 53,
-  "Lawmakers sweep": 41,
+  "politics: election": 52,
+  "Lawmakers sweep": 40,
   "politics: mayor": 32,
-  "suny": 30,
+  "suny": 31,
   "politics: law": 21,
   "politics: mamdani": 19,
   "dinapoli": 19,
@@ -1012,11 +1012,11 @@
   "state senator": 9,
   "politics: lawmaker": 9,
   "state sen.": 9,
+  "politics: city council": 8,
   "politics: statewide": 8,
   "politics: voters": 8,
   "politics: lawsuit": 7,
   "state police": 7,
-  "politics: city council": 7,
   "medicaid": 7,
   "new york attorney general": 6,
   "politics: county executive": 6,
@@ -1025,6 +1025,7 @@
   "politics: judge": 6,
   "politics: campaign": 6,
   "politics: state's": 6,
+  "attorney general james": 5,
   "politics: elected": 5,
   "department of health": 5,
   "politics: gop": 4,
@@ -1032,15 +1033,15 @@
   "politics: reelect": 4,
   "ballot proposal": 3,
   "state education department": 3,
-  "attorney general james": 3,
+  "State agencies sweep": 3,
   "politics: blue wave": 3,
   "ny attorney general": 3,
   "politics: poll": 3,
   "politics: siena": 3,
   "state officials": 2,
   "court of appeals": 2,
+  "state comptroller": 2,
   "state attorney general": 2,
-  "State agencies sweep": 2,
   "ballot question": 2,
   "politics: candidate": 2,
   "politics: working families party": 2,
@@ -1050,15 +1051,14 @@
   "politics: appeals court": 2,
   "struck down": 1,
   "politics: dsa": 1,
-  "board of regents": 1,
   "politics: turnout": 1,
+  "board of regents": 1,
   "unconstitutional": 1,
   "politics: house seat": 1,
   "politics: ruling": 1,
   "politics: legislation": 1,
   "office of mental health": 1,
   "state agencies": 1,
-  "state comptroller": 1,
   "appellate division": 1,
   "politics: primary": 1,
   "nyserda": 1,
@@ -1066,29 +1066,29 @@
   "public service commission": 1,
   "thruway": 1
  },
- "unresolved_links": 31,
+ "unresolved_links": 33,
  "summaries": {
-  "total": 7050,
-  "og": 2693,
-  "none": 2671
+  "total": 7062,
+  "og": 2701,
+  "none": 2674
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 1355,
-  "items": 20444,
-  "cost_usd": 0.7827,
-  "last": "2026-11-10T02:00:16Z",
+  "calls": 1357,
+  "items": 20489,
+  "cost_usd": 0.7848,
+  "last": "2026-11-10T02:30:07Z",
   "week": {
-   "classified": 5298,
+   "classified": 5309,
    "unclassified": 0,
    "types": {
-    "other": 2087,
-    "campaign": 762,
-    "local": 728,
-    "blotter": 657,
+    "other": 2092,
+    "campaign": 760,
+    "local": 729,
+    "blotter": 663,
     "national": 544,
     "policy": 319,
-    "announcement": 201
+    "announcement": 202
    },
    "investigative": 32
   },
@@ -1185,11 +1185,11 @@
     "cost_usd": 0.119497
    },
    "2026-11-10": {
-    "calls": 14,
-    "items": 277,
-    "input_tokens": 69440,
-    "output_tokens": 11105,
-    "cost_usd": 0.010352
+    "calls": 16,
+    "items": 322,
+    "input_tokens": 79203,
+    "output_tokens": 13644,
+    "cost_usd": 0.012394
    }
   }
  },
@@ -1206,20 +1206,20 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 4089,
-  "local_story": 4097,
-  "with_region": 4828
+  "local_outlet": 4104,
+  "local_story": 4105,
+  "with_region": 4841
  },
  "region_counts": {
-  "New York City": 683,
+  "New York City": 685,
   "Southern Tier": 395,
+  "Long Island": 283,
   "Capital Region": 496,
-  "Long Island": 281,
-  "Western New York": 472,
-  "Mid-Hudson": 462,
-  "Finger Lakes": 821,
-  "Central New York": 450,
-  "North Country": 330,
+  "Western New York": 471,
+  "Mid-Hudson": 463,
+  "Finger Lakes": 824,
+  "Central New York": 451,
+  "North Country": 334,
   "Mohawk Valley": 351
  },
  "zm_only": 72
