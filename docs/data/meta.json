@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-12 06:03 UTC",
- "last_run_iso": "2026-11-12T06:00:07Z",
- "total": 11525,
+ "last_run": "2026-11-12 06:34 UTC",
+ "last_run_iso": "2026-11-12T06:30:22Z",
+ "total": 11526,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 12",
@@ -11,7 +11,7 @@
   "NY State of Politics": "ok 17",
   "Newsday": "ok 12",
   "Daily News": "ok 2",
-  "Times Union (gnews)": "ok 23",
+  "Times Union (gnews)": "ok 22",
   "Newsday (gnews)": "ok 6",
   "Daily News (gnews)": "ok 2",
   "Politico": "ok 5",
@@ -37,7 +37,7 @@
   "Citizens Budget Commission": "ok 0",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 14",
-  "Attorney General": "ok 0 new of 25 listed",
+  "Attorney General": "ok 1 new of 25 listed",
   "Comptroller": "ok 1 new of 18 listed",
   "Assembly Speaker": "ok 1 new of 300 listed",
   "Senate Majority Leader": "ok 0 new of 5 listed",
@@ -81,13 +81,13 @@
   "WNYT": "ok 23",
   "Daily Gazette": "ok 0",
   "Troy Record": "ok 1",
-  "Post-Star": "ok 23",
+  "Post-Star": "ok 24",
   "WAMC": "ok 11",
   "Hudson Valley One": "ok 20",
   "Yonkers Times": "ok 48",
   "The Examiner News": "ok 10",
   "Staten Island Advance": "ok 16",
-  "QNS": "ok 18",
+  "QNS": "ERROR HTTPError: HTTP Error 403: ",
   "BK Reader": "ok 14",
   "Bronx Times": "ok 10",
   "West Side Rag": "ok 15",
@@ -99,9 +99,9 @@
   "Long Island Business News": "ok 10",
   "RiverheadLOCAL": "ok 10",
   "27east": "ok 30",
-  "Google News: local outlets 1": "ok 79",
+  "Google News: local outlets 1": "ok 80",
   "Google News: local outlets 2": "ok 79",
-  "Google News: local outlets 3": "ok 85",
+  "Google News: local outlets 3": "ok 86",
   "Google News: local outlets 4": "ok 43",
   "Google News: Hochul": "ok 77",
   "Google News: Legislature": "ok 6",
@@ -282,7 +282,6 @@
   "Facebook",
   "Finger Lakes Daily News",
   "FingerLakes1",
-  "Fingerlakes1.com",
   "Fiscal Policy Institute",
   "Flack Broadcasting",
   "Focus Gaming News",
@@ -930,13 +929,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 1004,
-  "free": 5540,
-  "unknown": 4935,
+  "hard": 1015,
+  "free": 5546,
+  "unknown": 4919,
   "metered": 17,
   "null": 29
  },
- "extracted": 9153,
+ "extracted": 9160,
  "runner": "pi",
  "per_day": {
   "2026-10-30": {
@@ -969,7 +968,7 @@
   },
   "2026-11-06": {
    "stories": 1236,
-   "official": 8
+   "official": 9
   },
   "2026-11-07": {
    "stories": 495,
@@ -981,29 +980,29 @@
   },
   "2026-11-09": {
    "stories": 1146,
-   "official": 18
+   "official": 17
   },
   "2026-11-10": {
-   "stories": 1255,
-   "official": 9
+   "stories": 1258,
+   "official": 11
   },
   "2026-11-11": {
-   "stories": 1028,
-   "official": 6
+   "stories": 1031,
+   "official": 4
   },
   "2026-11-12": {
-   "stories": 27,
+   "stories": 28,
    "official": 0
   }
  },
- "grouped_stories": 580,
+ "grouped_stories": 585,
  "gates": {
   "politics: mayor": 51,
-  "suny": 50,
+  "suny": 51,
   "letitia james": 40,
   "politics: republican": 39,
   "politics: democrat": 38,
-  "politics: election": 31,
+  "politics: election": 30,
   "politics: politic": 24,
   "politics: law": 21,
   "politics: mamdani": 19,
@@ -1026,20 +1025,19 @@
   "medicaid": 7,
   "board of elections": 7,
   "department of health": 7,
-  "senate district": 5,
   "politics: voters": 5,
   "state education department": 5,
   "state funding": 5,
   "state senator": 4,
   "politics: blue wave": 4,
   "new york attorney general": 4,
+  "senate district": 4,
   "politics: poll": 4,
-  "state grant": 4,
   "politics: siena": 4,
   "politics: state's": 4,
   "politics: federal judge": 3,
   "politics: gop": 3,
-  "attorney general james": 3,
+  "state grant": 3,
   "politics: reelect": 3,
   "Courts & statewide officials sweep": 2,
   "politics: dsa": 2,
@@ -1048,6 +1046,7 @@
   "court of appeals": 2,
   "politics: candidate": 2,
   "politics: council member": 2,
+  "attorney general james": 2,
   "unconstitutional": 2,
   "politics: working families party": 2,
   "politics: appeals court": 2,
@@ -1057,6 +1056,7 @@
   "new york law": 1,
   "ballot question": 1,
   "politics: house seat": 1,
+  "State agencies sweep": 1,
   "state comptroller": 1,
   "politics: ruling": 1,
   "board of regents": 1,
@@ -1068,29 +1068,29 @@
   "office of mental health": 1,
   "public service commission": 1
  },
- "unresolved_links": 71,
+ "unresolved_links": 65,
  "summaries": {
-  "total": 8829,
-  "og": 2847,
-  "none": 2696
+  "total": 8835,
+  "og": 2851,
+  "none": 2691
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 1752,
-  "items": 28919,
-  "cost_usd": 1.0659,
-  "last": "2026-11-12T06:00:07Z",
+  "calls": 1755,
+  "items": 28994,
+  "cost_usd": 1.0679,
+  "last": "2026-11-12T06:30:22Z",
   "week": {
    "classified": 6210,
    "unclassified": 0,
    "types": {
-    "other": 2629,
-    "local": 1061,
-    "blotter": 977,
-    "national": 573,
-    "policy": 403,
-    "campaign": 304,
-    "announcement": 263
+    "other": 2631,
+    "local": 1060,
+    "blotter": 974,
+    "national": 563,
+    "policy": 405,
+    "campaign": 315,
+    "announcement": 262
    },
    "investigative": 59
   },
@@ -1187,11 +1187,11 @@
     "cost_usd": 0.137996
    },
    "2026-11-12": {
-    "calls": 55,
-    "items": 1131,
-    "input_tokens": 264356,
-    "output_tokens": 41465,
-    "cost_usd": 0.036042
+    "calls": 58,
+    "items": 1206,
+    "input_tokens": 279118,
+    "output_tokens": 43575,
+    "cost_usd": 0.038074
    }
   }
  },
@@ -1208,21 +1208,21 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 5418,
-  "local_story": 5336,
-  "with_region": 5927
+  "local_outlet": 5400,
+  "local_story": 5327,
+  "with_region": 5910
  },
  "region_counts": {
   "New York City": 876,
+  "Finger Lakes": 910,
   "Central New York": 464,
   "Western New York": 455,
-  "North Country": 547,
+  "North Country": 548,
   "Southern Tier": 528,
-  "Finger Lakes": 909,
-  "Long Island": 273,
-  "Capital Region": 747,
-  "Mid-Hudson": 490,
-  "Mohawk Valley": 480
+  "Long Island": 274,
+  "Capital Region": 748,
+  "Mohawk Valley": 482,
+  "Mid-Hudson": 491
  },
  "zm_only": 76
 }
