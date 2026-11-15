@@ -1,11 +1,11 @@
 {
- "last_run": "2026-11-15 22:34 UTC",
- "last_run_iso": "2026-11-15T22:30:22Z",
- "total": 14740,
+ "last_run": "2026-11-15 23:04 UTC",
+ "last_run_iso": "2026-11-15T23:00:27Z",
+ "total": 14758,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 13",
-  "City & State (gnews)": "ok 7",
+  "City & State (gnews)": "ok 6",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 4",
   "NY State of Politics": "ok 1",
@@ -53,8 +53,8 @@
   "Rochester First": "ok 19",
   "WXXI News": "ok 10",
   "FingerLakes1": "ok 27",
-  "Finger Lakes Daily News": "ok 7",
-  "The Daily News (Batavia)": "ok 17",
+  "Finger Lakes Daily News": "ok 6",
+  "The Daily News (Batavia)": "ok 18",
   "Rochester Beacon": "ok 10",
   "WBNG": "ok 16",
   "WIVT Binghamton": "ok 45",
@@ -69,17 +69,17 @@
   "The Citizen (Auburn)": "ok 9",
   "Cortland Standard": "ok 5",
   "WKTV": "ok 23",
-  "Rome Sentinel": "ok 23",
+  "Rome Sentinel": "ok 22",
   "The Daily Star (Oneonta)": "ok 0",
   "WIBX": "ok 35",
   "WWNY": "ok 13",
-  "Watertown Daily Times": "ok 12",
+  "Watertown Daily Times": "ok 15",
   "Press-Republican": "ok 33",
-  "NBC5 Plattsburgh": "ok 13",
+  "NBC5 Plattsburgh": "ok 14",
   "Adirondack Explorer": "ok 8",
   "WTEN News10": "ok 33",
   "WNYT": "ok 21",
-  "Daily Gazette": "ok 2",
+  "Daily Gazette": "ok 1",
   "Troy Record": "ok 5",
   "Post-Star": "ok 12",
   "WAMC": "ok 7",
@@ -100,12 +100,12 @@
   "RiverheadLOCAL": "ok 9",
   "27east": "ok 23",
   "Google News: local outlets 1": "ok 80",
-  "Google News: local outlets 2": "ok 79",
+  "Google News: local outlets 2": "ok 80",
   "Google News: local outlets 3": "ok 63",
   "Google News: local outlets 4": "ok 45",
-  "Google News: Hochul": "ok 55",
+  "Google News: Hochul": "ok 56",
   "Google News: Legislature": "ok 2",
-  "Google News: Courts & statewide officials": "ok 3",
+  "Google News: Courts & statewide officials": "ok 4",
   "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 2"
  },
@@ -427,6 +427,7 @@
   "NBC News",
   "NBC5 Plattsburgh",
   "NCPR: North Country Public Radio",
+  "NEWS10 ABC",
   "NH Journal",
   "NPR",
   "NPR Visuals",
@@ -551,7 +552,6 @@
   "Rochester Beacon",
   "Rochester Business Journal",
   "Rochester First",
-  "RochesterFirst",
   "Rockland County Business Journal",
   "Rockland Daily",
   "Rockland News",
@@ -560,7 +560,6 @@
   "Roswell Park Comprehensive Cancer Center",
   "Rutland Herald",
   "SBU News",
-  "SILive.com",
   "SMH.com.au",
   "SUNY - The State University of New York",
   "SUNY Cortland",
@@ -572,7 +571,6 @@
   "Siena Poll",
   "Slate",
   "Smart Water Magazine",
-  "Soap Central",
   "Social News XYZ",
   "Solar Builder",
   "Solar Power World",
@@ -746,7 +744,6 @@
   "WIVB",
   "WIVT Binghamton",
   "WJAR",
-  "WJLA",
   "WKBW",
   "WKMG",
   "WKTV",
@@ -762,6 +759,7 @@
   "WRRV",
   "WRVO Public Media",
   "WSB-TV",
+  "WSBT",
   "WSHU",
   "WSJ",
   "WSKG",
@@ -965,13 +963,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 1209,
-  "free": 7573,
-  "unknown": 5895,
+  "hard": 1210,
+  "free": 7591,
+  "unknown": 5894,
   "metered": 34,
   "null": 29
  },
- "extracted": 12391,
+ "extracted": 12413,
  "runner": "pi",
  "per_day": {
   "2026-11-02": {
@@ -1019,7 +1017,7 @@
    "official": 11
   },
   "2026-11-13": {
-   "stories": 1160,
+   "stories": 1159,
    "official": 24
   },
   "2026-11-14": {
@@ -1027,15 +1025,15 @@
    "official": 1
   },
   "2026-11-15": {
-   "stories": 307,
+   "stories": 330,
    "official": 1
   }
  },
- "grouped_stories": 645,
+ "grouped_stories": 644,
  "gates": {
   "politics: mayor": 75,
   "suny": 65,
-  "politics: democrat": 33,
+  "politics: democrat": 34,
   "politics: politic": 26,
   "letitia james": 25,
   "politics: election": 23,
@@ -1052,13 +1050,13 @@
   "politics: campaign": 13,
   "politics: lawmaker": 11,
   "state law": 11,
+  "medicaid": 10,
   "politics: elected": 10,
   "state funding": 9,
   "state sen.": 9,
-  "medicaid": 8,
+  "Lawmakers sweep": 8,
   "new york attorney general": 7,
   "nyserda": 7,
-  "Lawmakers sweep": 7,
   "politics: dsa": 6,
   "state officials": 6,
   "politics: midterm": 6,
@@ -1102,29 +1100,29 @@
   "state health department": 1,
   "politics: primary": 1
  },
- "unresolved_links": 53,
+ "unresolved_links": 49,
  "summaries": {
-  "total": 11922,
-  "og": 3421,
-  "none": 2818
+  "total": 11944,
+  "og": 3422,
+  "none": 2814
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 2398,
-  "items": 42783,
-  "cost_usd": 1.5013,
-  "last": "2026-11-15T22:30:22Z",
+  "calls": 2401,
+  "items": 42857,
+  "cost_usd": 1.5034,
+  "last": "2026-11-15T23:00:27Z",
   "week": {
-   "classified": 6870,
+   "classified": 6880,
    "unclassified": 0,
    "types": {
-    "other": 3144,
-    "local": 1150,
-    "blotter": 974,
-    "national": 752,
-    "policy": 404,
-    "announcement": 285,
-    "campaign": 161
+    "other": 3141,
+    "local": 1151,
+    "blotter": 977,
+    "national": 760,
+    "policy": 407,
+    "announcement": 284,
+    "campaign": 160
    },
    "investigative": 58
   },
@@ -1221,11 +1219,11 @@
     "cost_usd": 0.100997
    },
    "2026-11-15": {
-    "calls": 145,
-    "items": 2902,
-    "input_tokens": 685373,
-    "output_tokens": 97435,
-    "cost_usd": 0.093749
+    "calls": 148,
+    "items": 2976,
+    "input_tokens": 701844,
+    "output_tokens": 99379,
+    "cost_usd": 0.095869
    }
   }
  },
@@ -1242,21 +1240,21 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6036,
-  "local_story": 5961,
-  "with_region": 6586
+  "local_outlet": 6059,
+  "local_story": 5972,
+  "with_region": 6599
  },
  "region_counts": {
-  "New York City": 996,
+  "New York City": 997,
   "Central New York": 516,
-  "Finger Lakes": 1016,
-  "Western New York": 462,
-  "Capital Region": 844,
-  "Southern Tier": 573,
-  "North Country": 690,
-  "Mid-Hudson": 498,
+  "North Country": 693,
+  "Finger Lakes": 1027,
+  "Western New York": 463,
+  "Southern Tier": 574,
+  "Capital Region": 841,
   "Long Island": 271,
-  "Mohawk Valley": 560
+  "Mid-Hudson": 498,
+  "Mohawk Valley": 562
  },
  "zm_only": 102
 }
