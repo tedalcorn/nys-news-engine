@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-15 18:04 UTC",
- "last_run_iso": "2026-11-15T18:00:15Z",
- "total": 14651,
+ "last_run": "2026-11-15 18:34 UTC",
+ "last_run_iso": "2026-11-15T18:30:22Z",
+ "total": 14664,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 13",
@@ -54,9 +54,9 @@
   "WXXI News": "ok 10",
   "FingerLakes1": "ok 26",
   "Finger Lakes Daily News": "ok 7",
-  "The Daily News (Batavia)": "ok 16",
+  "The Daily News (Batavia)": "ok 17",
   "Rochester Beacon": "ok 10",
-  "WBNG": "ok 14",
+  "WBNG": "ok 15",
   "WIVT Binghamton": "ok 45",
   "WICZ": "ok 11",
   "WENY": "ok 0",
@@ -79,14 +79,14 @@
   "Adirondack Explorer": "ok 8",
   "WTEN News10": "ok 32",
   "WNYT": "ok 21",
-  "Daily Gazette": "ok 3",
+  "Daily Gazette": "ok 1",
   "Troy Record": "ok 8",
   "Post-Star": "ok 12",
   "WAMC": "ok 7",
   "Hudson Valley One": "ok 20",
   "Yonkers Times": "ok 46",
   "The Examiner News": "ok 10",
-  "Staten Island Advance": "ok 10",
+  "Staten Island Advance": "ok 11",
   "QNS": "ok 18",
   "BK Reader": "ok 17",
   "Bronx Times": "ok 10",
@@ -99,13 +99,13 @@
   "Long Island Business News": "ok 9",
   "RiverheadLOCAL": "ok 9",
   "27east": "ok 23",
-  "Google News: local outlets 1": "ok 84",
+  "Google News: local outlets 1": "ok 85",
   "Google News: local outlets 2": "ok 81",
-  "Google News: local outlets 3": "ok 67",
+  "Google News: local outlets 3": "ok 66",
   "Google News: local outlets 4": "ok 44",
-  "Google News: Hochul": "ok 61",
+  "Google News: Hochul": "ok 59",
   "Google News: Legislature": "ok 2",
-  "Google News: Courts & statewide officials": "ok 7",
+  "Google News: Courts & statewide officials": "ok 4",
   "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 0"
  },
@@ -427,6 +427,7 @@
   "NBC News",
   "NBC5 Plattsburgh",
   "NCPR: North Country Public Radio",
+  "NEWS10 ABC",
   "NH Journal",
   "NPR",
   "NPR Visuals",
@@ -551,7 +552,6 @@
   "Rochester Beacon",
   "Rochester Business Journal",
   "Rochester First",
-  "RochesterFirst",
   "Rockland County Business Journal",
   "Rockland Daily",
   "Rockland News",
@@ -571,6 +571,7 @@
   "Siena Poll",
   "Slate",
   "Smart Water Magazine",
+  "Soap Central",
   "Social News XYZ",
   "Solar Builder",
   "Solar Power World",
@@ -733,6 +734,7 @@
   "WCAX",
   "WENY",
   "WETM",
+  "WFSB",
   "WGRZ",
   "WGY",
   "WHEC",
@@ -743,7 +745,7 @@
   "WIRED",
   "WIVB",
   "WIVT Binghamton",
-  "WJAR",
+  "WJLA",
   "WKBW",
   "WKMG",
   "WKTV",
@@ -758,7 +760,6 @@
   "WRRV",
   "WRVO Public Media",
   "WSB-TV",
-  "WSBT",
   "WSHU",
   "WSJ",
   "WSKG",
@@ -961,13 +962,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 1196,
-  "free": 7532,
-  "unknown": 5861,
+  "hard": 1197,
+  "free": 7535,
+  "unknown": 5870,
   "metered": 33,
   "null": 29
  },
- "extracted": 12305,
+ "extracted": 12312,
  "runner": "pi",
  "per_day": {
   "2026-11-02": {
@@ -1023,22 +1024,22 @@
    "official": 1
   },
   "2026-11-15": {
-   "stories": 231,
+   "stories": 238,
    "official": 1
   }
  },
- "grouped_stories": 641,
+ "grouped_stories": 642,
  "gates": {
   "politics: mayor": 75,
-  "suny": 64,
+  "suny": 63,
   "politics: democrat": 35,
   "politics: politic": 26,
   "letitia james": 25,
   "state police": 23,
   "politics: election": 22,
   "politics: mamdani": 21,
-  "politics: republican": 20,
   "politics: city council": 19,
+  "politics: republican": 19,
   "politics: congress": 18,
   "politics: law": 17,
   "politics: lawsuit": 15,
@@ -1075,7 +1076,6 @@
   "politics: legislation": 3,
   "state attorney general": 2,
   "dinapoli": 2,
-  "politics: ruling": 2,
   "board of regents": 2,
   "unconstitutional": 2,
   "politics: candidate": 2,
@@ -1088,6 +1088,7 @@
   "politics: gop": 1,
   "state agencies": 1,
   "state comptroller": 1,
+  "politics: ruling": 1,
   "attorney general james": 1,
   "state employee": 1,
   "politics: reelect": 1,
@@ -1098,29 +1099,29 @@
   "state health department": 1,
   "politics: primary": 1
  },
- "unresolved_links": 51,
+ "unresolved_links": 57,
  "summaries": {
-  "total": 11842,
-  "og": 3404,
-  "none": 2809
+  "total": 11848,
+  "og": 3403,
+  "none": 2816
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 2370,
-  "items": 42218,
-  "cost_usd": 1.4833,
-  "last": "2026-11-15T18:00:15Z",
+  "calls": 2373,
+  "items": 42283,
+  "cost_usd": 1.485,
+  "last": "2026-11-15T18:30:22Z",
   "week": {
-   "classified": 6855,
+   "classified": 6860,
    "unclassified": 0,
    "types": {
-    "other": 3128,
-    "local": 1150,
-    "blotter": 971,
-    "national": 758,
-    "policy": 402,
+    "other": 3146,
+    "local": 1149,
+    "blotter": 969,
+    "national": 748,
+    "policy": 404,
     "announcement": 283,
-    "campaign": 163
+    "campaign": 161
    },
    "investigative": 58
   },
@@ -1217,11 +1218,11 @@
     "cost_usd": 0.100997
    },
    "2026-11-15": {
-    "calls": 117,
-    "items": 2337,
-    "input_tokens": 554536,
-    "output_tokens": 78690,
-    "cost_usd": 0.075706
+    "calls": 120,
+    "items": 2402,
+    "input_tokens": 568692,
+    "output_tokens": 80378,
+    "cost_usd": 0.077467
    }
   }
  },
@@ -1238,20 +1239,20 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6030,
-  "local_story": 5946,
-  "with_region": 6572
+  "local_outlet": 6026,
+  "local_story": 5953,
+  "with_region": 6578
  },
  "region_counts": {
-  "New York City": 995,
-  "Central New York": 516,
-  "Finger Lakes": 1026,
+  "New York City": 994,
+  "Central New York": 515,
+  "North Country": 688,
+  "Finger Lakes": 1029,
   "Western New York": 461,
-  "Southern Tier": 568,
-  "Capital Region": 837,
-  "North Country": 687,
+  "Southern Tier": 569,
+  "Capital Region": 836,
   "Mid-Hudson": 491,
-  "Long Island": 276,
+  "Long Island": 275,
   "Mohawk Valley": 557
  },
  "zm_only": 103
