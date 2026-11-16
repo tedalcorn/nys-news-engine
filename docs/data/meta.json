@@ -1,14 +1,14 @@
 {
- "last_run": "2026-11-16 09:34 UTC",
- "last_run_iso": "2026-11-16T09:30:27Z",
- "total": 14912,
+ "last_run": "2026-11-16 09:45 UTC",
+ "last_run_iso": "2026-11-16T09:43:17Z",
+ "total": 14934,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 13",
   "City & State (gnews)": "ok 5",
   "Politico NY Playbook": "ok 24",
   "Times Union": "ok 4",
-  "NY State of Politics": "ok 2",
+  "NY State of Politics": "ok 3",
   "Newsday": "ok 2",
   "Daily News": "ok 2",
   "Times Union (gnews)": "ok 0",
@@ -40,7 +40,7 @@
   "Attorney General": "ok 0 new of 25 listed",
   "Comptroller": "ok 1 new of 18 listed",
   "Assembly Speaker": "ok 0 new of 300 listed",
-  "Senate Majority Leader": "ok 0 new of 5 listed",
+  "Senate Majority Leader": "ERROR HTTPError: HTTP Error 403: ",
   "NY Senate": "ok 18",
   "NYC Mayor": "ok 0 new",
   "WIVB": "ok 7",
@@ -58,16 +58,16 @@
   "Rochester Beacon": "ok 10",
   "WBNG": "ok 16",
   "WIVT Binghamton": "ok 45",
-  "WICZ": "ok 13",
+  "WICZ": "ERROR HTTPError: HTTP Error 429: ",
   "WENY": "ok 1",
   "WETM": "ok 4",
   "Ithaca Voice": "ok 10",
   "Ithaca Times": "ok 30",
   "WSYR": "ok 16",
-  "Oswego County News Now": "ok 0",
+  "Oswego County News Now": "ERROR HTTPError: HTTP Error 429: ",
   "Central Current": "ok 10",
   "The Citizen (Auburn)": "ok 2",
-  "Cortland Standard": "ok 1",
+  "Cortland Standard": "ERROR HTTPError: HTTP Error 429: ",
   "WKTV": "ok 22",
   "Rome Sentinel": "ok 21",
   "The Daily Star (Oneonta)": "ok 0",
@@ -75,7 +75,7 @@
   "WWNY": "ok 17",
   "Watertown Daily Times": "ok 12",
   "Press-Republican": "ok 33",
-  "NBC5 Plattsburgh": "ok 13",
+  "NBC5 Plattsburgh": "ok 14",
   "Adirondack Explorer": "ok 8",
   "WTEN News10": "ok 30",
   "WNYT": "ok 22",
@@ -96,14 +96,14 @@
   "NBC New York": "ok 26",
   "Long Island Press": "ok 10",
   "LI Life & Politics": "ok 10",
-  "Long Island Business News": "ok 9",
+  "Long Island Business News": "ERROR HTTPError: HTTP Error 403: ",
   "RiverheadLOCAL": "ok 9",
   "27east": "ok 22",
-  "Google News: local outlets 1": "ok 79",
+  "Google News: local outlets 1": "ok 80",
   "Google News: local outlets 2": "ok 82",
-  "Google News: local outlets 3": "ok 70",
+  "Google News: local outlets 3": "ok 69",
   "Google News: local outlets 4": "ok 45",
-  "Google News: Hochul": "ok 58",
+  "Google News: Hochul": "ok 59",
   "Google News: Legislature": "ok 1",
   "Google News: Courts & statewide officials": "ok 6",
   "Google News: State agencies": "ok 5",
@@ -365,7 +365,6 @@
   "KING5.com",
   "KLTV.com",
   "KOKH",
-  "KOMO",
   "KPAX News",
   "KRCR",
   "KSL News",
@@ -428,7 +427,6 @@
   "NBC News",
   "NBC5 Plattsburgh",
   "NCPR: North Country Public Radio",
-  "NEWS10 ABC",
   "NH Journal",
   "NPR",
   "NPR Visuals",
@@ -553,7 +551,6 @@
   "Rochester Beacon",
   "Rochester Business Journal",
   "Rochester First",
-  "RochesterFirst",
   "Rockland County Business Journal",
   "Rockland Daily",
   "Rockland News",
@@ -562,7 +559,6 @@
   "Roswell Park Comprehensive Cancer Center",
   "Rutland Herald",
   "SBU News",
-  "SILive.com",
   "SMH.com.au",
   "SUNY - The State University of New York",
   "SUNY Cortland",
@@ -575,7 +571,6 @@
   "Siena Poll",
   "Slate",
   "Smart Water Magazine",
-  "Soap Central",
   "Social News XYZ",
   "Solar Builder",
   "Solar Power World",
@@ -758,6 +753,7 @@
   "WNY Labor Today",
   "WNYC",
   "WNYT",
+  "WOAI",
   "WOWT",
   "WQOW",
   "WRFA-LP 107.9 FM",
@@ -969,14 +965,14 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 1214,
-  "free": 7685,
-  "unknown": 5950,
+  "hard": 1216,
+  "free": 7690,
+  "unknown": 5965,
   "metered": 34,
   "null": 29
  },
- "extracted": 12568,
- "runner": "pi",
+ "extracted": 12576,
+ "runner": "actions",
  "per_day": {
   "2026-11-03": {
    "stories": 390,
@@ -1023,22 +1019,22 @@
    "official": 24
   },
   "2026-11-14": {
-   "stories": 500,
+   "stories": 502,
    "official": 1
   },
   "2026-11-15": {
-   "stories": 423,
+   "stories": 422,
    "official": 1
   },
   "2026-11-16": {
-   "stories": 49,
+   "stories": 56,
    "official": 0
   }
  },
- "grouped_stories": 647,
+ "grouped_stories": 646,
  "gates": {
   "politics: mayor": 73,
-  "suny": 66,
+  "suny": 67,
   "politics: democrat": 35,
   "politics: politic": 27,
   "state police": 26,
@@ -1105,28 +1101,28 @@
   "state health department": 1,
   "politics: primary": 1
  },
- "unresolved_links": 52,
+ "unresolved_links": 66,
  "summaries": {
-  "total": 12082,
-  "og": 3453,
-  "none": 2830
+  "total": 12090,
+  "og": 3456,
+  "none": 2844
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 2464,
-  "items": 44132,
-  "cost_usd": 1.5423,
-  "last": "2026-11-16T09:30:27Z",
+  "calls": 2467,
+  "items": 44194,
+  "cost_usd": 1.5442,
+  "last": "2026-11-16T09:43:17Z",
   "week": {
-   "classified": 6889,
+   "classified": 6908,
    "unclassified": 0,
    "types": {
-    "other": 3150,
-    "local": 1155,
-    "blotter": 969,
-    "national": 760,
-    "policy": 409,
-    "announcement": 288,
+    "other": 3169,
+    "local": 1156,
+    "blotter": 972,
+    "national": 757,
+    "policy": 410,
+    "announcement": 286,
     "campaign": 158
    },
    "investigative": 58
@@ -1224,11 +1220,11 @@
     "cost_usd": 0.097709
    },
    "2026-11-16": {
-    "calls": 60,
-    "items": 1207,
-    "input_tokens": 279304,
-    "output_tokens": 37335,
-    "cost_usd": 0.03698
+    "calls": 63,
+    "items": 1269,
+    "input_tokens": 293095,
+    "output_tokens": 39473,
+    "cost_usd": 0.038928
    }
   }
  },
@@ -1245,20 +1241,20 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6060,
-  "local_story": 5972,
-  "with_region": 6608
+  "local_outlet": 6074,
+  "local_story": 5991,
+  "with_region": 6627
  },
  "region_counts": {
-  "New York City": 1005,
+  "New York City": 1006,
   "Central New York": 518,
-  "Finger Lakes": 1024,
+  "Finger Lakes": 1025,
   "Western New York": 463,
-  "North Country": 693,
   "Southern Tier": 570,
-  "Capital Region": 850,
+  "Capital Region": 851,
+  "North Country": 692,
   "Long Island": 268,
-  "Mid-Hudson": 500,
+  "Mid-Hudson": 503,
   "Mohawk Valley": 559
  },
  "zm_only": 101
