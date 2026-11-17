@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-17 13:06 UTC",
- "last_run_iso": "2026-11-17T13:00:25Z",
- "total": 16251,
+ "last_run": "2026-11-17 13:34 UTC",
+ "last_run_iso": "2026-11-17T13:30:16Z",
+ "total": 16327,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 13",
@@ -13,7 +13,7 @@
   "Daily News": "ok 1",
   "Times Union (gnews)": "ok 1",
   "Newsday (gnews)": "ok 4",
-  "Daily News (gnews)": "ERROR HTTPError: HTTP Error 503: ",
+  "Daily News (gnews)": "ok 1",
   "Politico": "ok 1",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 11",
@@ -22,14 +22,14 @@
   "NY Post Politics": "ok 2",
   "NY Post Metro": "ok 4",
   "The City": "ok 2",
-  "Wall Street Journal": "ERROR HTTPError: HTTP Error 503: ",
-  "Buffalo News": "ERROR HTTPError: HTTP Error 429: ",
+  "Wall Street Journal": "ok 0",
+  "Buffalo News": "ok 2",
   "Buffalo News (gnews)": "ok 0",
-  "Syracuse.com": "ok 3",
-  "Politico (gnews)": "ERROR HTTPError: HTTP Error 503: ",
+  "Syracuse.com": "ok 4",
+  "Politico (gnews)": "ok 2",
   "amNY": "ok 3",
   "Documented": "ok 2",
-  "Streetsblog NYC": "ok 5",
+  "Streetsblog NYC": "ok 6",
   "Chalkbeat New York": "ok 12",
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
@@ -37,11 +37,11 @@
   "Citizens Budget Commission": "ok 1",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 16",
-  "Attorney General": "ok 0 new of 25 listed",
+  "Attorney General": "ok 1 new of 25 listed",
   "Comptroller": "ok 1 new of 18 listed",
   "Assembly Speaker": "ok 0 new of 300 listed",
   "Senate Majority Leader": "ok 0 new of 5 listed",
-  "NY Senate": "ERROR HTTPError: HTTP Error 503: ",
+  "NY Senate": "ok 13",
   "NYC Mayor": "ok 0 new",
   "WIVB": "ok 9",
   "WKBW": "ok 29",
@@ -49,16 +49,16 @@
   "Niagara Gazette": "ok 18",
   "Post-Journal": "ok 5",
   "Olean Times Herald": "ok 28",
-  "WHEC": "ok 18",
+  "WHEC": "ok 19",
   "Rochester First": "ok 20",
   "WXXI News": "ok 10",
   "FingerLakes1": "ok 30",
   "Finger Lakes Daily News": "ok 7",
   "The Daily News (Batavia)": "ok 12",
   "Rochester Beacon": "ok 10",
-  "WBNG": "ok 16",
+  "WBNG": "ok 14",
   "WIVT Binghamton": "ok 47",
-  "WICZ": "ok 11",
+  "WICZ": "ok 12",
   "WENY": "ok 0",
   "WETM": "ok 7",
   "Ithaca Voice": "ok 10",
@@ -69,15 +69,15 @@
   "The Citizen (Auburn)": "ok 24",
   "Cortland Standard": "ok 2",
   "WKTV": "ok 22",
-  "Rome Sentinel": "ok 25",
-  "The Daily Star (Oneonta)": "ok 2",
+  "Rome Sentinel": "ok 23",
+  "The Daily Star (Oneonta)": "ok 1",
   "WIBX": "ok 35",
-  "WWNY": "ok 15",
+  "WWNY": "ok 13",
   "Watertown Daily Times": "ok 6",
   "Press-Republican": "ok 34",
   "NBC5 Plattsburgh": "ok 17",
   "Adirondack Explorer": "ok 10",
-  "WTEN News10": "ok 30",
+  "WTEN News10": "ok 29",
   "WNYT": "ok 19",
   "Daily Gazette": "ok 4",
   "Troy Record": "ok 2",
@@ -93,7 +93,7 @@
   "West Side Rag": "ok 13",
   "PIX11": "ok 9",
   "ABC7 New York": "ok 14",
-  "NBC New York": "ok 27",
+  "NBC New York": "ok 26",
   "Long Island Press": "ok 10",
   "LI Life & Politics": "ok 10",
   "Long Island Business News": "ok 10",
@@ -101,12 +101,12 @@
   "27east": "ok 27",
   "Google News: local outlets 1": "ok 87",
   "Google News: local outlets 2": "ok 79",
-  "Google News: local outlets 3": "ok 83",
-  "Google News: local outlets 4": "ok 42",
+  "Google News: local outlets 3": "ok 84",
+  "Google News: local outlets 4": "ok 38",
   "Google News: Hochul": "ok 56",
-  "Google News: Legislature": "ok 9",
+  "Google News: Legislature": "ok 8",
   "Google News: Courts & statewide officials": "ok 6",
-  "Google News: State agencies": "ok 2",
+  "Google News: State agencies": "ok 3",
   "Google News: Lawmakers": "ok 2"
  },
  "outlets": [
@@ -231,7 +231,6 @@
   "City & State",
   "City Journal",
   "City Limits",
-  "Clemson Wire",
   "ClickOnDetroit | WDIV Local 4",
   "CoinMarketCap",
   "Coinbase",
@@ -520,7 +519,6 @@
   "Paulick Report",
   "Peekskill Herald",
   "People.com",
-  "Peoria Journal Star",
   "Pittsburgh Post-Gazette",
   "PlayNY",
   "Pluribus News",
@@ -568,7 +566,6 @@
   "Roswell Park Comprehensive Cancer Center",
   "Rutland Herald",
   "SBU News",
-  "SILive.com",
   "SMH.com.au",
   "SUNY - The State University of New York",
   "SUNY Cortland",
@@ -687,6 +684,7 @@
   "The News-Press",
   "The Next Web",
   "The North State Journal",
+  "The Oklahoman",
   "The Palm Beach Post",
   "The Poughkeepsie Journal",
   "The Quantum Insider",
@@ -750,6 +748,7 @@
   "WGRZ",
   "WGY",
   "WHEC",
+  "WHEC.com",
   "WHIO TV",
   "WHTC",
   "WIBX",
@@ -757,7 +756,6 @@
   "WIRED",
   "WIVB",
   "WIVT Binghamton",
-  "WJLA",
   "WKBW",
   "WKMG",
   "WKTV",
@@ -885,6 +883,7 @@
   "pressofatlanticcity.com",
   "primetimer.com",
   "prismreports.org",
+  "pv magazine USA",
   "queenseagle.com",
   "qz.com",
   "recordonline.com",
@@ -978,13 +977,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 1287,
-  "free": 8555,
-  "unknown": 6343,
+  "hard": 1286,
+  "free": 8572,
+  "unknown": 6403,
   "metered": 37,
   "null": 29
  },
- "extracted": 13922,
+ "extracted": 13940,
  "runner": "pi",
  "per_day": {
   "2026-11-04": {
@@ -1012,7 +1011,7 @@
    "official": 19
   },
   "2026-11-10": {
-   "stories": 1267,
+   "stories": 1268,
    "official": 13
   },
   "2026-11-11": {
@@ -1024,7 +1023,7 @@
    "official": 12
   },
   "2026-11-13": {
-   "stories": 1159,
+   "stories": 1160,
    "official": 25
   },
   "2026-11-14": {
@@ -1036,18 +1035,18 @@
    "official": 1
   },
   "2026-11-16": {
-   "stories": 1127,
-   "official": 8
+   "stories": 1128,
+   "official": 7
   },
   "2026-11-17": {
-   "stories": 232,
+   "stories": 248,
    "official": 0
   }
  },
- "grouped_stories": 665,
+ "grouped_stories": 666,
  "gates": {
-  "politics: mayor": 80,
-  "suny": 70,
+  "politics: mayor": 81,
+  "suny": 69,
   "politics: democrat": 37,
   "politics: mamdani": 29,
   "state police": 26,
@@ -1069,19 +1068,19 @@
   "politics: elected": 9,
   "politics: appeals court": 8,
   "Lawmakers sweep": 8,
+  "nyserda": 8,
   "politics: dsa": 7,
   "politics: lawmaker": 7,
-  "nyserda": 7,
   "state law": 6,
   "state officials": 6,
   "politics: judge": 5,
   "state grant": 5,
-  "politics: voters": 5,
   "politics: state's": 5,
+  "politics: voters": 4,
   "state aid": 4,
   "senate district": 4,
-  "politics: council member": 4,
   "new york attorney general": 4,
+  "politics: council member": 4,
   "board of elections": 4,
   "department of health": 4,
   "politics: midterm": 4,
@@ -1102,8 +1101,8 @@
   "appellate division": 1,
   "thruway": 1,
   "state agencies": 1,
-  "attorney general james": 1,
   "politics: ruling": 1,
+  "attorney general james": 1,
   "state education department": 1,
   "board of regents": 1,
   "politics: gop": 1,
@@ -1115,28 +1114,28 @@
   "state senator": 1,
   "state health department": 1
  },
- "unresolved_links": 37,
+ "unresolved_links": 95,
  "summaries": {
-  "total": 13376,
-  "og": 3679,
-  "none": 2875
+  "total": 13394,
+  "og": 3684,
+  "none": 2933
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 2680,
-  "items": 48723,
-  "cost_usd": 1.6886,
-  "last": "2026-11-17T13:00:25Z",
+  "calls": 2685,
+  "items": 48836,
+  "cost_usd": 1.6914,
+  "last": "2026-11-17T13:30:16Z",
   "week": {
-   "classified": 6849,
+   "classified": 6894,
    "unclassified": 0,
    "types": {
-    "other": 3155,
-    "local": 1186,
-    "blotter": 946,
-    "national": 755,
-    "policy": 397,
-    "announcement": 277,
+    "other": 3193,
+    "local": 1187,
+    "blotter": 942,
+    "national": 767,
+    "policy": 398,
+    "announcement": 274,
     "campaign": 133
    },
    "investigative": 58
@@ -1234,11 +1233,11 @@
     "cost_usd": 0.117474
    },
    "2026-11-17": {
-    "calls": 98,
-    "items": 2043,
-    "input_tokens": 472829,
-    "output_tokens": 72515,
-    "cost_usd": 0.065874
+    "calls": 103,
+    "items": 2156,
+    "input_tokens": 497056,
+    "output_tokens": 75446,
+    "cost_usd": 0.068684
    }
   }
  },
@@ -1255,21 +1254,21 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6029,
-  "local_story": 5946,
-  "with_region": 6576
+  "local_outlet": 6057,
+  "local_story": 5994,
+  "with_region": 6622
  },
  "region_counts": {
-  "New York City": 1028,
+  "New York City": 1025,
   "Finger Lakes": 1033,
-  "Capital Region": 826,
   "Central New York": 484,
-  "Western New York": 481,
+  "Western New York": 479,
+  "Capital Region": 825,
   "Southern Tier": 572,
-  "Long Island": 256,
-  "Mid-Hudson": 529,
-  "North Country": 684,
-  "Mohawk Valley": 545
+  "Long Island": 255,
+  "Mid-Hudson": 524,
+  "North Country": 685,
+  "Mohawk Valley": 546
  },
- "zm_only": 117
+ "zm_only": 118
 }
