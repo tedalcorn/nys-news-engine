@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-18 01:33 UTC",
- "last_run_iso": "2026-11-18T01:30:07Z",
- "total": 17118,
+ "last_run": "2026-11-18 02:04 UTC",
+ "last_run_iso": "2026-11-18T02:00:25Z",
+ "total": 17191,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 13",
@@ -46,7 +46,7 @@
   "WIVB": "ok 10",
   "WKBW": "ok 29",
   "Investigative Post": "ok 10",
-  "Niagara Gazette": "ok 17",
+  "Niagara Gazette": "ok 18",
   "Post-Journal": "ok 5",
   "Olean Times Herald": "ok 28",
   "WHEC": "ok 9",
@@ -68,7 +68,7 @@
   "Central Current": "ok 10",
   "The Citizen (Auburn)": "ok 10",
   "Cortland Standard": "ok 22",
-  "WKTV": "ok 24",
+  "WKTV": "ok 26",
   "Rome Sentinel": "ok 32",
   "The Daily Star (Oneonta)": "ok 2",
   "WIBX": "ok 35",
@@ -79,20 +79,20 @@
   "Adirondack Explorer": "ok 10",
   "WTEN News10": "ok 39",
   "WNYT": "ok 23",
-  "Daily Gazette": "ok 11",
+  "Daily Gazette": "ok 7",
   "Troy Record": "ok 0",
   "Post-Star": "ok 9",
   "WAMC": "ok 12",
   "Hudson Valley One": "ok 20",
   "Yonkers Times": "ok 46",
   "The Examiner News": "ok 10",
-  "Staten Island Advance": "ok 24",
+  "Staten Island Advance": "ok 25",
   "QNS": "ok 17",
   "BK Reader": "ok 17",
   "Bronx Times": "ok 10",
   "West Side Rag": "ok 14",
   "PIX11": "ok 7",
-  "ABC7 New York": "ok 16",
+  "ABC7 New York": "ok 15",
   "NBC New York": "ok 30",
   "Long Island Press": "ok 9",
   "LI Life & Politics": "ok 10",
@@ -101,9 +101,9 @@
   "27east": "ok 27",
   "Google News: local outlets 1": "ok 89",
   "Google News: local outlets 2": "ok 79",
-  "Google News: local outlets 3": "ok 81",
-  "Google News: local outlets 4": "ok 43",
-  "Google News: Hochul": "ok 69",
+  "Google News: local outlets 3": "ok 77",
+  "Google News: local outlets 4": "ok 42",
+  "Google News: Hochul": "ok 70",
   "Google News: Legislature": "ok 9",
   "Google News: Courts & statewide officials": "ok 7",
   "Google News: State agencies": "ok 5",
@@ -241,6 +241,7 @@
   "Consumers Union",
   "Cornell Chronicle",
   "Corning Leader",
+  "Corpus Christi Caller-Times",
   "Cortland Standard",
   "Cortland Voice",
   "Country 106.5 WYRK",
@@ -293,6 +294,7 @@
   "Facebook",
   "Finger Lakes Daily News",
   "FingerLakes1",
+  "Fingerlakes1.com",
   "Fiscal Policy Institute",
   "Flack Broadcasting",
   "Focus Gaming News",
@@ -638,6 +640,7 @@
   "The Croton Chronicle",
   "The Daily Beast",
   "The Daily Corinthian",
+  "The Daily Gazette",
   "The Daily News (Batavia)",
   "The Daily News | Texas' Oldest Newspaper",
   "The Daily Orange",
@@ -759,7 +762,6 @@
   "WIRED",
   "WIVB",
   "WIVT Binghamton",
-  "WJLA",
   "WKBW",
   "WKMG",
   "WKTV",
@@ -982,13 +984,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 1331,
-  "free": 9116,
-  "unknown": 6601,
+  "hard": 1333,
+  "free": 9121,
+  "unknown": 6667,
   "metered": 41,
   "null": 29
  },
- "extracted": 14800,
+ "extracted": 14811,
  "runner": "pi",
  "per_day": {
   "2026-11-04": {
@@ -1040,18 +1042,18 @@
    "official": 1
   },
   "2026-11-16": {
-   "stories": 1151,
-   "official": 11
+   "stories": 1150,
+   "official": 10
   },
   "2026-11-17": {
-   "stories": 1071,
-   "official": 8
+   "stories": 1083,
+   "official": 9
   }
  },
  "grouped_stories": 676,
  "gates": {
-  "politics: mayor": 84,
-  "suny": 78,
+  "politics: mayor": 86,
+  "suny": 79,
   "politics: democrat": 35,
   "politics: mamdani": 32,
   "state police": 30,
@@ -1098,7 +1100,6 @@
   "adirondack park agency": 2,
   "politics: primary": 2,
   "politics: legislation": 2,
-  "attorney general james": 2,
   "politics: ordinance": 2,
   "court of appeals": 2,
   "politics: blue wave": 1,
@@ -1111,6 +1112,7 @@
   "board of regents": 1,
   "state prison": 1,
   "politics: gop": 1,
+  "attorney general james": 1,
   "state employee": 1,
   "politics: poll": 1,
   "unconstitutional": 1,
@@ -1119,31 +1121,31 @@
   "state worker": 1,
   "politics: turnout": 1
  },
- "unresolved_links": 26,
+ "unresolved_links": 88,
  "summaries": {
-  "total": 14226,
-  "og": 3793,
-  "none": 2892
+  "total": 14237,
+  "og": 3797,
+  "none": 2954
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 2790,
-  "items": 51232,
-  "cost_usd": 1.7653,
-  "last": "2026-11-18T01:30:07Z",
+  "calls": 2795,
+  "items": 51333,
+  "cost_usd": 1.768,
+  "last": "2026-11-18T02:00:25Z",
   "week": {
-   "classified": 6778,
+   "classified": 6843,
    "unclassified": 0,
    "types": {
-    "other": 3135,
-    "local": 1169,
-    "blotter": 943,
-    "national": 755,
+    "other": 3190,
+    "local": 1171,
+    "blotter": 944,
+    "national": 762,
     "policy": 402,
-    "announcement": 264,
-    "campaign": 110
+    "announcement": 265,
+    "campaign": 109
    },
-   "investigative": 47
+   "investigative": 46
   },
   "by_day": {
    "2026-11-05": {
@@ -1238,11 +1240,11 @@
     "cost_usd": 0.130976
    },
    "2026-11-18": {
-    "calls": 14,
-    "items": 323,
-    "input_tokens": 73093,
-    "output_tokens": 13772,
-    "cost_usd": 0.011618
+    "calls": 19,
+    "items": 424,
+    "input_tokens": 96624,
+    "output_tokens": 16451,
+    "cost_usd": 0.014232
    }
   }
  },
@@ -1259,21 +1261,21 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6006,
-  "local_story": 5901,
-  "with_region": 6524
+  "local_outlet": 6033,
+  "local_story": 5966,
+  "with_region": 6589
  },
  "region_counts": {
-  "Capital Region": 853,
-  "New York City": 1053,
-  "North Country": 673,
-  "Central New York": 476,
+  "Capital Region": 850,
+  "New York City": 1055,
+  "North Country": 672,
+  "Central New York": 477,
+  "Long Island": 263,
   "Southern Tier": 551,
-  "Finger Lakes": 1032,
-  "Long Island": 262,
-  "Western New York": 469,
-  "Mid-Hudson": 503,
-  "Mohawk Valley": 524
+  "Finger Lakes": 1031,
+  "Western New York": 470,
+  "Mid-Hudson": 502,
+  "Mohawk Valley": 527
  },
- "zm_only": 124
+ "zm_only": 125
 }
