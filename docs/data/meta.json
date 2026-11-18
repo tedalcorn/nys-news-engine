@@ -1,14 +1,14 @@
 {
- "last_run": "2026-11-18 11:34 UTC",
- "last_run_iso": "2026-11-18T11:30:18Z",
- "total": 17422,
+ "last_run": "2026-11-18 11:43 UTC",
+ "last_run_iso": "2026-11-18T11:41:20Z",
+ "total": 17406,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 14",
   "City & State (gnews)": "ok 15",
   "Politico NY Playbook": "ok 22",
   "Times Union": "ok 5",
-  "NY State of Politics": "ok 3",
+  "NY State of Politics": "ok 4",
   "Newsday": "ok 6",
   "Daily News": "ok 0",
   "Times Union (gnews)": "ok 1",
@@ -40,7 +40,7 @@
   "Attorney General": "ok 0 new of 25 listed",
   "Comptroller": "ok 1 new of 18 listed",
   "Assembly Speaker": "ok 0 new of 300 listed",
-  "Senate Majority Leader": "ok 0 new of 5 listed",
+  "Senate Majority Leader": "ERROR HTTPError: HTTP Error 403: ",
   "NY Senate": "ok 10",
   "NYC Mayor": "ok 0 new",
   "WIVB": "ok 8",
@@ -49,8 +49,8 @@
   "Niagara Gazette": "ok 20",
   "Post-Journal": "ok 6",
   "Olean Times Herald": "ok 27",
-  "WHEC": "ok 12",
-  "Rochester First": "ok 22",
+  "WHEC": "ok 13",
+  "Rochester First": "ok 21",
   "WXXI News": "ok 10",
   "FingerLakes1": "ok 28",
   "Finger Lakes Daily News": "ok 6",
@@ -62,24 +62,24 @@
   "WENY": "ok 1",
   "WETM": "ok 6",
   "Ithaca Voice": "ok 10",
-  "Ithaca Times": "ok 31",
+  "Ithaca Times": "ERROR HTTPError: HTTP Error 429: ",
   "WSYR": "ok 13",
   "Oswego County News Now": "ok 4",
   "Central Current": "ok 10",
   "The Citizen (Auburn)": "ok 6",
-  "Cortland Standard": "ok 0",
+  "Cortland Standard": "ERROR HTTPError: HTTP Error 429: ",
   "WKTV": "ok 29",
   "Rome Sentinel": "ok 33",
   "The Daily Star (Oneonta)": "ok 2",
   "WIBX": "ok 35",
   "WWNY": "ok 15",
   "Watertown Daily Times": "ok 7",
-  "Press-Republican": "ok 34",
+  "Press-Republican": "ERROR HTTPError: HTTP Error 429: ",
   "NBC5 Plattsburgh": "ok 15",
   "Adirondack Explorer": "ok 10",
   "WTEN News10": "ok 38",
   "WNYT": "ok 23",
-  "Daily Gazette": "ok 0",
+  "Daily Gazette": "ERROR HTTPError: HTTP Error 429: ",
   "Troy Record": "ok 0",
   "Post-Star": "ok 7",
   "WAMC": "ok 12",
@@ -91,19 +91,19 @@
   "BK Reader": "ok 17",
   "Bronx Times": "ok 10",
   "West Side Rag": "ok 14",
-  "PIX11": "ok 9",
-  "ABC7 New York": "ok 15",
+  "PIX11": "ok 7",
+  "ABC7 New York": "ok 14",
   "NBC New York": "ok 27",
   "Long Island Press": "ok 9",
   "LI Life & Politics": "ok 10",
-  "Long Island Business News": "ok 9",
+  "Long Island Business News": "ERROR HTTPError: HTTP Error 403: ",
   "RiverheadLOCAL": "ok 8",
   "27east": "ok 27",
-  "Google News: local outlets 1": "ok 90",
+  "Google News: local outlets 1": "ok 89",
   "Google News: local outlets 2": "ok 81",
   "Google News: local outlets 3": "ok 77",
   "Google News: local outlets 4": "ok 42",
-  "Google News: Hochul": "ok 72",
+  "Google News: Hochul": "ok 71",
   "Google News: Legislature": "ok 9",
   "Google News: Courts & statewide officials": "ok 8",
   "Google News: State agencies": "ok 5",
@@ -241,7 +241,6 @@
   "Consumers Union",
   "Cornell Chronicle",
   "Corning Leader",
-  "Corpus Christi Caller-Times",
   "Cortland Standard",
   "Cortland Voice",
   "Country 106.5 WYRK",
@@ -294,6 +293,7 @@
   "Facebook",
   "Finger Lakes Daily News",
   "FingerLakes1",
+  "Fingerlakes1.com",
   "Fiscal Policy Institute",
   "Flack Broadcasting",
   "Focus Gaming News",
@@ -879,6 +879,7 @@
   "nepyork.com",
   "news.google.com",
   "news3lv.com",
+  "niagara-gazette.com",
   "npr.org",
   "nwitimes.com",
   "nyc.gov",
@@ -981,14 +982,14 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 1345,
-  "free": 9285,
-  "unknown": 6721,
+  "hard": 1347,
+  "free": 9279,
+  "unknown": 6709,
   "metered": 42,
   "null": 29
  },
- "extracted": 15064,
- "runner": "pi",
+ "extracted": 15066,
+ "runner": "actions",
  "per_day": {
   "2026-11-05": {
    "stories": 539,
@@ -1031,26 +1032,26 @@
    "official": 1
   },
   "2026-11-15": {
-   "stories": 449,
+   "stories": 448,
    "official": 1
   },
   "2026-11-16": {
-   "stories": 1153,
+   "stories": 1152,
    "official": 10
   },
   "2026-11-17": {
-   "stories": 1176,
-   "official": 10
+   "stories": 1177,
+   "official": 7
   },
   "2026-11-18": {
-   "stories": 156,
+   "stories": 162,
    "official": 0
   }
  },
  "grouped_stories": 678,
  "gates": {
   "politics: mayor": 89,
-  "suny": 78,
+  "suny": 79,
   "politics: democrat": 35,
   "politics: mamdani": 31,
   "state police": 30,
@@ -1117,27 +1118,27 @@
   "state worker": 1,
   "politics: turnout": 1
  },
- "unresolved_links": 67,
+ "unresolved_links": 49,
  "summaries": {
   "total": 14465,
-  "og": 3848,
-  "none": 2957
+  "og": 3850,
+  "none": 2941
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 2853,
-  "items": 52576,
-  "cost_usd": 1.8079,
-  "last": "2026-11-18T11:30:18Z",
+  "calls": 2855,
+  "items": 52615,
+  "cost_usd": 1.8091,
+  "last": "2026-11-18T11:41:20Z",
   "week": {
-   "classified": 6851,
+   "classified": 6833,
    "unclassified": 0,
    "types": {
-    "other": 3180,
+    "other": 3166,
     "local": 1182,
-    "blotter": 941,
-    "national": 771,
-    "policy": 409,
+    "blotter": 943,
+    "national": 764,
+    "policy": 410,
     "announcement": 263,
     "campaign": 105
    },
@@ -1236,11 +1237,11 @@
     "cost_usd": 0.130976
    },
    "2026-11-18": {
-    "calls": 77,
-    "items": 1667,
-    "input_tokens": 382239,
-    "output_tokens": 59449,
-    "cost_usd": 0.05415
+    "calls": 79,
+    "items": 1706,
+    "input_tokens": 391544,
+    "output_tokens": 60513,
+    "cost_usd": 0.055403
    }
   }
  },
@@ -1257,18 +1258,18 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6056,
-  "local_story": 5965,
-  "with_region": 6592
+  "local_outlet": 6041,
+  "local_story": 5943,
+  "with_region": 6573
  },
  "region_counts": {
-  "Capital Region": 836,
-  "New York City": 1039,
-  "Finger Lakes": 1035,
-  "Mid-Hudson": 508,
+  "Capital Region": 835,
+  "New York City": 1037,
+  "Mid-Hudson": 509,
   "North Country": 679,
   "Central New York": 474,
   "Long Island": 262,
+  "Finger Lakes": 1035,
   "Southern Tier": 562,
   "Western New York": 488,
   "Mohawk Valley": 536
