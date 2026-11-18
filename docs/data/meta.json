@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-18 06:04 UTC",
- "last_run_iso": "2026-11-18T06:00:15Z",
- "total": 17283,
+ "last_run": "2026-11-18 06:34 UTC",
+ "last_run_iso": "2026-11-18T06:30:07Z",
+ "total": 17271,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 13",
@@ -24,7 +24,7 @@
   "The City": "ok 2",
   "Wall Street Journal": "ok 0",
   "Buffalo News": "ok 4",
-  "Buffalo News (gnews)": "ERROR HTTPError: HTTP Error 503: ",
+  "Buffalo News (gnews)": "ok 5",
   "Syracuse.com": "ok 7",
   "Politico (gnews)": "ok 4",
   "amNY": "ok 4",
@@ -34,14 +34,14 @@
   "Reinvent Albany": "ok 10",
   "Fiscal Policy Institute": "ok 10",
   "Empire Center": "ok 8",
-  "Citizens Budget Commission": "ERROR HTTPError: HTTP Error 503: ",
+  "Citizens Budget Commission": "ok 1",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
   "Attorney General": "ok 0 new of 25 listed",
   "Comptroller": "ok 1 new of 18 listed",
   "Assembly Speaker": "ok 0 new of 300 listed",
   "Senate Majority Leader": "ok 0 new of 5 listed",
-  "NY Senate": "ERROR HTTPError: HTTP Error 503: ",
+  "NY Senate": "ok 10",
   "NYC Mayor": "ok 0 new",
   "WIVB": "ok 8",
   "WKBW": "ok 29",
@@ -79,7 +79,7 @@
   "Adirondack Explorer": "ok 10",
   "WTEN News10": "ok 39",
   "WNYT": "ok 23",
-  "Daily Gazette": "ok 13",
+  "Daily Gazette": "ok 15",
   "Troy Record": "ok 0",
   "Post-Star": "ok 8",
   "WAMC": "ok 12",
@@ -102,8 +102,8 @@
   "Google News: local outlets 1": "ok 88",
   "Google News: local outlets 2": "ok 78",
   "Google News: local outlets 3": "ok 77",
-  "Google News: local outlets 4": "ok 42",
-  "Google News: Hochul": "ok 73",
+  "Google News: local outlets 4": "ok 43",
+  "Google News: Hochul": "ERROR HTTPError: HTTP Error 503: ",
   "Google News: Legislature": "ok 9",
   "Google News: Courts & statewide officials": "ok 8",
   "Google News: State agencies": "ok 4",
@@ -241,7 +241,6 @@
   "Consumers Union",
   "Cornell Chronicle",
   "Corning Leader",
-  "Corpus Christi Caller-Times",
   "Cortland Standard",
   "Cortland Voice",
   "Country 106.5 WYRK",
@@ -294,7 +293,6 @@
   "Facebook",
   "Finger Lakes Daily News",
   "FingerLakes1",
-  "Fingerlakes1.com",
   "Fiscal Policy Institute",
   "Flack Broadcasting",
   "Focus Gaming News",
@@ -435,7 +433,6 @@
   "NBC News",
   "NBC5 Plattsburgh",
   "NCPR: North Country Public Radio",
-  "NEWS10 ABC",
   "NH Journal",
   "NPR",
   "NPR Visuals",
@@ -571,7 +568,6 @@
   "Roswell Park Comprehensive Cancer Center",
   "Rutland Herald",
   "SBU News",
-  "SILive.com",
   "SMH.com.au",
   "SUNY - The State University of New York",
   "SUNY Cortland",
@@ -881,7 +877,6 @@
   "nepyork.com",
   "news.google.com",
   "news3lv.com",
-  "niagara-gazette.com",
   "npr.org",
   "nwitimes.com",
   "nyc.gov",
@@ -985,12 +980,12 @@
  ],
  "paywall": {
   "hard": 1336,
-  "free": 9195,
-  "unknown": 6681,
+  "free": 9205,
+  "unknown": 6659,
   "metered": 42,
   "null": 29
  },
- "extracted": 14928,
+ "extracted": 14943,
  "runner": "pi",
  "per_day": {
   "2026-11-05": {
@@ -1034,26 +1029,26 @@
    "official": 1
   },
   "2026-11-15": {
-   "stories": 448,
+   "stories": 449,
    "official": 1
   },
   "2026-11-16": {
-   "stories": 1150,
-   "official": 10
+   "stories": 1152,
+   "official": 11
   },
   "2026-11-17": {
-   "stories": 1167,
-   "official": 7
+   "stories": 1171,
+   "official": 10
   },
   "2026-11-18": {
-   "stories": 34,
+   "stories": 38,
    "official": 0
   }
  },
  "grouped_stories": 678,
  "gates": {
   "politics: mayor": 87,
-  "suny": 79,
+  "suny": 78,
   "politics: democrat": 35,
   "politics: mamdani": 32,
   "state police": 30,
@@ -1108,8 +1103,8 @@
   "appellate division": 1,
   "state agencies": 1,
   "politics: ruling": 1,
-  "thruway": 1,
   "state education department": 1,
+  "thruway": 1,
   "board of regents": 1,
   "politics: gop": 1,
   "state prison": 1,
@@ -1121,31 +1116,31 @@
   "state worker": 1,
   "politics: turnout": 1
  },
- "unresolved_links": 63,
+ "unresolved_links": 36,
  "summaries": {
-  "total": 14336,
-  "og": 3815,
-  "none": 2947
+  "total": 14350,
+  "og": 3816,
+  "none": 2921
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 2821,
-  "items": 51870,
-  "cost_usd": 1.7853,
-  "last": "2026-11-18T06:00:15Z",
+  "calls": 2823,
+  "items": 51918,
+  "cost_usd": 1.7867,
+  "last": "2026-11-18T06:30:07Z",
   "week": {
-   "classified": 6859,
+   "classified": 6846,
    "unclassified": 0,
    "types": {
-    "other": 3194,
+    "other": 3183,
     "local": 1175,
-    "blotter": 945,
-    "national": 762,
+    "blotter": 944,
+    "national": 761,
     "policy": 407,
     "announcement": 268,
     "campaign": 108
    },
-   "investigative": 45
+   "investigative": 46
   },
   "by_day": {
    "2026-11-05": {
@@ -1240,11 +1235,11 @@
     "cost_usd": 0.130976
    },
    "2026-11-18": {
-    "calls": 45,
-    "items": 961,
-    "input_tokens": 223377,
-    "output_tokens": 35601,
-    "cost_usd": 0.031539
+    "calls": 47,
+    "items": 1009,
+    "input_tokens": 233700,
+    "output_tokens": 36902,
+    "cost_usd": 0.033013
    }
   }
  },
@@ -1261,20 +1256,20 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6061,
-  "local_story": 5971,
-  "with_region": 6603
+  "local_outlet": 6053,
+  "local_story": 5962,
+  "with_region": 6590
  },
  "region_counts": {
-  "Capital Region": 852,
-  "New York City": 1050,
-  "North Country": 676,
-  "Central New York": 477,
-  "Long Island": 261,
-  "Finger Lakes": 1037,
+  "Capital Region": 854,
+  "New York City": 1055,
+  "North Country": 677,
+  "Central New York": 478,
+  "Finger Lakes": 1039,
   "Southern Tier": 559,
-  "Western New York": 485,
-  "Mid-Hudson": 504,
+  "Long Island": 261,
+  "Western New York": 486,
+  "Mid-Hudson": 505,
   "Mohawk Valley": 532
  },
  "zm_only": 126
