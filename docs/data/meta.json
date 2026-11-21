@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-21 19:35 UTC",
- "last_run_iso": "2026-11-21T19:30:12Z",
- "total": 21429,
+ "last_run": "2026-11-21 20:07 UTC",
+ "last_run_iso": "2026-11-21T20:01:10Z",
+ "total": 21414,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 16",
@@ -14,19 +14,19 @@
   "Times Union (gnews)": "ok 2",
   "Newsday (gnews)": "ok 4",
   "Daily News (gnews)": "ok 5",
-  "Politico": "ok 6",
+  "Politico": "ERROR HTTPError: HTTP Error 503: ",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 14",
   "New York Times": "ok 4",
   "New York Times (nyt)": "ok 12",
   "NY Post Politics": "ok 1",
-  "NY Post Metro": "ok 2",
+  "NY Post Metro": "ok 1",
   "The City": "ok 3",
   "Wall Street Journal": "ok 0",
   "Buffalo News": "ok 8",
-  "Buffalo News (gnews)": "ok 6",
-  "Syracuse.com": "ok 7",
-  "Politico (gnews)": "ok 14",
+  "Buffalo News (gnews)": "ok 7",
+  "Syracuse.com": "ok 8",
+  "Politico (gnews)": "ok 13",
   "amNY": "ok 4",
   "Documented": "ok 3",
   "Streetsblog NYC": "ok 3",
@@ -54,12 +54,12 @@
   "WXXI News": "ok 10",
   "FingerLakes1": "ok 27",
   "Finger Lakes Daily News": "ok 7",
-  "The Daily News (Batavia)": "ok 21",
+  "The Daily News (Batavia)": "ok 23",
   "Rochester Beacon": "ok 10",
   "WBNG": "ok 16",
   "WIVT Binghamton": "ok 48",
   "WICZ": "ok 15",
-  "WENY": "ok 2",
+  "WENY": "ok 1",
   "WETM": "ok 1",
   "Ithaca Voice": "ok 10",
   "Ithaca Times": "ok 31",
@@ -79,8 +79,8 @@
   "Adirondack Explorer": "ok 10",
   "WTEN News10": "ok 38",
   "WNYT": "ok 19",
-  "Daily Gazette": "ok 1",
-  "Troy Record": "ok 7",
+  "Daily Gazette": "ok 6",
+  "Troy Record": "ok 8",
   "Post-Star": "ok 22",
   "WAMC": "ok 10",
   "Hudson Valley One": "ok 20",
@@ -99,13 +99,13 @@
   "Long Island Business News": "ok 10",
   "RiverheadLOCAL": "ok 9",
   "27east": "ok 31",
-  "Google News: local outlets 1": "ok 79",
-  "Google News: local outlets 2": "ok 73",
+  "Google News: local outlets 1": "ok 80",
+  "Google News: local outlets 2": "ok 74",
   "Google News: local outlets 3": "ok 73",
   "Google News: local outlets 4": "ok 47",
-  "Google News: Hochul": "ok 65",
+  "Google News: Hochul": "ok 64",
   "Google News: Legislature": "ok 6",
-  "Google News: Courts & statewide officials": "ok 11",
+  "Google News: Courts & statewide officials": "ok 10",
   "Google News: State agencies": "ok 1",
   "Google News: Lawmakers": "ok 0"
  },
@@ -167,7 +167,6 @@
   "BBC",
   "BIN: Black Information Network",
   "BK Reader",
-  "BKReader",
   "Balkanweb.com",
   "Baltimore Jewish Times",
   "Baltimore Sun",
@@ -242,7 +241,6 @@
   "Columbia Daily Spectator",
   "Comic Sands",
   "Commercial Observer",
-  "Complex",
   "Comptroller",
   "Consumer Reports",
   "Consumers Union",
@@ -303,7 +301,6 @@
   "Finger Lakes Daily News",
   "Finger Lakes Times",
   "FingerLakes1",
-  "Fingerlakes1.com",
   "Fiscal Policy Institute",
   "Flack Broadcasting",
   "Florida Today",
@@ -450,6 +447,7 @@
   "NBC News",
   "NBC5 Plattsburgh",
   "NCPR: North Country Public Radio",
+  "NEWS10 ABC",
   "NH Journal",
   "NPR",
   "NPR Visuals",
@@ -734,7 +732,6 @@
   "The Washington Post",
   "The Weekly Times",
   "The Western Journal",
-  "TheDailyNewsOnline.com",
   "TheGrio",
   "TheLCN.com",
   "TheStarTV.com",
@@ -820,6 +817,7 @@
   "WWLP",
   "WWNY",
   "WXHC.com",
+  "WXLV",
   "WXXI News",
   "Wall Street Journal",
   "Washington Examiner",
@@ -1018,13 +1016,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "hard": 1582,
-  "free": 11871,
-  "unknown": 7887,
+  "hard": 1584,
+  "free": 11884,
+  "unknown": 7857,
   "metered": 60,
   "null": 29
  },
- "extracted": 19070,
+ "extracted": 19091,
  "runner": "pi",
  "per_day": {
   "2026-11-08": {
@@ -1072,21 +1070,21 @@
    "official": 18
   },
   "2026-11-19": {
-   "stories": 1292,
+   "stories": 1293,
    "official": 20
   },
   "2026-11-20": {
-   "stories": 1113,
-   "official": 5
+   "stories": 1117,
+   "official": 8
   },
   "2026-11-21": {
-   "stories": 316,
+   "stories": 329,
    "official": 0
   }
  },
- "grouped_stories": 755,
+ "grouped_stories": 757,
  "gates": {
-  "politics: mayor": 100,
+  "politics: mayor": 98,
   "suny": 71,
   "politics: mamdani": 44,
   "politics: democrat": 37,
@@ -1098,17 +1096,17 @@
   "politics: lawsuit": 18,
   "politics: elected": 18,
   "politics: statewide": 18,
-  "letitia james": 17,
   "politics: republican": 17,
   "department of environmental conservation": 17,
-  "politics: county executive": 13,
+  "letitia james": 16,
+  "politics: county executive": 14,
   "politics: judge": 13,
   "politics: campaign": 13,
   "politics: lawmaker": 10,
   "Lawmakers sweep": 10,
   "state law": 8,
-  "politics: election": 8,
   "adirondack park agency": 8,
+  "politics: election": 8,
   "state grant": 8,
   "new york attorney general": 7,
   "politics: legislation": 6,
@@ -1157,28 +1155,28 @@
   "state worker": 1,
   "politics: turnout": 1
  },
- "unresolved_links": 68,
+ "unresolved_links": 32,
  "summaries": {
-  "total": 18276,
-  "og": 4499,
-  "none": 3153
+  "total": 18296,
+  "og": 4503,
+  "none": 3118
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 3478,
-  "items": 66182,
-  "cost_usd": 2.253,
-  "last": "2026-11-21T19:30:12Z",
+  "calls": 3480,
+  "items": 66230,
+  "cost_usd": 2.2545,
+  "last": "2026-11-21T20:01:10Z",
   "week": {
-   "classified": 7214,
+   "classified": 7190,
    "unclassified": 0,
    "types": {
-    "other": 3116,
+    "other": 3100,
     "local": 1329,
-    "blotter": 1080,
-    "national": 739,
-    "policy": 558,
-    "announcement": 312,
+    "blotter": 1079,
+    "national": 736,
+    "policy": 561,
+    "announcement": 305,
     "campaign": 80
    },
    "investigative": 45
@@ -1276,11 +1274,11 @@
     "cost_usd": 0.146061
    },
    "2026-11-21": {
-    "calls": 140,
-    "items": 2941,
-    "input_tokens": 685365,
-    "output_tokens": 102898,
-    "cost_usd": 0.094961
+    "calls": 142,
+    "items": 2989,
+    "input_tokens": 696051,
+    "output_tokens": 104148,
+    "cost_usd": 0.096445
    }
   }
  },
@@ -1297,21 +1295,21 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6340,
-  "local_story": 6207,
-  "with_region": 6931
+  "local_outlet": 6326,
+  "local_story": 6184,
+  "with_region": 6904
  },
  "region_counts": {
-  "Capital Region": 864,
-  "New York City": 1167,
-  "Mid-Hudson": 553,
+  "Capital Region": 865,
+  "New York City": 1168,
+  "Mid-Hudson": 557,
   "Southern Tier": 560,
-  "Finger Lakes": 1067,
+  "Finger Lakes": 1071,
   "Long Island": 270,
-  "Central New York": 449,
+  "Central New York": 450,
   "Western New York": 564,
-  "Mohawk Valley": 563,
-  "North Country": 691
+  "Mohawk Valley": 561,
+  "North Country": 690
  },
- "zm_only": 154
+ "zm_only": 153
 }
