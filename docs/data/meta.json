@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-21 13:04 UTC",
- "last_run_iso": "2026-11-21T13:02:12Z",
- "total": 21254,
+ "last_run": "2026-11-21 13:11 UTC",
+ "last_run_iso": "2026-11-21T13:06:52Z",
+ "total": 21265,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 16",
@@ -9,7 +9,7 @@
   "Politico NY Playbook": "ok 23",
   "Times Union": "ok 6",
   "NY State of Politics": "ok 9",
-  "Newsday": "ok 11",
+  "Newsday": "ERROR HTTPError: HTTP Error 503: ",
   "Daily News": "ok 4",
   "Times Union (gnews)": "ok 2",
   "Newsday (gnews)": "ok 3",
@@ -25,7 +25,7 @@
   "Wall Street Journal": "ok 0",
   "Buffalo News": "ok 7",
   "Buffalo News (gnews)": "ok 2",
-  "Syracuse.com": "ok 6",
+  "Syracuse.com": "ok 7",
   "Politico (gnews)": "ok 15",
   "amNY": "ok 4",
   "Documented": "ok 3",
@@ -37,10 +37,10 @@
   "Citizens Budget Commission": "ok 1",
   "Citizens Union": "ok 10",
   "Governor's Office": "ok 15",
-  "Attorney General": "ok 2 new of 25 listed",
+  "Attorney General": "ok 1 new of 25 listed",
   "Comptroller": "ok 1 new of 18 listed",
   "Assembly Speaker": "ok 0 new of 301 listed",
-  "Senate Majority Leader": "ERROR HTTPError: HTTP Error 403: ",
+  "Senate Majority Leader": "ok 0 new of 4 listed",
   "NY Senate": "ok 3",
   "NYC Mayor": "ok 0 new",
   "WIVB": "ok 9",
@@ -70,18 +70,18 @@
   "Cortland Standard": "ok 9",
   "WKTV": "ok 26",
   "Rome Sentinel": "ok 28",
-  "The Daily Star (Oneonta)": "ERROR HTTPError: HTTP Error 429: ",
+  "The Daily Star (Oneonta)": "ok 16",
   "WIBX": "ok 35",
   "WWNY": "ok 18",
   "Watertown Daily Times": "ok 7",
-  "Press-Republican": "ERROR HTTPError: HTTP Error 429: ",
+  "Press-Republican": "ok 38",
   "NBC5 Plattsburgh": "ok 14",
   "Adirondack Explorer": "ok 9",
   "WTEN News10": "ok 40",
   "WNYT": "ok 19",
   "Daily Gazette": "ok 4",
   "Troy Record": "ok 4",
-  "Post-Star": "ERROR HTTPError: HTTP Error 429: ",
+  "Post-Star": "ok 27",
   "WAMC": "ok 10",
   "Hudson Valley One": "ok 20",
   "Yonkers Times": "ok 50",
@@ -96,13 +96,13 @@
   "NBC New York": "ok 35",
   "Long Island Press": "ok 9",
   "LI Life & Politics": "ok 10",
-  "Long Island Business News": "ERROR HTTPError: HTTP Error 403: ",
+  "Long Island Business News": "ok 10",
   "RiverheadLOCAL": "ok 9",
   "27east": "ok 32",
-  "Google News: local outlets 1": "ok 78",
+  "Google News: local outlets 1": "ok 84",
   "Google News: local outlets 2": "ok 79",
-  "Google News: local outlets 3": "ok 78",
-  "Google News: local outlets 4": "ok 14",
+  "Google News: local outlets 3": "ok 79",
+  "Google News: local outlets 4": "ok 44",
   "Google News: Hochul": "ok 74",
   "Google News: Legislature": "ok 8",
   "Google News: Courts & statewide officials": "ok 13",
@@ -301,7 +301,6 @@
   "Finger Lakes Daily News",
   "Finger Lakes Times",
   "FingerLakes1",
-  "Fingerlakes1.com",
   "Fiscal Policy Institute",
   "Flack Broadcasting",
   "Florida Today",
@@ -779,7 +778,6 @@
   "WICZ",
   "WIRED",
   "WIVB",
-  "WIVB News 4",
   "WIVT Binghamton",
   "WKBW",
   "WKMG",
@@ -1016,13 +1014,13 @@
  ],
  "paywall": {
   "hard": 1562,
-  "free": 11790,
+  "free": 11801,
   "unknown": 7816,
   "metered": 57,
   "null": 29
  },
- "extracted": 18906,
- "runner": "actions",
+ "extracted": 18917,
+ "runner": "pi",
  "per_day": {
   "2026-11-08": {
    "stories": 374,
@@ -1069,19 +1067,19 @@
    "official": 17
   },
   "2026-11-19": {
-   "stories": 1282,
-   "official": 20
+   "stories": 1286,
+   "official": 18
   },
   "2026-11-20": {
-   "stories": 1085,
-   "official": 5
+   "stories": 1089,
+   "official": 8
   },
   "2026-11-21": {
-   "stories": 191,
+   "stories": 193,
    "official": 0
   }
  },
- "grouped_stories": 753,
+ "grouped_stories": 754,
  "gates": {
   "politics: mayor": 99,
   "suny": 72,
@@ -1090,7 +1088,7 @@
   "politics: law": 28,
   "state police": 27,
   "politics: city council": 26,
-  "politics: politic": 25,
+  "politics: politic": 24,
   "politics: elected": 18,
   "politics: statewide": 18,
   "medicaid": 17,
@@ -1111,10 +1109,10 @@
   "state grant": 7,
   "politics: legislation": 6,
   "politics: voters": 6,
+  "attorney general james": 6,
   "politics: state's": 6,
   "state funding": 5,
   "state sen.": 5,
-  "attorney general james": 5,
   "politics: rep.": 5,
   "state officials": 5,
   "politics: council member": 5,
@@ -1156,29 +1154,29 @@
  },
  "unresolved_links": 57,
  "summaries": {
-  "total": 18144,
-  "og": 4468,
-  "none": 3110
+  "total": 18154,
+  "og": 4469,
+  "none": 3111
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 3434,
-  "items": 65262,
-  "cost_usd": 2.2226,
-  "last": "2026-11-21T13:02:12Z",
+  "calls": 3436,
+  "items": 65288,
+  "cost_usd": 2.2237,
+  "last": "2026-11-21T13:06:52Z",
   "week": {
-   "classified": 7193,
+   "classified": 7202,
    "unclassified": 0,
    "types": {
-    "other": 3106,
+    "other": 3114,
     "local": 1325,
-    "blotter": 1069,
-    "national": 757,
-    "policy": 552,
-    "announcement": 305,
+    "blotter": 1070,
+    "national": 756,
+    "policy": 554,
+    "announcement": 304,
     "campaign": 79
    },
-   "investigative": 45
+   "investigative": 46
   },
   "by_day": {
    "2026-11-08": {
@@ -1273,11 +1271,11 @@
     "cost_usd": 0.146061
    },
    "2026-11-21": {
-    "calls": 96,
-    "items": 2021,
-    "input_tokens": 472452,
-    "output_tokens": 69478,
-    "cost_usd": 0.064528
+    "calls": 98,
+    "items": 2047,
+    "input_tokens": 481562,
+    "output_tokens": 70195,
+    "cost_usd": 0.065588
    }
   }
  },
@@ -1294,20 +1292,20 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6325,
-  "local_story": 6185,
-  "with_region": 6904
+  "local_outlet": 6329,
+  "local_story": 6195,
+  "with_region": 6911
  },
  "region_counts": {
-  "Capital Region": 859,
+  "Capital Region": 861,
   "New York City": 1173,
-  "Mid-Hudson": 551,
-  "Southern Tier": 568,
+  "Mid-Hudson": 553,
+  "Southern Tier": 569,
   "Finger Lakes": 1059,
-  "Long Island": 278,
-  "Central New York": 453,
+  "Long Island": 277,
+  "Central New York": 454,
   "Western New York": 537,
-  "Mohawk Valley": 564,
+  "Mohawk Valley": 566,
   "North Country": 688
  },
  "zm_only": 154
