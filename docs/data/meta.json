@@ -1,20 +1,20 @@
 {
- "last_run": "2026-11-22 06:06 UTC",
- "last_run_iso": "2026-11-22T06:00:58Z",
- "total": 21605,
+ "last_run": "2026-11-22 06:35 UTC",
+ "last_run_iso": "2026-11-22T06:30:17Z",
+ "total": 21606,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 16",
-  "City & State (gnews)": "ERROR HTTPError: HTTP Error 503: ",
+  "City & State (gnews)": "ok 10",
   "Politico NY Playbook": "ok 23",
   "Times Union": "ok 6",
   "NY State of Politics": "ok 6",
-  "Newsday": "ERROR HTTPError: HTTP Error 503: ",
+  "Newsday": "ok 7",
   "Daily News": "ok 2",
-  "Times Union (gnews)": "ERROR HTTPError: HTTP Error 503: ",
+  "Times Union (gnews)": "ok 2",
   "Newsday (gnews)": "ok 3",
   "Daily News (gnews)": "ok 4",
-  "Politico": "ERROR HTTPError: HTTP Error 503: ",
+  "Politico": "ok 6",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 14",
   "New York Times": "ok 3",
@@ -71,7 +71,7 @@
   "WKTV": "ok 28",
   "Rome Sentinel": "ok 25",
   "The Daily Star (Oneonta)": "ok 7",
-  "WIBX": "ok 35",
+  "WIBX": "ERROR ReadTimeout: HTTPSConnectionPool(host='wibx950.com', port=443): Read timed out. (read timeout=25)",
   "WWNY": "ok 14",
   "Watertown Daily Times": "ok 14",
   "Press-Republican": "ok 38",
@@ -99,8 +99,8 @@
   "Long Island Business News": "ok 10",
   "RiverheadLOCAL": "ok 9",
   "27east": "ok 31",
-  "Google News: local outlets 1": "ok 84",
-  "Google News: local outlets 2": "ok 76",
+  "Google News: local outlets 1": "ok 81",
+  "Google News: local outlets 2": "ok 77",
   "Google News: local outlets 3": "ok 68",
   "Google News: local outlets 4": "ok 47",
   "Google News: Hochul": "ok 50",
@@ -167,6 +167,7 @@
   "BBC",
   "BIN: Black Information Network",
   "BK Reader",
+  "BKReader",
   "Balkanweb.com",
   "Baltimore Jewish Times",
   "Baltimore Sun",
@@ -241,6 +242,7 @@
   "Columbia Daily Spectator",
   "Comic Sands",
   "Commercial Observer",
+  "Complex",
   "Comptroller",
   "Construction Owners",
   "Consumer Reports",
@@ -385,7 +387,6 @@
   "KING5.com",
   "KLTV.com",
   "KOKH",
-  "KOMO",
   "KPAX News",
   "KRCR",
   "KSL News",
@@ -450,6 +451,7 @@
   "NBC News",
   "NBC5 Plattsburgh",
   "NCPR: North Country Public Radio",
+  "NEWS10 ABC",
   "NH Journal",
   "NPR",
   "NPR Visuals",
@@ -784,7 +786,6 @@
   "WICZ",
   "WIRED",
   "WIVB",
-  "WIVB News 4",
   "WIVT Binghamton",
   "WKBW",
   "WKMG",
@@ -796,6 +797,7 @@
   "WNY Labor Today",
   "WNYC",
   "WNYT",
+  "WOAI",
   "WOWT",
   "WQOW",
   "WRFA-LP 107.9 FM",
@@ -820,7 +822,6 @@
   "WWLP",
   "WWNY",
   "WXHC.com",
-  "WXLV",
   "WXXI News",
   "Wall Street Journal",
   "Washington Examiner",
@@ -951,6 +952,7 @@
   "washingtonsun.com",
   "wcax.com",
   "westchester.news12.com",
+  "wicz.com",
   "wng.org",
   "wpxi.com",
   "wskg.org",
@@ -1020,12 +1022,12 @@
  ],
  "paywall": {
   "hard": 1599,
-  "free": 11985,
-  "unknown": 7930,
+  "free": 11978,
+  "unknown": 7938,
   "metered": 62,
   "null": 29
  },
- "extracted": 19273,
+ "extracted": 19268,
  "runner": "pi",
  "per_day": {
   "2026-11-09": {
@@ -1074,10 +1076,10 @@
   },
   "2026-11-20": {
    "stories": 1131,
-   "official": 8
+   "official": 5
   },
   "2026-11-21": {
-   "stories": 478,
+   "stories": 476,
    "official": 0
   },
   "2026-11-22": {
@@ -1085,9 +1087,9 @@
    "official": 0
   }
  },
- "grouped_stories": 758,
+ "grouped_stories": 760,
  "gates": {
-  "politics: mayor": 99,
+  "politics: mayor": 100,
   "suny": 66,
   "politics: mamdani": 43,
   "politics: democrat": 36,
@@ -1099,12 +1101,12 @@
   "politics: lawsuit": 19,
   "politics: elected": 18,
   "politics: statewide": 18,
+  "letitia james": 17,
   "politics: republican": 17,
   "department of environmental conservation": 17,
-  "letitia james": 16,
   "politics: county executive": 16,
-  "politics: judge": 13,
   "politics: campaign": 13,
+  "politics: judge": 13,
   "Lawmakers sweep": 11,
   "politics: lawmaker": 10,
   "politics: election": 9,
@@ -1157,27 +1159,27 @@
   "politics: gop": 1,
   "state worker": 1
  },
- "unresolved_links": 40,
+ "unresolved_links": 46,
  "summaries": {
-  "total": 18455,
-  "og": 4549,
-  "none": 3150
+  "total": 18448,
+  "og": 4551,
+  "none": 3158
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 3539,
-  "items": 67426,
-  "cost_usd": 2.2904,
-  "last": "2026-11-22T06:00:58Z",
+  "calls": 3541,
+  "items": 67472,
+  "cost_usd": 2.2917,
+  "last": "2026-11-22T06:30:17Z",
   "week": {
-   "classified": 7188,
+   "classified": 7189,
    "unclassified": 0,
    "types": {
-    "other": 3095,
-    "local": 1339,
+    "other": 3093,
+    "local": 1340,
     "blotter": 1092,
-    "national": 721,
-    "policy": 558,
+    "national": 722,
+    "policy": 559,
     "announcement": 305,
     "campaign": 78
    },
@@ -1276,11 +1278,11 @@
     "cost_usd": 0.110905
    },
    "2026-11-22": {
-    "calls": 35,
-    "items": 725,
-    "input_tokens": 168377,
-    "output_tokens": 19063,
-    "cost_usd": 0.02141
+    "calls": 37,
+    "items": 771,
+    "input_tokens": 177671,
+    "output_tokens": 20269,
+    "cost_usd": 0.022733
    }
   }
  },
@@ -1297,21 +1299,21 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6319,
-  "local_story": 6192,
-  "with_region": 6907
+  "local_outlet": 6330,
+  "local_story": 6190,
+  "with_region": 6910
  },
  "region_counts": {
   "Capital Region": 871,
-  "New York City": 1167,
+  "New York City": 1166,
   "North Country": 688,
-  "Mid-Hudson": 557,
-  "Southern Tier": 557,
-  "Finger Lakes": 1053,
-  "Central New York": 455,
+  "Mid-Hudson": 556,
+  "Southern Tier": 555,
+  "Finger Lakes": 1054,
+  "Central New York": 456,
   "Western New York": 567,
   "Long Island": 273,
   "Mohawk Valley": 561
  },
- "zm_only": 154
+ "zm_only": 155
 }
