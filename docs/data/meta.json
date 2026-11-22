@@ -1,17 +1,17 @@
 {
- "last_run": "2026-11-22 00:36 UTC",
- "last_run_iso": "2026-11-22T00:31:06Z",
- "total": 21535,
+ "last_run": "2026-11-22 01:06 UTC",
+ "last_run_iso": "2026-11-22T01:00:42Z",
+ "total": 21519,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 16",
-  "City & State (gnews)": "ERROR HTTPError: HTTP Error 503: ",
+  "City & State (gnews)": "ok 11",
   "Politico NY Playbook": "ok 23",
   "Times Union": "ok 7",
   "NY State of Politics": "ok 6",
-  "Newsday": "ok 8",
-  "Daily News": "ERROR HTTPError: HTTP Error 503: ",
-  "Times Union (gnews)": "ok 2",
+  "Newsday": "ok 7",
+  "Daily News": "ok 2",
+  "Times Union (gnews)": "ERROR HTTPError: HTTP Error 503: ",
   "Newsday (gnews)": "ok 4",
   "Daily News (gnews)": "ok 4",
   "Politico": "ok 6",
@@ -23,7 +23,7 @@
   "NY Post Metro": "ok 1",
   "The City": "ok 3",
   "Wall Street Journal": "ok 0",
-  "Buffalo News": "ok 5",
+  "Buffalo News": "ok 6",
   "Buffalo News (gnews)": "ok 6",
   "Syracuse.com": "ok 3",
   "Politico (gnews)": "ok 9",
@@ -68,7 +68,7 @@
   "Central Current": "ok 10",
   "The Citizen (Auburn)": "ok 20",
   "Cortland Standard": "ok 9",
-  "WKTV": "ok 26",
+  "WKTV": "ok 27",
   "Rome Sentinel": "ok 27",
   "The Daily Star (Oneonta)": "ok 8",
   "WIBX": "ok 35",
@@ -79,9 +79,9 @@
   "Adirondack Explorer": "ok 10",
   "WTEN News10": "ok 38",
   "WNYT": "ok 21",
-  "Daily Gazette": "ok 0",
+  "Daily Gazette": "ok 3",
   "Troy Record": "ok 8",
-  "Post-Star": "ok 18",
+  "Post-Star": "ok 19",
   "WAMC": "ok 10",
   "Hudson Valley One": "ok 20",
   "Yonkers Times": "ok 50",
@@ -101,12 +101,12 @@
   "27east": "ok 32",
   "Google News: local outlets 1": "ok 79",
   "Google News: local outlets 2": "ok 76",
-  "Google News: local outlets 3": "ok 69",
+  "Google News: local outlets 3": "ok 68",
   "Google News: local outlets 4": "ok 47",
-  "Google News: Hochul": "ok 56",
+  "Google News: Hochul": "ok 55",
   "Google News: Legislature": "ok 7",
   "Google News: Courts & statewide officials": "ok 10",
-  "Google News: State agencies": "ok 1",
+  "Google News: State agencies": "ok 4",
   "Google News: Lawmakers": "ok 1"
  },
  "outlets": [
@@ -241,7 +241,6 @@
   "Columbia Daily Spectator",
   "Comic Sands",
   "Commercial Observer",
-  "Complex",
   "Comptroller",
   "Construction Owners",
   "Consumer Reports",
@@ -588,6 +587,7 @@
   "Rutland Herald",
   "SBU News",
   "SCCG Management",
+  "SILive.com",
   "SMH.com.au",
   "SUNY - The State University of New York",
   "SUNY Cortland",
@@ -783,6 +783,7 @@
   "WICZ",
   "WIRED",
   "WIVB",
+  "WIVB News 4",
   "WIVT Binghamton",
   "WKBW",
   "WKMG",
@@ -794,6 +795,7 @@
   "WNY Labor Today",
   "WNYC",
   "WNYT",
+  "WOAI",
   "WOWT",
   "WQOW",
   "WRFA-LP 107.9 FM",
@@ -818,6 +820,7 @@
   "WWLP",
   "WWNY",
   "WXHC.com",
+  "WXLV",
   "WXXI News",
   "Wall Street Journal",
   "Washington Examiner",
@@ -1017,12 +1020,12 @@
  ],
  "paywall": {
   "hard": 1594,
-  "free": 11935,
-  "unknown": 7915,
+  "free": 11942,
+  "unknown": 7892,
   "metered": 62,
   "null": 29
  },
- "extracted": 19193,
+ "extracted": 19199,
  "runner": "pi",
  "per_day": {
   "2026-11-08": {
@@ -1074,11 +1077,11 @@
    "official": 20
   },
   "2026-11-20": {
-   "stories": 1130,
-   "official": 5
+   "stories": 1126,
+   "official": 8
   },
   "2026-11-21": {
-   "stories": 418,
+   "stories": 425,
    "official": 0
   }
  },
@@ -1096,17 +1099,17 @@
   "medicaid": 18,
   "politics: elected": 18,
   "politics: statewide": 18,
-  "letitia james": 17,
   "politics: republican": 17,
   "department of environmental conservation": 17,
+  "letitia james": 16,
   "politics: county executive": 15,
   "politics: judge": 13,
   "politics: campaign": 13,
   "Lawmakers sweep": 11,
   "politics: lawmaker": 10,
+  "politics: election": 9,
   "adirondack park agency": 8,
   "state law": 8,
-  "politics: election": 8,
   "state grant": 8,
   "new york attorney general": 7,
   "politics: legislation": 6,
@@ -1143,8 +1146,8 @@
   "ny attorney general": 1,
   "state comptroller": 1,
   "state education department": 1,
-  "state agencies": 1,
   "dinapoli": 1,
+  "state agencies": 1,
   "politics: endorse": 1,
   "politics: midterm": 1,
   "politics: reelect": 1,
@@ -1154,31 +1157,31 @@
   "politics: gop": 1,
   "state worker": 1
  },
- "unresolved_links": 51,
+ "unresolved_links": 29,
  "summaries": {
-  "total": 18384,
-  "og": 4536,
-  "none": 3151
+  "total": 18391,
+  "og": 4529,
+  "none": 3128
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 3510,
-  "items": 66823,
-  "cost_usd": 2.2729,
-  "last": "2026-11-22T00:31:06Z",
+  "calls": 3512,
+  "items": 66866,
+  "cost_usd": 2.2743,
+  "last": "2026-11-22T01:00:42Z",
   "week": {
-   "classified": 7198,
+   "classified": 7173,
    "unclassified": 0,
    "types": {
-    "other": 3105,
-    "local": 1331,
-    "blotter": 1088,
+    "other": 3080,
+    "local": 1334,
+    "blotter": 1086,
     "national": 727,
     "policy": 561,
-    "announcement": 308,
+    "announcement": 307,
     "campaign": 78
    },
-   "investigative": 46
+   "investigative": 47
   },
   "by_day": {
    "2026-11-09": {
@@ -1273,11 +1276,11 @@
     "cost_usd": 0.110905
    },
    "2026-11-22": {
-    "calls": 6,
-    "items": 122,
-    "input_tokens": 29293,
-    "output_tokens": 3252,
-    "cost_usd": 0.003928
+    "calls": 8,
+    "items": 165,
+    "input_tokens": 39401,
+    "output_tokens": 4404,
+    "cost_usd": 0.005305
    }
   }
  },
@@ -1294,21 +1297,21 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6325,
-  "local_story": 6194,
-  "with_region": 6916
+  "local_outlet": 6315,
+  "local_story": 6173,
+  "with_region": 6890
  },
  "region_counts": {
   "Capital Region": 862,
-  "New York City": 1168,
+  "North Country": 693,
+  "New York City": 1167,
   "Mid-Hudson": 555,
   "Southern Tier": 561,
-  "Finger Lakes": 1058,
-  "Central New York": 450,
-  "Western New York": 567,
-  "Long Island": 277,
-  "Mohawk Valley": 560,
-  "North Country": 692
+  "Finger Lakes": 1057,
+  "Central New York": 449,
+  "Western New York": 566,
+  "Long Island": 272,
+  "Mohawk Valley": 560
  },
  "zm_only": 155
 }
