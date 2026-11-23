@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-23 11:06 UTC",
- "last_run_iso": "2026-11-23T11:01:07Z",
- "total": 22161,
+ "last_run": "2026-11-23 11:36 UTC",
+ "last_run_iso": "2026-11-23T11:30:11Z",
+ "total": 22223,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 14",
@@ -9,11 +9,11 @@
   "Politico NY Playbook": "ok 23",
   "Times Union": "ok 3",
   "NY State of Politics": "ok 3",
-  "Newsday": "ok 2",
+  "Newsday": "ok 3",
   "Daily News": "ok 2",
   "Times Union (gnews)": "ok 1",
-  "Newsday (gnews)": "ok 1",
-  "Daily News (gnews)": "ERROR HTTPError: HTTP Error 503: ",
+  "Newsday (gnews)": "ok 2",
+  "Daily News (gnews)": "ok 2",
   "Politico": "ok 3",
   "Gotham Gazette": "ok 0",
   "Gothamist": "ok 14",
@@ -23,10 +23,10 @@
   "NY Post Metro": "ok 2",
   "The City": "ok 2",
   "Wall Street Journal": "ok 0",
-  "Buffalo News": "ok 5",
+  "Buffalo News": "ok 6",
   "Buffalo News (gnews)": "ok 2",
-  "Syracuse.com": "ok 3",
-  "Politico (gnews)": "ERROR HTTPError: HTTP Error 503: ",
+  "Syracuse.com": "ok 5",
+  "Politico (gnews)": "ok 0",
   "amNY": "ok 1",
   "Documented": "ok 3",
   "Streetsblog NYC": "ok 3",
@@ -50,16 +50,16 @@
   "Post-Journal": "ok 6",
   "Olean Times Herald": "ok 26",
   "WHEC": "ok 13",
-  "Rochester First": "ok 22",
+  "Rochester First": "ok 21",
   "WXXI News": "ok 10",
   "FingerLakes1": "ok 29",
-  "Finger Lakes Daily News": "ok 8",
+  "Finger Lakes Daily News": "ok 7",
   "The Daily News (Batavia)": "ok 13",
   "Rochester Beacon": "ok 10",
   "WBNG": "ok 19",
   "WIVT Binghamton": "ok 48",
   "WICZ": "ok 18",
-  "WENY": "ok 1",
+  "WENY": "ok 2",
   "WETM": "ok 4",
   "Ithaca Voice": "ok 10",
   "Ithaca Times": "ok 31",
@@ -68,16 +68,16 @@
   "Central Current": "ok 10",
   "The Citizen (Auburn)": "ok 3",
   "Cortland Standard": "ok 3",
-  "WKTV": "ok 27",
+  "WKTV": "ok 26",
   "Rome Sentinel": "ok 23",
   "The Daily Star (Oneonta)": "ok 0",
   "WIBX": "ok 35",
   "WWNY": "ok 19",
   "Watertown Daily Times": "ok 12",
   "Press-Republican": "ok 38",
-  "NBC5 Plattsburgh": "ok 13",
+  "NBC5 Plattsburgh": "ok 14",
   "Adirondack Explorer": "ok 9",
-  "WTEN News10": "ok 36",
+  "WTEN News10": "ok 35",
   "WNYT": "ok 21",
   "Daily Gazette": "ok 1",
   "Troy Record": "ok 3",
@@ -86,28 +86,28 @@
   "Hudson Valley One": "ok 20",
   "Yonkers Times": "ok 50",
   "The Examiner News": "ok 10",
-  "Staten Island Advance": "ok 20",
+  "Staten Island Advance": "ok 18",
   "QNS": "ok 18",
   "BK Reader": "ok 18",
   "Bronx Times": "ok 10",
   "West Side Rag": "ok 13",
   "PIX11": "ok 9",
-  "ABC7 New York": "ok 14",
+  "ABC7 New York": "ok 12",
   "NBC New York": "ok 33",
   "Long Island Press": "ok 10",
-  "LI Life & Politics": "ok 10",
+  "LI Life & Politics": "ERROR ReadTimeout: HTTPSConnectionPool(host='www.lilifepolitics.com', port=443): Read timed out. (read timeout=25)",
   "Long Island Business News": "ok 10",
   "RiverheadLOCAL": "ok 9",
   "27east": "ok 21",
   "Google News: local outlets 1": "ok 82",
   "Google News: local outlets 2": "ok 76",
-  "Google News: local outlets 3": "ok 73",
+  "Google News: local outlets 3": "ok 75",
   "Google News: local outlets 4": "ok 45",
-  "Google News: Hochul": "ok 36",
+  "Google News: Hochul": "ok 38",
   "Google News: Legislature": "ok 7",
-  "Google News: Courts & statewide officials": "ok 6",
-  "Google News: State agencies": "ok 2",
-  "Google News: Lawmakers": "ok 16"
+  "Google News: Courts & statewide officials": "ok 4",
+  "Google News: State agencies": "ok 1",
+  "Google News: Lawmakers": "ok 17"
  },
  "outlets": [
   "- Emerson Polling",
@@ -305,6 +305,7 @@
   "Finger Lakes Daily News",
   "Finger Lakes Times",
   "FingerLakes1",
+  "Fingerlakes1.com",
   "Fiscal Policy Institute",
   "Flack Broadcasting",
   "Florida Today",
@@ -391,6 +392,7 @@
   "KING5.com",
   "KLTV.com",
   "KOKH",
+  "KOMO",
   "KPAX News",
   "KRCR",
   "KSL News",
@@ -561,6 +563,7 @@
   "Press-Republican",
   "PressReader",
   "Progressive Railroading",
+  "ProtoThema English",
   "Public Employees Federation",
   "Pulse 2.0",
   "QNS",
@@ -681,6 +684,7 @@
   "The Economic Times",
   "The Evening Sun | Chenango County, NY's Hometown Newspaper",
   "The Examiner News",
+  "The Fayetteville Observer",
   "The FilAm",
   "The Fordham Ram",
   "The Forward",
@@ -966,6 +970,7 @@
   "washingtonsun.com",
   "wcax.com",
   "westchester.news12.com",
+  "wicz.com",
   "wng.org",
   "wpxi.com",
   "wskg.org",
@@ -1035,13 +1040,13 @@
   "NY Assembly"
  ],
  "paywall": {
-  "free": 12298,
-  "hard": 1645,
-  "unknown": 8120,
+  "free": 12301,
+  "hard": 1646,
+  "unknown": 8178,
   "metered": 69,
   "null": 29
  },
- "extracted": 19841,
+ "extracted": 19854,
  "runner": "pi",
  "per_day": {
   "2026-11-10": {
@@ -1085,36 +1090,36 @@
    "official": 20
   },
   "2026-11-20": {
-   "stories": 1155,
+   "stories": 1154,
    "official": 8
   },
   "2026-11-21": {
-   "stories": 517,
+   "stories": 516,
    "official": 0
   },
   "2026-11-22": {
-   "stories": 396,
+   "stories": 395,
    "official": 2
   },
   "2026-11-23": {
-   "stories": 123,
+   "stories": 139,
    "official": 0
   }
  },
  "grouped_stories": 767,
  "gates": {
-  "politics: mayor": 102,
+  "politics: mayor": 99,
   "suny": 68,
-  "politics: mamdani": 50,
+  "politics: mamdani": 49,
   "politics: democrat": 34,
   "politics: law": 29,
   "politics: city council": 27,
+  "politics: politic": 27,
   "state police": 26,
-  "politics: politic": 26,
   "department of environmental conservation": 21,
   "politics: lawsuit": 20,
+  "Lawmakers sweep": 19,
   "medicaid": 18,
-  "Lawmakers sweep": 18,
   "politics: republican": 18,
   "politics: statewide": 17,
   "politics: county executive": 17,
@@ -1137,18 +1142,18 @@
   "attorney general james": 5,
   "politics: council member": 5,
   "thruway": 5,
-  "state funding": 4,
   "senate district": 4,
   "state sen.": 4,
   "politics: appeals court": 4,
   "politics: state's": 4,
   "state officials": 4,
   "board of elections": 4,
-  "politics: working families party": 3,
   "state prison": 3,
   "board of regents": 3,
+  "state funding": 3,
   "state aid": 2,
   "politics: ruling": 2,
+  "politics: working families party": 2,
   "politics: primary": 2,
   "politics: candidate": 2,
   "appellate division": 2,
@@ -1175,31 +1180,31 @@
   "politics: gop": 1,
   "state worker": 1
  },
- "unresolved_links": 38,
+ "unresolved_links": 87,
  "summaries": {
-  "total": 18979,
-  "og": 4714,
-  "none": 3182
+  "total": 18992,
+  "og": 4719,
+  "none": 3231
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 3718,
-  "items": 71169,
-  "cost_usd": 2.4085,
-  "last": "2026-11-23T11:01:07Z",
+  "calls": 3722,
+  "items": 71266,
+  "cost_usd": 2.4115,
+  "last": "2026-11-23T11:30:11Z",
   "week": {
-   "classified": 7192,
+   "classified": 7242,
    "unclassified": 0,
    "types": {
-    "other": 3062,
-    "local": 1352,
-    "blotter": 1111,
-    "national": 712,
-    "policy": 562,
+    "other": 3114,
+    "local": 1351,
+    "blotter": 1115,
+    "national": 710,
+    "policy": 560,
     "announcement": 306,
-    "campaign": 87
+    "campaign": 86
    },
-   "investigative": 49
+   "investigative": 50
   },
   "by_day": {
    "2026-11-10": {
@@ -1294,11 +1299,11 @@
     "cost_usd": 0.093959
    },
    "2026-11-23": {
-    "calls": 77,
-    "items": 1544,
-    "input_tokens": 361198,
-    "output_tokens": 44950,
-    "cost_usd": 0.045538
+    "calls": 81,
+    "items": 1641,
+    "input_tokens": 381048,
+    "output_tokens": 48551,
+    "cost_usd": 0.048534
    }
   }
  },
@@ -1315,21 +1320,21 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6303,
-  "local_story": 6153,
-  "with_region": 6896
+  "local_outlet": 6312,
+  "local_story": 6208,
+  "with_region": 6946
  },
  "region_counts": {
-  "Capital Region": 860,
-  "New York City": 1193,
-  "Mid-Hudson": 538,
-  "North Country": 694,
-  "Finger Lakes": 1007,
+  "Capital Region": 859,
+  "New York City": 1192,
+  "North Country": 695,
+  "Mid-Hudson": 541,
+  "Finger Lakes": 1006,
   "Long Island": 282,
   "Western New York": 576,
-  "Central New York": 455,
+  "Central New York": 457,
   "Mohawk Valley": 560,
-  "Southern Tier": 570
+  "Southern Tier": 569
  },
- "zm_only": 172
+ "zm_only": 168
 }
