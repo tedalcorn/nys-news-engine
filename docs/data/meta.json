@@ -1,7 +1,7 @@
 {
- "last_run": "2026-11-26 04:26 UTC",
- "last_run_iso": "2026-11-26T04:24:34Z",
- "total": 25685,
+ "last_run": "2026-11-26 04:36 UTC",
+ "last_run_iso": "2026-11-26T04:30:44Z",
+ "total": 25737,
  "sources": {
   "New York Focus": "ok 50",
   "City & State": "ok 14",
@@ -23,7 +23,7 @@
   "NY Post Metro": "ok 1",
   "The City": "ok 4",
   "Wall Street Journal": "ok 0",
-  "Buffalo News": "ok 4",
+  "Buffalo News": "ERROR HTTPError: HTTP Error 503: ",
   "Buffalo News (gnews)": "ok 1",
   "Syracuse.com": "ok 5",
   "Politico (gnews)": "ok 2",
@@ -54,27 +54,27 @@
   "WXXI News": "ok 10",
   "FingerLakes1": "ok 25",
   "Finger Lakes Daily News": "ok 1",
-  "The Daily News (Batavia)": "ERROR HTTPError: HTTP Error 429: ",
+  "The Daily News (Batavia)": "ok 21",
   "Rochester Beacon": "ok 10",
   "WBNG": "ok 13",
   "WIVT Binghamton": "ok 47",
-  "WICZ": "ERROR HTTPError: HTTP Error 429: ",
+  "WICZ": "ok 19",
   "WENY": "ok 4",
   "WETM": "ok 8",
   "Ithaca Voice": "ok 10",
   "Ithaca Times": "ok 32",
-  "WSYR": "ok 15",
-  "Oswego County News Now": "ERROR HTTPError: HTTP Error 429: ",
+  "WSYR": "ok 16",
+  "Oswego County News Now": "ok 15",
   "Central Current": "ok 10",
   "The Citizen (Auburn)": "ok 14",
-  "Cortland Standard": "ERROR HTTPError: HTTP Error 429: ",
+  "Cortland Standard": "ok 17",
   "WKTV": "ok 33",
   "Rome Sentinel": "ok 30",
   "The Daily Star (Oneonta)": "ok 6",
   "WIBX": "ok 34",
   "WWNY": "ok 11",
   "Watertown Daily Times": "ok 10",
-  "Press-Republican": "ERROR HTTPError: HTTP Error 429: ",
+  "Press-Republican": "ok 34",
   "NBC5 Plattsburgh": "ok 14",
   "Adirondack Explorer": "ok 9",
   "WTEN News10": "ok 45",
@@ -100,9 +100,9 @@
   "RiverheadLOCAL": "ok 10",
   "27east": "ok 36",
   "Google News: local outlets 1": "ok 83",
-  "Google News: local outlets 2": "ok 74",
-  "Google News: local outlets 3": "ok 74",
-  "Google News: local outlets 4": "ok 46",
+  "Google News: local outlets 2": "ok 71",
+  "Google News: local outlets 3": "ok 86",
+  "Google News: local outlets 4": "ok 20",
   "Google News: Hochul": "ok 89",
   "Google News: Legislature": "ok 19",
   "Google News: Courts & statewide officials": "ok 13",
@@ -623,7 +623,6 @@
   "Rochester Beacon",
   "Rochester Business Journal",
   "Rochester First",
-  "RochesterFirst",
   "Rockland County Business Journal",
   "Rockland Daily",
   "Rockland News",
@@ -1091,13 +1090,13 @@
  ],
  "paywall": {
   "hard": 1840,
-  "free": 14400,
-  "unknown": 9334,
+  "free": 14403,
+  "unknown": 9383,
   "metered": 82,
   "null": 29
  },
- "extracted": 23358,
- "runner": "actions",
+ "extracted": 23363,
+ "runner": "pi",
  "per_day": {
   "2026-11-12": {
    "stories": 1198,
@@ -1148,11 +1147,11 @@
    "official": 22
   },
   "2026-11-24": {
-   "stories": 1283,
-   "official": 14
+   "stories": 1285,
+   "official": 13
   },
   "2026-11-25": {
-   "stories": 998,
+   "stories": 1002,
    "official": 8
   }
  },
@@ -1230,28 +1229,28 @@
   "politics: turnout": 1,
   "attorney general's office": 1
  },
- "unresolved_links": 77,
+ "unresolved_links": 124,
  "summaries": {
-  "total": 22327,
-  "og": 5304,
-  "none": 3358
+  "total": 22333,
+  "og": 5309,
+  "none": 3404
  },
  "llm": {
   "model": "claude-haiku-5-5",
-  "calls": 4326,
-  "items": 84775,
-  "cost_usd": 2.821,
-  "last": "2026-11-26T04:24:34Z",
+  "calls": 4329,
+  "items": 84836,
+  "cost_usd": 2.8228,
+  "last": "2026-11-26T04:30:44Z",
   "week": {
-   "classified": 7122,
+   "classified": 7168,
    "unclassified": 0,
    "types": {
-    "other": 3213,
-    "local": 1223,
-    "blotter": 1075,
-    "national": 639,
-    "policy": 583,
-    "announcement": 316,
+    "other": 3258,
+    "local": 1222,
+    "blotter": 1078,
+    "national": 640,
+    "policy": 584,
+    "announcement": 313,
     "campaign": 73
    },
    "investigative": 40
@@ -1349,11 +1348,11 @@
     "cost_usd": 0.147917
    },
    "2026-11-26": {
-    "calls": 34,
-    "items": 740,
-    "input_tokens": 165062,
-    "output_tokens": 21990,
-    "cost_usd": 0.021349
+    "calls": 37,
+    "items": 801,
+    "input_tokens": 179879,
+    "output_tokens": 23602,
+    "cost_usd": 0.023138
    }
   }
  },
@@ -1370,20 +1369,20 @@
   "Long Island"
  ],
  "local": {
-  "local_outlet": 6186,
-  "local_story": 6035,
-  "with_region": 6762
+  "local_outlet": 6213,
+  "local_story": 6081,
+  "with_region": 6808
  },
  "region_counts": {
   "New York City": 1226,
-  "Western New York": 549,
+  "Capital Region": 878,
+  "Western New York": 547,
   "Southern Tier": 533,
   "Mid-Hudson": 502,
   "Long Island": 304,
-  "North Country": 663,
-  "Capital Region": 875,
-  "Finger Lakes": 926,
-  "Central New York": 467,
+  "Finger Lakes": 925,
+  "North Country": 662,
+  "Central New York": 469,
   "Mohawk Valley": 537
  },
  "zm_only": 152
